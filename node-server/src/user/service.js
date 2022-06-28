@@ -10,7 +10,14 @@ async function getById(id) {
     return await User.findById(id);
 }
 
+//Funtion called to get an user according to the email from db
+async function getByEmail(email) {
+    var query = { "email": email };
+    return await User.find(query);
+}
+
 module.exports = {
     getUsers,
     getById,
+    getByEmail,
 }
