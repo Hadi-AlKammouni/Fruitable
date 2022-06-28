@@ -99,7 +99,7 @@ async function login (req, res) {
 };
 
 //Function to get all users
-async function getAllUsers(req, res) {
+async function get(req, res) {
   try {
 
     if (req.query.id) {
@@ -129,5 +129,5 @@ async function getAllUsers(req, res) {
 module.exports = {
     register,
     login,
-    getAllUsers,
+    get,
 };
