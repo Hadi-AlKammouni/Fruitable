@@ -1,3 +1,4 @@
+const { getUsers } = require('../service');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -96,7 +97,37 @@ async function login (req, res) {
   }
   // Our login logic ends here
 };
+
+//Function to get all users
+async function getAllUsers(req, res) {
+  try {
+
+    if (req.query.id) {
+      const id = req.query.id;
+      const result = await getById(id);
+      // console.log('result of specific user =>', result);
+      return res.send(result);
+    }
+    
+    //Get specific user reffering to his email
+    //To be corrected (if no such email in db it is returning [])
+    if (req.query.email) {
+      const user = await getByEmail(req.query.email);
+      // console.log(user)
+      return res.send(user);
+    }
+
+    const result = await getUsers();
+    // console.log('result =>', result);
+
+    return res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 module.exports = {
     register,
     login,
+    getAllUsers,
 };
