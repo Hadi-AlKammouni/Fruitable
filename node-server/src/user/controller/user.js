@@ -1,4 +1,4 @@
-const { getUsers } = require('../service');
+const { getUsers, getById } = require('../service');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
