@@ -1,10 +1,10 @@
-const { getUsers, getById,getByEmail } = require('../service');
+const { getUsers, getById, getByEmail } = require('../service');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const auth = require("../../../middleware/auth");
 
 // importing user context
 const User = require("../../../model/user");
-
 
 // Register
 async function register (req, res) {
@@ -126,8 +126,14 @@ async function get(req, res) {
   }
 }
 
+//Authenticating the user
+async function authUser (req, res) {
+  res.status(200).send("Welcome 🙌 ");
+};
+
 module.exports = {
     register,
     login,
     get,
+    authUser,
 };
