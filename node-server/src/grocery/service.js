@@ -1,4 +1,5 @@
 const Grocery = require('../../model/grocery');
+const bcrypt = require('bcryptjs');
 
 async function addGrocery(body) {
   const {
@@ -17,7 +18,7 @@ async function addGrocery(body) {
   const grocery = new Grocery({
     grocery_name,
     grocery_email,
-    grocery_password,
+    grocery_password: await bcrypt.hash(grocery_password, 10),
     grocery_phone_number,
     grocery_location,
     grocery_picture,
