@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const grocerySchema = new mongoose.Schema({
-  grocery_name: { type: String,default: null, required: true },
+  grocery_name: { type: String, default: null, required: true },
   grocery_email: { type: String, unique: true, required: true },
   grocery_password: { type: String, required: true },
   grocery_phone_number: { type: String, default: null, required: true },
@@ -14,7 +14,7 @@ const grocerySchema = new mongoose.Schema({
     coordinates: {
       type: [Number],
       required: false,
-    }, required: true
+    },
   },
   grocery_picture: { type: String },
   grocery_description: { type: String, required: true },

@@ -7,6 +7,10 @@ const userSchema = new mongoose.Schema({
   password: { type: String },
   user_type: { type: String, defualt: 0 },
   token: { type: String },
+  groceries:[{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'grocery'
+  },],
 });
 
 module.exports = mongoose.model("user", userSchema);
