@@ -19,6 +19,7 @@ const grocerySchema = new mongoose.Schema({
   picture: { type: String, default: null },
   description: { type: String, default: null  },
   token: { type: String },
+  items: [{type: mongoose.Schema.Types.ObjectId, ref: "item"}],
 });
 
 module.exports = mongoose.model("grocery", grocerySchema);
