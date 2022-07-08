@@ -7,10 +7,19 @@ const userSchema = new mongoose.Schema({
   password: { type: String },
   user_type: { type: String, defualt: 0 },
   token: { type: String },
-  groceries:[{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'grocery'
-  },],
+  gender: { type: String, default: null },
+  location: {
+    type: {
+      type: String,
+      enum: ["Point"],
+      required: false,
+    },
+    coordinates: {
+      type: [Number],
+      required: false,
+    },
+  },
+  profile_picture: { type: String, default: null },
 });
 
 module.exports = mongoose.model("user", userSchema);
