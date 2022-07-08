@@ -3,23 +3,21 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const auth = require("../../../middleware/auth");
 
-// importing user context
+// Importing user context
 const User = require("../../../model/user");
 
-// Register
+// Register logic
 async function register (req, res) {
 
-    // Our register logic starts here
     try {
       // Get user input
-      const { first_name, last_name, email, password } = req.body;
+      const { first_name, last_name, email, password, gender, location, profile_picture } = req.body;
   
       // Validate user input
-      if (!(email && password && first_name && last_name)) {
+      if (!(email && password && first_name && last_name && gender && location && profile_picture)) {
         res.status(400).send("All input are required");
       }
   
-      // check if user already exist
       // Validate if user exist in our database
       const oldUser = await User.findOne({ email });
   
@@ -27,16 +25,19 @@ async function register (req, res) {
         return res.status(409).send("User Already Exist. Please Login");
       }
   
-      //Encrypt user password
+      // Encrypt user password
       encryptedPassword = await bcrypt.hash(password, 10);
   
       // Create user in our database
       const user = await User.create({
         first_name,
         last_name,
-        email: email.toLowerCase(), // sanitize: convert email to lowercase
+        email: email.toLowerCase(), // Sanitize: convert email to lowercase
         password: encryptedPassword,
         user_type: 0,
+        gender,
+        location,
+        profile_picture,
       });
   
       // Create token
@@ -47,10 +48,10 @@ async function register (req, res) {
           expiresIn: "2h",
         }
       );
-      // save user token
+      // Save user token
       user.token = token;
   
-      // return new user
+      // Return new user
       res.status(201).json(user);
     } catch (err) {
       console.log(err);
