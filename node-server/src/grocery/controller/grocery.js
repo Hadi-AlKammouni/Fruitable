@@ -1,8 +1,9 @@
-const { addGrocery } = require('../service');
+const { addNewCategory, addGrocery } = require('../service');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const Grocery = require("../../../model/grocery");
+const category = require("../../../model/category");
 
 // Register grocery logic
 async function register (req, res) {
@@ -96,6 +97,17 @@ async function login (req, res) {
   // Our login logic ends here
 };
 
+async function addCategory(req, res) {
+  try {
+    const newCategory = await addNewCategory(req.body);
+    return res.status(200).send(newCategory);
+  } 
+  catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+};
+
 async function add(req, res) {
     try {
     
@@ -125,5 +137,6 @@ async function add(req, res) {
 module.exports = {
   register,
   login,
+  addCategory,
   add,
 };
