@@ -9,60 +9,59 @@ const User = require("../../../model/user");
 // Register logic
 async function register (req, res) {
 
-    try {
-      // Get user input
-      const { first_name, last_name, email, password, gender, location, profile_picture } = req.body;
-  
-      // Validate user input
-      if (!(email && password && first_name && last_name && gender && location && profile_picture)) {
-        res.status(400).send("All input are required");
-      }
-  
-      // Validate if user exist in our database
-      const oldUser = await User.findOne({ email });
-  
-      if (oldUser) {
-        return res.status(409).send("User Already Exist. Please Login");
-      }
-  
-      // Encrypt user password
-      encryptedPassword = await bcrypt.hash(password, 10);
-  
-      // Create user in our database
-      const user = await User.create({
-        first_name,
-        last_name,
-        email: email.toLowerCase(), // Sanitize: convert email to lowercase
-        password: encryptedPassword,
-        user_type: 0,
-        gender,
-        location,
-        profile_picture,
-      });
-  
-      // Create token
-      const token = jwt.sign(
-        { user_id: user._id, email },
-        process.env.TOKEN_KEY,
-        {
-          expiresIn: "2h",
-        }
-      );
-      // Save user token
-      user.token = token;
-  
-      // Return new user
-      res.status(201).json(user);
-    } catch (err) {
-      console.log(err);
+  try {
+    // Get user input
+    const { first_name, last_name, email, password, gender, location, profile_picture } = req.body;
+
+    // Validate user input
+    if (!(email && password && first_name && last_name && gender && location && profile_picture)) {
+      res.status(400).send("All input are required");
     }
+
+    // Validate if user exist in our database
+    const oldUser = await User.findOne({ email });
+
+    if (oldUser) {
+      return res.status(409).send("User Already Exist. Please Login");
+    }
+
+    // Encrypt user password
+    encryptedPassword = await bcrypt.hash(password, 10);
+
+    // Create user in our database
+    const user = await User.create({
+      first_name,
+      last_name,
+      email: email.toLowerCase(), // Sanitize: convert email to lowercase
+      password: encryptedPassword,
+      user_type: 0,
+      gender,
+      location,
+      profile_picture,
+    });
+
+    // Create token
+    const token = jwt.sign(
+      { user_id: user._id, email },
+      process.env.TOKEN_KEY,
+      {
+        expiresIn: "2h",
+      }
+    );
+    // Save user token
+    user.token = token;
+
+    // Return new user
+    res.status(201).json(user);
+  } catch (err) {
+    console.log(err);
+  }
   // Our register logic ends here
 };
 
-// Login
+// Login logic
 async function login (req, res) {
 
-  // Our login logic starts here
   try {
     // Get user input
     const { email, password } = req.body;
@@ -86,13 +85,13 @@ async function login (req, res) {
         }
       );
 
-      // save user token
+      // Save user token
       user.token = token;
 
-      // user
+      // Return user
       res.status(200).json(user);
     }
-    res.status(400).send("Invalid Credentials");
+    res.status(400).send("Invalid Credentials - Wrong email and/or password");
   } catch (err) {
     console.log(err);
   }
