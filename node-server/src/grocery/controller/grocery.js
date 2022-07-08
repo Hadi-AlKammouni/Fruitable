@@ -56,6 +56,46 @@ async function register (req, res) {
   // Our register logic ends here
 };
 
+// Login grocery logic
+async function login (req, res) {
+
+  try {
+    // Get grocery input
+    const { email, password } = req.body;
+
+    // Validate grocery input
+    if (!(email && password)) {
+      res.status(400).send("All input is required");
+    }
+
+    email.toLowerCase()
+    // Validate if grocery exist in our database
+    const grocery = await Grocery.findOne({ email });
+    
+    if (grocery && (await bcrypt.compare(password, grocery.password))) {
+      // Create token
+      const token = jwt.sign(
+        { grocery_id: grocery._id, email },
+        process.env.TOKEN_KEY,
+        {
+          expiresIn: "2h",
+        }
+      );
+      
+      // Save grocery token
+      grocery.token = token;
+      
+      // Return grocery
+      res.status(200).json(grocery);
+    }else{
+      res.status(400).send("Invalid Credentials - Wrong email and/or password");
+    }
+  } catch (err) {
+    console.log(err);
+  }
+  // Our login logic ends here
+};
+
 async function add(req, res) {
     try {
     
@@ -84,5 +124,6 @@ async function add(req, res) {
 
 module.exports = {
   register,
+  login,
   add,
 };
