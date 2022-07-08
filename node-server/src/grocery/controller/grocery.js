@@ -1,7 +1,60 @@
 const { addGrocery } = require('../service');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const Grocery = require("../../../model/grocery");
-const User = require("../../../model/user");
+
+// Register grocery logic
+async function register (req, res) {
+  
+  try {
+    // Get grocery input
+    const { name, email, password, phone_number, location, picture, description } = req.body;
+    
+    // Validate grocery input
+    if (!(email && password && name &&  phone_number && location && picture && description)) {
+      res.status(400).send("All input are required");
+    }
+    
+    // Validate if grocery exist in our database
+    const oldGrocery = await Grocery.findOne({ email });
+
+    if (oldGrocery) {
+      return res.status(409).send("Grocery Already Exist. Please Login");
+    }
+    
+    // Encrypt grocery password
+    encryptedPassword = await bcrypt.hash(password, 10);
+
+    // Create grocery in our database
+    const grocery = await Grocery.create({
+      name,
+      email: email.toLowerCase(), // Sanitize: convert email to lowercase
+      password: encryptedPassword,
+      phone_number,
+      location,
+      picture,
+      description,
+    });
+    
+    // Create token
+    const token = jwt.sign(
+      { grocery_id: grocery._id, email },
+      process.env.TOKEN_KEY,
+      {
+        expiresIn: "2h",
+      }
+    );
+    // Save grocery token
+    grocery.token = token;
+
+    // Return new grocery
+    res.status(201).json(grocery);
+  } catch (err) {
+    console.log(err);
+  }
+  // Our register logic ends here
+};
 
 async function add(req, res) {
     try {
@@ -30,5 +83,6 @@ async function add(req, res) {
   }
 
 module.exports = {
+  register,
   add,
 };
