@@ -42,7 +42,11 @@ async function addNewItem(body) {
 
 async function getGroceryStock(id) {
   return await Grocery.findById(id);
-}
+};
+
+async function getGroceryItem(id) {
+  return await Item.findById(id);
+};
 
 async function addGrocery(body) {
   const {
@@ -78,5 +82,6 @@ module.exports = {
     addNewCategory,
     addNewItem,
     getGroceryStock,
+    getGroceryItem,
     addGrocery,
 } 
