@@ -197,6 +197,25 @@ async function updateItem(req, res) {
   }
 };
 
+// Update grocery account logic
+async function updateAccount(req, res) {
+  try {
+    const grocery = await Grocery.findByIdAndUpdate( { _id: req.query.id } ,{
+      $set: {
+        name: req.body.name,
+        phone_number: req.body.phone_number,
+        description: req.body.description,
+        location: req.body.location,
+        picture: req.body.picture,
+      },
+    });
+    
+    return res.send("Account Successfully Updated");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 async function add(req, res) {
     try {
     
@@ -230,5 +249,6 @@ module.exports = {
   addItem,
   removeItem,
   updateItem,
+  updateAccount,
   add,
 };
