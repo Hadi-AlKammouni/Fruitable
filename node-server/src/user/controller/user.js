@@ -1,10 +1,11 @@
-const { getUsers, getById, getByEmail } = require('../service');
+const { getUsers, getById, getByEmail, getGroceryById } = require('../service');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const auth = require("../../../middleware/auth");
 
 // Importing user context
 const User = require("../../../model/user");
+const Grocery = require('../../../model/grocery');
 
 // Register logic
 async function register (req, res) {
@@ -98,6 +99,23 @@ async function login (req, res) {
   // Our login logic ends here
 };
 
+// View grocery(ies) logic
+async function viewGroceries(req, res) {
+  try {
+    if (req.query.id) {
+      const id = req.query.id;
+      const result = await getGroceryById(id);
+      return res.send(result);
+    }
+
+    const result = await Grocery.find()
+    
+    return res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 //Function to get all users
 async function get(req, res) {
   try {
@@ -136,4 +154,5 @@ module.exports = {
     login,
     get,
     authUser,
+    viewGroceries,
 };
