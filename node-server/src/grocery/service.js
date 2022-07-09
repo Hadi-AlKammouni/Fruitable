@@ -1,5 +1,7 @@
 const Grocery = require('../../model/grocery');
 const Category = require('../../model/category');
+const Item = require("../../model/item");
+
 const bcrypt = require('bcryptjs');
 
 async function addNewCategory(body) {
@@ -14,6 +16,28 @@ async function addNewCategory(body) {
   });
 
   return await category.save();
+};
+
+async function addNewItem(body) {
+  const {
+    name,
+    price,
+    quantity,
+    picture,
+    category,
+    grocery,
+  } = body;
+
+  const item = new Item({
+    name,
+    price,
+    quantity,
+    picture,
+    category,
+    grocery,
+  });
+
+  return await item.save();
 };
 
 async function addGrocery(body) {
@@ -48,5 +72,6 @@ async function addGrocery(body) {
 
 module.exports = {
     addNewCategory,
+    addNewItem,
     addGrocery,
 } 

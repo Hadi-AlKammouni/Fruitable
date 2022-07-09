@@ -1,9 +1,10 @@
-const { addNewCategory, addGrocery } = require('../service');
+const { addNewCategory, addNewItem, addGrocery } = require('../service');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const Grocery = require("../../../model/grocery");
-const category = require("../../../model/category");
+const Category = require("../../../model/category");
+const Item = require("../../../model/item");
 
 // Register grocery logic
 async function register (req, res) {
@@ -97,10 +98,48 @@ async function login (req, res) {
   // Our login logic ends here
 };
 
+// Add category logic
 async function addCategory(req, res) {
   try {
     const newCategory = await addNewCategory(req.body);
     return res.status(200).send(newCategory);
+  } 
+  catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+};
+
+// Add item logic
+async function addItem(req, res) {
+  try {
+    const newItem = await addNewItem(req.body);
+
+    // use updateOne() to update categories collection
+    const updateCategory = await Category.updateOne(
+      {
+        _id: newItem.category
+      },
+      {
+        $push: {
+          items: newItem._id
+        }
+      }
+    );
+
+    // use updateOne() to update groceries collection 
+    const updateGrocery = await Grocery.updateOne(
+      {
+        _id: newItem.grocery
+      },
+      {
+        $push: {
+          items: newItem._id
+        }
+      }
+    );
+
+    return res.status(200).send(newItem);
   } 
   catch (error) {
     console.log(error);
@@ -138,5 +177,6 @@ module.exports = {
   register,
   login,
   addCategory,
+  addItem,
   add,
 };
