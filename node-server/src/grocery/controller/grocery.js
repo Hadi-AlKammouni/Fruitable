@@ -1,4 +1,4 @@
-const { addNewCategory, addNewItem, getGroceryStock, getGroceryItem, addGrocery } = require('../service');
+const { addNewCategory, addNewItem, getGroceryStock, getGroceryItem, getCategories, getCategoryById, addGrocery } = require('../service');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -242,6 +242,23 @@ async function viewItem(req, res) {
   }
 };
 
+// View category(ies) logic
+async function viewCategories(req, res) {
+  try {
+    if (req.query.id) {
+      const id = req.query.id;
+      const result = await getCategoryById(id);
+      return res.send(result);
+    }
+
+    const result = await getCategories();
+
+    return res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 async function add(req, res) {
     try {
     
@@ -278,5 +295,6 @@ module.exports = {
   updateAccount,
   viewStock,
   viewItem,
+  viewCategories,
   add,
 };

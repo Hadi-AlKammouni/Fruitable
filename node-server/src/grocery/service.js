@@ -48,6 +48,14 @@ async function getGroceryItem(id) {
   return await Item.findById(id);
 };
 
+async function getCategories() {
+  return await Category.find();
+};
+
+async function getCategoryById(id) {
+  return await Category.findById(id);
+};
+
 async function addGrocery(body) {
   const {
     grocery_name,
@@ -83,5 +91,7 @@ module.exports = {
     addNewItem,
     getGroceryStock,
     getGroceryItem,
+    getCategories,
+    getCategoryById,
     addGrocery,
 } 
