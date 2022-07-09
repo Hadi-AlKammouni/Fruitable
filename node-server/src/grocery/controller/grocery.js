@@ -164,7 +164,38 @@ async function removeItem(req, res) {
   } catch (error) {
     console.log(error);
   }
-}
+};
+
+// Update item logic
+async function updateItem(req, res) {
+  try {
+    const item = await Item.findByIdAndUpdate( { _id: req.query.id } ,{
+      $set: {
+        name: req.body.name,
+        price: req.body.price,
+        quantity: req.body.quantity,
+        picture: req.body.picture,
+        category: req.body.category,
+      },
+    });
+    
+    // use updateOne() to update categories collection if category changed
+    if (req.body.category){
+      await Category.updateOne(
+        {_id: item.category},
+        {$pull: {items: item._id} }
+      );
+      await Category.updateOne(
+        { _id: req.body.category },
+        { $push: { items: item._id } }
+      );
+    }
+    
+    return res.send("Item Successfully Updated");
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 async function add(req, res) {
     try {
@@ -198,5 +229,6 @@ module.exports = {
   addCategory,
   addItem,
   removeItem,
+  updateItem,
   add,
 };
