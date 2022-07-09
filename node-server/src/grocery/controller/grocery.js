@@ -147,6 +147,25 @@ async function addItem(req, res) {
   }
 };
 
+// Remove item logic
+async function removeItem(req, res) {
+  try {
+    const item = await Item.findOne({ _id: req.query.id });
+    if (!item) console.log(404);
+
+    const deleteResult = await item.remove();
+
+    await Category.updateOne(
+      { _id: item.category },
+      { $pull: { items: item._id } }
+    );
+
+    return res.send("Item removed successfully");
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 async function add(req, res) {
     try {
     
@@ -178,5 +197,6 @@ module.exports = {
   login,
   addCategory,
   addItem,
+  removeItem,
   add,
 };
