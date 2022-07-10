@@ -20,6 +20,7 @@ const grocerySchema = new mongoose.Schema({
   description: { type: String, default: null  },
   token: { type: String },
   items: [{type: mongoose.Schema.Types.ObjectId, ref: "item"}],
+  reviews: [{type: mongoose.Schema.Types.ObjectId, ref: "review"}],
 });
 
 module.exports = mongoose.model("grocery", grocerySchema);

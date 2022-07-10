@@ -20,6 +20,7 @@ const userSchema = new mongoose.Schema({
     },
   },
   profile_picture: { type: String, default: null },
+  reviews: [{type: mongoose.Schema.Types.ObjectId, ref: "review"}],
 });
 
 module.exports = mongoose.model("user", userSchema);

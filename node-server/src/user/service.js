@@ -1,6 +1,7 @@
 const User = require('../../model/user');
 const Grocery = require('../../model/grocery');
 const Category = require('../../model/category');
+const Review = require('../../model/review');
 
 //Funtion called to get all users from db
 async function getUsers() {
@@ -34,6 +35,24 @@ async function getGroceryStock(id) {
     return await Grocery.findById(id);
 };
 
+async function addReview(body) {
+    const {
+      rates,
+      reviews,
+      user,
+      grocery,
+    } = body;
+  
+    const review = new Review({
+      rates,
+      reviews,
+      user,
+      grocery,
+    });
+  
+    return await review.save();
+};
+
 module.exports = {
     getUsers,
     getById,
@@ -42,4 +61,5 @@ module.exports = {
     getCategories,
     getCategoryById,
     getGroceryStock,
+    addReview,
 }

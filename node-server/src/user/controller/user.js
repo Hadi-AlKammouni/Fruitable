@@ -1,4 +1,4 @@
-const { getUsers, getById, getByEmail, getGroceryById, getCategoryById, getCategories, getGroceryStock } = require('../service');
+const { getUsers, getById, getByEmail, getGroceryById, getCategoryById, getCategories, getGroceryStock, addReview } = require('../service');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const auth = require("../../../middleware/auth");
@@ -164,6 +164,43 @@ async function updateProfile(req, res) {
   }
 };
 
+// Review + rate grocery logic
+async function reviewGrocery(req, res) {
+  try {
+    const review = await addReview(req.body);
+
+    // use updateOne() to update categories collection
+    const updateUser = await User.updateOne(
+      {
+        _id: review.user
+      },
+      {
+        $push: {
+          reviews: review._id
+        }
+      }
+    );
+
+    // use updateOne() to update groceries collection 
+    const updateGrocery = await Grocery.updateOne(
+      {
+        _id: review.grocery
+      },
+      {
+        $push: {
+          reviews: review._id
+        }
+      }
+    );
+
+    return res.status(200).send(review);
+  } 
+  catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+};
+
 //Function to get all users
 async function get(req, res) {
   try {
@@ -206,4 +243,5 @@ module.exports = {
     viewCategories,
     viewStock,
     updateProfile,
+    reviewGrocery,
 };
