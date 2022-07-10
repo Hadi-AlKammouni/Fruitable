@@ -30,6 +30,10 @@ async function getCategoryById(id) {
     return await Category.findById(id);
 };
 
+async function getGroceryStock(id) {
+    return await Grocery.findById(id);
+};
+
 module.exports = {
     getUsers,
     getById,
@@ -37,4 +41,5 @@ module.exports = {
     getGroceryById,
     getCategories,
     getCategoryById,
+    getGroceryStock,
 }
