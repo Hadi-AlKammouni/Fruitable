@@ -1,4 +1,4 @@
-const { getUsers, getById, getByEmail, getGroceryById } = require('../service');
+const { getUsers, getById, getByEmail, getGroceryById, getCategoryById, getCategories } = require('../service');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const auth = require("../../../middleware/auth");
@@ -116,6 +116,23 @@ async function viewGroceries(req, res) {
   }
 };
 
+// View category(ies) logic
+async function viewCategories(req, res) {
+  try {
+    if (req.query.id) {
+      const id = req.query.id;
+      const result = await getCategoryById(id);
+      return res.send(result);
+    }
+
+    const result = await getCategories();
+
+    return res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 //Function to get all users
 async function get(req, res) {
   try {
@@ -155,4 +172,5 @@ module.exports = {
     get,
     authUser,
     viewGroceries,
+    viewCategories,
 };
