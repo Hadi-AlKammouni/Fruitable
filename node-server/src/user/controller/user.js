@@ -146,6 +146,24 @@ async function viewStock(req, res) {
   }
 };
 
+// Update grocery profile logic
+async function updateProfile(req, res) {
+  try {
+    const user = await User.findByIdAndUpdate( { _id: req.query.id } ,{
+      $set: {
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        location: req.body.location,
+        picture: req.body.picture,
+      },
+    });
+    
+    return res.send("Profile Successfully Updated");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 //Function to get all users
 async function get(req, res) {
   try {
@@ -187,4 +205,5 @@ module.exports = {
     viewGroceries,
     viewCategories,
     viewStock,
+    updateProfile,
 };
