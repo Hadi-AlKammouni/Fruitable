@@ -1,4 +1,4 @@
-const { getUsers, getById, getByEmail, getGroceryById, getCategoryById, getCategories, getGroceryStock, addReview } = require('../service');
+const { getUsers, getById, getByEmail, getGroceryById, getCategoryById, getCategories, getGroceryStock, addReview, addOrder } = require('../service');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const auth = require("../../../middleware/auth");
@@ -169,7 +169,7 @@ async function reviewGrocery(req, res) {
   try {
     const review = await addReview(req.body);
 
-    // use updateOne() to update categories collection
+    // use updateOne() to update users collection
     const updateUser = await User.updateOne(
       {
         _id: review.user
@@ -194,6 +194,43 @@ async function reviewGrocery(req, res) {
     );
 
     return res.status(200).send(review);
+  } 
+  catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+};
+
+// Create order logic
+async function createOrder(req, res) {
+  try {
+    const order = await addOrder(req.body);
+
+    // use updateOne() to update users collection
+    const updateUser = await User.updateOne(
+      {
+        _id: order.user
+      },
+      {
+        $push: {
+          orders: order._id
+        }
+      }
+    );
+
+    // use updateOne() to update groceries collection 
+    const updateGrocery = await Grocery.updateOne(
+      {
+        _id: order.grocery
+      },
+      {
+        $push: {
+          orders: order._id
+        }
+      }
+    );
+
+    return res.status(200).send(order);
   } 
   catch (error) {
     console.log(error);
@@ -244,4 +281,5 @@ module.exports = {
     viewStock,
     updateProfile,
     reviewGrocery,
+    createOrder,
 };
