@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { register, login, get, authUser, viewGroceries, viewCategories, viewStock, updateProfile, reviewGrocery, createOrder, addElement } = require('./controller/user');
+const { register, login, get, authUser, viewGroceries, viewCategories, viewStock, updateProfile, reviewGrocery, createOrder, addElement, viewCart } = require('./controller/user');
 const userMiddleware = require('../../middleware/auth');
 
 const router = Router();
@@ -15,5 +15,6 @@ router.post('/update_profile', updateProfile);
 router.post('/review_grocery', reviewGrocery);
 router.post('/create_order', createOrder);
 router.post('/add_element', addElement);
+router.get('/view_cart', viewCart);
 
 module.exports = router;

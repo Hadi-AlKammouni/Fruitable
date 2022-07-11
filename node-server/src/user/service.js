@@ -87,6 +87,10 @@ async function addElementToOrder(body) {
     return await element.save();
 };
 
+async function getOrder(id) {
+    return await Order.findById(id);
+};
+
 module.exports = {
     getUsers,
     getById,
@@ -98,4 +102,5 @@ module.exports = {
     addReview,
     addOrder,
     addElementToOrder,
+    getOrder,
 }
