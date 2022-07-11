@@ -1,4 +1,4 @@
-const { getUsers, getById, getByEmail, getGroceryById, getCategoryById, getCategories, getGroceryStock, addReview, addOrder, addElementToOrder, getOrder, getElement } = require('../service');
+const { getUsers, getById, getByEmail, getGroceryById, getCategoryById, getCategories, getGroceryItem, addReview, addOrder, addElementToOrder, getOrder, getElement } = require('../service');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const auth = require("../../../middleware/auth");
@@ -134,12 +134,12 @@ async function viewCategories(req, res) {
   }
 };
 
-// View grocery stock logic
-async function viewStock(req, res) {
+// View grocery item logic
+async function viewItem(req, res) {
   try {
     if (req.query.id) {
       const id = req.query.id;
-      const result = await getGroceryStock(id);
+      const result = await getGroceryItem(id);
       return res.send(result);
     }
   } catch (error) {
@@ -330,7 +330,7 @@ module.exports = {
     authUser,
     viewGroceries,
     viewCategories,
-    viewStock,
+    viewItem,
     updateProfile,
     reviewGrocery,
     createOrder,
