@@ -2,6 +2,7 @@ const Grocery = require('../../model/grocery');
 const Category = require('../../model/category');
 const Item = require("../../model/item");
 const Order = require('../../model/order');
+const Element = require('../../model/element');
 
 const bcrypt = require('bcryptjs');
 
@@ -91,6 +92,10 @@ async function getOrder(id) {
   return await Order.findById(id);
 };
 
+async function getOrderElement(id) {
+  return await Element.findById(id);
+};
+
 module.exports = {
     addNewCategory,
     addNewItem,
@@ -100,4 +105,5 @@ module.exports = {
     getCategoryById,
     addGrocery,
     getOrder,
+    getOrderElement,
 } 

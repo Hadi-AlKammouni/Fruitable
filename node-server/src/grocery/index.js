@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { register, login, addCategory, addItem, removeItem, updateItem, updateAccount, viewStock, viewItem, viewCategories, add, manageOrder } = require('./controller/grocery');
+const { register, login, addCategory, addItem, removeItem, updateItem, updateAccount, viewStock, viewItem, viewCategories, add, manageOrder, viewOrderElement } = require('./controller/grocery');
 
 const router = Router();
 
@@ -15,5 +15,6 @@ router.get('/view_item', viewItem);
 router.get('/view_categories', viewCategories);
 router.post('/add_grocery', add);
 router.get('/manage_order', manageOrder);
+router.get('/view_order_element', viewOrderElement);
 
 module.exports = router;
