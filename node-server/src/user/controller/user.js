@@ -1,4 +1,4 @@
-const { getUsers, getById, getByEmail, getGroceryById, getCategoryById, getCategories, getGroceryStock, addReview, addOrder } = require('../service');
+const { getUsers, getById, getByEmail, getGroceryById, getCategoryById, getCategories, getGroceryStock, addReview, addOrder, addElementToOrder } = require('../service');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const auth = require("../../../middleware/auth");
@@ -6,6 +6,7 @@ const auth = require("../../../middleware/auth");
 // Importing user context
 const User = require("../../../model/user");
 const Grocery = require('../../../model/grocery');
+const Order = require('../../../model/order');
 
 // Register logic
 async function register (req, res) {
@@ -238,6 +239,31 @@ async function createOrder(req, res) {
   }
 };
 
+// Add element to order logic
+async function addElement(req, res) {
+  try {
+    const element = await addElementToOrder(req.body);
+
+    // use updateOne() to update orders collection
+    const updateOrder = await Order.updateOne(
+      {
+        _id: element.order
+      },
+      {
+        $push: {
+          elements: element._id
+        }
+      }
+    );
+
+    return res.status(200).send(element);
+  } 
+  catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+};
+
 //Function to get all users
 async function get(req, res) {
   try {
@@ -282,4 +308,5 @@ module.exports = {
     updateProfile,
     reviewGrocery,
     createOrder,
+    addElement,
 };

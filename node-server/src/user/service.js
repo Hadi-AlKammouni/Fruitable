@@ -3,6 +3,7 @@ const Grocery = require('../../model/grocery');
 const Category = require('../../model/category');
 const Review = require('../../model/review');
 const Order = require('../../model/order');
+const Element = require('../../model/element');
 
 //Funtion called to get all users from db
 async function getUsers() {
@@ -72,6 +73,20 @@ async function addOrder(body) {
     return await order.save();
 };
 
+async function addElementToOrder(body) {
+    const {
+      order,
+      item,
+    } = body;
+  
+    const element = new Element({
+      order,
+      item,
+    });
+  
+    return await element.save();
+};
+
 module.exports = {
     getUsers,
     getById,
@@ -82,4 +97,5 @@ module.exports = {
     getGroceryStock,
     addReview,
     addOrder,
+    addElementToOrder,
 }
