@@ -24,4 +24,5 @@ const grocerySchema = new mongoose.Schema({
   orders: [{type: mongoose.Schema.Types.ObjectId, ref: "order"}],
 });
 
+grocerySchema.index({location:"2dsphere"});
 module.exports = mongoose.model("grocery", grocerySchema);

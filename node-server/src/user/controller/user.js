@@ -290,6 +290,31 @@ async function viewElement(req, res) {
   }
 };
 
+// Find nearby groceries logic
+async function findNearbyGroceries(req, res){
+  try{
+    const latitude = req.body.latitude;
+    const longitude = req.body.longitude;
+
+    const nearbyGrocery = await Grocery.aggregate([
+      {
+        $geoNear:{
+          near:{type:"Point",coordinates:[parseFloat(longitude),parseFloat(latitude)]},
+          key:"location",
+          maxDistance:2000,
+          distanceField:"dist.calculated",
+          spherical:true
+        }
+      }
+    ]);
+
+    res.status(200).send(nearbyGrocery)
+
+  } catch(error){
+    console.log(error);
+  }
+};
+
 //Function to get all users
 async function get(req, res) {
   try {
@@ -316,7 +341,7 @@ async function get(req, res) {
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 //Authenticating the user
 async function authUser (req, res) {
@@ -337,4 +362,5 @@ module.exports = {
     addElement,
     viewCart,
     viewElement,
+    findNearbyGroceries,
 };
