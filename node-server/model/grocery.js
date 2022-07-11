@@ -21,6 +21,7 @@ const grocerySchema = new mongoose.Schema({
   token: { type: String },
   items: [{type: mongoose.Schema.Types.ObjectId, ref: "item"}],
   reviews: [{type: mongoose.Schema.Types.ObjectId, ref: "review"}],
+  orders: [{type: mongoose.Schema.Types.ObjectId, ref: "order"}],
 });
 
 module.exports = mongoose.model("grocery", grocerySchema);
