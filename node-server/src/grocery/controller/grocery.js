@@ -1,4 +1,4 @@
-const { addNewCategory, addNewItem, getGroceryStock, getGroceryItem, getCategories, getCategoryById, addGrocery } = require('../service');
+const { addNewCategory, addNewItem, getGroceryStock, getGroceryItem, getCategories, getCategoryById, addGrocery, getOrder } = require('../service');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -259,6 +259,19 @@ async function viewCategories(req, res) {
   }
 };
 
+// Manage order logic
+async function manageOrder(req, res) {
+  try {
+    if (req.query.id) {
+      const id = req.query.id;
+      const result = await getOrder(id);
+      return res.send(result);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 async function add(req, res) {
     try {
     
@@ -283,7 +296,7 @@ async function add(req, res) {
       console.log(error);
       res.status(500).send(error);
     }
-  }
+}
 
 module.exports = {
   register,
@@ -296,5 +309,6 @@ module.exports = {
   viewStock,
   viewItem,
   viewCategories,
+  manageOrder,
   add,
 };
