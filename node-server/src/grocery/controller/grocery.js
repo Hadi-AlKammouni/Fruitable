@@ -1,4 +1,4 @@
-const { addNewItem, getGroceryStock, getGroceryItem, addGrocery, getOrder, getOrderElement } = require('../service');
+const { addNewItem, getGroceryStock, getGroceryItem, getOrder, getOrderElement } = require('../service');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -256,32 +256,6 @@ async function viewOrderElement(req, res) {
   }
 };
 
-async function add(req, res) {
-    try {
-    
-      const newGrocery = await addGrocery(req.body);
-      // console.log('newGrocery =>', newGrocery);
-  
-      // use updateOne() 
-      const updateUser = await User.updateOne(
-        {
-          _id: newGrocery.user
-        },
-        {
-          $push: {
-            groceries: newGrocery._id
-          }
-        }
-      );
-  
-      return res.status(200).send(newGrocery);
-    } 
-    catch (error) {
-      console.log(error);
-      res.status(500).send(error);
-    }
-}
-
 module.exports = {
   register,
   login,
@@ -294,5 +268,4 @@ module.exports = {
   viewItem,
   manageOrder,
   viewOrderElement,
-  add,
 };
