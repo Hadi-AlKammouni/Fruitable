@@ -1,9 +1,7 @@
 const User = require('../../model/user');
 const Grocery = require('../../model/grocery');
-const Category = require('../../model/category');
 const Review = require('../../model/review');
 const Order = require('../../model/order');
-const Element = require('../../model/element');
 const Item = require('../../model/item');
 
 //Funtion called to get all users from db

@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const Grocery = require("../../../model/grocery");
-const Category = require("../../../model/category");
 const Item = require("../../../model/item");
 
 // Register grocery logic

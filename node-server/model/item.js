@@ -5,7 +5,6 @@ const itemSchema = new mongoose.Schema({
   price: { type: String, default: null },
   quantity: { type: String, default: null },
   picture: { type: String, default: null },
-  category: {type: mongoose.Schema.Types.ObjectId, ref: "Category"},
   grocery: {type: mongoose.Schema.Types.ObjectId, ref: "Grocery"},
 });
 

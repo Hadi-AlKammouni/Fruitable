@@ -1,8 +1,6 @@
 const Grocery = require('../../model/grocery');
-const Category = require('../../model/category');
 const Item = require("../../model/item");
 const Order = require('../../model/order');
-const Element = require('../../model/element');
 
 const bcrypt = require('bcryptjs');
 
