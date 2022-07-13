@@ -13,8 +13,8 @@ const groceryRouter = require('./src/grocery');
 
 app.use(cors());
 app.use(express.json());
-app.use('/api/user', userRouter);
-app.use('/api/grocery', groceryRouter);
+app.use('/api/v1/user', userRouter);
+app.use('/api/v1/grocery', groceryRouter);
 
 // server listening 
 server.listen(port, () => {
