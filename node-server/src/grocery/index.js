@@ -1,8 +1,10 @@
 const { Router } = require('express');
-const { register, login, addCategory, addItem, removeItem, updateItem, updateAccount, viewStock, viewItem, manageOrder, viewOrderElement } = require('./controller/grocery');
+const { authGrocery, register, login, addCategory, addItem, removeItem, updateItem, updateAccount, viewStock, viewItem, manageOrder, viewOrderElement } = require('./controller/grocery');
+const groceryMiddleware = require('../../middleware/grocery_auth');
 
 const router = Router();
 
+router.post('/auth_grocery', groceryMiddleware(), (req, res) => authGrocery (req, res));
 router.post('/register', register);
 router.post('/login', login);
 router.post('/add_category', addCategory);

@@ -1,7 +1,6 @@
 const { getUsers, getById, getByEmail, getGroceryById, getGroceryItem, addReview, addOrder, getOrder } = require('../service');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const auth = require("../../../middleware/auth");
 
 // Importing user context
 const User = require("../../../model/user");

@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { register, login, get, authUser, viewGroceries, viewItem, updateProfile, reviewGrocery, createOrder, addToOrder, viewCart, findNearbyGroceries } = require('./controller/user');
-const userMiddleware = require('../../middleware/auth');
+const userMiddleware = require('../../middleware/user_auth');
 
 const router = Router();
 

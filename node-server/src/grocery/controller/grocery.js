@@ -256,6 +256,11 @@ async function viewOrderElement(req, res) {
   }
 };
 
+//Authenticating the grocery
+async function authGrocery (req, res) {
+  res.status(200).send("Welcome Grocery 🙌 ");
+};
+
 module.exports = {
   register,
   login,
@@ -268,4 +273,5 @@ module.exports = {
   viewItem,
   manageOrder,
   viewOrderElement,
+  authGrocery,
 };
