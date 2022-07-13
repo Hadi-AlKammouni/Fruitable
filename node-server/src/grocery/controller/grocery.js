@@ -179,18 +179,6 @@ async function updateItem(req, res) {
       },
     });
     
-    // use updateOne() to update categories collection if category changed
-    if (req.body.category){
-      await Category.updateOne(
-        {_id: item.category},
-        {$pull: {items: item._id} }
-      );
-      await Category.updateOne(
-        { _id: req.body.category },
-        { $push: { items: item._id } }
-      );
-    }
-    
     return res.send("Item Successfully Updated");
   } catch (error) {
     console.log(error);
