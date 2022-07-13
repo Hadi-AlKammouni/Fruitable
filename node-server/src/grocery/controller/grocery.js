@@ -100,7 +100,20 @@ async function login (req, res) {
 // Add category logic
 async function addCategory(req, res) {
   try {
-    const newCategory = await addNewCategory(req.body);
+    const newCategory = req.body.name;
+
+    // use updateOne() to update groceries collection 
+    const updateGrocery = await Grocery.updateOne(
+      {
+        _id: req.body.grocery
+      },
+      {
+        $push: {
+          categories: req.body.name 
+        },
+      }
+    );
+    
     return res.status(200).send(newCategory);
   } 
   catch (error) {

@@ -4,20 +4,6 @@ const Order = require('../../model/order');
 
 const bcrypt = require('bcryptjs');
 
-async function addNewCategory(body) {
-  const {
-    name,
-    picture,
-  } = body;
-
-  const category = new Category({
-    name,
-    picture,
-  });
-
-  return await category.save();
-};
-
 async function addNewItem(body) {
   const {
     name,
@@ -95,7 +81,6 @@ async function getOrderElement(id) {
 };
 
 module.exports = {
-    addNewCategory,
     addNewItem,
     getGroceryStock,
     getGroceryItem,

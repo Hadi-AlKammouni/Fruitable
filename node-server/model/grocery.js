@@ -19,6 +19,7 @@ const grocerySchema = new mongoose.Schema({
   picture: { type: String, default: null },
   description: { type: String, default: null  },
   token: { type: String },
+  categories: { type: Array, default: null },
   items: [{type: mongoose.Schema.Types.ObjectId, ref: "item"}],
   reviews: [{type: mongoose.Schema.Types.ObjectId, ref: "review"}],
   orders: [{type: mongoose.Schema.Types.ObjectId, ref: "order"}],
