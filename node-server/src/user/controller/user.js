@@ -138,7 +138,7 @@ async function updateProfile(req, res) {
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         location: req.body.location,
-        picture: req.body.picture,
+        profile_picture: req.body.profile_picture,
       },
     });
     
