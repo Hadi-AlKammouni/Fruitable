@@ -48,17 +48,15 @@ async function addReview(body) {
 
 async function addOrder(body) {
     const {
-        price,
+        total_price,
         user,
         grocery,
-        element,
     } = body;
   
     const order = new Order({
-        price,
+        total_price,
         user,
         grocery,
-        element,
     });
   
     return await order.save();
