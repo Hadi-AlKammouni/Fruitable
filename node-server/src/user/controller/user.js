@@ -153,18 +153,6 @@ async function reviewGrocery(req, res) {
   try {
     const review = await addReview(req.body);
 
-    // use updateOne() to update users collection
-    const updateUser = await User.updateOne(
-      {
-        _id: review.user
-      },
-      {
-        $push: {
-          reviews: review._id
-        }
-      }
-    );
-
     // use updateOne() to update groceries collection 
     const updateGrocery = await Grocery.updateOne(
       {
@@ -172,8 +160,8 @@ async function reviewGrocery(req, res) {
       },
       {
         $push: {
-          reviews: review._id
-        }
+          reviews: [ review.rates, review.text, review.user ] 
+        },
       }
     );
 

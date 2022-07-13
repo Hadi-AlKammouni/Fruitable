@@ -31,14 +31,14 @@ async function getGroceryItem(id) {
 async function addReview(body) {
     const {
       rates,
-      reviews,
+      text,
       user,
       grocery,
     } = body;
   
     const review = new Review({
       rates,
-      reviews,
+      text,
       user,
       grocery,
     });
