@@ -155,8 +155,8 @@ async function removeItem(req, res) {
 
     const deleteResult = await item.remove();
 
-    await Category.updateOne(
-      { _id: item.category },
+    await Grocery.updateOne(
+      { _id: req.body.grocery },
       { $pull: { items: item._id } }
     );
 
