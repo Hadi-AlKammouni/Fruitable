@@ -24,14 +24,6 @@ async function getGroceryById(id) {
     return await Grocery.findById(id);
 };
 
-async function getCategories() {
-    return await Category.find();
-};
-  
-async function getCategoryById(id) {
-    return await Category.findById(id);
-};
-
 async function getGroceryItem(id) {
     return await Item.findById(id);
 };
@@ -99,8 +91,6 @@ module.exports = {
     getById,
     getByEmail,
     getGroceryById,
-    getCategories,
-    getCategoryById,
     getGroceryItem,
     addReview,
     addOrder,
