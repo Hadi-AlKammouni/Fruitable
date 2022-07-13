@@ -1,4 +1,4 @@
-const { getUsers, getById, getByEmail, getGroceryById, getGroceryItem, addReview, addOrder, getOrder, getElement } = require('../service');
+const { getUsers, getById, getByEmail, getGroceryById, getGroceryItem, addReview, addOrder, getOrder } = require('../service');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const auth = require("../../../middleware/auth");
@@ -247,19 +247,6 @@ async function viewCart(req, res) {
   }
 };
 
-// View element logic
-async function viewElement(req, res) {
-  try {
-    if (req.query.id) {
-      const id = req.query.id;
-      const result = await getElement(id);
-      return res.send(result);
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 // Find nearby groceries logic
 async function findNearbyGroceries(req, res){
   try{
@@ -330,6 +317,5 @@ module.exports = {
     createOrder,
     addToOrder,
     viewCart,
-    viewElement,
     findNearbyGroceries,
 };

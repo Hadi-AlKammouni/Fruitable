@@ -66,10 +66,6 @@ async function getOrder(id) {
     return await Order.findById(id);
 };
 
-async function getElement(id) {
-    return await Element.findById(id);
-};
-
 module.exports = {
     getUsers,
     getById,
@@ -79,5 +75,4 @@ module.exports = {
     addReview,
     addOrder,
     getOrder,
-    getElement,
 }
