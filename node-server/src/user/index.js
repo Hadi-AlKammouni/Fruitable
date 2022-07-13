@@ -10,11 +10,11 @@ router.get('/get_users', get);
 router.post('/auth_user', userMiddleware(), (req, res) => authUser (req, res));
 router.get('/get_groceries', viewGroceries);
 router.get('/get_item', viewItem);
-router.post('/update_profile', updateProfile);
-router.post('/review_grocery', reviewGrocery);
-router.post('/create_order', createOrder);
-router.post('/add_to_order', addToOrder);
-router.get('/view_cart', viewCart);
+router.post('/update_profile', userMiddleware(), updateProfile);
+router.post('/review_grocery', userMiddleware(), reviewGrocery);
+router.post('/create_order', userMiddleware(), createOrder);
+router.post('/add_to_order', userMiddleware(), addToOrder);
+router.get('/view_cart', userMiddleware(), viewCart);
 router.post('/find_nearby_groceries', findNearbyGroceries);
 
 module.exports = router;
