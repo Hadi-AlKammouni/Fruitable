@@ -62,20 +62,6 @@ async function addOrder(body) {
     return await order.save();
 };
 
-async function addElementToOrder(body) {
-    const {
-      order,
-      item,
-    } = body;
-  
-    const element = new Element({
-      order,
-      item,
-    });
-  
-    return await element.save();
-};
-
 async function getOrder(id) {
     return await Order.findById(id);
 };
@@ -92,7 +78,6 @@ module.exports = {
     getGroceryItem,
     addReview,
     addOrder,
-    addElementToOrder,
     getOrder,
     getElement,
 }

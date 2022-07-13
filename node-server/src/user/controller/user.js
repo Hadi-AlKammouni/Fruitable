@@ -1,4 +1,4 @@
-const { getUsers, getById, getByEmail, getGroceryById, getGroceryItem, addReview, addOrder, addElementToOrder, getOrder, getElement } = require('../service');
+const { getUsers, getById, getByEmail, getGroceryById, getGroceryItem, addReview, addOrder, getOrder, getElement } = require('../service');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const auth = require("../../../middleware/auth");
@@ -211,23 +211,22 @@ async function createOrder(req, res) {
 };
 
 // Add element to order logic
-async function addElement(req, res) {
+async function addToOrder(req, res) {
   try {
-    const element = await addElementToOrder(req.body);
-
+    
     // use updateOne() to update orders collection
     const updateOrder = await Order.updateOne(
       {
-        _id: element.order
+        _id: req.body.order
       },
       {
         $push: {
-          elements: element._id
+          items: req.body.item
         }
       }
     );
 
-    return res.status(200).send(element);
+    return res.status(200).send("Item added to your recent order");
   } 
   catch (error) {
     console.log(error);
@@ -329,7 +328,7 @@ module.exports = {
     updateProfile,
     reviewGrocery,
     createOrder,
-    addElement,
+    addToOrder,
     viewCart,
     viewElement,
     findNearbyGroceries,
