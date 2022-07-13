@@ -127,18 +127,6 @@ async function addItem(req, res) {
   try {
     const newItem = await addNewItem(req.body);
 
-    // use updateOne() to update categories collection
-    const updateCategory = await Category.updateOne(
-      {
-        _id: newItem.category
-      },
-      {
-        $push: {
-          items: newItem._id
-        }
-      }
-    );
-
     // use updateOne() to update groceries collection 
     const updateGrocery = await Grocery.updateOne(
       {
