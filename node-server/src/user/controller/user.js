@@ -319,7 +319,7 @@ async function get(req, res) {
 };
 
 //Authenticating the user
-async function authUser (req, res) {
+async function auth (req, res) {
   res.status(200).send("Welcome 🙌 ");
 };
 
@@ -327,7 +327,7 @@ module.exports = {
     register,
     login,
     get,
-    authUser,
+    auth,
     viewGroceries,
     viewItem,
     updateProfile,

@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const config = process.env;
 
-function userMiddleware () { return  (req, res, next) => {
+function middleware () { return  (req, res, next) => {
   const token = req.body.token || req.query.token || req.headers["x-access-token"];
 
   if (!token) {
@@ -18,4 +18,4 @@ function userMiddleware () { return  (req, res, next) => {
 };
 };
 
-module.exports = userMiddleware;
+module.exports = middleware;
