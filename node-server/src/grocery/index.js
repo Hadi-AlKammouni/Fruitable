@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { auth, register, login, addCategory, addItem, removeItem, updateItem, updateAccount, viewStock, viewItem, manageOrder, viewOrderElement } = require('./controller/grocery');
+const { auth, register, login, addCategory, addItem, removeItem, updateItem, updateAccount, viewStock, viewItem, manageOrder } = require('./controller/grocery');
 const middleware = require('../../middleware/auth');
 
 const router = Router();
@@ -15,6 +15,5 @@ router.post('/update_account', middleware(), updateAccount);
 router.get('/view_stock', middleware(), viewStock);
 router.get('/view_item', middleware(), viewItem);
 router.get('/manage_order', middleware(), manageOrder);
-router.get('/view_order_element', middleware(), viewOrderElement);
 
 module.exports = router;
