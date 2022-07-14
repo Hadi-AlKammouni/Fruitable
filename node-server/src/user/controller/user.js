@@ -222,15 +222,24 @@ async function createOrder(req, res) {
 // Add element to order logic
 async function addToOrder(req, res) {
   try {
-    
+    const request = req.body;
+    const name = request.name;
+    const price = request.price;
+    const picture = request.picture;
+    const order = request.order;
+
     // use updateOne() to update orders collection
     const updateOrder = await Order.updateOne(
       {
-        _id: req.body.order
+        _id: order
       },
       {
         $push: {
-          items: req.body.item
+          items: {
+            name: name,
+            price: price,
+            picture: picture,
+          }
         }
       }
     );
