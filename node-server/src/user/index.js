@@ -4,10 +4,10 @@ const middleware = require('../../middleware/auth');
 
 const router = Router();
 
+router.post('/auth', middleware(), (req, res) => auth (req, res));
 router.post('/register', register);
 router.post('/login', login);
 router.get('/get_users', get);
-router.post('/auth_user', middleware(), (req, res) => auth (req, res));
 router.get('/get_groceries', viewGroceries);
 router.get('/get_item', viewItem);
 router.post('/update_profile', middleware(), updateProfile);
