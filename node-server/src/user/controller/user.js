@@ -1,4 +1,4 @@
-const { getUsers, getById, getByEmail, getGroceryById, getGroceryItem, addReview, addOrder, getOrder } = require('../service');
+const { getUsers, getById, getByEmail, getGroceryById, getGroceryItem, addOrder, getOrder } = require('../service');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -150,21 +150,31 @@ async function updateProfile(req, res) {
 // Review + rate grocery logic
 async function reviewGrocery(req, res) {
   try {
-    const review = await addReview(req.body);
+    const request = req.body;
+    const user_rating = request.rate;
+    const user_raveiw = request.text;
+    const user_id = request.user;
+    const grocery = request.grocery;
+    const first_name = request.first_name;
 
     // use updateOne() to update groceries collection 
     const updateGrocery = await Grocery.updateOne(
       {
-        _id: review.grocery
+        _id: grocery
       },
       {
         $push: {
-          reviews: [ review.rates, review.text, review.user ] 
+          reviews: { 
+            rate: user_rating, 
+            text: user_raveiw, 
+            first_name: first_name, 
+            user: user_id 
+          } 
         },
       }
     );
 
-    return res.status(200).send(review);
+    return res.status(200).send("Review successfully added");
   } 
   catch (error) {
     console.log(error);

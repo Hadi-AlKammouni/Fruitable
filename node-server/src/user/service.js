@@ -1,6 +1,5 @@
 const User = require('../../model/user');
 const Grocery = require('../../model/grocery');
-const Review = require('../../model/review');
 const Order = require('../../model/order');
 const Item = require('../../model/item');
 
@@ -26,24 +25,6 @@ async function getGroceryById(id) {
 
 async function getGroceryItem(id) {
     return await Item.findById(id);
-};
-
-async function addReview(body) {
-    const {
-      rates,
-      text,
-      user,
-      grocery,
-    } = body;
-  
-    const review = new Review({
-      rates,
-      text,
-      user,
-      grocery,
-    });
-  
-    return await review.save();
 };
 
 async function addOrder(body) {
@@ -72,7 +53,6 @@ module.exports = {
     getByEmail,
     getGroceryById,
     getGroceryItem,
-    addReview,
     addOrder,
     getOrder,
 }

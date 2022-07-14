@@ -21,7 +21,12 @@ const grocerySchema = new mongoose.Schema({
   token: { type: String },
   categories: { type: Array, default: null },
   items: [{type: mongoose.Schema.Types.ObjectId, ref: "item"}],
-  reviews: ["Reviews"],
+  reviews: [{
+    rate: {type: Number},
+    text: {type: String},
+    first_name: { type: String},
+    user: {type: mongoose.Schema.Types.ObjectId}    
+  }],
   orders: [{type: mongoose.Schema.Types.ObjectId, ref: "order"}],
 });
 
