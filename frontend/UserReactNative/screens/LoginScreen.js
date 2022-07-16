@@ -107,6 +107,10 @@ const LoginScreen = ({navigation}) => {
           </TouchableOpacity>
         </View>
 
+        <View style={styles.button}>
+            <Text style={styles.textSign}>Log in</Text>
+        </View>
+        
       </View>
     </View>
   );
@@ -151,19 +155,23 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingLeft: 10
     },
-    signin: {
-        width: '100%',
+    signIn: {
         height: 50,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10
     },
     button: {
+        justifyContent:'center',
         alignItems: 'center',
-        marginTop: 50
+        marginTop: 50,
+        backgroundColor: "#FDBE3B",
+        height: 50,
+        borderRadius:15
     },
     textSign: {
         fontWeight: 'bold',
-        fontSize: 18
+        fontSize: 18,
+        color: 'white'
     }
   });
