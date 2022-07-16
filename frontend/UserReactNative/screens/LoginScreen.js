@@ -7,6 +7,8 @@ const LoginScreen = ({navigation}) => {
       <View style={styles.header}>
         <Text style={styles.text_header}>Log in</Text>
       </View>
+      
+      {/* Email Field */}
       <View style={styles.footer}>
         <Text style={styles.text_footer}>Email</Text>
         <View style={styles.action}>
@@ -21,6 +23,23 @@ const LoginScreen = ({navigation}) => {
               autoCapitalize="none"
             />
         </View>
+
+      {/* Password Field */}
+      <Text style={[styles.text_footer, {marginTop: 35}]}>Password</Text>
+        <View style={styles.action}>
+            <Image 
+              source={require("../assets/icons/icons8-lock-32.png")}
+              resizeMode='contain'
+              style={{width:35,height:35}}
+            />
+            <TextInput 
+              placeholder='Enter Your Password' 
+              style={styles.text_input}
+              autoCapitalize="none"
+              secureTextEntry={true}
+            />
+        </View>
+
       </View>
     </View>
   );
