@@ -107,10 +107,21 @@ const LoginScreen = ({navigation}) => {
           </TouchableOpacity>
         </View>
 
+        {/* Login Button */}
         <View style={styles.button}>
-            <Text style={styles.textSign}>Log in</Text>
+          <Text style={styles.textSign}>Log in</Text>
         </View>
-        
+
+        {/* Create Account Button */}
+        <TouchableOpacity
+        onPress={() => navigation.navigate('SignupScreen')}
+        style={[styles.signIn, {borderColor:'#FDBE3B',borderWidth: 1,marginTop: 30}]}
+        >
+          <Text style={[styles.textSign,{color:'#FDBE3B'}]}>
+            Create Account
+          </Text>
+        </TouchableOpacity>
+      
       </View>
     </View>
   );
