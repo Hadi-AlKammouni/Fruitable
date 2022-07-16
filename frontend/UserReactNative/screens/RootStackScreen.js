@@ -11,7 +11,8 @@ const RootStackScreen = ( {navigation} ) => (
         headerStyle: {
             backgroundColor: '#FDBE3B'
         },
-        headerTintColor: '#FDBE3B',
+        headerShown:false,
+        headerTintColor: '#000000',
         headerTitleStyle: {
             fontWeight: 'bold'
         }
