@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image,TextInput } from 'react-native';
+import * as Animatable from 'react-native-animatable';
 
 const LoginScreen = ({navigation}) => {
 
@@ -36,29 +37,31 @@ const LoginScreen = ({navigation}) => {
       <View style={styles.footer}>
         <Text style={styles.text_footer}>Email</Text>
         <View style={styles.action}>
+          <Image 
+            source={require("../assets/icons/icons8-mail-account-32.png")}
+            resizeMode='contain'
+            style={{width:35,height:35}}
+          />
+          <TextInput 
+            placeholder='Enter Your Email' 
+            style={styles.text_input}
+            autoCapitalize="none"
+            onChangeText={(val) => emailInputChange(val)}
+          />
+          {data.check_text_input_change ?
+          <Animatable.View animation="bounceIn">
             <Image 
-              source={require("../assets/icons/icons8-mail-account-32.png")}
+              source={require("../assets/icons/icons8-checkmark-32.png")}
               resizeMode='contain'
-              style={{width:35,height:35}}
+              style={{width:25,height:35}}
             />
-            <TextInput 
-             placeholder='Enter Your Email' 
-              style={styles.text_input}
-              autoCapitalize="none"
-              onChangeText={(val) => emailInputChange(val)}
-            />
-            {data.check_text_input_change ?
-                <Image 
-                  source={require("../assets/icons/icons8-checkmark-32.png")}
-                  resizeMode='contain'
-                  style={{width:25,height:35}}
-                />
-            : null}
+          </Animatable.View>
+          : null}    
         </View>
 
-      {/* Password Field */}
-      <Text style={[styles.text_footer, {marginTop: 35}]}>Password</Text>
-        <View style={styles.action}>
+       {/* Password Field */}
+       <Text style={[styles.text_footer, {marginTop: 35}]}>Password</Text>
+         <View style={styles.action}>
             <Image 
               source={require("../assets/icons/icons8-lock-32.png")}
               resizeMode='contain'
@@ -70,7 +73,7 @@ const LoginScreen = ({navigation}) => {
               autoCapitalize="none"
               secureTextEntry={true}
             />
-        </View>
+         </View>
 
       </View>
     </View>
