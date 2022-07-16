@@ -2,12 +2,36 @@ import React from 'react';
 import { StyleSheet, Text, View, Image,TextInput } from 'react-native';
 
 const LoginScreen = ({navigation}) => {
+
+  const [data,setdata] = React.useState({
+    email: '',
+    password: '',
+    check_text_input_change: false,
+    secureTextEntry: false,
+  })
+
+  const emailInputChange = (val) => {
+    if( val.length !== 0){
+      setdata({
+        ...data,
+        email: val,
+        check_text_input_change: true
+      })
+    } else{
+      setdata({
+        ...data,
+        email: val,
+        check_text_input_change: false
+        })    
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.text_header}>Log in</Text>
       </View>
-      
+
       {/* Email Field */}
       <View style={styles.footer}>
         <Text style={styles.text_footer}>Email</Text>
@@ -18,10 +42,18 @@ const LoginScreen = ({navigation}) => {
               style={{width:35,height:35}}
             />
             <TextInput 
-              placeholder='Enter Your Email' 
+             placeholder='Enter Your Email' 
               style={styles.text_input}
               autoCapitalize="none"
+              onChangeText={(val) => emailInputChange(val)}
             />
+            {data.check_text_input_change ?
+                <Image 
+                  source={require("../assets/icons/icons8-checkmark-32.png")}
+                  resizeMode='contain'
+                  style={{width:25,height:35}}
+                />
+            : null}
         </View>
 
       {/* Password Field */}
