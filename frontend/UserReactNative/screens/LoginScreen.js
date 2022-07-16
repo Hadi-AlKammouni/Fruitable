@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image,TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image,TextInput, TouchableOpacity } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
 const LoginScreen = ({navigation}) => {
@@ -27,14 +27,30 @@ const LoginScreen = ({navigation}) => {
     }
   }
 
+  const passwordInputChange = (val) => {
+    if( val.length !== 0){
+      setdata({
+        ...data,
+        password: val,
+      })
+    }
+  }
+
+  const updateSecureTextEntry = () => {
+    setdata({
+      ...data,
+      secureTextEntry: !data.secureTextEntry
+    })
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.text_header}>Log in</Text>
       </View>
 
-      {/* Email Field */}
       <View style={styles.footer}>
+        {/* Email Field */}
         <Text style={styles.text_footer}>Email</Text>
         <View style={styles.action}>
           <Image 
@@ -59,21 +75,37 @@ const LoginScreen = ({navigation}) => {
           : null}    
         </View>
 
-       {/* Password Field */}
+        {/* Password Field */}
        <Text style={[styles.text_footer, {marginTop: 35}]}>Password</Text>
-         <View style={styles.action}>
+        <View style={styles.action}>
+          <Image 
+           source={require("../assets/icons/icons8-lock-32.png")}
+            resizeMode='contain'
+            style={{width:35,height:35}}
+          />
+          <TextInput 
+            placeholder='Enter Your Password' 
+            style={styles.text_input}
+            autoCapitalize="none"
+            secureTextEntry={data.secureTextEntry ? false : true}
+            onChangeText={(val) => passwordInputChange(val)}
+          />
+          <TouchableOpacity onPress={updateSecureTextEntry}>
+            {data.secureTextEntry ?
             <Image 
-              source={require("../assets/icons/icons8-lock-32.png")}
+              source={require("../assets/icons/icons8-eye-32.png")}
               resizeMode='contain'
               style={{width:35,height:35}}
             />
-            <TextInput 
-              placeholder='Enter Your Password' 
-              style={styles.text_input}
-              autoCapitalize="none"
-              secureTextEntry={true}
+            :
+            <Image 
+              source={require("../assets/icons/icons8-closed-eye-32.png")}
+              resizeMode='contain'
+              style={{width:35,height:35}}
             />
-         </View>
+            }  
+          </TouchableOpacity>
+        </View>
 
       </View>
     </View>
