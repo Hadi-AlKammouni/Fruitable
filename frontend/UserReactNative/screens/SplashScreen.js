@@ -1,7 +1,7 @@
 import { Dimensions, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
-const SplashScreen = () => {
+const SplashScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
 
@@ -11,12 +11,12 @@ const SplashScreen = () => {
 
         <Animatable.View animation="fadeInUpBig" style={styles.footer}>
             <View style={styles.button}>
-                <TouchableOpacity onPress={()=>alert('Clicked')}>
+                <TouchableOpacity onPress={()=>navigation.navigate('LoginScreen')}>
                     <Text style={styles.textSign}>Log in</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.button}>
-                <TouchableOpacity onPress={()=>alert('Clicked')}>
+                <TouchableOpacity onPress={()=>navigation.navigate('SignupScreen')}>
                     <Text style={styles.textSign}>Create Account</Text>
                 </TouchableOpacity>
             </View>
