@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image,TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image,TextInput, TouchableOpacity, StatusBar } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
 const LoginScreen = ({navigation}) => {
@@ -45,11 +45,12 @@ const LoginScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      <StatusBar backgroundColor='#FDBE3B' barStyle="light-content" />
       <View style={styles.header}>
         <Text style={styles.text_header}>Log in</Text>
       </View>
 
-      <View style={styles.footer}>
+      <Animatable.View style={styles.footer} animation="fadeInUpBig">
         {/* Email Field */}
         <Text style={styles.text_footer}>Email</Text>
         <View style={styles.action}>
@@ -122,7 +123,7 @@ const LoginScreen = ({navigation}) => {
           </Text>
         </TouchableOpacity>
       
-      </View>
+      </Animatable.View>
     </View>
   );
 }
