@@ -1,20 +1,23 @@
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { Text, View, Image,TextInput } from 'react-native';
 
 const LoginScreen = ({navigation}) => {
   return (
-    <View style={styles.container}>
-      <Text>Log in</Text>
+    <View >
+      <View >
+        <Text >Log in</Text>
+      </View>
+      <View >
+        <Text >Email</Text>
+        <View >
+            <TextInput 
+              placeholder='Enter Your Email' 
+              autoCapitalize="none"
+            />
+        </View>
+      </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default LoginScreen;
