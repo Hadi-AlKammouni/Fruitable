@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, StatusBar } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import styles from '../Login/styles';
+import styles from './styles';
 import TextInputField from '../../components/TextInputField';
 import ButtonComponent from '../../components/ButtonComponent';
 import RadioButton from '../../components/RadioButton';

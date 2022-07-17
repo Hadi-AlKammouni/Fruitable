@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, StatusBar } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import styles from '../Login/styles';
+import styles from './styles';
 import TextInputField from '../../components/TextInputField';
 import ButtonComponent from '../../components/ButtonComponent';
 import PasswordInputField from '../../components/PasswordInputField';
@@ -45,7 +45,7 @@ const SignupScreenTwo = ({navigation}) => {
 
         {/* Continue Button */}
         <ButtonComponent 
-          onPress={() => alert('Clicked')}
+          onPress={() => navigation.navigate("SignupScreenThree")}
           touchable_style={styles.button}
           border_color="#FDBE3B"
           text_style={styles.textSign}

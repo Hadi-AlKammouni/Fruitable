@@ -14,7 +14,7 @@ const RadioButton = () => {
 
   return (
     <View>
-      <Text style={{fontSize: 18, marginTop:30}}> Choose Your Gender </Text>
+      <Text style={{fontSize: 18, marginTop:30}}> Gender </Text>
       <RadioForm
         style={{
           marginTop: 15,
