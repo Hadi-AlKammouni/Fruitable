@@ -1,9 +1,10 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, StatusBar } from 'react-native';
+import { Text, View, StatusBar } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import styles from './styles';
 import TextInputField from '../../components/TextInputField';
 import PasswordInputField from '../../components/PasswordInputField';
+import ButtonComponent from '../../components/ButtonComponent';
 
 const LoginScreen = ({navigation}) => {
 
@@ -17,36 +18,40 @@ const LoginScreen = ({navigation}) => {
       <Animatable.View style={styles.footer} animation="fadeInUpBig">
         {/* Email Field */}
         <TextInputField 
-        label="Email" 
-        main_icon={require("../../assets/icons/icons8-mail-account-32.png")}
-        placeholder="Enter Your Email"
-        helper_icon={require("../../assets/icons/icons8-checkmark-32.png")}
+          label="Email" 
+          main_icon={require("../../assets/icons/icons8-mail-account-32.png")}
+          placeholder="Enter Your Email"
+          helper_icon={require("../../assets/icons/icons8-checkmark-32.png")}
         />
 
         {/* Password Field */}
         <PasswordInputField
         label="Password"
-        main_icon={require("../../assets/icons/icons8-lock-32.png")}
-        placeholder="Enter Your Password"
-        helper_icon1={require("../../assets/icons/icons8-eye-32.png")}
-        helper_icon2={require("../../assets/icons/icons8-closed-eye-32.png")}
+          main_icon={require("../../assets/icons/icons8-lock-32.png")}
+          placeholder="Enter Your Password"
+          helper_icon1={require("../../assets/icons/icons8-eye-32.png")}
+          helper_icon2={require("../../assets/icons/icons8-closed-eye-32.png")}
         />
 
-        {/* Login Button */}
-        <View style={styles.button}>
-          <Text style={styles.textSign}>Log in</Text>
-        </View>
+        {/* Log In Button */}
+        <ButtonComponent 
+          onPress={() => alert('Clicked')}
+          touchable_style={styles.button}
+          border_color="#FDBE3B"
+          text_style={styles.textSign}
+          text_color="#FFFFFF"
+          text="Log In"
+        />
 
         {/* Create Account Button */}
-        <TouchableOpacity
-        onPress={() => navigation.navigate('SignupScreen')}
-        style={[styles.signIn, {borderColor:'#FDBE3B',borderWidth: 1,marginTop: 30}]}
-        >
-          <Text style={[styles.textSign,{color:'#FDBE3B'}]}>
-            Create Account
-          </Text>
-        </TouchableOpacity>
-      
+        <ButtonComponent 
+          onPress={() => navigation.navigate('SignupScreen')}
+          touchable_style={styles.signIn}
+          border_color="#FDBE3B"
+          text_style={styles.textSign}
+          text_color="#FDBE3B"
+          text="Create Account"
+        />
       </Animatable.View>
     </View>
   );
