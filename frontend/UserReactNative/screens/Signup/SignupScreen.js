@@ -4,6 +4,7 @@ import * as Animatable from 'react-native-animatable';
 import styles from '../Login/styles';
 import TextInputField from '../../components/TextInputField';
 import ButtonComponent from '../../components/ButtonComponent';
+import RadioButton from '../../components/RadioButton';
 
 const SignupScreen = ({navigation}) => {
 
@@ -31,6 +32,9 @@ const SignupScreen = ({navigation}) => {
           helper_icon={require("../../assets/icons/icons8-checkmark-32.png")}
           margin={30}
         />
+
+        {/* Gender Radio Buttons */}
+        <RadioButton />
 
         {/* Continue Button */}
         <ButtonComponent 
