@@ -1,33 +1,11 @@
 import React from 'react';
-import { Text, View, Image, TextInput, TouchableOpacity, StatusBar } from 'react-native';
+import { Text, View, TouchableOpacity, StatusBar } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import styles from './styles';
 import TextInputField from '../../components/TextInputField';
+import PasswordInputField from '../../components/PasswordInputField';
 
 const LoginScreen = ({navigation}) => {
-
-  const [data,setdata] = React.useState({
-    email: '',
-    password: '',
-    check_text_input_change: false,
-    secureTextEntry: false,
-  })
-
-  const passwordInputChange = (val) => {
-    if( val.length !== 0){
-      setdata({
-        ...data,
-        password: val,
-      })
-    }
-  }
-
-  const updateSecureTextEntry = () => {
-    setdata({
-      ...data,
-      secureTextEntry: !data.secureTextEntry
-    })
-  }
 
   return (
     <View style={styles.container}>
@@ -46,36 +24,13 @@ const LoginScreen = ({navigation}) => {
         />
 
         {/* Password Field */}
-       <Text style={[styles.text_footer, {marginTop: 35}]}>Password</Text>
-        <View style={styles.action}>
-          <Image 
-           source={require("../../assets/icons/icons8-lock-32.png")}
-            resizeMode='contain'
-            style={{width:35,height:35}}
-          />
-          <TextInput 
-            placeholder='Enter Your Password' 
-            style={styles.text_input}
-            autoCapitalize="none"
-            secureTextEntry={data.secureTextEntry ? false : true}
-            onChangeText={(val) => passwordInputChange(val)}
-          />
-          <TouchableOpacity onPress={updateSecureTextEntry}>
-            {data.secureTextEntry ?
-            <Image 
-              source={require("../../assets/icons/icons8-eye-32.png")}
-              resizeMode='contain'
-              style={{width:35,height:35}}
-            />
-            :
-            <Image 
-              source={require("../../assets/icons/icons8-closed-eye-32.png")}
-              resizeMode='contain'
-              style={{width:35,height:35}}
-            />
-            }  
-          </TouchableOpacity>
-        </View>
+        <PasswordInputField
+        label="Password"
+        main_icon={require("../../assets/icons/icons8-lock-32.png")}
+        placeholder="Enter Your Password"
+        helper_icon1={require("../../assets/icons/icons8-eye-32.png")}
+        helper_icon2={require("../../assets/icons/icons8-closed-eye-32.png")}
+        />
 
         {/* Login Button */}
         <View style={styles.button}>
