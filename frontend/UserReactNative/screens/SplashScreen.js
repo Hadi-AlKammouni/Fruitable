@@ -16,7 +16,7 @@ const SplashScreen = ({ navigation }) => {
                 </TouchableOpacity>
             </View>
             <View style={styles.button}>
-                <TouchableOpacity onPress={()=>navigation.navigate('SignupScreen')}>
+                <TouchableOpacity onPress={()=>navigation.navigate('SignupScreenOne')}>
                     <Text style={styles.textSign}>Create Account</Text>
                 </TouchableOpacity>
             </View>

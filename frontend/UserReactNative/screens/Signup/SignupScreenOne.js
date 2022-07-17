@@ -6,7 +6,7 @@ import TextInputField from '../../components/TextInputField';
 import ButtonComponent from '../../components/ButtonComponent';
 import RadioButton from '../../components/RadioButton';
 
-const SignupScreen = ({navigation}) => {
+const SignupScreenOne = ({navigation}) => {
 
   return (
     <View style={styles.container}>
@@ -38,7 +38,7 @@ const SignupScreen = ({navigation}) => {
 
         {/* Continue Button */}
         <ButtonComponent 
-          onPress={() => alert('Clicked')}
+          onPress={() => navigation.navigate('SignupScreenTwo')}
           touchable_style={styles.button}
           border_color="#FDBE3B"
           text_style={styles.textSign}
@@ -60,4 +60,4 @@ const SignupScreen = ({navigation}) => {
   );
 }
 
-export default SignupScreen;
+export default SignupScreenOne;
