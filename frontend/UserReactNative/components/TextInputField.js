@@ -3,24 +3,24 @@ import { Text, View, Image, TextInput } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import styles from '../screens/Login/styles';
 
-const TextInputField = ({ label, main_icon, placeholder, helper_icon }) => {
+const TextInputField = ({ label, main_icon, placeholder, helper_icon, margin }) => {
 
     const [data,setdata] = React.useState({
-        email: '',
+        input: '',
         check_text_input_change: false,
     })
     
-    const emailInputChange = (val) => {
+    const InputChange = (val) => {
         if( val.length !== 0){
           setdata({
             ...data,
-            email: val,
+            input: val,
             check_text_input_change: true
           })
         } else{
           setdata({
             ...data,
-            email: val,
+            input: val,
             check_text_input_change: false
             })    
         }
@@ -28,7 +28,7 @@ const TextInputField = ({ label, main_icon, placeholder, helper_icon }) => {
 
   return (
     <>
-    <Text style={styles.text_footer}>{label}</Text>
+    <Text style={[styles.text_footer, {marginTop:margin}]}>{label}</Text>
     <View style={styles.action}>
       <Image 
         source={main_icon}
@@ -39,7 +39,7 @@ const TextInputField = ({ label, main_icon, placeholder, helper_icon }) => {
         placeholder={placeholder} 
         style={styles.text_input}
         autoCapitalize="none"
-        onChangeText={(val) => emailInputChange(val)}
+        onChangeText={(val) => InputChange(val)}
       />
       {data.check_text_input_change ?
       <Animatable.View animation="bounceIn">
