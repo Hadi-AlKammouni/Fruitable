@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, View, Image,TextInput, TouchableOpacity, StatusBar } from 'react-native';
+import { Text, View, Image, TextInput, TouchableOpacity, StatusBar } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import styles from './styles';
+import TextInputField from '../../components/TextInputField';
 
 const LoginScreen = ({navigation}) => {
 
@@ -11,22 +12,6 @@ const LoginScreen = ({navigation}) => {
     check_text_input_change: false,
     secureTextEntry: false,
   })
-
-  const emailInputChange = (val) => {
-    if( val.length !== 0){
-      setdata({
-        ...data,
-        email: val,
-        check_text_input_change: true
-      })
-    } else{
-      setdata({
-        ...data,
-        email: val,
-        check_text_input_change: false
-        })    
-    }
-  }
 
   const passwordInputChange = (val) => {
     if( val.length !== 0){
@@ -53,29 +38,12 @@ const LoginScreen = ({navigation}) => {
 
       <Animatable.View style={styles.footer} animation="fadeInUpBig">
         {/* Email Field */}
-        <Text style={styles.text_footer}>Email</Text>
-        <View style={styles.action}>
-          <Image 
-            source={require("../../assets/icons/icons8-mail-account-32.png")}
-            resizeMode='contain'
-            style={{width:35,height:35}}
-          />
-          <TextInput 
-            placeholder='Enter Your Email' 
-            style={styles.text_input}
-            autoCapitalize="none"
-            onChangeText={(val) => emailInputChange(val)}
-          />
-          {data.check_text_input_change ?
-          <Animatable.View animation="bounceIn">
-            <Image 
-              source={require("../../assets/icons/icons8-checkmark-32.png")}
-              resizeMode='contain'
-              style={{width:25,height:35}}
-            />
-          </Animatable.View>
-          : null}    
-        </View>
+        <TextInputField 
+        label="Email" 
+        main_icon={require("../../assets/icons/icons8-mail-account-32.png")}
+        placeholder="Enter Your Email"
+        helper_icon={require("../../assets/icons/icons8-checkmark-32.png")}
+        />
 
         {/* Password Field */}
        <Text style={[styles.text_footer, {marginTop: 35}]}>Password</Text>
