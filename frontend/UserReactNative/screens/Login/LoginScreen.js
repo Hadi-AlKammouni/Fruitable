@@ -55,7 +55,7 @@ const LoginScreen = ({navigation}) => {
         <Text style={styles.text_footer}>Email</Text>
         <View style={styles.action}>
           <Image 
-            source={require("../assets/icons/icons8-mail-account-32.png")}
+            source={require("../../assets/icons/icons8-mail-account-32.png")}
             resizeMode='contain'
             style={{width:35,height:35}}
           />
@@ -68,7 +68,7 @@ const LoginScreen = ({navigation}) => {
           {data.check_text_input_change ?
           <Animatable.View animation="bounceIn">
             <Image 
-              source={require("../assets/icons/icons8-checkmark-32.png")}
+              source={require("../../assets/icons/icons8-checkmark-32.png")}
               resizeMode='contain'
               style={{width:25,height:35}}
             />
@@ -80,7 +80,7 @@ const LoginScreen = ({navigation}) => {
        <Text style={[styles.text_footer, {marginTop: 35}]}>Password</Text>
         <View style={styles.action}>
           <Image 
-           source={require("../assets/icons/icons8-lock-32.png")}
+           source={require("../../assets/icons/icons8-lock-32.png")}
             resizeMode='contain'
             style={{width:35,height:35}}
           />
@@ -94,13 +94,13 @@ const LoginScreen = ({navigation}) => {
           <TouchableOpacity onPress={updateSecureTextEntry}>
             {data.secureTextEntry ?
             <Image 
-              source={require("../assets/icons/icons8-eye-32.png")}
+              source={require("../../assets/icons/icons8-eye-32.png")}
               resizeMode='contain'
               style={{width:35,height:35}}
             />
             :
             <Image 
-              source={require("../assets/icons/icons8-closed-eye-32.png")}
+              source={require("../../assets/icons/icons8-closed-eye-32.png")}
               resizeMode='contain'
               style={{width:35,height:35}}
             />
@@ -131,59 +131,59 @@ const LoginScreen = ({navigation}) => {
 export default LoginScreen;
 
 const styles = StyleSheet.create({
-    container: {
+  container: {
+    flex: 1,
+    backgroundColor: '#FDBE3B'
+  },
+  header: {
+      flex:1,
+      justifyContent: 'center',
+      alignItems: 'center'
+  },
+  footer: {
+      flex: 3,
+      backgroundColor: "#ffffff",
+      borderTopLeftRadius: 30,
+      borderTopRightRadius: 30,
+      paddingVertical: 20,
+      paddingHorizontal: 30
+  },
+  text_header: {
+      color: "#ffffff",
+      fontWeight: 'bold',
+      fontSize: 30
+  },
+  text_footer: {
+      fontSize: 18
+  },
+  action: {
+      flexDirection: 'row',
+      marginTop: 10,
+      borderBottomWidth: 1,
+      borderBottomColor: '#FDBE3B',
+      paddingBottom: 5
+  },
+  text_input: {
       flex: 1,
-      backgroundColor: '#FDBE3B'
-    },
-    header: {
-        flex:1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    footer: {
-        flex: 3,
-        backgroundColor: "#ffffff",
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
-        paddingVertical: 20,
-        paddingHorizontal: 30
-    },
-    text_header: {
-        color: "#ffffff",
-        fontWeight: 'bold',
-        fontSize: 30
-    },
-    text_footer: {
-        fontSize: 18
-    },
-    action: {
-        flexDirection: 'row',
-        marginTop: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: '#FDBE3B',
-        paddingBottom: 5
-    },
-    text_input: {
-        flex: 1,
-        paddingLeft: 10
-    },
-    signIn: {
-        height: 50,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 10
-    },
-    button: {
-        justifyContent:'center',
-        alignItems: 'center',
-        marginTop: 50,
-        backgroundColor: "#FDBE3B",
-        height: 50,
-        borderRadius:15
-    },
-    textSign: {
-        fontWeight: 'bold',
-        fontSize: 18,
-        color: 'white'
-    }
-  });
+      paddingLeft: 10
+  },
+  signIn: {
+      height: 50,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 10
+  },
+  button: {
+      justifyContent:'center',
+      alignItems: 'center',
+      marginTop: 50,
+      backgroundColor: "#FDBE3B",
+      height: 50,
+      borderRadius:15
+  },
+  textSign: {
+      fontWeight: 'bold',
+      fontSize: 18,
+      color: 'white'
+  }
+});
