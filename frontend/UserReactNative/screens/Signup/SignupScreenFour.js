@@ -4,6 +4,7 @@ import * as Animatable from 'react-native-animatable';
 import { Avatar, Button } from 'react-native-paper';
 import * as ImagePicker from 'expo-image-picker';
 import styles from './styles';
+import ButtonComponent from '../../components/ButtonComponent';
 
 const SignupScreenFour = () => {
 
@@ -77,6 +78,15 @@ const SignupScreenFour = () => {
                 </View>
             </View>
 
+            {/* Continue Button */}
+            <ButtonComponent 
+              onPress={() => alert("Done") }
+              touchable_style={styles.button}
+              border_color="#FDBE3B"
+              text_style={styles.textSign}
+              text_color="#FFFFFF"
+              text="Create Account"
+            />
           </Animatable.View>
         </View>
       );
