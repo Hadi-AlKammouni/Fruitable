@@ -57,7 +57,7 @@ const SignupScreenFour = () => {
 
           <Animatable.View style={styles.footer} animation="fadeInUpBig">
             <View>
-                <View >
+                <View style={styles.center}>
                     <TouchableHighlight 
                         onPress={() => alert("Pressed")}
                         underlayColor='rgba(0,0,0,0)'>
@@ -67,7 +67,7 @@ const SignupScreenFour = () => {
                         />
                     </TouchableHighlight>
                 </View>
-                <View >
+                <View style={styles.center}>
                      <Button mode='contained' onPress={() => uploadImage()}>
                         Upload Image
                     </Button>
