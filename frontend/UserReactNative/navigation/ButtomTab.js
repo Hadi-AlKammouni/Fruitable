@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Text, View, Image } from 'react-native';
+import { View, Image } from 'react-native';
 
 import HomeScreen from '../screens/HomeScreen';
 import OrdersScreen from '../screens/OrdersScreen';
@@ -21,7 +21,7 @@ const ButtomTab = () => {
                     elevation: 0,
                     backgroundColor: '#ffffff',
                     borderRadius: 15,
-                    height: 70
+                    height: 45
                 }
             }}  
         >
@@ -34,7 +34,6 @@ const ButtomTab = () => {
                             resizeMode='contain'
                             style={{width:55,height:55,tintColor: focused ? '#FDBE3B' : '#000000',}}
                         />
-                        <Text style={{color: focused ? '#FDBE3B' : '#000000', fontSize:12}}> Home </Text>
                     </View>
                 )
             }}/>
@@ -46,7 +45,6 @@ const ButtomTab = () => {
                             resizeMode='contain'
                             style={{width:55,height:55,tintColor: focused ? '#FDBE3B' : '#000000',}}
                         />
-                        <Text style={{color: focused ? '#FDBE3B' : '#000000', fontSize:12}}> Orders </Text>
                     </View>
                 )
             }}/>
@@ -58,7 +56,6 @@ const ButtomTab = () => {
                             resizeMode='contain'
                             style={{width:55,height:55,tintColor: focused ? '#FDBE3B' : '#000000',}}
                         />
-                        <Text style={{color: focused ? '#FDBE3B' : '#000000', fontSize:12}}> Account </Text>
                     </View>
                 )
             }}/>

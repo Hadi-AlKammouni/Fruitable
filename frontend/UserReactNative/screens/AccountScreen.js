@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 const AccountScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Account</Text>
+      <Text>hi</Text>
       <StatusBar style="auto" />
     </View>
   );
