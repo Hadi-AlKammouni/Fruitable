@@ -16,12 +16,16 @@ const HomeScreen = () => {
         }}
       >
 
-        <Marker coordinate={{latitude: 33.888630, longitude: 35.496}}>
-          <Image source={require("../assets/logo.png")} style={{width:50, height:50}}/>  
-        </Marker>
-        <Marker coordinate={{latitude: 33.9, longitude: 35.496}}>
-          <Image source={require("../assets/logo.png")} style={{width:50, height:50}}/>  
-        </Marker>
+        <Marker 
+          coordinate={{latitude: 33.888630, longitude: 35.496}}
+          title="Grocery 1"
+          description="This is the first grocery" 
+        />
+        <Marker 
+          coordinate={{latitude: 33.9, longitude: 35.496}}
+          title="Grocery 2"
+          description="This is the second grocery" 
+        />
 
       </MapView>
     </SafeAreaView>
