@@ -4,10 +4,9 @@ import {Dropdown} from 'react-native-element-dropdown';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import * as Animatable from 'react-native-animatable';
 import styles from './styles';
-import dropDownStyles from './styles';
 import ButtonComponent from '../../components/ButtonComponent';
 
-const SignupScreenThree = () => {
+const SignupScreenThree = ({ navigation }) => {
 
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
@@ -71,7 +70,7 @@ const SignupScreenThree = () => {
 
             {/* Continue Button */}
             <ButtonComponent 
-              onPress={() => alert("Clicked")}
+              onPress={() => navigation.navigate("SignupScreenFour") }
               touchable_style={styles.button}
               border_color="#FDBE3B"
               text_style={styles.textSign}
