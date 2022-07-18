@@ -35,7 +35,7 @@ const LoginScreen = ({navigation}) => {
 
         {/* Log In Button */}
         <ButtonComponent 
-          onPress={() => alert('Clicked')}
+          onPress={() => navigation.navigate('UserScreen')}
           touchable_style={styles.button}
           border_color="#FDBE3B"
           text_style={styles.textSign}

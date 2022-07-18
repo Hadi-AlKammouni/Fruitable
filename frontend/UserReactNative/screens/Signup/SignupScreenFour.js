@@ -6,7 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 import styles from './styles';
 import ButtonComponent from '../../components/ButtonComponent';
 
-const SignupScreenFour = () => {
+const SignupScreenFour = ({ navigation }) => {
 
     const [picture,setPicture] = useState(null);
 
@@ -80,7 +80,7 @@ const SignupScreenFour = () => {
 
             {/* Continue Button */}
             <ButtonComponent 
-              onPress={() => alert("Done") }
+              onPress={() => navigation.navigate("UserScreen") }
               touchable_style={styles.button}
               border_color="#FDBE3B"
               text_style={styles.textSign}
