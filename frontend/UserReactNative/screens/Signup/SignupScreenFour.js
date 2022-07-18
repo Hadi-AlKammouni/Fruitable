@@ -43,6 +43,11 @@ const SignupScreenFour = () => {
         });
     }
 
+    const removeImage = () => {
+        setPicture('')
+        setToastMessage('Image removed');
+    }
+
     return (
         <View style={styles.container}>
           <StatusBar backgroundColor='#FDBE3B' barStyle="light-content" />
@@ -66,7 +71,7 @@ const SignupScreenFour = () => {
                      <Button mode='contained' onPress={() => uploadImage()}>
                         Upload Image
                     </Button>
-                    <Button mode='contained' >
+                    <Button mode='contained' onPress={() => removeImage()}>
                         Remove Image
                     </Button>
                 </View>
