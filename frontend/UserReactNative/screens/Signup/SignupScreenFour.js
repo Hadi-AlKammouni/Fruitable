@@ -6,8 +6,10 @@ const SignupScreenFour = () => {
 
     return (
         <View style={styles.container}>
-          <Text>Image</Text>
-          <StatusBar style="auto" />
+          <StatusBar backgroundColor='#FDBE3B' barStyle="light-content" />
+          <View style={styles.header}>
+            <Text style={styles.text_header}>Create Account</Text>
+          </View>
         </View>
       );
 }
