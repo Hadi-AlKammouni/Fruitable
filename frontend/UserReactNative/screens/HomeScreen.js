@@ -1,22 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { SafeAreaView, Image } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
 
 const HomeScreen = () => {
+
   return (
-    <View style={styles.container}>
-      <Text>Home</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={{flex:1}}>
+      <MapView
+        style={{flex:1}}
+        initialRegion={{
+          latitude: parseFloat(33.888630),
+          longitude: parseFloat(35.495480),
+          latitudeDelta: 0.09,
+          longitudeDelta: 0.04
+        }}
+      >
+
+        <Marker coordinate={{latitude: 33.888630, longitude: 35.496}}>
+          <Image source={require("../assets/logo.png")} style={{width:50, height:50}}/>  
+        </Marker>
+        <Marker coordinate={{latitude: 33.9, longitude: 35.496}}>
+          <Image source={require("../assets/logo.png")} style={{width:50, height:50}}/>  
+        </Marker>
+
+      </MapView>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default HomeScreen;
