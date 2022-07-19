@@ -5,6 +5,8 @@ const GroceyScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
+      <Image style={styles.picture} source={require('../assets/grocery.png')}/>
+      <Text> Grocery Name</Text>
         <Text style={styles.text}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
