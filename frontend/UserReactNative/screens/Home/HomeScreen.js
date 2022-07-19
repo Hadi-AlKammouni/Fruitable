@@ -3,7 +3,7 @@ import { SafeAreaView, Image, View, Text } from 'react-native';
 import MapView, { Callout, Marker } from 'react-native-maps';
 import styles from './styles';
 
-const HomeScreen = () => {
+const HomeScreen = ( {navigation} ) => {
 
   return (
     <SafeAreaView style={styles.container}>
@@ -22,7 +22,7 @@ const HomeScreen = () => {
           title="Grocery 1"
           description="This is the first grocery" 
         >
-          <Callout tooltip>
+          <Callout tooltip onPress={()=>navigation.navigate('Grocery')}>
             <View>
               <View style={styles.marker_tooltip}>
                 <Text style={styles.marker_title}>GROCERY ONE</Text>

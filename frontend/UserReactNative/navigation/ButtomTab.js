@@ -5,6 +5,7 @@ import { View, Image } from 'react-native';
 import HomeScreen from '../screens/Home/HomeScreen';
 import OrdersScreen from '../screens/OrdersScreen';
 import AccountScreen from '../screens/AccountScreen';
+import GroceryScreen from '../screens/GroceryScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -53,6 +54,17 @@ const ButtomTab = () => {
                 tabBarIcon: ({focused}) => (
                     <View style={{alignItems: 'center', justifyContent: 'center'}}>
                         <Image source={require("../assets/icons/icons8-test-account-1000.png")}
+                            resizeMode='contain'
+                            style={{width:55,height:55,tintColor: focused ? '#FDBE3B' : '#000000',}}
+                        />
+                    </View>
+                )
+            }}/>
+
+            <Tab.Screen name="Grocery" component={GroceryScreen} options={{
+                tabBarIcon: ({focused}) => (
+                    <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                        <Image source={require("../assets/icons/icons8-fruit-bag-50.png")}
                             resizeMode='contain'
                             style={{width:55,height:55,tintColor: focused ? '#FDBE3B' : '#000000',}}
                         />
