@@ -1,12 +1,19 @@
-import React from 'react';
-import { StyleSheet, Text, SafeAreaView, ScrollView, StatusBar, Image } from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, Text, SafeAreaView, ScrollView, Image, View, TouchableOpacity } from 'react-native';
+import GroceryRate from '../components/GroceryRate';
 
 const GroceyScreen = () => {
+
+  const [defaultRating, setDefaultRating] = useState(4)
+  const [maxRating, setMaxRating] = useState([1,2,3,4,5])
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
-      <Image style={styles.picture} source={require('../assets/grocery.png')}/>
-      <Text> Grocery Name</Text>
+        <Image style={styles.picture} source={require('../assets/grocery.png')}/>
+        <Text style={styles.major_info}> Grocery Name - Location - Phone Number</Text>
+        <Text style={styles.description}> Grocery Description</Text>
+        <GroceryRate/>
         <Text style={styles.text}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -34,6 +41,15 @@ const styles = StyleSheet.create({
   },
   picture: {
     height: 250
+  },
+  major_info: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    marginTop: 25,
+    marginBottom: 25
+  },
+  description: {
+    textAlign: 'center'
   },
 });
 
