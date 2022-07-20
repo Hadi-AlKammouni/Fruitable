@@ -1,11 +1,8 @@
-import React, {useState} from 'react';
-import { StyleSheet, Text, SafeAreaView, ScrollView, Image, View, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, SafeAreaView, ScrollView, Image } from 'react-native';
 import GroceryRate from '../components/GroceryRate';
 
 const GroceyScreen = () => {
-
-  const [defaultRating, setDefaultRating] = useState(4)
-  const [maxRating, setMaxRating] = useState([1,2,3,4,5])
 
   return (
     <SafeAreaView style={styles.container}>
