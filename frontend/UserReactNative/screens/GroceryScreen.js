@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, SafeAreaView, ScrollView, Image } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, ScrollView, Image, View } from 'react-native';
 import GroceryRate from '../components/GroceryRate';
+import ReviewsPopUp from '../components/ReviewsPopUp';
 
 const GroceyScreen = () => {
 
@@ -11,6 +12,7 @@ const GroceyScreen = () => {
         <Text style={styles.major_info}> Grocery Name - Location - Phone Number</Text>
         <Text style={styles.description}> Grocery Description</Text>
         <GroceryRate/>
+        <ReviewsPopUp/>
         <Text style={styles.text}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
