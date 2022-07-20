@@ -1,14 +1,16 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, SafeAreaView, ScrollView, Image, View, TouchableOpacity } from 'react-native';
+import TextInputField from './TextInputField';
 
 const UserRate = () => {
 
-  const [defaultRating, setDefaultRating] = useState(4)
+  const [defaultRating, setDefaultRating] = useState(5)
   const [maxRating, setMaxRating] = useState([1,2,3,4,5])
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
+        <Text style={styles.txt_rating}> Rate Your Experience </Text>
         <View style={styles.rating}> 
         <Text style={styles.txt_rating}>
             {defaultRating + ' / ' + maxRating.length}
@@ -23,6 +25,13 @@ const UserRate = () => {
         <TouchableOpacity activeOpacity={0.7} style={styles.btn} onPress={() => alert(defaultRating)}>
             <Text style={styles.submit}>Submit Review</Text>
         </TouchableOpacity>
+
+        <Text style={styles.txt_rating}> Write A Review </Text>
+        <TextInputField 
+          main_icon={require("../assets/icons/icons8-write-60.png")}
+          placeholder="Review.."
+        />
+
       </ScrollView>
     </SafeAreaView>
   );
@@ -55,12 +64,13 @@ const styles = StyleSheet.create({
   },
   submit: {
     color: "#fff",
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   btn: {
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 25,
+    marginBottom: 25,
     padding: 15,
     backgroundColor: '#000'
   }
