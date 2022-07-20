@@ -15,10 +15,6 @@ const ButtomTab = () => {
             screenOptions={{
                 tabBarShowLabel: false,
                 tabBarStyle:{
-                    position: 'absolute',
-                    bottom: 5,
-                    left: 20,
-                    right: 20,
                     elevation: 0,
                     backgroundColor: '#ffffff',
                     borderRadius: 15,
