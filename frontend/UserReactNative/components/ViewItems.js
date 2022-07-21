@@ -4,11 +4,17 @@ import { Dimensions, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, Fla
 const ViewItems = () => {
 
     const [category,setCategory] = useState("Fruits")
+    const [items,setItems] = useState(data)
 
     const categories = [{category: "Fruits"}, {category: "Vegetables"}]
     const data = [{name: 'Apple',category: 'Fruits'}, {name: 'Carrot', category: 'Vegetables'}, {name: 'Lemon', category: 'Vegetables'}]
 
     const setStatusFilter = category => {
+         if (category !== 'Fruits'){
+            setItems([...data.filter(e => e.category === category)])
+        } else if (category !== 'Vegetables'){
+            setItems([...data.filter(e => e.category === category)])
+        }
         setCategory(category)
     }
 
@@ -41,7 +47,7 @@ const ViewItems = () => {
                 }
             </View>
             <FlatList 
-                data={data} 
+                data={items} 
                 keyExtractor={(e, item) => item.toString()} 
                 renderItem={renderItem}
             />
