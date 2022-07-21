@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, StatusBar } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import styles from './styles';
@@ -7,6 +7,10 @@ import ButtonComponent from '../../components/ButtonComponent';
 import RadioButton from '../../components/RadioButton';
 
 const SignupScreenOne = ({navigation}) => {
+
+  const [firstName, setFirstName] = useState('')   
+  const [lastName, setLastName] = useState('')   
+  const [gender, setGender] = useState('')   
 
   return (
     <View style={styles.container}>
@@ -22,6 +26,7 @@ const SignupScreenOne = ({navigation}) => {
           main_icon={require("../../assets/icons/icons8-name-48.png")}
           placeholder="Enter Your First Name"
           helper_icon={require("../../assets/icons/icons8-checkmark-32.png")}
+          setState={setFirstName}
         />
 
         {/* Last Name Field */}
@@ -31,10 +36,11 @@ const SignupScreenOne = ({navigation}) => {
           placeholder="Enter Your Last Name"
           helper_icon={require("../../assets/icons/icons8-checkmark-32.png")}
           margin={30}
+          setState={setLastName}
         />
 
         {/* Gender Radio Buttons */}
-        <RadioButton />
+        <RadioButton setState={setGender}/>
 
         {/* Continue Button */}
         <ButtonComponent 
@@ -45,6 +51,7 @@ const SignupScreenOne = ({navigation}) => {
           text_color="#FFFFFF"
           text="Continue"
         />
+        
 
         {/* Already a Member? Log In Button */}
         <ButtonComponent 

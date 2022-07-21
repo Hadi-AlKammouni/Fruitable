@@ -3,7 +3,7 @@ import { Text, View, Image, TextInput } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import styles from '../screens/Login/styles';
 
-const TextInputField = ({ label, main_icon, placeholder, helper_icon, margin }) => {
+const TextInputField = ({ label, main_icon, placeholder, helper_icon, margin, setState }) => {
 
     const [data,setdata] = React.useState({
         input: '',
@@ -12,6 +12,7 @@ const TextInputField = ({ label, main_icon, placeholder, helper_icon, margin }) 
     
     const InputChange = (val) => {
         if( val.length !== 0){
+          setState(val)
           setdata({
             ...data,
             input: val,
