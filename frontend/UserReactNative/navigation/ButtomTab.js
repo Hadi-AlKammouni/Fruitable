@@ -4,7 +4,7 @@ import { View, Image } from 'react-native';
 
 import HomeScreen from '../screens/Home/HomeScreen';
 import OrdersScreen from '../screens/OrdersScreen';
-import AccountScreen from '../screens/AccountScreen';
+import AccountScreen from '../screens/Account/AccountScreen';
 import GroceryScreen from '../screens/GroceryScreen';
 
 const Tab = createBottomTabNavigator();
