@@ -24,13 +24,17 @@ const ViewItems = () => {
                 <View style={styles.img}>
                     <Image style={styles.item_img} source={require("../assets/logo.png")}/>
                 </View>
-                <Text style={styles.itemBody}>
-                    <Text style={styles.itemName}>
+                <Text style={styles.item_body}>
+                    <Text style={styles.item_name}>
                         {item.name}
                     </Text>
                 </Text>
             </View>
         )
+    }
+
+    const separator = () => {
+        return <View style={{height: 1, backgroundColor: '#f1f1f1'}}/>
     }
 
     return(
@@ -50,6 +54,7 @@ const ViewItems = () => {
                 data={items} 
                 keyExtractor={(e, item) => item.toString()} 
                 renderItem={renderItem}
+                ItemSeparatorComponent={separator}
             />
         </SafeAreaView>
     )
@@ -98,12 +103,12 @@ const styles = StyleSheet.create ({
         width: 80,
         height: 80
     },
-    itemBody: {
+    item_body: {
         flex: 1,
         paddingHorizontal: 10,
         justifyContent: 'center'
     },
-    itemName: {
+    item_name: {
         fontWeight: 'bold',
         fontSize: 16
     },
