@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dimensions, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Dimensions, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, FlatList, Image } from "react-native";
 
 const ViewItems = () => {
 
@@ -7,12 +7,16 @@ const ViewItems = () => {
 
     const categories = [{category: "Fruits"}, {category: "Vegetables"}]
 
+    const setStatusFilter = category => {
+        setCategory(category)
+    }
+
     return(
         <SafeAreaView style={styles.contaner}>
             <View style={styles.list_tab}>
                 {
                     categories.map(e => (
-                        <TouchableOpacity style={[styles.btn, category === e.category && styles.active_btn]} >
+                        <TouchableOpacity style={[styles.btn, category === e.category && styles.active_btn]} onPress={() => setStatusFilter(e.category)}>
                             <Text style={[styles.text, category === e.category && styles.active_text]}>
                             {e.category}
                             </Text>
