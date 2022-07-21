@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     text_header: {
         color: "#ffffff",
         fontWeight: 'bold',
-        fontSize: 30
+        fontSize: 30,
     },
     text_footer: {
         fontSize: 18
@@ -99,6 +99,15 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       marginTop: 50
+    },
+    img: {
+      borderRadius: 15,
+      margin: 10,
+      width:200, 
+      height:200
+    },
+    img_btn: {
+      margin: 10
     }
 });
 

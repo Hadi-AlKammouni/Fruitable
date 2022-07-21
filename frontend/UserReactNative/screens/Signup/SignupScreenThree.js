@@ -8,7 +8,7 @@ import ButtonComponent from '../../components/ButtonComponent';
 
 const SignupScreenThree = ({ navigation, route }) => {
 
-    const [value, setValue] = useState(null);
+    const [location, setLocation] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
     const { firstName, lastName, gender,email, password, confirmPassword} = route.params;
 
@@ -52,11 +52,11 @@ const SignupScreenThree = ({ navigation, route }) => {
                 valueField="value"
                 placeholder={!isFocus ? 'Country' : '...'}
                 searchPlaceholder="Search..."
-                value={value}
+                value={location}
                 onFocus={() => setIsFocus(true)}
                 onBlur={() => setIsFocus(false)}
                 onChange={item => {
-                    setValue(item.value);
+                    setLocation(item.value);
                     setIsFocus(false);
                 }}
                 renderLeftIcon={() => (
@@ -68,10 +68,10 @@ const SignupScreenThree = ({ navigation, route }) => {
                     />
                 )}
             />
-
+            
             {/* Continue Button */}
             <ButtonComponent 
-              onPress={() => navigation.navigate("SignupScreenFour") }
+              onPress={() => navigation.navigate("SignupScreenFour",{firstName,lastName,gender,email,password,confirmPassword, location}) }
               touchable_style={styles.button}
               border_color="#FDBE3B"
               text_style={styles.textSign}
