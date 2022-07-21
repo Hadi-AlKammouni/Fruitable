@@ -93,22 +93,6 @@ const styles = StyleSheet.create({
       height: 40,
       fontSize: 16,
     },
-
-    // SignupScreenFour
-    center: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: 50
-    },
-    img: {
-      borderRadius: 15,
-      margin: 10,
-      width:200, 
-      height:200
-    },
-    img_btn: {
-      margin: 10
-    }
 });
 
 export default styles;
