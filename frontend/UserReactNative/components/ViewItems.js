@@ -25,6 +25,9 @@ const ViewItems = () => {
         return(
             <>
                 <View key={index} style={styles.item}>
+                    <View style={styles.img}>
+                        <Image style={styles.add_item} source={require("../assets/icons/icons8-add-32.png")}/>
+                    </View>
                     <Text style={styles.item_body}>
                         <Text style={styles.item_name}>
                             {item.name}
@@ -121,5 +124,9 @@ const styles = StyleSheet.create ({
     item_name: {
         fontWeight: 'bold',
         fontSize: 16
+    },
+    add_item: {
+        width: 40,
+        height: 40
     },
 })
