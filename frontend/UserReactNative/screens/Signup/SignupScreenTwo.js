@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, StatusBar } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import styles from './styles';
 import TextInputField from '../../components/TextInputField';
 import ButtonComponent from '../../components/ButtonComponent';
 import PasswordInputField from '../../components/PasswordInputField';
-import ConfirmPassword from '../../components/ConfirmPassword';
 
 const SignupScreenTwo = ({navigation, route}) => {
   
   const { firstName, lastName, gender } = route.params;
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
 
   return (
     <View style={styles.container}>
@@ -25,6 +27,7 @@ const SignupScreenTwo = ({navigation, route}) => {
           main_icon={require("../../assets/icons/icons8-mail-account-32.png")}
           placeholder="Enter Your Email"
           helper_icon={require("../../assets/icons/icons8-checkmark-32.png")}
+          setState={setEmail}
         />
 
         {/* Password Field */}
@@ -34,20 +37,22 @@ const SignupScreenTwo = ({navigation, route}) => {
           placeholder="Enter Your Password"
           helper_icon1={require("../../assets/icons/icons8-eye-32.png")}
           helper_icon2={require("../../assets/icons/icons8-closed-eye-32.png")}
+          setState={setPassword}
         />
 
         {/* Confirm Password Field */}
-        <ConfirmPassword
+        <PasswordInputField
           label="Confirm Password"
           main_icon={require("../../assets/icons/icons8-lock-32.png")}
           placeholder="Repeat Your Password"
           helper_icon1={require("../../assets/icons/icons8-eye-32.png")}
           helper_icon2={require("../../assets/icons/icons8-closed-eye-32.png")}
+          setState={setConfirmPassword}
         />
 
         {/* Continue Button */}
         <ButtonComponent 
-          onPress={() => navigation.navigate("SignupScreenThree")}
+          onPress={() => navigation.navigate("SignupScreenThree",{firstName,lastName,gender,email,password,confirmPassword})}
           touchable_style={styles.button}
           border_color="#FDBE3B"
           text_style={styles.textSign}

@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import styles from '../screens/Login/styles';
 
-const PasswordInputField = ({ label, main_icon, placeholder, helper_icon1, helper_icon2 }) => {
+const PasswordInputField = ({ label, main_icon, placeholder, helper_icon1, helper_icon2, setState }) => {
 
     const [data,setdata] = React.useState({
         password: '',
@@ -11,6 +11,7 @@ const PasswordInputField = ({ label, main_icon, placeholder, helper_icon1, helpe
     
     const passwordInputChange = (val) => {
         if( val.length !== 0){
+          setState(val)
           setdata({
             ...data,
             password: val,

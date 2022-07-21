@@ -6,10 +6,11 @@ import * as Animatable from 'react-native-animatable';
 import styles from './styles';
 import ButtonComponent from '../../components/ButtonComponent';
 
-const SignupScreenThree = ({ navigation }) => {
+const SignupScreenThree = ({ navigation, route }) => {
 
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
+    const { firstName, lastName, gender,email, password, confirmPassword} = route.params;
 
     const data = [
         { label: 'Beirut', value: 'Beirut' },
