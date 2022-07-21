@@ -4,8 +4,9 @@ import GroceryRate from '../components/GroceryRate';
 import ReviewsPopUp from '../components/ReviewsPopUp';
 import SubmitReviewPopUp from '../components/SubmitReviewPopUp';
 import ViewItems from '../components/ViewItems';
+import ButtonComponent from '../components/ButtonComponent';
 
-const GroceyScreen = () => {
+const GroceyScreen = ( {navigation} ) => {
 
   return (
     <SafeAreaView style={styles.container}>
@@ -17,6 +18,14 @@ const GroceyScreen = () => {
         <ReviewsPopUp/>
         <SubmitReviewPopUp/>
         <ViewItems/>
+        <ButtonComponent 
+          onPress={() => navigation.navigate("Order") }
+          touchable_style={styles.button}
+          border_color="#FDBE3B"
+          text_style={styles.textSign}
+          text_color="#FDBE3B"
+          text="My Cart"
+        />
       </ScrollView>
     </SafeAreaView>
   );
