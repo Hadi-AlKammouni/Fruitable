@@ -59,14 +59,23 @@ const AccountScreen = () => {
             }}
           />
 
-          {/* Continue Button */}
+          {/* Update Profile Button */}
           <ButtonComponent 
-            onPress={() => alert("Hello World") }
+            onPress={() => alert("Update Profile") }
             touchable_style={styles.button}
             border_color="#FDBE3B"
             text_style={styles.textSign}
             text_color="#FFFFFF"
             text="Update Profile"
+          />
+          {/* Log Out Button */}
+          <ButtonComponent 
+            onPress={() => alert("Log Out") }
+            touchable_style={styles.logout}
+            border_color="red"
+            text_style={styles.textSign}
+            text_color="#FFFFFF"
+            text="Log Out"
           />
         </View>
       </View>
@@ -128,4 +137,12 @@ const styles = StyleSheet.create({
   placeholderStyle: {
     fontSize: 16,
   },
+  logout: {
+    justifyContent:'center',
+    alignItems: 'center',
+    marginTop: 50,
+    backgroundColor: "red",
+    height: 50,
+    borderRadius:15
+  }
 });
