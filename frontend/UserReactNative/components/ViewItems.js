@@ -6,9 +6,25 @@ const ViewItems = () => {
     const [category,setCategory] = useState("Fruits")
 
     const categories = [{category: "Fruits"}, {category: "Vegetables"}]
+    const data = [{name: 'Apple',category: 'Fruits'}, {name: 'Carrot', category: 'Vegetables'}, {name: 'Lemon', category: 'Vegetables'}]
 
     const setStatusFilter = category => {
         setCategory(category)
+    }
+
+    const renderItem = ({ item, index })  =>{
+        return(
+            <View key={index} style={styles.item}>
+                <View style={styles.img}>
+                    <Image style={styles.item_img} source={require("../assets/logo.png")}/>
+                </View>
+                <Text style={styles.itemBody}>
+                    <Text style={styles.itemName}>
+                        {item.name}
+                    </Text>
+                </Text>
+            </View>
+        )
     }
 
     return(
@@ -24,6 +40,11 @@ const ViewItems = () => {
                     ))
                 }
             </View>
+            <FlatList 
+                data={data} 
+                keyExtractor={(e, item) => item.toString()} 
+                renderItem={renderItem}
+            />
         </SafeAreaView>
     )
 }
@@ -59,5 +80,25 @@ const styles = StyleSheet.create ({
     },
     active_text: {
         color: "#fff"
+    },
+    item: {
+        flexDirection: 'row',
+        padding: 15
+    },
+    img: {
+        padding: 10 
+    },
+    item_img: {
+        width: 80,
+        height: 80
+    },
+    itemBody: {
+        flex: 1,
+        paddingHorizontal: 10,
+        justifyContent: 'center'
+    },
+    itemName: {
+        fontWeight: 'bold',
+        fontSize: 16
     },
 })
