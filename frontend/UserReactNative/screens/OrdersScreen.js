@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, SafeAreaView, ScrollView, Image, View } from 'react-native';
-import ViewItems from '../components/ViewItems';
+import ViewCart from '../components/ViewCart';
 import ButtonComponent from '../components/ButtonComponent';
 
 const OrdersScreen = () => {
@@ -9,6 +9,7 @@ const OrdersScreen = () => {
       <ScrollView style={styles.scrollView}>
         <Text style={styles.major_info}> Grocery Name - Location - Phone Number</Text>
         <Text style={styles.description}> Grocery Description</Text>
+        <ViewCart/>
         <ButtonComponent 
           onPress={() => alert("Hello World!") }
           touchable_style={styles.button}
