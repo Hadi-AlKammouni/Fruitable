@@ -7,7 +7,9 @@ import ButtonComponent from '../../components/ButtonComponent';
 import PasswordInputField from '../../components/PasswordInputField';
 import ConfirmPassword from '../../components/ConfirmPassword';
 
-const SignupScreenTwo = ({navigation}) => {
+const SignupScreenTwo = ({navigation, route}) => {
+  
+  const { firstName, lastName, gender } = route.params;
 
   return (
     <View style={styles.container}>

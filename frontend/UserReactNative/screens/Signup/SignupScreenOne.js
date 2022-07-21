@@ -44,7 +44,7 @@ const SignupScreenOne = ({navigation}) => {
 
         {/* Continue Button */}
         <ButtonComponent 
-          onPress={() => navigation.navigate('SignupScreenTwo')}
+          onPress={() => navigation.navigate('SignupScreenTwo',{firstName,lastName,gender})}
           touchable_style={styles.button}
           border_color="#FDBE3B"
           text_style={styles.textSign}
