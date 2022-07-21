@@ -7,7 +7,10 @@ const ViewItems = () => {
     const [items,setItems] = useState(data)
 
     const categories = [{category: "Fruits"}, {category: "Vegetables"}]
-    const data = [{name: 'Apple',category: 'Fruits'}, {name: 'Carrot', category: 'Vegetables'}, {name: 'Lemon', category: 'Vegetables'}]
+    const data = [
+        {name: 'Apple',category: 'Fruits', price: '10500', qauntity: '0.5'}, 
+        {name: 'Carrot', category: 'Vegetables', price: '20000', qauntity: '1'}, 
+        {name: 'Lemon', category: 'Vegetables', price: '12000', qauntity: '1.5'}]
 
     const setStatusFilter = category => {
          if (category !== 'Fruits'){
@@ -20,16 +23,23 @@ const ViewItems = () => {
 
     const renderItem = ({ item, index })  =>{
         return(
-            <View key={index} style={styles.item}>
-                <View style={styles.img}>
-                    <Image style={styles.item_img} source={require("../assets/logo.png")}/>
-                </View>
-                <Text style={styles.item_body}>
-                    <Text style={styles.item_name}>
-                        {item.name}
+            <>
+                <View key={index} style={styles.item}>
+                    <Text style={styles.item_body}>
+                        <Text style={styles.item_name}>
+                            {item.name}
+                        </Text>
                     </Text>
-                </Text>
-            </View>
+                    <View style={styles.img}>
+                        <Image style={styles.item_img} source={require("../assets/logo.png")}/>
+                    </View>
+                </View>
+                <View>
+                    <Text style={styles.item_name}>
+                        LBP {item.price} - {item.qauntity} Kg
+                    </Text>
+                </View>
+            </>
         )
     }
 
