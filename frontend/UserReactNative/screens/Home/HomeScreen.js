@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { SafeAreaView, Image, View, Text } from 'react-native';
 import MapView, { Callout, Marker } from 'react-native-maps';
 import styles from './styles';
@@ -6,10 +6,13 @@ import constants from '../../constants';
 
 const HomeScreen = ( {navigation} ) => {
 
+  const [groceries, setGroceries] = useState([])
+
   const getGroceries = async () => {
     try {
       const response = await fetch(`${constants.fetch_url}get_groceries`);
       const data = await response.json();
+      setGroceries(data)
     } catch (error) {
       console.error(error);
     }
@@ -30,33 +33,25 @@ const HomeScreen = ( {navigation} ) => {
           longitudeDelta: 0.04
         }}
       >
-        
-        <Marker 
-          coordinate={{latitude: 33.888630, longitude: 35.496}}
-          title="Grocery 1"
-          description="This is the first grocery" 
-        >
-          <Callout tooltip onPress={()=>navigation.navigate('Grocery')}>
-            <View>
-              <View style={styles.marker_tooltip}>
-                <Text style={styles.marker_title}>GROCERY ONE</Text>
-                <Text>A SHORT DESCRIPTION</Text>
-                {/* <Image 
-                  style={{width:120, height:80}} 
-                  source={require("../assets/icons/icons8-home-100.png")}
-                /> */}
+        {groceries.map((item, key) => (
+          <Marker 
+          coordinate={{latitude: item.latitude, longitude: item.longitude}}
+          title="{item.name}"
+          description="{item.description}"
+          key={key}
+          >
+            <Callout tooltip onPress={()=>console.log(item.name)}>
+              <View>
+                  <View style={styles.marker_tooltip}>
+                    <Text style={styles.marker_title}>{item.name}</Text>
+                    <Text>{item.description}</Text>
+                  </View>
+                <View style={styles.arrow_border}/>
+                <View style={styles.arrow}/>
               </View>
-              <View style={styles.arrow_border}/>
-              <View style={styles.arrow}/>
-            </View>
-          </Callout>
-        </Marker>
-        
-        <Marker 
-          coordinate={{latitude: 33.9, longitude: 35.496}}
-          title="Grocery 2"
-          description="This is the second grocery" 
-        />
+            </Callout>
+          </Marker>
+        ))}
 
       </MapView>
     </SafeAreaView>

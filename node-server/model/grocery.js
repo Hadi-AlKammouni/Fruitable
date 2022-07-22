@@ -5,17 +5,19 @@ const grocerySchema = new mongoose.Schema({
   email: { type: String, unique: true },
   password: { type: String },
   phone_number: { type: String, default: null },
-  location: {
-    type: {
-      type: String,
-      enum: ["Point"],
-      required: false,
-    },
-    coordinates: {
-      type: [Number],
-      required: false,
-    },
-  },
+  latitude: { type: Number, default: null},
+  longitude: { type: Number, default: null},
+  // location: {
+  //   type: {
+  //     type: String,
+  //     enum: ["Point"],
+  //     required: false,
+  //   },
+  //   coordinates: {
+  //     type: [Number],
+  //     required: false,
+  //   },
+  // },
   picture: { type: String, default: null },
   description: { type: String, default: null  },
   token: { type: String },

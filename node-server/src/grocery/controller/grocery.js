@@ -10,10 +10,10 @@ async function register (req, res) {
   
   try {
     // Get grocery input
-    const { name, email, password, phone_number, location, picture, description } = req.body;
+    const { name, email, password, phone_number, latitude, longitude, picture, description } = req.body;
     
     // Validate grocery input
-    if (!(email && password && name &&  phone_number && location && picture && description)) {
+    if (!(email && password && name &&  phone_number && latitude && longitude && picture && description)) {
       res.status(400).send("All input are required");
     }
     
@@ -33,7 +33,8 @@ async function register (req, res) {
       email: email.toLowerCase(), // Sanitize: convert email to lowercase
       password: encryptedPassword,
       phone_number,
-      location,
+      latitude,
+      longitude,
       picture,
       description,
     });
