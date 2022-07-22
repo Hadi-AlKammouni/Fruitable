@@ -1,9 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { SafeAreaView, Image, View, Text } from 'react-native';
 import MapView, { Callout, Marker } from 'react-native-maps';
 import styles from './styles';
+import constants from '../../constants';
 
 const HomeScreen = ( {navigation} ) => {
+
+  const getGroceries = async () => {
+    try {
+      const response = await fetch(`${constants.fetch_url}get_groceries`);
+      const data = await response.json();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getGroceries();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -16,7 +30,7 @@ const HomeScreen = ( {navigation} ) => {
           longitudeDelta: 0.04
         }}
       >
-
+        
         <Marker 
           coordinate={{latitude: 33.888630, longitude: 35.496}}
           title="Grocery 1"
