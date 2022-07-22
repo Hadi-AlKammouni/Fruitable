@@ -15,7 +15,7 @@ const GroceyScreen = ( {navigation, route} ) => {
 
   const getGrocery = async () => {
     try {
-      const response = await fetch(`${constants.fetch_url}get_groceries?id=${groceryId}`);
+      const response = await fetch(`${constants.fetch_url}get_groceries?id=${groceryId.id}`);
       const data = await response.json();
       setGrocery(data)
     } catch (error) {
@@ -26,14 +26,14 @@ const GroceyScreen = ( {navigation, route} ) => {
   useEffect(() => {
     LogBox.ignoreLogs(["VirtualizedLists should never be nested"])
     getGrocery();
-  }, []);
+  }, [groceryId.id]);
 
   return (
     <SafeAreaView style={styles.container} >
       <ScrollView style={styles.scrollView} >
-        <Image style={styles.picture} source={require('../assets/grocery.png')}/>
-        <Text style={styles.major_info}> Grocery Name - Location - Phone Number</Text>
-        <Text style={styles.description}> Grocery Description</Text>
+        <Image source={{uri: grocery.picture}} style={styles.picture}/>
+        <Text style={styles.major_info}> {grocery.name} - {grocery.phone_number}</Text>
+        <Text style={styles.description}> {grocery.description} </Text>
         <GroceryRate/>
         <ReviewsPopUp/>
         <SubmitReviewPopUp/>

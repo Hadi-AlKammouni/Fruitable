@@ -7,6 +7,7 @@ import constants from '../../constants';
 const HomeScreen = ( {navigation} ) => {
 
   const [groceries, setGroceries] = useState([])
+  const [groceryId, setGroceryId] = useState('')
 
   const getGroceries = async () => {
     try {
@@ -34,7 +35,8 @@ const HomeScreen = ( {navigation} ) => {
         }}
       >
         {groceries.map((item, key) => {
-          const id = item._id
+          var id = item._id
+          // setGroceryId(item._id)
           return(
           <Marker 
           coordinate={{latitude: item.latitude, longitude: item.longitude}}
@@ -42,7 +44,7 @@ const HomeScreen = ( {navigation} ) => {
           description="{item.description}"
           key={key}
           >
-            <Callout tooltip onPress={()=>navigation.navigate('Grocery',id)}>
+            <Callout tooltip onPress={()=>navigation.navigate('Grocery',{id})}>
               <View>
                   <View style={styles.marker_tooltip}>
                     <Text style={styles.marker_title}>{item.name}</Text>
