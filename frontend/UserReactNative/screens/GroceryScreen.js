@@ -35,7 +35,7 @@ const GroceyScreen = ( {navigation, route} ) => {
         <Text style={styles.major_info}> {grocery.name} - {grocery.phone_number}</Text>
         <Text style={styles.description}> {grocery.description} </Text>
         <GroceryRate grocery={grocery}/>
-        <ReviewsPopUp/>
+        <ReviewsPopUp grocery={grocery}/>
         <SubmitReviewPopUp/>
         <ViewItems/>
         <ButtonComponent 

@@ -11,14 +11,25 @@ class ReviewsPopUp extends React.Component{
     }
 
     render () {
+        console.log(this.props.grocery.reviews.length)
         return(
             <View style={styles.container}>
                 <Button title="View Recent Reviews" style={styles.btn_color} color={"#000"} onPress={() => this.setState({show:true})} />
                 <Modal transparent={true} visible={this.state.show}>
                     <View style={styles.main_screen}>
                         <View style={styles.popup}>
-                            <Text style={styles.name}>USER X:</Text>
-                            <Text style={styles.review}>REVIEW OF THE USER IS WRITTEN HERE</Text>
+                            {
+                                this.props.grocery.reviews.length === 0 ? 
+                                <Text style={styles.name}> No Reviws Yet </Text> 
+                                :
+                                this.props.grocery.reviews.map((item, key) => {
+                                    return (
+                                        <>
+                                        <Text key={key} style={styles.name}> {item.first_name}</Text>
+                                        <Text style={styles.review}>{item.text}</Text>
+                                        </>
+                                )})
+                            }
                             <Button title="Close"  color={"#000"} onPress={() => this.setState({show:false})} />
                         </View>
                     </View>
