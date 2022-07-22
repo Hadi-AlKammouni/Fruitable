@@ -13,7 +13,6 @@ const SignupScreenFour = ({ navigation, route }) => {
             const respone = await fetch(`${constants.fetch_url}register`, {
                 method: 'POST',
                 headers: {
-                    // Accept: 'application/json',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
@@ -31,7 +30,6 @@ const SignupScreenFour = ({ navigation, route }) => {
             if(data._id){
                 navigation.navigate("UserScreen")
             }
-            console.log(data._id)
         } catch (error) {
             console.log(error)
         } 
