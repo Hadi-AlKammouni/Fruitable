@@ -34,7 +34,7 @@ const GroceyScreen = ( {navigation, route} ) => {
         <Image source={{uri: grocery.picture}} style={styles.picture}/>
         <Text style={styles.major_info}> {grocery.name} - {grocery.phone_number}</Text>
         <Text style={styles.description}> {grocery.description} </Text>
-        <GroceryRate/>
+        <GroceryRate grocery={grocery}/>
         <ReviewsPopUp/>
         <SubmitReviewPopUp/>
         <ViewItems/>

@@ -1,22 +1,48 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, Image, View } from 'react-native';
 
-const GroceryRate = () => {
+const GroceryRate = (props) => {
 
-    const [defaultRating, setDefaultRating] = useState(4)
+    const [groceryRating, setGroceryRating] = useState()
     const [maxRating, setMaxRating] = useState([1,2,3,4,5])
+    var rating = 0;
+
+    const calculateRating = async () => {
+      try{
+        props.grocery.reviews.map((item, key) => {
+          rating += item.rate;
+        })
+        const final_rating = (rating/props.grocery.reviews.length) 
+        setGroceryRating(final_rating.toFixed(0))
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    useEffect(() => {
+      calculateRating();
+    }, [props.grocery]);
 
     return (
       <View style={styles.rating}> 
-        <Text style={styles.txt_rating}>
-            {defaultRating + ' / ' + maxRating.length}
-        </Text>
-        {maxRating.map((item, key) => {
-          return (
-            <View  item={item} key={key} onPress={() => setDefaultRating(item)}>
-              <Image style={styles.img_rating} source={item <= defaultRating ? require("../assets/icons/icons8-star-488.png") : require("../assets/icons/icons8-star-48.png")}/>
-            </View>
-        )})}
+        {
+          groceryRating === "NaN" ? 
+          null 
+          :
+          <Text style={styles.txt_rating}> {groceryRating + ' / 5'} </Text>
+        }
+          
+        {
+          groceryRating === "NaN" ? 
+          <Text style={styles.txt_rating}> No Ratings Yet </Text> 
+          :
+          maxRating.map((item, key) => {
+            return (
+              <View  item={item} key={key} onPress={() => setGroceryRating(item)}>
+                <Image style={styles.img_rating} source={item <= groceryRating ? require("../assets/icons/icons8-star-488.png") : require("../assets/icons/icons8-star-48.png")}/>
+              </View>
+          )})
+        }
       </View>
     );
 }

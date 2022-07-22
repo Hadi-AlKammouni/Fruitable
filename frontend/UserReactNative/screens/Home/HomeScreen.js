@@ -7,7 +7,6 @@ import constants from '../../constants';
 const HomeScreen = ( {navigation} ) => {
 
   const [groceries, setGroceries] = useState([])
-  const [groceryId, setGroceryId] = useState('')
 
   const getGroceries = async () => {
     try {
