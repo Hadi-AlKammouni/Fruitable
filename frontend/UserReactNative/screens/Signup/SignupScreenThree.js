@@ -8,16 +8,17 @@ import ButtonComponent from '../../components/ButtonComponent';
 
 const SignupScreenThree = ({ navigation, route }) => {
 
-    const [location, setLocation] = useState(null);
+    const [latitude, setLatitude] = useState(null);
+    const [longitude, setLongitude] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
     const { firstName, lastName, gender,email, password, confirmPassword} = route.params;
 
     const data = [
-        { label: 'Beirut', value: 'Beirut' },
-        { label: 'Jbeil', value: 'Jbeil' },
-        { label: 'Baalbeck', value: 'Baalback' },
-        { label: 'Haret Hreik', value: 'Haret Hreik' },
-        { label: 'Saida', value: 'Saida' },
+        { label: 'Beirut', value: 5 },
+        { label: 'Jbeil', value: 6 },
+        { label: 'Baalbeck', value: 7 },
+        { label: 'Haret Hreik', value: 10 },
+        { label: 'Saida', value: 9 },
     ];
 
     const renderLabel = () => {        
@@ -52,11 +53,41 @@ const SignupScreenThree = ({ navigation, route }) => {
                 valueField="value"
                 placeholder={!isFocus ? 'Country' : '...'}
                 searchPlaceholder="Search..."
-                value={location}
+                value={latitude}
                 onFocus={() => setIsFocus(true)}
                 onBlur={() => setIsFocus(false)}
                 onChange={item => {
-                    setLocation(item.value);
+                    setLatitude(item.value);
+                    setIsFocus(false);
+                }}
+                renderLeftIcon={() => (
+                    <AntDesign
+                        style={styles.icon}
+                        color={isFocus ? '#FDBE3B' : 'black'}
+                        name="Safety"
+                        size={20}
+                    />
+                )}
+            />
+
+            <Dropdown
+                style={[styles.dropdown, isFocus ]}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                inputSearchStyle={styles.inputSearchStyle}
+                iconStyle={styles.iconStyle}
+                data={data}
+                search
+                maxHeight={300}
+                labelField="label"
+                valueField="value"
+                placeholder={!isFocus ? 'Country' : '...'}
+                searchPlaceholder="Search..."
+                value={longitude}
+                onFocus={() => setIsFocus(true)}
+                onBlur={() => setIsFocus(false)}
+                onChange={item => {
+                    setLongitude(item.value);
                     setIsFocus(false);
                 }}
                 renderLeftIcon={() => (
@@ -71,7 +102,7 @@ const SignupScreenThree = ({ navigation, route }) => {
             
             {/* Continue Button */}
             <ButtonComponent 
-              onPress={() => navigation.navigate("SignupScreenFour",{firstName,lastName,gender,email,password,confirmPassword, location}) }
+              onPress={() => navigation.navigate("SignupScreenFour",{firstName,lastName,gender,email,password,confirmPassword,latitude,longitude}) }
               touchable_style={styles.button}
               border_color="#FDBE3B"
               text_style={styles.textSign}

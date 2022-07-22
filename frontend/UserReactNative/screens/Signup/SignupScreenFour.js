@@ -16,7 +16,8 @@ const SignupScreenFour = ({ navigation, route }) => {
       setUserEmail, 
       setToken, 
       setUserGender, 
-      setUserLocation, 
+      setUserLatitude,
+      setUserLongitude, 
       setUserProfilePicture
     } = useUser()
 
@@ -33,7 +34,8 @@ const SignupScreenFour = ({ navigation, route }) => {
                     email: email,
                     password: password,
                     gender: gender,
-                    location: location,
+                    latitude: latitude,
+                    longitude: longitude,
                     profile_picture: picture
                 })
             });
@@ -47,7 +49,8 @@ const SignupScreenFour = ({ navigation, route }) => {
               setUserEmail(data.email) 
               setToken(data.token) 
               setUserGender(data.gender) 
-              setUserLocation(data.location) 
+              setUserLatitude(data.latitude) 
+              setUserLongitude(data.longitude) 
               setUserProfilePicture(data.profile_picture)
               navigation.navigate("UserScreen")
             }
@@ -57,7 +60,7 @@ const SignupScreenFour = ({ navigation, route }) => {
     }
 
     const [picture, setPicture] = useState(null);
-    const { firstName, lastName, gender,email, password, confirmPassword, location} = route.params;
+    const { firstName, lastName, gender,email, password, confirmPassword, latitude, longitude} = route.params;
 
     return (
         <View style={styles.container}>

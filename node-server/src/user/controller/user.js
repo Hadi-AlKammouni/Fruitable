@@ -12,10 +12,10 @@ async function register (req, res) {
 
   try {
     // Get user input
-    const { first_name, last_name, email, password, gender, location, profile_picture } = req.body;
+    const { first_name, last_name, email, password, gender, latitude, longitude, profile_picture } = req.body;
 
     // Validate user input
-    if (!(email && password && first_name && last_name && gender && location && profile_picture)) {
+    if (!(email && password && first_name && last_name && gender && latitude && longitude &&  profile_picture)) {
       res.status(400).send("All input are required");
     }
 
@@ -37,7 +37,8 @@ async function register (req, res) {
       password: encryptedPassword,
       user_type: 0,
       gender,
-      location,
+      latitude,
+      longitude,
       profile_picture,
     });
 

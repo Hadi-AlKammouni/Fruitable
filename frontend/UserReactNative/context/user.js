@@ -10,7 +10,8 @@ const UserProvider = ({children}) => {
     const [userEmail, setUserEmail] = useState('')
     const [token, setToken] = useState('')
     const [userGender, setUserGender] = useState('')
-    const [userLocation, setUserLocation] = useState('')
+    const [userLatitude, setUserLatitude] = useState('')
+    const [userLongitude, setUserLongitude] = useState('')
     const [userProfilePicture, setUserProfilePicture] = useState('')
 
     return (
@@ -22,7 +23,8 @@ const UserProvider = ({children}) => {
             userEmail, setUserEmail, 
             token, setToken, 
             userGender, setUserGender, 
-            userLocation, setUserLocation, 
+            userLatitude, setUserLatitude,
+            userLongitude, setUserLongitude, 
             userProfilePicture, setUserProfilePicture}}>
 
             {children}
@@ -41,7 +43,8 @@ export const useUser = () => {
         userEmail, setUserEmail, 
         token, setToken, 
         userGender, setUserGender, 
-        userLocation, setUserLocation, 
+        userLatitude, setUserLatitude,
+        userLongitude, setUserLongitude,
         userProfilePicture, setUserProfilePicture} = React.useContext(UserContext)
 
     return {
@@ -51,7 +54,8 @@ export const useUser = () => {
         userEmail, setUserEmail, 
         token, setToken, 
         userGender, setUserGender, 
-        userLocation, setUserLocation, 
+        userLatitude, setUserLatitude,
+        userLongitude, setUserLongitude,
         userProfilePicture, setUserProfilePicture
     }
 }

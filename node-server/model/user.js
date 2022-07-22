@@ -8,17 +8,19 @@ const userSchema = new mongoose.Schema({
   user_type: { type: String, defualt: 0 },
   token: { type: String },
   gender: { type: String, default: null },
-  location: {
-    type: {
-      type: String,
-      enum: ["Point"],
-      required: false,
-    },
-    coordinates: {
-      type: [Number],
-      required: false,
-    },
-  },
+  latitude: { type: Number, default: null },
+  longitude: { type: Number, default: null },
+  // location: {
+  //   type: {
+  //     type: String,
+  //     enum: ["Point"],
+  //     required: false,
+  //   },
+  //   coordinates: {
+  //     type: [Number],
+  //     required: false,
+  //   },
+  // },
   profile_picture: { type: String, default: null },
   orders: [{type: mongoose.Schema.Types.ObjectId, ref: "order"}],
 });
