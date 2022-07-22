@@ -1,15 +1,33 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, SafeAreaView, ScrollView, Image, View } from 'react-native';
 import GroceryRate from '../components/GroceryRate';
 import ReviewsPopUp from '../components/ReviewsPopUp';
 import SubmitReviewPopUp from '../components/SubmitReviewPopUp';
 import ViewItems from '../components/ViewItems';
 import ButtonComponent from '../components/ButtonComponent';
+import constants from '../constants';
+import { LogBox } from "react-native";
 
 const GroceyScreen = ( {navigation, route} ) => {
 
-  const {groceries} = route.params;
-  
+  const groceryId = route.params;
+  const [grocery, setGrocery] = useState([])
+
+  const getGrocery = async () => {
+    try {
+      const response = await fetch(`${constants.fetch_url}get_groceries?id=${groceryId}`);
+      const data = await response.json();
+      setGrocery(data)
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    LogBox.ignoreLogs(["VirtualizedLists should never be nested"])
+    getGrocery();
+  }, []);
+
   return (
     <SafeAreaView style={styles.container} >
       <ScrollView style={styles.scrollView} >

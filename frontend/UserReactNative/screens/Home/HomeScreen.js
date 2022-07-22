@@ -33,14 +33,16 @@ const HomeScreen = ( {navigation} ) => {
           longitudeDelta: 0.04
         }}
       >
-        {groceries.map((item, key) => (
+        {groceries.map((item, key) => {
+          const id = item._id
+          return(
           <Marker 
           coordinate={{latitude: item.latitude, longitude: item.longitude}}
           title="{item.name}"
           description="{item.description}"
           key={key}
           >
-            <Callout tooltip onPress={()=>navigation.navigate("Grocery",{groceries})}>
+            <Callout tooltip onPress={()=>navigation.navigate('Grocery',id)}>
               <View>
                   <View style={styles.marker_tooltip}>
                     <Text style={styles.marker_title}>{item.name}</Text>
@@ -51,7 +53,7 @@ const HomeScreen = ( {navigation} ) => {
               </View>
             </Callout>
           </Marker>
-        ))}
+        )})}
 
       </MapView>
     </SafeAreaView>
