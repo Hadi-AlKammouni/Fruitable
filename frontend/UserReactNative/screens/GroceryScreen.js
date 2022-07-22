@@ -6,11 +6,13 @@ import SubmitReviewPopUp from '../components/SubmitReviewPopUp';
 import ViewItems from '../components/ViewItems';
 import ButtonComponent from '../components/ButtonComponent';
 
-const GroceyScreen = ( {navigation} ) => {
+const GroceyScreen = ( {navigation, route} ) => {
 
+  const {groceries} = route.params;
+  
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView}>
+    <SafeAreaView style={styles.container} >
+      <ScrollView style={styles.scrollView} >
         <Image style={styles.picture} source={require('../assets/grocery.png')}/>
         <Text style={styles.major_info}> Grocery Name - Location - Phone Number</Text>
         <Text style={styles.description}> Grocery Description</Text>

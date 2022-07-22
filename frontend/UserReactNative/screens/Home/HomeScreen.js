@@ -40,7 +40,7 @@ const HomeScreen = ( {navigation} ) => {
           description="{item.description}"
           key={key}
           >
-            <Callout tooltip onPress={()=>console.log(item.name)}>
+            <Callout tooltip onPress={()=>navigation.navigate("Grocery",{groceries})}>
               <View>
                   <View style={styles.marker_tooltip}>
                     <Text style={styles.marker_title}>{item.name}</Text>

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Dimensions, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, FlatList, Image } from "react-native";
-
+import { LogBox } from "react-native";
 const ViewItems = () => {
 
     const [category,setCategory] = useState("Fruits")
@@ -50,12 +50,16 @@ const ViewItems = () => {
         return <View style={{height: 1, backgroundColor: '#f1f1f1'}}/>
     }
 
+    useEffect(() => {
+        LogBox.ignoreLogs(["VirtualizedLists should never be nested"])
+    }, [])
+
     return(
         <SafeAreaView style={styles.contaner}>
             <View style={styles.list_tab}>
                 {
-                    categories.map(e => (
-                        <TouchableOpacity style={[styles.btn, category === e.category && styles.active_btn]} onPress={() => setStatusFilter(e.category)}>
+                    categories.map((e, key) => (
+                        <TouchableOpacity key={key} style={[styles.btn, category === e.category && styles.active_btn]} onPress={() => setStatusFilter(e.category)}>
                             <Text style={[styles.text, category === e.category && styles.active_text]}>
                             {e.category}
                             </Text>

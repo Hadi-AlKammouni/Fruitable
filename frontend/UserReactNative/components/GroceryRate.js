@@ -13,7 +13,7 @@ const GroceryRate = () => {
         </Text>
         {maxRating.map((item, key) => {
           return (
-            <View  key={item} onPress={() => setDefaultRating(item)}>
+            <View  item={item} key={key} onPress={() => setDefaultRating(item)}>
               <Image style={styles.img_rating} source={item <= defaultRating ? require("../assets/icons/icons8-star-488.png") : require("../assets/icons/icons8-star-48.png")}/>
             </View>
         )})}
