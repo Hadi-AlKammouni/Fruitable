@@ -3,25 +3,27 @@ import React, { useState } from "react";
 export const UserContext = React.createContext();
 
 const UserProvider = ({children}) => {
-
-    const [firstName, setFirstname] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [email, setEmail] = useState('')
+    
+    const [userId, setUserId] = useState('')
+    const [userFirstName, setUserFirstname] = useState('')
+    const [userLastName, setUserLastName] = useState('')
+    const [userEmail, setUserEmail] = useState('')
     const [token, setToken] = useState('')
-    const [gender, setGender] = useState('')
-    const [location, setLocation] = useState('')
-    const [profilePicture, setProfilePicture] = useState('')
+    const [userGender, setUserGender] = useState('')
+    const [userLocation, setUserLocation] = useState('')
+    const [userProfilePicture, setUserProfilePicture] = useState('')
 
     return (
         <UserContext.Provider 
         value={{
-            firstName, setFirstname, 
-            lastName, setLastName, 
-            email, setEmail, 
+            userId, setUserId,
+            userFirstName, setUserFirstname, 
+            userLastName, setUserLastName, 
+            userEmail, setUserEmail, 
             token, setToken, 
-            gender, setGender, 
-            location, setLocation, 
-            profilePicture, setProfilePicture}}>
+            userGender, setUserGender, 
+            userLocation, setUserLocation, 
+            userProfilePicture, setUserProfilePicture}}>
 
             {children}
 
@@ -33,21 +35,23 @@ export default UserProvider;
 
 export const useUser = () => {
     const {
-        firstName, setFirstname, 
-        lastName, setLastName, 
-        email, setEmail, 
+        userId, setUserId,
+        userFirstName, setUserFirstname, 
+        userLastName, setUserLastName, 
+        userEmail, setUserEmail, 
         token, setToken, 
-        gender, setGender, 
-        location, setLocation, 
-        profilePicture, setProfilePicture} = React.useContext(UserContext)
+        userGender, setUserGender, 
+        userLocation, setUserLocation, 
+        userProfilePicture, setUserProfilePicture} = React.useContext(UserContext)
 
     return {
-        firstName, setFirstname,
-        lastName, setLastName, 
-        email, setEmail, 
+        userId, setUserId,
+        userFirstName, setUserFirstname,
+        userLastName, setUserLastName, 
+        userEmail, setUserEmail, 
         token, setToken, 
-        gender, setGender, 
-        location, setLocation, 
-        profilePicture, setProfilePicture
+        userGender, setUserGender, 
+        userLocation, setUserLocation, 
+        userProfilePicture, setUserProfilePicture
     }
 }

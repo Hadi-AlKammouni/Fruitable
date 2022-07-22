@@ -5,8 +5,20 @@ import styles from './styles';
 import ButtonComponent from '../../components/ButtonComponent';
 import UploadImage from '../../components/UploadImage';
 import constants from '../../constants';
+import {useUser} from '../../context/user';
 
 const SignupScreenFour = ({ navigation, route }) => {
+  
+    const {
+      setUserId,
+      setUserFirstname, 
+      setUserLastName, 
+      setUserEmail, 
+      setToken, 
+      setUserGender, 
+      setUserLocation, 
+      setUserProfilePicture
+    } = useUser()
 
     const createAccount = async () => {
         try{
@@ -27,8 +39,17 @@ const SignupScreenFour = ({ navigation, route }) => {
             });
             const data = await respone.json();
 
+            // Store the user info in UserContext
             if(data._id){
-                navigation.navigate("UserScreen")
+              setUserId(data._id)
+              setUserFirstname(data.first_name)
+              setUserLastName(data.last_name) 
+              setUserEmail(data.email) 
+              setToken(data.token) 
+              setUserGender(data.gender) 
+              setUserLocation(data.location) 
+              setUserProfilePicture(data.profile_picture)
+              navigation.navigate("UserScreen")
             }
         } catch (error) {
             console.log(error)
