@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { View, Text, Modal, Button, StyleSheet } from "react-native";
 
 class ReviewsPopUp extends React.Component{
@@ -9,19 +9,15 @@ class ReviewsPopUp extends React.Component{
             show:false
         }
     }
-
+    
     render () {
-        console.log(this.props.grocery.reviews.length)
         return(
             <View style={styles.container}>
                 <Button title="View Recent Reviews" style={styles.btn_color} color={"#000"} onPress={() => this.setState({show:true})} />
                 <Modal transparent={true} visible={this.state.show}>
                     <View style={styles.main_screen}>
                         <View style={styles.popup}>
-                            {
-                                this.props.grocery.reviews.length === 0 ? 
-                                <Text style={styles.name}> No Reviws Yet </Text> 
-                                :
+                            {this.props.grocery.reviews?.length ?
                                 this.props.grocery.reviews.map((item, key) => {
                                     return (
                                         <>
@@ -29,6 +25,8 @@ class ReviewsPopUp extends React.Component{
                                         <Text style={styles.review}>{item.text}</Text>
                                         </>
                                 )})
+                                :
+                                <Text style={styles.name}> No Reviews Yet </Text> 
                             }
                             <Button title="Close"  color={"#000"} onPress={() => this.setState({show:false})} />
                         </View>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import SplashScreen from './SplashScreen';
 import LoginScreen from "./Login/LoginScreen";
@@ -10,7 +10,11 @@ import UserScreen from './Userscreen';
 
 const RootStack = createStackNavigator();
 
-const RootStackScreen = ( {navigation} ) => (
+const RootStackScreen = ( {navigation} ) => {  
+    
+    const [isLoggedIn, setIsLoggedIn] = useState(true)
+    
+    return(
     <RootStack.Navigator screenOptions={{
         headerStyle: {
             backgroundColor: '#FDBE3B'
@@ -21,14 +25,14 @@ const RootStackScreen = ( {navigation} ) => (
             fontWeight: 'bold'
         }
     }}>
-        <RootStack.Screen name="SplashScreen" component={SplashScreen} />
+        {!isLoggedIn ? (<><RootStack.Screen name="SplashScreen" component={SplashScreen} />
         <RootStack.Screen name="LoginScreen" component={LoginScreen} />
         <RootStack.Screen name="SignupScreenOne" component={SignupScreenOne} />
         <RootStack.Screen name="SignupScreenTwo" component={SignupScreenTwo} />
         <RootStack.Screen name="SignupScreenThree" component={SignupScreenThree} />
-        <RootStack.Screen name="SignupScreenFour" component={SignupScreenFour} />
-        <RootStack.Screen name="UserScreen" component={UserScreen} />
+        <RootStack.Screen name="SignupScreenFour" component={SignupScreenFour} /></>)
+        :(<RootStack.Screen name="UserScreen" component={UserScreen} />)}
     </RootStack.Navigator>
-)
+)}
 
 export default RootStackScreen;
