@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Dimensions, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, FlatList, Image } from "react-native";
 import { LogBox } from "react-native";
 import constants from '../constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ViewItems = (props) => {
 
@@ -12,6 +13,7 @@ const ViewItems = (props) => {
     const categories = []
     const grad = []
     
+    // Get items of specific grocery
     const getItems = async () => {
         try{
             for (const item in props.grocery) {
@@ -27,6 +29,7 @@ const ViewItems = (props) => {
         }
     }
 
+    // Filter upon switching categories
     const setStatusFilter = category => {
          if (category !== 'Fruits'){
             setItems([...fetchedItems.filter(e => e.category === category)])
@@ -36,12 +39,16 @@ const ViewItems = (props) => {
         setCategory(category)
     }
 
+    // Displaying items for specific category
     const renderItem = ({ item, index })  =>{
         return(
             <>
                 <View key={index} style={styles.item}>
                     <View style={styles.img}>
-                        <Image style={styles.add_item} source={require("../assets/icons/icons8-add-32.png")}/>
+                        <TouchableOpacity>                        
+                            <Image style={styles.add_item} source={require("../assets/icons/icons8-add-32.png")} />
+                        </TouchableOpacity>
+
                     </View>
                     <Text style={styles.item_body}>
                         <Text style={styles.item_name}>
@@ -61,9 +68,35 @@ const ViewItems = (props) => {
         )
     }
 
+    // Adding separator between items
     const separator = () => {
         return <View style={{height: 1, backgroundColor: '#f1f1f1'}}/>
     }
+
+    // Creating order
+    const createOrder = async () => {
+        try {
+            const user_id = await AsyncStorage.getItem('user_id');
+            const token = await AsyncStorage.getItem('token');
+            const grocery_id = props.id
+           
+            const response = await fetch(`${constants.fetch_url}create_order`, {
+                method: 'POST',
+                headers: {
+                    'x-access-token': token,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user: user_id,
+                    grocery: grocery_id
+                })
+            });
+            const data = await response.json();
+      
+        } catch (error) {
+          console.log(error);
+        }
+    };
 
     useEffect(() => {
         LogBox.ignoreLogs(["VirtualizedLists should never be nested"])
@@ -83,6 +116,11 @@ const ViewItems = (props) => {
                     ))
                 }
             </View>
+            <TouchableOpacity style={styles.create_btn} onPress={() => createOrder()}>
+                    <Text style={[styles.text,styles.active_text]}>
+                        Create New Order            
+                    </Text>
+            </TouchableOpacity>
             <FlatList 
                 data={items} 
                 keyExtractor={(e, item) => item.toString()} 
@@ -114,6 +152,14 @@ const styles = StyleSheet.create ({
         margin: 15,
         padding: 10,
         justifyContent: 'center'
+    },
+    create_btn: {
+        justifyContent: 'center',
+        alignSelf: 'center',
+        borderWidth: 0.5,
+        borderRadius: 10,
+        padding: 10,
+        backgroundColor: "#000"
     },
     text: {
         fontSize: 16
