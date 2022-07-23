@@ -20,10 +20,10 @@ class ReviewsPopUp extends React.Component{
                             {this.props.grocery.reviews?.length ?
                                 this.props.grocery.reviews.map((item, key) => {
                                     return (
-                                        <>
-                                        <Text key={key} style={styles.name}> {item.first_name}</Text>
+                                        <View key={key}>
+                                        <Text style={styles.name}> {item.first_name}</Text>
                                         <Text style={styles.review}>{item.text}</Text>
-                                        </>
+                                        </View>
                                 )})
                                 :
                                 <Text style={styles.name}> No Reviews Yet </Text> 

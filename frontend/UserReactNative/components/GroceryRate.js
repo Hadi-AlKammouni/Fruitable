@@ -10,6 +10,7 @@ const GroceryRate = (props) => {
     const calculateRating = async () => {
       try{
         props.grocery.reviews.map((item, key) => {
+          key={key}
           rating += item.rate;
         })
         const final_rating = (rating/props.grocery.reviews.length) 
