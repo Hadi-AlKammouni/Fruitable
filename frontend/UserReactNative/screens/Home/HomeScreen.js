@@ -3,8 +3,13 @@ import { SafeAreaView, Image, View, Text } from 'react-native';
 import MapView, { Callout, Marker } from 'react-native-maps';
 import styles from './styles';
 import constants from '../../constants';
+import {useGrocery} from '../../context/grocery';
 
 const HomeScreen = ( {navigation} ) => {
+
+  const {
+    setGroceryId,
+  } = useGrocery()
 
   const [groceries, setGroceries] = useState([])
 
@@ -43,7 +48,12 @@ const HomeScreen = ( {navigation} ) => {
           description="{item.description}"
           key={key}
           >
-            <Callout tooltip onPress={()=>navigation.navigate('Grocery',{id})}>
+            <Callout tooltip onPress={()=>{
+                setGroceryId(id)
+                navigation.navigate('Grocery')
+            }
+              // navigation.navigate('Grocery',{id})
+              }>
               <View>
                   <View style={styles.marker_tooltip}>
                     <Text style={styles.marker_title}>{item.name}</Text>
