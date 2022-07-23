@@ -1,12 +1,36 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, SafeAreaView, ScrollView, Image, View } from 'react-native';
 import ViewCart from '../components/ViewCart';
 import ButtonComponent from '../components/ButtonComponent';
+import constants from '../constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const OrdersScreen = ({route}) => {
 
   const {orderId} = route.params
-  
+  const [cartItems,setCartItems] = useState([])
+
+  const viewCart = async () => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+
+      const response = await fetch(`${constants.fetch_url}view_cart?id=${orderId}`,{
+        headers: {
+          'x-access-token': token,
+        }
+      });
+      const data = await response.json();
+      setCartItems(data)
+      
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    viewCart();
+  }, [orderId]);
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
