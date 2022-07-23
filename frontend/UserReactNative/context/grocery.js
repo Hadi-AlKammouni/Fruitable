@@ -6,7 +6,8 @@ const GroceryProvider = ({children}) => {
     
     const [groceryId, setGroceryId] = useState('')
     const [groceryName, setGroceryName] = useState('')
-    const [phoneNumber, setPhoneNumber] = useState('')
+    const [groceryPhoneNumber, setGroceryPhoneNumber] = useState('')
+    const [groceyDescription, setGroceryDescription] = useState('')
     const [groceryLatitude, setGroceryLatitude] = useState('')
     const [groceryLongitude, setGroceryLongitude] = useState('')
     const [groceryPicture, setGroceryPicture] = useState('')
@@ -20,7 +21,8 @@ const GroceryProvider = ({children}) => {
         value={{
             groceryId, setGroceryId,
             groceryName, setGroceryName, 
-            phoneNumber, setPhoneNumber, 
+            groceryPhoneNumber, setGroceryPhoneNumber, 
+            groceyDescription, setGroceryDescription, 
             groceryLatitude, setGroceryLatitude, 
             groceryLongitude, setGroceryLongitude, 
             groceryPicture, setGroceryPicture, 
@@ -41,7 +43,8 @@ export const useGrocery = () => {
     const {
         groceryId, setGroceryId,
         groceryName, setGroceryName, 
-        phoneNumber, setPhoneNumber, 
+        groceryPhoneNumber, setGroceryPhoneNumber,  
+        groceyDescription, setGroceryDescription, 
         groceryLatitude, setGroceryLatitude, 
         groceryLongitude, setGroceryLongitude, 
         groceryPicture, setGroceryPicture, 
@@ -53,7 +56,8 @@ export const useGrocery = () => {
     return {
         groceryId, setGroceryId,
         groceryName, setGroceryName,
-        phoneNumber, setPhoneNumber, 
+        groceryPhoneNumber, setGroceryPhoneNumber,  
+        groceyDescription, setGroceryDescription, 
         groceryLatitude, setGroceryLatitude, 
         groceryLongitude, setGroceryLongitude, 
         groceryPicture, setGroceryPicture, 

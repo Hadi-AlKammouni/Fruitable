@@ -7,18 +7,43 @@ import ViewItems from '../components/ViewItems';
 import ButtonComponent from '../components/ButtonComponent';
 import constants from '../constants';
 import { LogBox } from "react-native";
+import { useGrocery } from '../context/grocery';
 
-const GroceyScreen = ( {navigation, route} ) => {
+const GroceyScreen = ( {navigation} ) => {
 
-  const groceryId = route.params;
+  const {
+    groceryId,
+    groceryName,setGroceryName, 
+    groceryPhoneNumber,setGroceryPhoneNumber, 
+    groceyDescription,setGroceryDescription,
+    setGroceryLatitude, 
+    setGroceryLongitude, 
+    setGroceryPicture, 
+    setGroceryCategories,
+    setGroceryItems,
+    setGroceryOrders,
+    setGroceryReviews
+  } = useGrocery()
+
+  console.log(groceryId)
   const [grocery, setGrocery] = useState([])
   const [orderId, setOrderId] = useState('')
 
   const getGrocery = async () => {
     try {
-      const response = await fetch(`${constants.fetch_url}get_groceries?id=${groceryId.id}`);
+      const response = await fetch(`${constants.fetch_url}get_groceries?id=${groceryId}`);
       const data = await response.json();
       setGrocery(data)
+      setGroceryName(data.name) 
+      setGroceryPhoneNumber(data.phone_number) 
+      setGroceryDescription(data.description)
+      setGroceryLatitude(data.latitude) 
+      setGroceryLongitude(data.longitude) 
+      setGroceryPicture(data.picture) 
+      setGroceryCategories(data.categories)
+      setGroceryItems(data.items)
+      setGroceryOrders(data.orders)
+      setGroceryReviews(data.reviews)
     } catch (error) {
       console.error(error);
     }
@@ -27,14 +52,14 @@ const GroceyScreen = ( {navigation, route} ) => {
   useEffect(() => {
     LogBox.ignoreLogs(["VirtualizedLists should never be nested"])
     getGrocery();
-  }, [groceryId.id]);
+  }, [groceryId]);
 
   return (
     <SafeAreaView style={styles.container} >
       <ScrollView style={styles.scrollView} >
         <Image source={{uri: grocery.picture}} style={styles.picture}/>
-        <Text style={styles.major_info}> {grocery.name} - {grocery.phone_number}</Text>
-        <Text style={styles.description}> {grocery.description} </Text>
+        <Text style={styles.major_info}> {groceryName} - {groceryPhoneNumber}</Text>
+        <Text style={styles.description}> {groceyDescription} </Text>
         <GroceryRate grocery={grocery}/>
         <ReviewsPopUp grocery={grocery}/>
         <SubmitReviewPopUp grocery_id={grocery._id}/>
