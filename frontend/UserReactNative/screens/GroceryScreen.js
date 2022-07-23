@@ -41,7 +41,7 @@ const GroceyScreen = ( {navigation, route} ) => {
         <ViewItems grocery={grocery.items} id={grocery._id} setState={setOrderId}/>
         
         <ButtonComponent 
-          onPress={() => navigation.navigate("Order",{orderId}) }
+          onPress={() => navigation.navigate("Order",{orderId,grocery}) }
           touchable_style={styles.button}
           border_color="#FDBE3B"
           text_style={styles.textSign}

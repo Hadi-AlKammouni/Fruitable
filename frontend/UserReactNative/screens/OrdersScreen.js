@@ -7,7 +7,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const OrdersScreen = ({route}) => {
 
-  const {orderId} = route.params
+  const {orderId,grocery} = route.params;
+
   const [cartItems,setCartItems] = useState([])
 
   const viewCart = async () => {
@@ -29,13 +30,13 @@ const OrdersScreen = ({route}) => {
 
   useEffect(() => {
     viewCart();
-  }, [orderId]);
+  }, [orderId,grocery]);
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
-        <Text style={styles.major_info}> Grocery Name - Location - Phone Number</Text>
-        <Text style={styles.description}> Grocery Description</Text>
+        <Text style={styles.major_info}> {grocery.name} - {grocery.phone_number} </Text>
+        <Text style={styles.description}> {grocery.description}</Text>
         <ViewCart items={cartItems.items}/>
         <ButtonComponent 
           onPress={() => alert("Hello World!") }

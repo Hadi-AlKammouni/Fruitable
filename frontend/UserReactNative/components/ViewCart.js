@@ -5,7 +5,7 @@ const ViewCart = (props) => {
 
     let total_price = 0;
 
-    props.items.map(item => ( total_price += item.price ))
+    props.items && props.items.map(item => ( total_price += item.price ))
 
     const renderItem = ({ item, index })  =>{  
         return(
