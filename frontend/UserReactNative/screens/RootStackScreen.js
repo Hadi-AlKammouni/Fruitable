@@ -51,7 +51,9 @@ const RootStackScreen = () => {
         <RootStack.Screen name="SignupScreenFour" component={SignupScreenFour} />
         </>)
         :
-        ( <RootStack.Screen name="UserScreen" component={UserScreen} /> )
+        (
+            <RootStack.Screen name="UserScreen" component={UserScreen} /> 
+        )
         }
     </RootStack.Navigator>
 )}
