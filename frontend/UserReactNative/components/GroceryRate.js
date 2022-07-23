@@ -1,7 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, Image, View } from 'react-native';
+import { useGrocery } from '../context/grocery';
 
-const GroceryRate = (props) => {
+const GroceryRate = () => {
+
+    const {
+      groceryReviews,
+    } = useGrocery()
 
     const [groceryRating, setGroceryRating] = useState()
     const [maxRating, setMaxRating] = useState([1,2,3,4,5])
@@ -9,11 +14,11 @@ const GroceryRate = (props) => {
 
     const calculateRating = async () => {
       try{
-        props.grocery.reviews.map((item, key) => {
+        groceryReviews.map((item, key) => {
           key={key}
           rating += item.rate;
         })
-        const final_rating = (rating/props.grocery.reviews.length) 
+        const final_rating = (rating/groceryReviews.length) 
         setGroceryRating(final_rating.toFixed(0))
       } catch (error) {
         console.error(error)
@@ -22,7 +27,7 @@ const GroceryRate = (props) => {
 
     useEffect(() => {
       calculateRating();
-    }, [props.grocery]);
+    }, []);
 
     return (
       <View style={styles.rating}> 

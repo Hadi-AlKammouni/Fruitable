@@ -60,7 +60,7 @@ const GroceyScreen = ( {navigation} ) => {
         <Image source={{uri: grocery.picture}} style={styles.picture}/>
         <Text style={styles.major_info}> {groceryName} - {groceryPhoneNumber}</Text>
         <Text style={styles.description}> {groceyDescription} </Text>
-        <GroceryRate grocery={grocery}/>
+        <GroceryRate />
         <ReviewsPopUp grocery={grocery}/>
         <SubmitReviewPopUp grocery_id={grocery._id}/>
         <ViewItems grocery={grocery.items} id={grocery._id} setState={setOrderId}/>
