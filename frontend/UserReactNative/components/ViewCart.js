@@ -1,17 +1,11 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, Text, View, FlatList, Image } from "react-native";
 
-const ViewCart = () => {
+const ViewCart = (props) => {
 
     let total_price = 0;
 
-    const data = [
-        {name: 'Apple', price: 10500, qauntity: '0.5'}, 
-        {name: 'Carrot', price: 20000, qauntity: '1'}, 
-        {name: 'Lemon', price: 12000, qauntity: '1.5'}
-    ]
-
-    data.map(item => ( total_price += item.price ))
+    props.items.map(item => ( total_price += item.price ))
 
     const renderItem = ({ item, index })  =>{  
         return(
@@ -24,7 +18,7 @@ const ViewCart = () => {
                         </Text>
                     </Text>
                     <View style={styles.img}>
-                        <Image style={styles.item_img} source={require("../assets/logo.png")}/>
+                        <Image style={styles.item_img} source={{uri: item.picture}}/>
                     </View>
                     <View style={styles.img}>
                         <Image style={styles.remove_item} source={require("../assets/icons/remove.png")}/>
@@ -46,7 +40,7 @@ const ViewCart = () => {
     return(
         <SafeAreaView style={styles.contaner}>
             <FlatList 
-                data={data} 
+                data={props.items} 
                 keyExtractor={(e, item) => item.toString()} 
                 renderItem={renderItem}
                 ItemSeparatorComponent={separator}

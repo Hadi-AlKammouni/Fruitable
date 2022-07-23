@@ -36,7 +36,7 @@ const OrdersScreen = ({route}) => {
       <ScrollView style={styles.scrollView}>
         <Text style={styles.major_info}> Grocery Name - Location - Phone Number</Text>
         <Text style={styles.description}> Grocery Description</Text>
-        <ViewCart/>
+        <ViewCart items={cartItems.items}/>
         <ButtonComponent 
           onPress={() => alert("Hello World!") }
           touchable_style={styles.button}
