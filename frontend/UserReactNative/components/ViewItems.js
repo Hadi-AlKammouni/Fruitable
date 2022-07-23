@@ -5,23 +5,25 @@ import constants from '../constants';
 
 const ViewItems = (props) => {
 
-    const [category,setCategory] = useState("Fruits")
+    const [category,setCategory] = useState('')
     const [items,setItems] = useState(data)
-
+    const [fetchedCategories, setFetchedCategories] = useState([])
+    const categories = []
+    
     const getItems = async () => {
         try{
-            console.log(props.grocery.length)
-            console.log(props.grocery)
             for (const item in props.grocery) {
                 const response = await fetch(`${constants.fetch_url}get_item?id=${props.grocery[item]}`);
                 const result = await response.json();
+                categories.push(result.category)
             }
+            setFetchedCategories(categories)
         } catch (error) {
           console.error(error)
         }
     }
   
-    const categories = [{category: "Fruits"}, {category: "Vegetables"}]
+    // const categories = [{category: "Fruits"}, {category: "Vegetables"}]
     const data = [
         {name: 'Apple',category: 'Fruits', price: '10500', qauntity: '0.5'}, 
         {name: 'Carrot', category: 'Vegetables', price: '20000', qauntity: '1'}, 
@@ -74,10 +76,10 @@ const ViewItems = (props) => {
         <SafeAreaView style={styles.contaner}>
             <View style={styles.list_tab}>
                 {
-                    categories.map((e, key) => (
-                        <TouchableOpacity key={key} style={[styles.btn, category === e.category && styles.active_btn]} onPress={() => setStatusFilter(e.category)}>
-                            <Text style={[styles.text, category === e.category && styles.active_text]}>
-                            {e.category}
+                    fetchedCategories.map((e, key) => (
+                        <TouchableOpacity key={key} style={[styles.btn, category === e && styles.active_btn]} onPress={() => setStatusFilter(e)}>
+                            <Text style={[styles.text, category === e && styles.active_text]}>
+                            {e}
                             </Text>
                         </TouchableOpacity>
                     ))
