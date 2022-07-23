@@ -37,7 +37,7 @@ const GroceyScreen = ( {navigation, route} ) => {
         <GroceryRate grocery={grocery}/>
         <ReviewsPopUp grocery={grocery}/>
         <SubmitReviewPopUp grocery_id={grocery._id}/>
-        <ViewItems/>
+        <ViewItems grocery={grocery.items}/>
         <ButtonComponent 
           onPress={() => navigation.navigate("Order") }
           touchable_style={styles.button}

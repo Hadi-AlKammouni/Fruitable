@@ -1,11 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { Dimensions, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, FlatList, Image } from "react-native";
 import { LogBox } from "react-native";
-const ViewItems = () => {
+import constants from '../constants';
+
+const ViewItems = (props) => {
 
     const [category,setCategory] = useState("Fruits")
     const [items,setItems] = useState(data)
 
+    const getItems = async () => {
+        try{
+            console.log(props.grocery.length)
+            console.log(props.grocery)
+            for (const item in props.grocery) {
+                const response = await fetch(`${constants.fetch_url}get_item?id=${props.grocery[item]}`);
+                const result = await response.json();
+            }
+        } catch (error) {
+          console.error(error)
+        }
+    }
+  
     const categories = [{category: "Fruits"}, {category: "Vegetables"}]
     const data = [
         {name: 'Apple',category: 'Fruits', price: '10500', qauntity: '0.5'}, 
@@ -52,7 +67,8 @@ const ViewItems = () => {
 
     useEffect(() => {
         LogBox.ignoreLogs(["VirtualizedLists should never be nested"])
-    }, [])
+        getItems();
+    }, [props.grocery])
 
     return(
         <SafeAreaView style={styles.contaner}>
