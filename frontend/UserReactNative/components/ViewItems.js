@@ -12,6 +12,8 @@ const ViewItems = (props) => {
     const [fetchedCategories, setFetchedCategories] = useState([])
     const categories = []
     const grad = []
+    const [order,setOrder] = useState(false)
+    const [orderId,setOrderId] = useState('')
     
     // Get items of specific grocery
     const getItems = async () => {
@@ -44,12 +46,17 @@ const ViewItems = (props) => {
         return(
             <>
                 <View key={index} style={styles.item}>
+                    {order ? 
                     <View style={styles.img}>
-                        <TouchableOpacity>                        
+                        <TouchableOpacity onPress={()=> addToCart(item.name,item.price,item.picture)}> 
+                                                   
                             <Image style={styles.add_item} source={require("../assets/icons/icons8-add-32.png")} />
                         </TouchableOpacity>
 
                     </View>
+                    :
+                    null
+                    }
                     <Text style={styles.item_body}>
                         <Text style={styles.item_name}>
                             {item.name}
@@ -92,6 +99,35 @@ const ViewItems = (props) => {
                 })
             });
             const data = await response.json();
+            setOrder(true)
+            setOrderId(data._id)
+            alert("Order is created, pick items now")
+      
+        } catch (error) {
+          console.log(error);
+        }
+    };
+
+    // Adding item to order
+    const addToCart = async (name,price,picture) => {
+        try {
+            const token = await AsyncStorage.getItem('token');
+            const response = await fetch(`${constants.fetch_url}add_to_order`, {
+                method: 'POST',
+                headers: {
+                    'x-access-token': token,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    order: orderId,
+                    name: name,
+                    price: price,
+                    picture: picture
+                })
+            });
+            const data = await response.text();
+            console.log("result",data)
+            alert(data)
       
         } catch (error) {
           console.log(error);
