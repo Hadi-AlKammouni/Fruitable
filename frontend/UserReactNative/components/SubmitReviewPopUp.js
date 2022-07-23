@@ -1,32 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 import { View, Text, Modal, Button, StyleSheet } from "react-native";
 import UserRate from "./UserRate";
 
-class SubmitReviewPopUp extends React.Component{
+const SubmitReviewPopUp = () => {
 
-    constructor(){
-        super();
-        this.state={
-            show:false
-        }
-    }
+    const [show, setShow] = useState(false);
 
-    render () {
-        return(
-            <View style={styles.container}>
-                <Button title="Submit Review" style={styles.btn_color} color={"#FDBE3B"} onPress={() => this.setState({show:true})} />
-                <Modal transparent={true} visible={this.state.show}>
-                    <View style={styles.main_screen}>
-                        <View style={styles.popup}>
-                        {this.props && null}
-                            <UserRate grocery_id={this.props}/>
-                            <Button title="Close"  color={"#000"} onPress={() => this.setState({show:false})} />
-                        </View>
+    return(
+        <View style={styles.container}>
+            <Button title="Submit Review" style={styles.btn_color} color={"#FDBE3B"} onPress={() => setShow(true)} />
+            <Modal transparent={true} visible={show}>
+                <View style={styles.main_screen}>
+                    <View style={styles.popup}>
+                        <UserRate />
+                        <Button title="Close"  color={"#000"} onPress={() => setShow(false)} />
                     </View>
-                </Modal>
-            </View>
-        )
-    }
+                </View>
+            </Modal>
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
