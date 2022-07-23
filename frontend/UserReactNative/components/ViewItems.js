@@ -6,9 +6,11 @@ import constants from '../constants';
 const ViewItems = (props) => {
 
     const [category,setCategory] = useState('')
-    const [items,setItems] = useState(data)
+    const [fetchedItems,setFetchedItems] = useState([])
+    const [items,setItems] = useState([])
     const [fetchedCategories, setFetchedCategories] = useState([])
     const categories = []
+    const grad = []
     
     const getItems = async () => {
         try{
@@ -16,24 +18,20 @@ const ViewItems = (props) => {
                 const response = await fetch(`${constants.fetch_url}get_item?id=${props.grocery[item]}`);
                 const result = await response.json();
                 categories.push(result.category)
+                grad.push(result)
             }
             setFetchedCategories(categories)
+            setFetchedItems(grad)
         } catch (error) {
           console.error(error)
         }
     }
-  
-    // const categories = [{category: "Fruits"}, {category: "Vegetables"}]
-    const data = [
-        {name: 'Apple',category: 'Fruits', price: '10500', qauntity: '0.5'}, 
-        {name: 'Carrot', category: 'Vegetables', price: '20000', qauntity: '1'}, 
-        {name: 'Lemon', category: 'Vegetables', price: '12000', qauntity: '1.5'}]
 
     const setStatusFilter = category => {
          if (category !== 'Fruits'){
-            setItems([...data.filter(e => e.category === category)])
+            setItems([...fetchedItems.filter(e => e.category === category)])
         } else if (category !== 'Vegetables'){
-            setItems([...data.filter(e => e.category === category)])
+            setItems([...fetchedItems.filter(e => e.category === category)])
         }
         setCategory(category)
     }
@@ -51,7 +49,7 @@ const ViewItems = (props) => {
                         </Text>
                     </Text>
                     <View style={styles.img}>
-                        <Image style={styles.item_img} source={require("../assets/logo.png")}/>
+                        <Image style={styles.item_img} source={{uri: item.picture}}/>
                     </View>
                 </View>
                 <View>
