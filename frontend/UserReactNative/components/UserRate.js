@@ -2,33 +2,40 @@ import React, {useState} from 'react';
 import { StyleSheet, Text, SafeAreaView, ScrollView, Image, View, TouchableOpacity } from 'react-native';
 import TextInputField from './TextInputField';
 import constants from '../constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const UserRate = () => {
+const UserRate = ({grocery_id}) => {
 
-  const [defaultRating, setDefaultRating] = useState(5)
+  const [userRating, setUserRating] = useState()
   const [maxRating, setMaxRating] = useState([1,2,3,4,5])
-  // const [review, setReview] = useState('')
-
+  const [review, setReview] = useState('')
 
   const reviewGrocery = async () => {
     try {
-      // const response = await fetch(`${constants.fetch_url}review_grocery`, {
-      //   method: 'POST',
-      //   headers: {
-      //       'Content-Type': 'application/json'
-      //   },
-      //   body: JSON.stringify({
-      //       rate: email,
-      //       text: password,
-      //       user: ,
-      //       grocery: ,
-      //       first_name: 
-      //   })
-      // });
-      // const data = await response.json();
-      console.log("hello world")
+      const token = await AsyncStorage.getItem('token');
+      const user_id = await AsyncStorage.getItem('user_id');
+      const user_first_name = await AsyncStorage.getItem('first_name');
+
+      const response = await fetch(`${constants.fetch_url}review_grocery`, {
+        method: 'POST',
+        headers: {
+            'x-access-token': token,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            rate: userRating,
+            text: review,
+            user: user_id,
+            grocery: grocery_id.grocery_id,
+            first_name: user_first_name 
+        })
+      });
+      setReview('')
+      setUserRating()
+      alert("Review Has Been Added Successfully")
+      
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 
@@ -38,12 +45,12 @@ const UserRate = () => {
         <Text style={styles.txt_rating}> Rate Your Experience </Text>
         <View style={styles.rating}> 
         <Text style={styles.txt_rating}>
-            {defaultRating + ' / ' + maxRating.length}
+            {!userRating ? 0 + ' /' : userRating + ' / ' + maxRating.length}
         </Text>
             {maxRating.map((item, key) => {
             return (
-                <TouchableOpacity key={key} activeOpacity={0.7} item={item} onPress={() => setDefaultRating(item)}>
-                  <Image style={styles.img_rating} source={item <= defaultRating ? require("../assets/icons/icons8-star-488.png") : require("../assets/icons/icons8-star-48.png")}/>
+                <TouchableOpacity key={key} activeOpacity={0.7} item={item} onPress={() => setUserRating(item)}>
+                  <Image style={styles.img_rating} source={item <= userRating ? require("../assets/icons/icons8-star-488.png") : require("../assets/icons/icons8-star-48.png")}/>
                 </TouchableOpacity>
             )})}
         </View>
@@ -52,7 +59,7 @@ const UserRate = () => {
         <TextInputField 
           main_icon={require("../assets/icons/icons8-write-60.png")}
           placeholder="Review.."
-          // setState={setReview}
+          setState={setReview}
         />
         <TouchableOpacity activeOpacity={0.7} style={styles.btn} onPress={() => reviewGrocery()}>
             <Text style={styles.submit}>Submit Review</Text>

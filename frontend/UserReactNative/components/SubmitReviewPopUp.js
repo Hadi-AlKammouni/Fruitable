@@ -18,7 +18,8 @@ class SubmitReviewPopUp extends React.Component{
                 <Modal transparent={true} visible={this.state.show}>
                     <View style={styles.main_screen}>
                         <View style={styles.popup}>
-                            <UserRate/>
+                        {this.props && null}
+                            <UserRate grocery_id={this.props}/>
                             <Button title="Close"  color={"#000"} onPress={() => this.setState({show:false})} />
                         </View>
                     </View>
