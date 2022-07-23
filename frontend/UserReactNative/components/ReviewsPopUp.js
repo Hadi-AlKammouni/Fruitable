@@ -1,24 +1,23 @@
-import React, {useEffect} from "react";
-import { View, Text, Modal, Button, StyleSheet } from "react-native";
+import React, {useState} from "react";
+import { View, Text, Modal, Button, StyleSheet, ScrollView } from "react-native";
+import {useGrocery} from '../context/grocery';
 
-class ReviewsPopUp extends React.Component{
+const ReviewsPopUp = ()=>{
 
-    constructor(){
-        super();
-        this.state={
-            show:false
-        }
-    }
+    const [show, setShow] = useState(false);
     
-    render () {
+    const {
+        groceryReviews
+    } = useGrocery()
+
         return(
             <View style={styles.container}>
-                <Button title="View Recent Reviews" style={styles.btn_color} color={"#000"} onPress={() => this.setState({show:true})} />
-                <Modal transparent={true} visible={this.state.show}>
+                <Button title="View Recent Reviews" style={styles.btn_color} color={"#000"} onPress={() => setShow(true)} />
+                <Modal transparent={true} visible={show}>
                     <View style={styles.main_screen}>
                         <View style={styles.popup}>
-                            {this.props.grocery.reviews?.length ?
-                                this.props.grocery.reviews.map((item, key) => {
+                            {groceryReviews?.length ?
+                                groceryReviews.map((item, key) => {
                                     return (
                                         <View key={key}>
                                         <Text style={styles.name}> {item.first_name}</Text>
@@ -28,14 +27,13 @@ class ReviewsPopUp extends React.Component{
                                 :
                                 <Text style={styles.name}> No Reviews Yet </Text> 
                             }
-                            <Button title="Close"  color={"#000"} onPress={() => this.setState({show:false})} />
+                            <Button title="Close"  color={"#000"} onPress={() => setShow(false)} />
                         </View>
                     </View>
                 </Modal>
             </View>
         )
     }
-}
 
 const styles = StyleSheet.create({
     container: {

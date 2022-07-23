@@ -25,7 +25,6 @@ const GroceyScreen = ( {navigation} ) => {
     setGroceryReviews
   } = useGrocery()
 
-  console.log(groceryId)
   const [grocery, setGrocery] = useState([])
   const [orderId, setOrderId] = useState('')
 
@@ -61,7 +60,7 @@ const GroceyScreen = ( {navigation} ) => {
         <Text style={styles.major_info}> {groceryName} - {groceryPhoneNumber}</Text>
         <Text style={styles.description}> {groceyDescription} </Text>
         <GroceryRate />
-        <ReviewsPopUp grocery={grocery}/>
+        <ReviewsPopUp />
         <SubmitReviewPopUp grocery_id={grocery._id}/>
         <ViewItems grocery={grocery.items} id={grocery._id} setState={setOrderId}/>
         

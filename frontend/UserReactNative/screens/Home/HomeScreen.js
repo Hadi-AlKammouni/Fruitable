@@ -52,8 +52,7 @@ const HomeScreen = ( {navigation} ) => {
                 setGroceryId(id)
                 navigation.navigate('Grocery')
             }
-              // navigation.navigate('Grocery',{id})
-              }>
+            }>
               <View>
                   <View style={styles.marker_tooltip}>
                     <Text style={styles.marker_title}>{item.name}</Text>

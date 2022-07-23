@@ -27,7 +27,7 @@ const GroceryRate = () => {
 
     useEffect(() => {
       calculateRating();
-    }, []);
+    }, [groceryReviews]);
 
     return (
       <View style={styles.rating}> 
