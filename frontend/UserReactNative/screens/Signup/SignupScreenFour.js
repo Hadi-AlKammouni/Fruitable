@@ -6,6 +6,7 @@ import ButtonComponent from '../../components/ButtonComponent';
 import UploadImage from '../../components/UploadImage';
 import constants from '../../constants';
 import {useUser} from '../../context/user';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SignupScreenFour = ({ navigation, route }) => {
   
@@ -53,6 +54,7 @@ const SignupScreenFour = ({ navigation, route }) => {
               setUserLongitude(data.longitude) 
               setUserProfilePicture(data.profile_picture)
               navigation.navigate("UserScreen")
+              AsyncStorage.setItem('token',data.token);
             }
         } catch (error) {
             console.log(error)

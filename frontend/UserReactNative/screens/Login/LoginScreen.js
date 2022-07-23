@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { Text, View, StatusBar } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Animatable from 'react-native-animatable';
 import styles from './styles';
 import TextInputField from '../../components/TextInputField';
@@ -51,6 +52,7 @@ const LoginScreen = ({navigation}) => {
           setUserLongitude(data.longitude)
           setUserProfilePicture(data.profile_picture)
           navigation.navigate("UserScreen")
+          AsyncStorage.setItem('token',data.token);
         }
     } catch (error) {
         console.log(error)
