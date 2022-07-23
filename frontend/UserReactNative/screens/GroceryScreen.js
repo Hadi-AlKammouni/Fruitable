@@ -12,6 +12,7 @@ const GroceyScreen = ( {navigation, route} ) => {
 
   const groceryId = route.params;
   const [grocery, setGrocery] = useState([])
+  const [orderId, setOrderId] = useState('')
 
   const getGrocery = async () => {
     try {
@@ -37,9 +38,10 @@ const GroceyScreen = ( {navigation, route} ) => {
         <GroceryRate grocery={grocery}/>
         <ReviewsPopUp grocery={grocery}/>
         <SubmitReviewPopUp grocery_id={grocery._id}/>
-        <ViewItems grocery={grocery.items} id={grocery._id}/>
+        <ViewItems grocery={grocery.items} id={grocery._id} setState={setOrderId}/>
+        
         <ButtonComponent 
-          onPress={() => navigation.navigate("Order") }
+          onPress={() => navigation.navigate("Order",{orderId}) }
           touchable_style={styles.button}
           border_color="#FDBE3B"
           text_style={styles.textSign}

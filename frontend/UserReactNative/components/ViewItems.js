@@ -101,6 +101,7 @@ const ViewItems = (props) => {
             const data = await response.json();
             setOrder(true)
             setOrderId(data._id)
+            props.setState(data._id)
             alert("Order is created, pick items now")
       
         } catch (error) {
@@ -126,7 +127,6 @@ const ViewItems = (props) => {
                 })
             });
             const data = await response.text();
-            console.log("result",data)
             alert(data)
       
         } catch (error) {

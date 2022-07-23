@@ -3,7 +3,10 @@ import { StyleSheet, Text, SafeAreaView, ScrollView, Image, View } from 'react-n
 import ViewCart from '../components/ViewCart';
 import ButtonComponent from '../components/ButtonComponent';
 
-const OrdersScreen = () => {
+const OrdersScreen = ({route}) => {
+
+  const {orderId} = route.params
+  
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
