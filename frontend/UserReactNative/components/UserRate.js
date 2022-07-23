@@ -3,8 +3,13 @@ import { StyleSheet, Text, SafeAreaView, ScrollView, Image, View, TouchableOpaci
 import TextInputField from './TextInputField';
 import constants from '../constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useGrocery } from '../context/grocery';
 
-const UserRate = ({grocery_id}) => {
+const UserRate = () => {
+
+  const {
+    groceryId
+  } = useGrocery()
 
   const [userRating, setUserRating] = useState()
   const [maxRating, setMaxRating] = useState([1,2,3,4,5])
@@ -26,16 +31,17 @@ const UserRate = ({grocery_id}) => {
             rate: userRating,
             text: review,
             user: user_id,
-            grocery: grocery_id.grocery_id,
+            grocery: groceryId,
             first_name: user_first_name 
         })
       });
-      setReview('')
-      setUserRating()
-      alert("Review Has Been Added Successfully")
+      const res = JSON.stringify(response.status)
+      if(res === "200"){
+        alert("Review successfully added")
+      }
       
     } catch (error) {
-      console.log(error);
+      console.log("EROORORORO",error);
     }
   };
 

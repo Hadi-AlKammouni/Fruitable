@@ -61,7 +61,7 @@ const GroceyScreen = ( {navigation} ) => {
         <Text style={styles.description}> {groceyDescription} </Text>
         <GroceryRate />
         <ReviewsPopUp />
-        <SubmitReviewPopUp grocery_id={grocery._id}/>
+        <SubmitReviewPopUp />
         <ViewItems grocery={grocery.items} id={grocery._id} setState={setOrderId}/>
         
         <ButtonComponent 

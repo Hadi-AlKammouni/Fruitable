@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { View, Text, Modal, Button, StyleSheet, ScrollView } from "react-native";
 import {useGrocery} from '../context/grocery';
 
-const ReviewsPopUp = ()=>{
+const ReviewsPopUp = () => {
 
     const [show, setShow] = useState(false);
     
@@ -33,7 +33,7 @@ const ReviewsPopUp = ()=>{
                 </Modal>
             </View>
         )
-    }
+}
 
 const styles = StyleSheet.create({
     container: {
