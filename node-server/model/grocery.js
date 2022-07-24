@@ -7,17 +7,6 @@ const grocerySchema = new mongoose.Schema({
   phone_number: { type: String, default: null },
   latitude: { type: Number, default: null},
   longitude: { type: Number, default: null},
-  // location: {
-  //   type: {
-  //     type: String,
-  //     enum: ["Point"],
-  //     required: false,
-  //   },
-  //   coordinates: {
-  //     type: [Number],
-  //     required: false,
-  //   },
-  // },
   picture: { type: String, default: null },
   description: { type: String, default: null  },
   token: { type: String },
@@ -32,5 +21,4 @@ const grocerySchema = new mongoose.Schema({
   orders: [{type: mongoose.Schema.Types.ObjectId, ref: "order"}],
 });
 
-grocerySchema.index({location:"2dsphere"});
 module.exports = mongoose.model("grocery", grocerySchema);

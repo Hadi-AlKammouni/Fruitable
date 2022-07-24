@@ -244,7 +244,7 @@ async function addToOrder(req, res) {
         }
       }
     );
-    
+
     return res.status(200).json({ status: "200",message:"Item added to your recent order"});
   } 
   catch (error) {
@@ -268,28 +268,51 @@ async function viewCart(req, res) {
 
 // Find nearby groceries logic
 async function findNearbyGroceries(req, res){
-  try{
-    const latitude = req.body.latitude;
-    const longitude = req.body.longitude;
+  try {  
+    const user = await User.findById(req.query.id);
+    const userLatitude = user.latitude;
+    const userLongitude = user.longitude;
 
-    const nearbyGrocery = await Grocery.aggregate([
-      {
-        $geoNear:{
-          near:{type:"Point",coordinates:[parseFloat(longitude),parseFloat(latitude)]},
-          key:"location",
-          maxDistance:2000,
-          distanceField:"dist.calculated",
-          spherical:true
-        }
-      }
-    ]);
+    const groceries = await Grocery.find();
 
-    res.status(200).send(nearbyGrocery)
-
-  } catch(error){
+    const nearbyGroceries = groceries.filter((grocery) => {
+      const groceryLatitude = grocery.latitude;
+      const groceryLongitude = grocery.longitude;
+      const distance = getDistanceFromLatLonInKm(
+        userLatitude,
+        userLongitude,
+        groceryLatitude,
+        groceryLongitude
+      );
+      return distance <= 25;
+    }
+    );
+    return res.send(nearbyGroceries);
+  }
+  catch (error) {
     console.log(error);
   }
-};
+}
+
+function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+  var R = 6371; // Radius of the earth in km
+  var dLat = degreesToRadians(lat2 - lat1); // deg to rad below
+  var dLon = degreesToRadians(lon2 - lon1);
+  var a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(degreesToRadians(lat1)) *
+    Math.cos(degreesToRadians(lat2)) *
+    Math.sin(dLon / 2) *
+    Math.sin(dLon / 2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  var d = R * c; // Distance in km
+  return d;
+}
+
+function degreesToRadians(degrees) {
+  return degrees * Math.PI / 180;
+}  
+// End of nearby groceries logic
 
 //Function to get all users
 async function get(req, res) {

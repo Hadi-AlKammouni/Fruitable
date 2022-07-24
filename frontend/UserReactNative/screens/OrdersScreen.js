@@ -60,7 +60,7 @@ const OrdersScreen = ({ navigation }) => {
           border_color="#FDBE3B"
           text_style={styles.textSign}
           text_color="#FDBE3B"
-          text="Pick Items to View"
+          text="Choose Grocery"
           />
         }
           
