@@ -39,7 +39,7 @@ const ViewCart = (props) => {
     return(
         <SafeAreaView style={styles.contaner}>
             {total_price === 0 ? 
-            <View><Text style={styles.message}> You Didn't Pick Any Item Yet</Text></View>
+            <View><Text style={styles.message}> You Didn't Pick Any Item Yet, Choose Grocery Then Add Items to Your cart</Text></View>
             :
             <>
             <FlatList 

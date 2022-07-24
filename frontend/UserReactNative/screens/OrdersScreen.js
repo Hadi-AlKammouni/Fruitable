@@ -55,7 +55,7 @@ const OrdersScreen = ({ navigation }) => {
           />
           :
           <ButtonComponent 
-          onPress={() => navigation.navigate("Grocery")}
+          onPress={() => navigation.goBack()}
           touchable_style={styles.button}
           border_color="#FDBE3B"
           text_style={styles.textSign}
