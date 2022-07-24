@@ -38,13 +38,20 @@ const ViewCart = (props) => {
 
     return(
         <SafeAreaView style={styles.contaner}>
+            {total_price === 0 ? 
+            <View><Text style={styles.message}> You Didn't Pick Any Item Yet</Text></View>
+            :
+            <>
             <FlatList 
                 data={props.items.items} 
                 keyExtractor={(e, item) => item.toString()} 
                 renderItem={renderItem}
                 ItemSeparatorComponent={separator}
             />
-            <Text>Total Price: LBP {total_price} </Text>
+            <Text>Total Price: LBP {total_price} </Text> 
+            </>
+            }
+            
         </SafeAreaView>
     )
 }
@@ -80,5 +87,10 @@ const styles = StyleSheet.create ({
     remove_item: {
         width: 40,
         height: 40
+    },
+    message: {
+        textAlign: 'center',
+        fontWeight: 'bold',
+        marginTop: 100,
     },
 })

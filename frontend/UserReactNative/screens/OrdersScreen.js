@@ -6,7 +6,7 @@ import constants from '../constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useGrocery } from '../context/grocery';
 
-const OrdersScreen = () => {
+const OrdersScreen = ({ navigation }) => {
 
   const {
     groceryName,
@@ -44,14 +44,26 @@ const OrdersScreen = () => {
         <Text style={styles.major_info}> {groceryName} - {groceryPhoneNumber} </Text>
         <Text style={styles.description}> {groceyDescription}</Text>
         <ViewCart items={cartItems}/>
-        <ButtonComponent 
+        {cartItems.items && cartItems.items.length != 0 ? 
+          <ButtonComponent 
           onPress={() => alert("Hello World!") }
           touchable_style={styles.button}
           border_color="#FDBE3B"
           text_style={styles.textSign}
           text_color="#FDBE3B"
           text="Order Now"
-        />
+          />
+          :
+          <ButtonComponent 
+          onPress={() => navigation.navigate("Grocery")}
+          touchable_style={styles.button}
+          border_color="#FDBE3B"
+          text_style={styles.textSign}
+          text_color="#FDBE3B"
+          text="Pick Items to View"
+          />
+        }
+          
       </ScrollView>
     </SafeAreaView>
   );
