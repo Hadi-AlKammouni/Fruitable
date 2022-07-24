@@ -13,7 +13,7 @@ const GroceryProvider = ({children}) => {
     const [groceryPicture, setGroceryPicture] = useState('')
     const [groceryCategories, setGroceryCategories] = useState([])
     const [groceryItems, setGroceryItems] = useState([])
-    const [groceryOrders, setGroceryOrders] = useState([])
+    const [groceryOrder, setGroceryOrder] = useState('')
     const [groceryReviews, setGroceryReviews] = useState([])
 
     return (
@@ -28,7 +28,7 @@ const GroceryProvider = ({children}) => {
             groceryPicture, setGroceryPicture, 
             groceryCategories, setGroceryCategories,
             groceryItems, setGroceryItems, 
-            groceryOrders, setGroceryOrders,
+            groceryOrder, setGroceryOrder,
             groceryReviews, setGroceryReviews}}>
 
             {children}
@@ -50,7 +50,7 @@ export const useGrocery = () => {
         groceryPicture, setGroceryPicture, 
         groceryCategories, setGroceryCategories,
         groceryItems, setGroceryItems,
-        groceryOrders, setGroceryOrders,
+        groceryOrder, setGroceryOrder,
         groceryReviews, setGroceryReviews} = React.useContext(GroceryContext)
 
     return {
@@ -63,7 +63,7 @@ export const useGrocery = () => {
         groceryPicture, setGroceryPicture, 
         groceryCategories, setGroceryCategories,
         groceryItems, setGroceryItems,
-        groceryOrders, setGroceryOrders,
+        groceryOrder, setGroceryOrder,
         groceryReviews, setGroceryReviews
     }
 }

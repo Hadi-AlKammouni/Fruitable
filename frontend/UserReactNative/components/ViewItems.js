@@ -3,8 +3,15 @@ import { Dimensions, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, Fla
 import { LogBox } from "react-native";
 import constants from '../constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useGrocery } from "../context/grocery";
 
-const ViewItems = (props) => {
+const ViewItems = () => {
+
+    const {
+        groceryId,
+        groceryItems,
+        groceryOrder,setGroceryOrder
+    } = useGrocery()
 
     const [category,setCategory] = useState('')
     const [fetchedItems,setFetchedItems] = useState([])
@@ -12,14 +19,13 @@ const ViewItems = (props) => {
     const [fetchedCategories, setFetchedCategories] = useState([])
     const categories = []
     const grad = []
-    const [order,setOrder] = useState(false)
-    const [orderId,setOrderId] = useState('')
+    const [order,setOrder] = useState(false) // After creating order, the user is able to pick items
     
     // Get items of specific grocery
     const getItems = async () => {
         try{
-            for (const item in props.grocery) {
-                const response = await fetch(`${constants.fetch_url}get_item?id=${props.grocery[item]}`);
+            for (const item in groceryItems) {
+                const response = await fetch(`${constants.fetch_url}get_item?id=${groceryItems[item]}`);
                 const result = await response.json();
                 categories.push(result.category)
                 grad.push(result)
@@ -85,7 +91,7 @@ const ViewItems = (props) => {
         try {
             const user_id = await AsyncStorage.getItem('user_id');
             const token = await AsyncStorage.getItem('token');
-            const grocery_id = props.id
+            // const grocery_id = props.id
            
             const response = await fetch(`${constants.fetch_url}create_order`, {
                 method: 'POST',
@@ -95,14 +101,17 @@ const ViewItems = (props) => {
                 },
                 body: JSON.stringify({
                     user: user_id,
-                    grocery: grocery_id
+                    grocery: groceryId
                 })
             });
             const data = await response.json();
-            setOrder(true)
-            setOrderId(data._id)
-            props.setState(data._id)
-            alert("Order is created, pick items now")
+            setOrder(true) // To enable picking items
+            setGroceryOrder(data._id)
+            if(data._id){
+                alert("Order is created, pick items now")
+            }
+            // props.setState(data._id)
+            
       
         } catch (error) {
           console.log(error);
@@ -120,14 +129,16 @@ const ViewItems = (props) => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    order: orderId,
+                    order: groceryOrder,
                     name: name,
                     price: price,
                     picture: picture
                 })
             });
-            const data = await response.text();
-            alert(data)
+            const data = await response.json();
+            if(data.status === "200"){
+                alert(data.message)
+            }
       
         } catch (error) {
           console.log(error);
@@ -137,7 +148,7 @@ const ViewItems = (props) => {
     useEffect(() => {
         LogBox.ignoreLogs(["VirtualizedLists should never be nested"])
         getItems();
-    }, [props.grocery])
+    }, [groceryItems,groceryOrder])
 
     return(
         <SafeAreaView style={styles.contaner}>

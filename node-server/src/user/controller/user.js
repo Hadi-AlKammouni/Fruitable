@@ -244,8 +244,8 @@ async function addToOrder(req, res) {
         }
       }
     );
-
-    return res.status(200).send("Item added to your recent order");
+    
+    return res.status(200).json({ status: "200",message:"Item added to your recent order"});
   } 
   catch (error) {
     console.log(error);

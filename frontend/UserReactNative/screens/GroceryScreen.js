@@ -21,27 +21,24 @@ const GroceyScreen = ( {navigation} ) => {
     setGroceryPicture, 
     setGroceryCategories,
     setGroceryItems,
-    setGroceryOrders,
     setGroceryReviews
   } = useGrocery()
 
   const [grocery, setGrocery] = useState([])
-  const [orderId, setOrderId] = useState('')
 
   const getGrocery = async () => {
     try {
       const response = await fetch(`${constants.fetch_url}get_groceries?id=${groceryId}`);
       const data = await response.json();
-      setGrocery(data)
-      setGroceryName(data.name) 
-      setGroceryPhoneNumber(data.phone_number) 
-      setGroceryDescription(data.description)
-      setGroceryLatitude(data.latitude) 
-      setGroceryLongitude(data.longitude) 
-      setGroceryPicture(data.picture) 
-      setGroceryCategories(data.categories)
-      setGroceryItems(data.items)
-      setGroceryOrders(data.orders)
+      setGrocery(data),
+      setGroceryName(data.name) ,
+      setGroceryPhoneNumber(data.phone_number),
+      setGroceryDescription(data.description),
+      setGroceryLatitude(data.latitude) ,
+      setGroceryLongitude(data.longitude), 
+      setGroceryPicture(data.picture) ,
+      setGroceryCategories(data.categories),
+      setGroceryItems(data.items),
       setGroceryReviews(data.reviews)
     } catch (error) {
       console.error(error);
@@ -62,10 +59,9 @@ const GroceyScreen = ( {navigation} ) => {
         <GroceryRate />
         <ReviewsPopUp />
         <SubmitReviewPopUp />
-        <ViewItems grocery={grocery.items} id={grocery._id} setState={setOrderId}/>
-        
+        <ViewItems />
         <ButtonComponent 
-          onPress={() => navigation.navigate("Order",{orderId,grocery}) }
+          onPress={() => navigation.navigate("Order") }
           touchable_style={styles.button}
           border_color="#FDBE3B"
           text_style={styles.textSign}

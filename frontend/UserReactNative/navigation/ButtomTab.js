@@ -33,6 +33,7 @@ const ButtomTab = () => {
                         />
                     </View>
                 )
+
             }}/>
 
             <Tab.Screen name="Order" component={OrdersScreen} options={{
@@ -43,7 +44,8 @@ const ButtomTab = () => {
                             style={{width:55,height:55,tintColor: focused ? '#FDBE3B' : '#000000',}}
                         />
                     </View>
-                )
+                ),
+                unmountOnBlur: true
             }}/>
 
             <Tab.Screen name="Account" component={AccountScreen} options={{

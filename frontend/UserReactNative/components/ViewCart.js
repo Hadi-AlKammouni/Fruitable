@@ -4,13 +4,12 @@ import { SafeAreaView, StyleSheet, Text, View, FlatList, Image } from "react-nat
 const ViewCart = (props) => {
 
     let total_price = 0;
-
-    props.items && props.items.map(item => ( total_price += item.price ))
-
+    props.items.items && props.items.items.map(item => ( total_price += item.price ))
+    
     const renderItem = ({ item, index })  =>{  
         return(
             <>
-                <View key={index} style={styles.item}>
+               <View key={index} style={styles.item}>
                     
                     <Text style={styles.item_body}>
                         <Text style={styles.item_name}>
@@ -40,7 +39,7 @@ const ViewCart = (props) => {
     return(
         <SafeAreaView style={styles.contaner}>
             <FlatList 
-                data={props.items} 
+                data={props.items.items} 
                 keyExtractor={(e, item) => item.toString()} 
                 renderItem={renderItem}
                 ItemSeparatorComponent={separator}

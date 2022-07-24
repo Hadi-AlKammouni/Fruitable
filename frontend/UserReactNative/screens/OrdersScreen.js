@@ -1,13 +1,19 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, SafeAreaView, ScrollView, Image, View } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, ScrollView } from 'react-native';
 import ViewCart from '../components/ViewCart';
 import ButtonComponent from '../components/ButtonComponent';
 import constants from '../constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useGrocery } from '../context/grocery';
 
-const OrdersScreen = ({route}) => {
+const OrdersScreen = () => {
 
-  const {orderId,grocery} = route.params;
+  const {
+    groceryName,
+    groceryPhoneNumber,
+    groceyDescription,
+    groceryOrder,
+  } = useGrocery()
 
   const [cartItems,setCartItems] = useState([])
 
@@ -15,7 +21,7 @@ const OrdersScreen = ({route}) => {
     try {
       const token = await AsyncStorage.getItem('token');
 
-      const response = await fetch(`${constants.fetch_url}view_cart?id=${orderId}`,{
+      const response = await fetch(`${constants.fetch_url}view_cart?id=${groceryOrder}`,{
         headers: {
           'x-access-token': token,
         }
@@ -30,14 +36,14 @@ const OrdersScreen = ({route}) => {
 
   useEffect(() => {
     viewCart();
-  }, [orderId,grocery]);
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
-        <Text style={styles.major_info}> {grocery.name} - {grocery.phone_number} </Text>
-        <Text style={styles.description}> {grocery.description}</Text>
-        <ViewCart items={cartItems.items}/>
+        <Text style={styles.major_info}> {groceryName} - {groceryPhoneNumber} </Text>
+        <Text style={styles.description}> {groceyDescription}</Text>
+        <ViewCart items={cartItems}/>
         <ButtonComponent 
           onPress={() => alert("Hello World!") }
           touchable_style={styles.button}
