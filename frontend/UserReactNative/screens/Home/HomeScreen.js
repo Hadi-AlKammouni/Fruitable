@@ -1,17 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import { SafeAreaView, Image, View, Text, Alert } from 'react-native';
+import { SafeAreaView, View, Text, Alert, ActivityIndicator } from 'react-native';
 import MapView, { Callout, Marker } from 'react-native-maps';
 import styles from './styles';
 import constants from '../../constants';
 import {useGrocery} from '../../context/grocery';
 import * as Location from 'expo-location';
-import { useUser } from '../../context/user';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HomeScreen = ( {navigation} ) => {
 
-  const [userLatitude,setUserLatitude] = useState('')
-  const [userLongitude,setUserLongitude] = useState('')
+  const [userLatitude,setUserLatitude] = useState(null)
+  const [userLongitude,setUserLongitude] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [groceries, setGroceries] = useState([])
+  const {
+    setGroceryId,
+  } = useGrocery()
 
   // To get user live location:
   // 1.If user give access to get his location, 
@@ -43,19 +47,17 @@ const HomeScreen = ( {navigation} ) => {
 
         setUserLatitude(latitude)
         setUserLongitude(longitude)
+        setIsLoading(false)
         getGroceries(true)
       }
     }catch(error){
       getGroceries(false)
+      setIsLoading(false)
     }
   }
 
-  const {
-    setGroceryId,
-  } = useGrocery()
-
-  const [groceries, setGroceries] = useState([])
-
+  // Funtion to get all groceries if user didn't give access to get his live location
+  // Else it will give the near by groceries
   const getGroceries = async (state) => {
     try {
       if(state){
@@ -93,6 +95,13 @@ const HomeScreen = ( {navigation} ) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      {
+        isLoading ?  
+        <View style={styles.activity}>
+          <ActivityIndicator size={50}/>
+        </View>:
+        null 
+      }
         <MapView
         style={styles.container}
         initialRegion={{

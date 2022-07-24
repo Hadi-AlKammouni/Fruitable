@@ -66,6 +66,15 @@ const styles = StyleSheet.create({
     //     fontSize: 18,
     //     color: 'white'
     // }
+    activity: {
+        flex: 1,
+        height: '100%',
+        width: '100%',
+        justifyContent: "center",
+        zIndex: 1,
+        position: 'absolute',
+        backgroundColor: 'rgba(0,0,0,0.2)'
+    }
   });
 
 export default styles;
