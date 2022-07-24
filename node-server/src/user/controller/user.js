@@ -270,8 +270,8 @@ async function viewCart(req, res) {
 async function findNearbyGroceries(req, res){
   try {  
     const user = await User.findById(req.query.id);
-    const userLatitude = user.latitude;
-    const userLongitude = user.longitude;
+    const userLatitude = req.body.latitude;
+    const userLongitude = req.body.longitude;
 
     const groceries = await Grocery.find();
 

@@ -8,10 +8,14 @@ import SignupScreenThree from "./Signup/SignupScreenThree";
 import SignupScreenFour from "./Signup/SignupScreenFour";
 import UserScreen from './Userscreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { useUser } from "../context/user";
 const RootStack = createStackNavigator();
 
 const RootStackScreen = () => {  
+
+    const {
+        setUserId
+    } = useUser()
 
     const [isLoggedIn, setIsLoggedIn] = useState('')
 
@@ -19,6 +23,7 @@ const RootStackScreen = () => {
         try{
             const token = await AsyncStorage.getItem('token');
             if(token){
+                AsyncStorage.getItem('user_id').then(userId=>setUserId(userId));
                 setIsLoggedIn(true)
             }
         } catch (error) {
