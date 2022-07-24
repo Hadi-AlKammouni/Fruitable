@@ -14,17 +14,17 @@ const RootStack = createStackNavigator();
 const RootStackScreen = () => {  
 
     const {
+        token,
         setUserId
     } = useUser()
 
-    const [isLoggedIn, setIsLoggedIn] = useState('')
+    const [isLoggedIn, setIsLoggedIn] = useState(token)
 
     const isToken = async () => {
         try{
             const token = await AsyncStorage.getItem('token');
             if(token){
                 AsyncStorage.getItem('user_id').then(userId=>setUserId(userId));
-                setIsLoggedIn(true)
             }
         } catch (error) {
             console.log(error)
@@ -33,7 +33,8 @@ const RootStackScreen = () => {
 
     useEffect(() => {
         isToken();
-    }, []);
+        setIsLoggedIn(token)
+    }, [token]);
 
     return(
     <RootStack.Navigator screenOptions={{
@@ -57,7 +58,7 @@ const RootStackScreen = () => {
         </>)
         :
         (
-            <RootStack.Screen name="UserScreen" component={UserScreen} /> 
+        <RootStack.Screen name="UserScreen" component={UserScreen} /> 
         )
         }
     </RootStack.Navigator>

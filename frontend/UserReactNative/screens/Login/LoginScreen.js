@@ -51,12 +51,11 @@ const LoginScreen = ({navigation}) => {
           setUserLatitude(data.latitude)
           setUserLongitude(data.longitude)
           setUserProfilePicture(data.profile_picture)
-          navigation.navigate("UserScreen")
-          AsyncStorage.setItem('token',data.token);
-          AsyncStorage.setItem('user_id',data._id);
-          AsyncStorage.setItem('first_name',data.first_name);
-          AsyncStorage.setItem('last_name',data.last_name);
-          AsyncStorage.setItem('profile_picture',data.profile_picture);
+          await AsyncStorage.setItem('token',data.token);
+          await AsyncStorage.setItem('user_id',data._id);
+          await AsyncStorage.setItem('first_name',data.first_name);
+          await AsyncStorage.setItem('last_name',data.last_name);
+          await AsyncStorage.setItem('profile_picture',data.profile_picture);
         }
     } catch (error) {
         console.log(error)
