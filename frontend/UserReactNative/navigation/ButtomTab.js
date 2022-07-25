@@ -19,7 +19,8 @@ const ButtomTab = () => {
                     backgroundColor: '#ffffff',
                     borderRadius: 15,
                     height: 50
-                }
+                },
+                headerShown: null
             }}  
         >
 

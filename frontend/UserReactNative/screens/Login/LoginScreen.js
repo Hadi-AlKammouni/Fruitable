@@ -56,6 +56,7 @@ const LoginScreen = ({navigation}) => {
           await AsyncStorage.setItem('first_name',data.first_name);
           await AsyncStorage.setItem('last_name',data.last_name);
           await AsyncStorage.setItem('profile_picture',data.profile_picture);
+          // navigation.navigate('UserScreen')
         }
     } catch (error) {
         alert("Wrong email and / or password.")
@@ -67,7 +68,7 @@ const LoginScreen = ({navigation}) => {
     <View style={styles.container}>
       <StatusBar backgroundColor='#FDBE3B' barStyle="light-content" />
       <View style={styles.header}>
-        <Text style={styles.text_header}>Log in</Text>
+        <Text style={styles.text_header}>Log In</Text>
       </View>
 
       <Animatable.View style={styles.footer} animation="fadeInUpBig">
@@ -118,7 +119,7 @@ const LoginScreen = ({navigation}) => {
           border_color="#FDBE3B"
           text_style={styles.textSign}
           text_color="#FDBE3B"
-          text="Create Account"
+          text="New? Create Account"
         />
         {/* <View><Text>{userFirstName}</Text></View> */}
       </Animatable.View>

@@ -47,6 +47,8 @@ const RootStackScreen = () => {
             fontWeight: 'bold'
         }
     }}>
+        
+
         {!isLoggedIn ? 
         (<>
         <RootStack.Screen name="SplashScreen" component={SplashScreen} />
