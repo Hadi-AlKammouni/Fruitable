@@ -16,7 +16,7 @@ const ReviewsPopUp = () => {
                 <Modal transparent={true} visible={show}>
                     <View style={styles.main_screen}>
                         <View style={styles.popup}>
-                            {groceryReviews?.length ?
+                            {groceryReviews && groceryReviews?.length ?
                                 groceryReviews.map((item, key) => {
                                     return (
                                         <View key={key}>

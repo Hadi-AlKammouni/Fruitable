@@ -33,39 +33,59 @@ const styles = StyleSheet.create({
         alignSelf: "center", 
         marginTop: -32
     },
-    // text_footer: {
-    //     fontSize: 18
-    // },
-    // action: {
-    //     flexDirection: 'row',
-    //     marginTop: 10,
-    //     borderBottomWidth: 1,
-    //     borderBottomColor: '#FDBE3B',
-    //     paddingBottom: 5
-    // },
-    // text_input: {
-    //     flex: 1,
-    //     paddingLeft: 10
-    // },
-    // signIn: {
-    //     height: 50,
-    //     justifyContent: 'center',
-    //     alignItems: 'center',
-    //     borderRadius: 10
-    // },
-    // button: {
-    //     justifyContent:'center',
-    //     alignItems: 'center',
-    //     marginTop: 50,
-    //     backgroundColor: "#FDBE3B",
-    //     height: 50,
-    //     borderRadius:15
-    // },
-    // textSign: {
-    //     fontWeight: 'bold',
-    //     fontSize: 18,
-    //     color: 'white'
-    // }
+    cardScrollView: {
+        position:'absolute',
+        bottom:0,
+        left:0,
+        right:0,
+        paddingVertical:10
+    },
+    cardView: {
+        elevation:2,
+        backgroundColor:'#FFF',
+        borderRadius:10,
+        marginHorizontal: 10,
+        shadowColor:'#000',
+        shadowRadius:5,
+        shadowOpacity: 0.3,
+        shadowOffset: {x:2,y:-2},
+        height: 200,
+        width: 200,
+        overflow: 'hidden'
+    },
+    cardImage: {
+        flex:3,
+        width:'100%',
+        height:'100%',
+        alignSelf: 'center'
+    },
+    title: {
+        fontSize: 12, 
+        fontWeight:'bold'
+    },
+    description: {
+        fontSize:12,
+        color:"#444"
+    },
+    cardInnerView: {
+        justifyContent:'center',
+        alignItems: 'center',
+        borderRadius:15
+    },
+    viewGroceryButton: {
+        height: 40,
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
+        borderColor:'#FDBE3B',
+        borderWidth:1
+    },
+    viewGroceryText: {
+        fontWeight: 'bold',
+        fontSize: 12,
+        color:'#FDBE3B'
+    },
     activity: {
         flex: 1,
         height: '100%',

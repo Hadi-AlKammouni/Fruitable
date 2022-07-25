@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { SafeAreaView, View, Text, Alert, ActivityIndicator } from 'react-native';
+import { SafeAreaView, View, Text, Alert, ActivityIndicator, Image, TextInput, Animated, TouchableOpacity } from 'react-native';
 import MapView, { Callout, Marker } from 'react-native-maps';
 import styles from './styles';
 import constants from '../../constants';
@@ -29,7 +29,7 @@ const HomeScreen = ( {navigation} ) => {
       if (status !== "granted") {
         Alert.alert(
           "Permission not granted",
-          "Allow the app to use location service.",
+          "Allow the app rto use location service.",
           [{text: "OK"}],
           {cancelable: false}
         )
@@ -102,6 +102,7 @@ const HomeScreen = ( {navigation} ) => {
         </View>:
         null 
       }
+      {/* Show Groceries as markers on map */}
         <MapView
         style={styles.container}
         initialRegion={{
@@ -113,7 +114,6 @@ const HomeScreen = ( {navigation} ) => {
         >  
         {groceries.map((item, key) => {
           var id = item._id
-          // setGroceryId(item._id)
           return(
           <Marker 
           coordinate={{latitude: item.latitude, longitude: item.longitude}}
@@ -137,8 +137,40 @@ const HomeScreen = ( {navigation} ) => {
             </Callout>
           </Marker>
         )})}
-
       </MapView>
+
+      {/* Show Groceries as horizontal scrollable view on map */}
+        <Animated.ScrollView
+          horizontal
+          scrollEventThrottle={1}
+          showsHorizontalScrollIndicator={false}
+          style={styles.cardScrollView}
+        >
+          {groceries.map((item, key) => {
+            return(
+            <View style={styles.cardView} key={key}>
+              <Image
+                source={{uri: item.picture}}
+                resizeMode='cover'
+                style={styles.cardImage}
+              />
+              <View style={{flex:2,padding:10}}>
+                <Text numberOfLines={1} style={styles.title}>{item.name}</Text>
+                <Text numberOfLines={1} style={styles.description}>{item.description}</Text>
+                <View style={styles.cardInnerView}>
+                  <TouchableOpacity style={styles.viewGroceryButton}
+                  onPress={()=>{
+                    setGroceryId(item._id)
+                    navigation.navigate('Grocery')
+                  }}>
+                    <Text style={styles.viewGroceryButton}>View Grocery</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          )})}
+        </Animated.ScrollView>
+
     </SafeAreaView>
   );
 }

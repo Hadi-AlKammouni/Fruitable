@@ -20,7 +20,6 @@ const ButtomTab = () => {
                     borderRadius: 15,
                     height: 50
                 },
-                headerShown: null
             }}  
         >
 
@@ -34,7 +33,8 @@ const ButtomTab = () => {
                         />
                     </View>
                 ),
-                unmountOnBlur: true
+                unmountOnBlur: true,
+                headerShown: null
             }}/>
 
             <Tab.Screen name="Order" component={OrdersScreen} options={{
