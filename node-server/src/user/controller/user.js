@@ -142,7 +142,7 @@ async function updateProfile(req, res) {
       },
     });
     
-    return res.send("Profile Successfully Updated");
+    return res.send({status: "200", message: "Profile Successfully Updated"});
   } catch (error) {
     console.log(error);
   }

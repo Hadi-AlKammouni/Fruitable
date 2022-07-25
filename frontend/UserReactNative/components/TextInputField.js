@@ -11,8 +11,8 @@ const TextInputField = ({ label, main_icon, placeholder, helper_icon, margin, se
     })
     
     const InputChange = (val) => {
+        setState(val)
         if( val.length !== 0){
-          setState(val)
           setdata({
             ...data,
             input: val,

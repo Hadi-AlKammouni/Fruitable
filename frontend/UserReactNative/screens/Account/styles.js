@@ -60,6 +60,17 @@ const styles = StyleSheet.create({
       backgroundColor: "red",
       height: 50,
       borderRadius:15
+    },
+    profileView: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 50
+    },
+    profileImage: {
+      borderRadius: 15,
+      margin: 10,
+      width:100, 
+      height:100,
     }
 });
 

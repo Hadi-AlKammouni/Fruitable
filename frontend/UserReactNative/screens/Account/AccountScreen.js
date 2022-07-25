@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TextInput, Image } from 'react-native';
+import { Text, View, TextInput, Image, Alert } from 'react-native';
 import ButtonComponent from '../../components/ButtonComponent';
 import styles from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useUser } from '../../context/user';
+import UploadImage from '../../components/UploadImage';
+import { ScrollView } from 'react-native-gesture-handler';
+import TextInputField from '../../components/TextInputField';
+import constants from '../../constants';
 
 const AccountScreen = () => {
 
@@ -24,6 +28,55 @@ const AccountScreen = () => {
     setInitialProfilePicture(profile_picture)
   }
 
+  const updateProfile = async () => {
+    try{
+        const token = await AsyncStorage.getItem('token');
+        const user_id = await AsyncStorage.getItem('user_id');
+        
+        if(!newFirstName && !newLastName && !newProfilePicture){
+          Alert.alert("You Didn't Change Any Thing")
+        } else {
+          // To change only what the user decided to change
+          if(!newFirstName){
+            setNewFirstName(initialFirstName)
+          }
+          if(!newLastName){
+            setNewLastName(initialLastName)
+          }
+          if(!newProfilePicture){
+            setNewProfilePicture(initialProfilePicture)
+          }
+    
+          const respone = await fetch(`${constants.fetch_url}update_profile?id=${user_id}`, {
+              method: 'POST',
+              headers: {
+                  'x-access-token': token,
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                  first_name: newFirstName,
+                  last_name: newLastName,
+                  picture: newProfilePicture
+              })
+          });
+          const data = await respone.json();
+          if(data.status === "200"){
+            await AsyncStorage.setItem('first_name',newFirstName);
+            await AsyncStorage.setItem('last_name',newLastName);
+            await AsyncStorage.setItem('profile_picture',newProfilePicture);
+            getUserInfo()
+            Alert.alert(data.message)
+          }
+        }
+
+
+        
+    } catch (error) {
+        console.log(error)
+    } 
+  }
+
+
   const logOut = async () => {
     await AsyncStorage.removeItem('token');
     await AsyncStorage.removeItem('user_id');
@@ -33,76 +86,40 @@ const AccountScreen = () => {
     setToken(null)
   }
 
-  const rederFisrtName = (label) => {        
-    return (
-      <Text style={styles.label_first}> {label} </Text>
-    );
-  }
-
-  const rederLastName = (label) => {        
-    return (
-      <Text style={styles.label_last}> {label} </Text>
-    );
-  }
-
-  const firstNameChange = (val) => {
-    if( val.length !== 0){
-      setNewFirstName(val)
-    } else{
-      setNewFirstName(val)    
-    }
-  }
-
-  const lastNameChange = (val) => {
-    if( val.length !== 0){
-      setNewLastName(val)
-    } else{
-      setNewLastName(val)    
-    }
-  }
-
   useEffect(() => {
     getUserInfo();
   }, []);
   
   return (
+    <ScrollView>
       <View style={styles.container}>  
         <View style={styles.footer} >
-          {!initialProfilePicture ? null :
-          <Image source={{uri: initialProfilePicture}} style={{width: 80, height:80}} />
-          }
-          {/* <UploadImage setState={initialProfilePicture}/> */}
+          <UploadImage setState={setNewProfilePicture} />
 
-          {rederFisrtName("First Name")}
-          <TextInput
-            style={styles.text}
-            placeholderStyle={styles.placeholderStyle}
+          <TextInputField 
+            label="First Name" 
+            main_icon={require("../../assets/icons/icons8-name-48.png")}
             placeholder={`${initialFirstName}`}
-            onChangeText={(val) => firstNameChange(val)}
-            // onChange={item => {
-            //   setFirstName(item.value);
-            // }}
+            setState={setNewFirstName}
           />
-          {rederLastName("Last Name")}
-          <TextInput
-            style={styles.text}
-            placeholderStyle={styles.placeholderStyle}
+
+          <TextInputField 
+            label="Last Name" 
+            main_icon={require("../../assets/icons/icons8-name-48.png")}
             placeholder={`${initialLastName}`}
-            onChangeText={(val) => lastNameChange(val)}
-            // onChange={item => {
-            //   setLastName(item.value);
-            // }}
+            setState={setNewLastName}
           />
 
           {/* Update Profile Button */}
           <ButtonComponent 
-            onPress={() => alert("Update Profile") }
+            onPress={() => updateProfile() }
             touchable_style={styles.button}
             border_color="#FDBE3B"
             text_style={styles.textSign}
             text_color="#FFFFFF"
             text="Update Profile"
           />
+
           {/* Log Out Button */}
           <ButtonComponent 
             onPress={() => logOut()}
@@ -114,6 +131,7 @@ const AccountScreen = () => {
           />
         </View>
       </View>
+      </ScrollView>
   );
 }
 
