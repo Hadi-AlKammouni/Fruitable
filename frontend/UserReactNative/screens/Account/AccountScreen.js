@@ -3,8 +3,6 @@ import { Text, View, TextInput, Image } from 'react-native';
 import ButtonComponent from '../../components/ButtonComponent';
 import styles from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import UploadImage from '../../components/UploadImage';
-import RootStackScreen from '../RootStackScreen';
 import { useUser } from '../../context/user';
 
 const AccountScreen = () => {
@@ -16,6 +14,7 @@ const AccountScreen = () => {
   const [initialLastName, setInitialLastName] = useState('');
   const [initialProfilePicture, setInitialProfilePicture] = useState('');
   const {setToken} = useUser();
+
   const getUserInfo = async () => {
     const fisrt_name = await AsyncStorage.getItem('first_name');
     const last_name = await AsyncStorage.getItem('last_name');
@@ -26,11 +25,11 @@ const AccountScreen = () => {
   }
 
   const logOut = async () => {
-    AsyncStorage.removeItem('token');
-    AsyncStorage.removeItem('user_id');
-    AsyncStorage.removeItem('first_name');
-    AsyncStorage.removeItem('last_name');
-    AsyncStorage.removeItem('profile_picture');
+    await AsyncStorage.removeItem('token');
+    await AsyncStorage.removeItem('user_id');
+    await AsyncStorage.removeItem('first_name');
+    await AsyncStorage.removeItem('last_name');
+    await AsyncStorage.removeItem('profile_picture');
     setToken(null)
   }
 
@@ -69,7 +68,7 @@ const AccountScreen = () => {
   return (
       <View style={styles.container}>  
         <View style={styles.footer} >
-          {console.log(initialProfilePicture)}
+          {/* {console.log(initialProfilePicture)} */}
           <Image source={{uri: initialProfilePicture}} style={{width: 80, height:80}} />
           {/* <UploadImage setState={initialProfilePicture}/> */}
 
