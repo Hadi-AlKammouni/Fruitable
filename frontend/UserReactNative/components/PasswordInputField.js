@@ -10,8 +10,8 @@ const PasswordInputField = ({ label, main_icon, placeholder, helper_icon1, helpe
     })
     
     const passwordInputChange = (val) => {
+        setState(val)
         if( val.length !== 0){
-          setState(val)
           setdata({
             ...data,
             password: val,

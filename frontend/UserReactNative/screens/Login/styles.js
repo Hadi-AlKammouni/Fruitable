@@ -51,6 +51,14 @@ const styles = StyleSheet.create({
         height: 50,
         borderRadius:15
     },
+    disableButton: {
+        justifyContent:'center',
+        alignItems: 'center',
+        marginTop: 50,
+        backgroundColor: "#AAA8A8",
+        height: 50,
+        borderRadius:15
+    },
     textSign: {
         fontWeight: 'bold',
         fontSize: 18,

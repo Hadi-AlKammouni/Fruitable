@@ -58,6 +58,7 @@ const LoginScreen = ({navigation}) => {
           await AsyncStorage.setItem('profile_picture',data.profile_picture);
         }
     } catch (error) {
+        alert("Wrong email and / or password.")
         console.log(error)
     }
   }
@@ -90,6 +91,16 @@ const LoginScreen = ({navigation}) => {
         />
 
         {/* Log In Button */}
+        {(!email || !password) ? 
+        <ButtonComponent 
+          onPress={() => alert("All Fields Are Required.")}
+          touchable_style={styles.disableButton}
+          border_color="#AAA8A8"
+          text_style={styles.textSign}
+          text_color="#FFFFFF"
+          text="Continue"
+        />
+        :
         <ButtonComponent
           onPress={() => LogIn()}
           touchable_style={styles.button}
@@ -98,6 +109,7 @@ const LoginScreen = ({navigation}) => {
           text_color="#FFFFFF"
           text="Log In"
         />
+        }
 
         {/* Create Account Button */}
         <ButtonComponent
