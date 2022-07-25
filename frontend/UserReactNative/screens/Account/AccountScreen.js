@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TextInput, Image, Alert } from 'react-native';
+import { View, Alert } from 'react-native';
 import ButtonComponent from '../../components/ButtonComponent';
 import styles from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -30,52 +30,47 @@ const AccountScreen = () => {
 
   const updateProfile = async () => {
     try{
-        const token = await AsyncStorage.getItem('token');
-        const user_id = await AsyncStorage.getItem('user_id');
-        
-        if(!newFirstName && !newLastName && !newProfilePicture){
-          Alert.alert("You Didn't Change Any Thing")
-        } else {
-          // To change only what the user decided to change
-          if(!newFirstName){
-            setNewFirstName(initialFirstName)
-          }
-          if(!newLastName){
-            setNewLastName(initialLastName)
-          }
-          if(!newProfilePicture){
-            setNewProfilePicture(initialProfilePicture)
-          }
-    
-          const respone = await fetch(`${constants.fetch_url}update_profile?id=${user_id}`, {
-              method: 'POST',
-              headers: {
-                  'x-access-token': token,
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                  first_name: newFirstName,
-                  last_name: newLastName,
-                  picture: newProfilePicture
-              })
-          });
-          const data = await respone.json();
-          if(data.status === "200"){
-            await AsyncStorage.setItem('first_name',newFirstName);
-            await AsyncStorage.setItem('last_name',newLastName);
-            await AsyncStorage.setItem('profile_picture',newProfilePicture);
-            getUserInfo()
-            Alert.alert(data.message)
-          }
+      const token = await AsyncStorage.getItem('token');
+      const user_id = await AsyncStorage.getItem('user_id');
+      if(!newFirstName && !newLastName && !newProfilePicture){
+        Alert.alert("You Didn't Change Any Thing")
+      } else {
+        // To change only what the user decided to change
+        if(!newFirstName){
+          setNewFirstName(initialFirstName)
         }
-
-
-        
+        if(!newLastName){
+          setNewLastName(initialLastName)
+        }
+        if(!newProfilePicture){
+          setNewProfilePicture(initialProfilePicture)
+        }
+  
+        const respone = await fetch(`${constants.fetch_url}update_profile?id=${user_id}`, {
+            method: 'POST',
+            headers: {
+                'x-access-token': token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                first_name: newFirstName,
+                last_name: newLastName,
+                picture: newProfilePicture
+            })
+        });
+        const data = await respone.json();
+        if(data.status === "200"){
+          await AsyncStorage.setItem('first_name',newFirstName);
+          await AsyncStorage.setItem('last_name',newLastName);
+          await AsyncStorage.setItem('profile_picture',newProfilePicture);
+          getUserInfo()
+          Alert.alert(data.message)
+        }
+      }
     } catch (error) {
-        console.log(error)
+      console.log(error)
     } 
   }
-
 
   const logOut = async () => {
     await AsyncStorage.removeItem('token');
@@ -91,7 +86,7 @@ const AccountScreen = () => {
   }, []);
   
   return (
-    <ScrollView>
+    <ScrollView style={{backgroundColor: "#fff"}}>
       <View style={styles.container}>  
         <View style={styles.footer} >
           <UploadImage setState={setNewProfilePicture} />

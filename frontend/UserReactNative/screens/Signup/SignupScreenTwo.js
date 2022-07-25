@@ -51,14 +51,27 @@ const SignupScreenTwo = ({navigation, route}) => {
         />
 
         {/* Continue Button */}
+        {(!email || !password || !confirmPassword) || (password !== confirmPassword) // Check if all fields are filled + if password fields are identical
+        ? 
         <ButtonComponent 
-          onPress={() => navigation.navigate("SignupScreenThree",{firstName,lastName,gender,email,password,confirmPassword})}
+          onPress={() => alert("All Fields Are Required.")}
+          touchable_style={styles.disableButton}
+          border_color="#AAA8A8"
+          text_style={styles.textSign}
+          text_color="#FFFFFF"
+          text="Continue"
+        />
+        :
+        <ButtonComponent 
+          onPress={() => navigation.navigate('SignupScreenThree',{firstName,lastName,gender,email,password})}
           touchable_style={styles.button}
           border_color="#FDBE3B"
           text_style={styles.textSign}
           text_color="#FFFFFF"
           text="Continue"
         />
+        }
+
       </Animatable.View>
     </View>
   );

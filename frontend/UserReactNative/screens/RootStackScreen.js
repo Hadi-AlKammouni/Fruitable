@@ -5,7 +5,6 @@ import LoginScreen from "./Login/LoginScreen";
 import SignupScreenOne from './Signup/SignupScreenOne';
 import SignupScreenTwo from "./Signup/SignupScreenTwo";
 import SignupScreenThree from "./Signup/SignupScreenThree";
-import SignupScreenFour from "./Signup/SignupScreenFour";
 import UserScreen from './Userscreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useUser } from "../context/user";
@@ -55,7 +54,6 @@ const RootStackScreen = () => {
         <RootStack.Screen name="SignupScreenOne" component={SignupScreenOne} />
         <RootStack.Screen name="SignupScreenTwo" component={SignupScreenTwo} />
         <RootStack.Screen name="SignupScreenThree" component={SignupScreenThree} />
-        <RootStack.Screen name="SignupScreenFour" component={SignupScreenFour} />
         </>)
         :
         (

@@ -10,7 +10,7 @@ const SignupScreenOne = ({navigation}) => {
 
   const [firstName, setFirstName] = useState('')   
   const [lastName, setLastName] = useState('')   
-  const [gender, setGender] = useState('')   
+  const [gender, setGender] = useState('male')   
 
   return (
     <View style={styles.container}>
@@ -43,6 +43,16 @@ const SignupScreenOne = ({navigation}) => {
         <RadioButton setState={setGender}/>
 
         {/* Continue Button */}
+        {(!firstName || !lastName) ? 
+        <ButtonComponent 
+          onPress={() => alert("All Fields Are Required.")}
+          touchable_style={styles.disableButton}
+          border_color="#AAA8A8"
+          text_style={styles.textSign}
+          text_color="#FFFFFF"
+          text="Continue"
+        />
+        :
         <ButtonComponent 
           onPress={() => navigation.navigate('SignupScreenTwo',{firstName,lastName,gender})}
           touchable_style={styles.button}
@@ -51,8 +61,8 @@ const SignupScreenOne = ({navigation}) => {
           text_color="#FFFFFF"
           text="Continue"
         />
-        
-
+        }
+      
         {/* Already a Member? Log In Button */}
         <ButtonComponent 
           onPress={() => navigation.navigate('LoginScreen')}
