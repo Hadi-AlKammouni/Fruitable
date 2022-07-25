@@ -68,8 +68,9 @@ const AccountScreen = () => {
   return (
       <View style={styles.container}>  
         <View style={styles.footer} >
-          {/* {console.log(initialProfilePicture)} */}
+          {!initialProfilePicture ? null :
           <Image source={{uri: initialProfilePicture}} style={{width: 80, height:80}} />
+          }
           {/* <UploadImage setState={initialProfilePicture}/> */}
 
           {rederFisrtName("First Name")}
