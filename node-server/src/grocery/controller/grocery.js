@@ -43,9 +43,9 @@ async function register (req, res) {
     const token = jwt.sign(
       { grocery_id: grocery._id, email },
       process.env.TOKEN_KEY,
-      {
-        expiresIn: "2h",
-      }
+      // {
+      //   expiresIn: "2h",
+      // }
     );
     // Save grocery token
     grocery.token = token;
@@ -79,9 +79,9 @@ async function login (req, res) {
       const token = jwt.sign(
         { grocery_id: grocery._id, email },
         process.env.TOKEN_KEY,
-        {
-          expiresIn: "2h",
-        }
+        // {
+        //   expiresIn: "2h",
+        // }
       );
       
       // Save grocery token

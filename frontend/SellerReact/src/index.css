@@ -14,7 +14,7 @@
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
     font-family: 'Inter', sans-serif; 
 }
 
@@ -24,6 +24,14 @@
     width: 97%;
     border-radius: 2rem;
     background-color: var(--glass);
-    overflow: hidden;
+    /* overflow: hidden; */
     grid-template-columns: 11rem auto;
+    background-color: var(--glass);
+}
+
+.View{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%
 }

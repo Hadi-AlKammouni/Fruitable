@@ -18,16 +18,18 @@ const App = () => {
     <BrowserRouter>
       <div className="App">
         <div className='AppGlass'>
-          <Sidebar/>
-          <Routes>
-            <Route path="/" element={<Login/>}></Route>
-            <Route path="home" element={<Home/>}></Route>
-            <Route path="stock" element={<Stock/>}></Route>
-            <Route path="add_item" element={<AddItem/>}></Route>
-            <Route path="edit_item" element={<EditItem/>}></Route>
-            <Route path="manage_orders" element={<ManageOrders/>}></Route>
-            <Route path="signup" element={<Signup/>}></Route>
-        </Routes>
+            <Sidebar/>
+          <div className="View">
+            <Routes>
+              <Route path="/" element={<Login/>}></Route>
+              <Route path="home" element={<Home/>}></Route>
+              <Route path="stock" element={<Stock/>}></Route>
+              <Route path="add_item" element={<AddItem/>}></Route>
+              <Route path="edit_item" element={<EditItem/>}></Route>
+              <Route path="manage_orders" element={<ManageOrders/>}></Route>
+              <Route path="signup" element={<Signup/>}></Route>
+          </Routes>
+        </div>
         </div>
       </div>
     </BrowserRouter>
