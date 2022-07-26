@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './styles.css'
 import constants from "../../constants";
-import { useGrocery } from "../../context/grocery";
 import {useNavigate} from 'react-router-dom';
 
 const Login = () => {
@@ -9,10 +8,6 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-
-    const {
-      setGroceryToken
-    } = useGrocery()
 
     // Login
     const logIn = async () => {
@@ -34,8 +29,7 @@ const Login = () => {
           if(data._id){
             localStorage.setItem("_id",data._id)
             localStorage.setItem("token",data.token)
-            setGroceryToken(data.token)
-            navigate('/Signup')
+            navigate('/home')
           }
         }
 
@@ -44,6 +38,19 @@ const Login = () => {
           console.log(error)
         }
     }
+
+    // Check if the is logged in
+    // If yes, navigate to home page directly
+    const isToken = () => {
+      const token_storage = localStorage.getItem('token')
+      if(token_storage){
+        navigate('/home')
+      }
+    }
+
+    useEffect(() => {
+      isToken()
+    }, []);
 
     return (
       <div className="background">
