@@ -1,12 +1,20 @@
 import React, { useState } from "react";
 import './styles.css'
 import constants from "../../constants";
+import { useGrocery } from "../../context/grocery";
+import {useNavigate} from 'react-router-dom';
 
 const Login = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
+    const {
+      setGroceryToken
+    } = useGrocery()
+
+    // Login
     const logIn = async () => {
       try{
         if(!(email && password)){
@@ -26,13 +34,15 @@ const Login = () => {
           if(data._id){
             localStorage.setItem("_id",data._id)
             localStorage.setItem("token",data.token)
+            setGroceryToken(data.token)
+            navigate('/Signup')
           }
         }
 
         } catch (error) {
           alert("Wrong email and / or password.")
           console.log(error)
-      }
+        }
     }
 
     return (

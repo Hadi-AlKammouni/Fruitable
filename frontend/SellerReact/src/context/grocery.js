@@ -5,6 +5,7 @@ export const GroceryContext = React.createContext();
 const GroceryProvider = ({children}) => {
     
     const [groceryId, setGroceryId] = useState('')
+    const [groceryToken, setGroceryToken] = useState('')
     const [groceryName, setGroceryName] = useState('')
     const [groceryPhoneNumber, setGroceryPhoneNumber] = useState('')
     const [groceyDescription, setGroceryDescription] = useState('')
@@ -20,6 +21,7 @@ const GroceryProvider = ({children}) => {
         <GroceryContext.Provider 
         value={{
             groceryId, setGroceryId,
+            groceryToken, setGroceryToken,
             groceryName, setGroceryName, 
             groceryPhoneNumber, setGroceryPhoneNumber, 
             groceyDescription, setGroceryDescription, 
@@ -42,6 +44,7 @@ export default GroceryProvider;
 export const useGrocery = () => {
     const {
         groceryId, setGroceryId,
+        groceryToken, setGroceryToken,
         groceryName, setGroceryName, 
         groceryPhoneNumber, setGroceryPhoneNumber,  
         groceyDescription, setGroceryDescription, 
@@ -55,6 +58,7 @@ export const useGrocery = () => {
 
     return {
         groceryId, setGroceryId,
+        groceryToken, setGroceryToken,
         groceryName, setGroceryName,
         groceryPhoneNumber, setGroceryPhoneNumber,  
         groceyDescription, setGroceryDescription, 
