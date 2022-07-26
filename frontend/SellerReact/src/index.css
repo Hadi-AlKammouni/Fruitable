@@ -1,7 +1,9 @@
 :root {
     --glass: rgba(255, 255, 255, 0.54);
+    --activeItem: #FFDC92;
+    --pink: #FDBE3B;
 }
-/* FDBE3B */
+
 .App {
     background: linear-gradient(
         106.37deg,
@@ -24,5 +26,4 @@
     background-color: var(--glass);
     overflow: hidden;
     grid-template-columns: 11rem auto;
-
 }
