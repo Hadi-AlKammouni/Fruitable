@@ -1,5 +1,5 @@
 import {BrowserRouter, Routes, Route, useLocation} from "react-router-dom";
-// import Login from "./pages/Login";
+import Login from "./pages/Login/Login";
 // import Signup from "./pages/Signup.";
 import Sidebar from './components/Sidebar/Sidebar'
 import './index.css';
@@ -16,15 +16,15 @@ const App = () => {
     <BrowserRouter>
       <div className="App">
         <div className='AppGlass'>
-          <Sidebar/>
+          {/* <Sidebar/> */}
           <Routes>
-          <Route path="home" element={<Home/>}></Route>
+          {/* <Route path="/" element={<Home/>}></Route>
           <Route path="stock" element={<Stock/>}></Route>
           <Route path="add_item" element={<AddItem/>}></Route>
           <Route path="edit_item" element={<EditItem/>}></Route>
-          <Route path="manage_orders" element={<ManageOrders/>}></Route>
-          {/* <Route path="login" element={<Login/>}></Route>
-          <Route path="signup" element={<Signup/>}></Route> */}
+          <Route path="manage_orders" element={<ManageOrders/>}></Route> */}
+          <Route path="/" element={<Login/>}></Route>
+          {/* <Route path="signup" element={<Signup/>}></Route> */}
         </Routes>
         </div>
       </div>

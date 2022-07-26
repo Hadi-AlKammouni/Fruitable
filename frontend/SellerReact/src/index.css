@@ -1,7 +1,7 @@
 :root {
     --glass: rgba(255, 255, 255, 0.54);
     --activeItem: #FFDC92;
-    --pink: #FDBE3B;
+    --yellow: #FDBE3B;
 }
 
 .App {
