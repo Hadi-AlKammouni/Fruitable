@@ -38,9 +38,14 @@ async function getOrder(id) {
   return await Order.findById(id);
 };
 
+async function getGroceryById(id) {
+  return await Grocery.findById(id);
+};
+
 module.exports = {
     addNewItem,
     getGroceryStock,
     getGroceryItem,
     getOrder,
+    getGroceryById,
 } 

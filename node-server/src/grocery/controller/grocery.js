@@ -1,4 +1,4 @@
-const { addNewItem, getGroceryStock, getGroceryItem, getOrder } = require('../service');
+const { addNewItem, getGroceryStock, getGroceryItem, getOrder, getGroceryById } = require('../service');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -244,6 +244,17 @@ async function manageOrder(req, res) {
   }
 };
 
+// View grocery logic
+async function viewGrocery(req, res) {
+  try {
+      const id = req.query.id;
+      const result = await getGroceryById(id);
+    return res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 //Authenticating the gorcery
 async function auth (req, res) {
   res.status(200).send("Welcome 🙌 ");
@@ -260,5 +271,6 @@ module.exports = {
   viewStock,
   viewItem,
   manageOrder,
+  viewGrocery,
   auth,
 };
