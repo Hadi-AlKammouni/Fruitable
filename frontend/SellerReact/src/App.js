@@ -1,6 +1,7 @@
 // import {BrowserRouter, Routes, Route} from "react-router-dom";
 // import Login from "./pages/Login";
 // import Signup from "./pages/Signup.";
+import Sidebar from './components/Sidebar/Sidebar';
 import './index.css';
 
 const App = () => {
@@ -8,7 +9,7 @@ const App = () => {
     <div className="App">
       {/* Hello World! */}
       <div className='AppGlass'>
-
+        <Sidebar/>
       </div>
     </div>
     // <BrowserRouter>
