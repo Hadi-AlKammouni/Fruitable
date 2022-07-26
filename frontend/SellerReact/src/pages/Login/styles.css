@@ -1,0 +1,78 @@
+.background {
+  background-color:bisque;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+  
+.loginBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  min-height: 400px;
+  background-color:#f3c86e;
+  border-radius: 20px;
+  padding: 20px;
+  border: 2px solid white;
+}
+
+.title {
+  color: black;
+  font-size: 33px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 25px;
+}
+
+.logColor {
+    color: black;
+}
+
+.log {
+    border: none;
+    outline: none;
+    height: 35px;
+    font-size: 20px;
+    background: bisque;
+    color: black;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.p {
+    color: gray;
+}
+
+.loginBox input,
+.log {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.loginBox input,
+.loginBox input,
+.loginBox input {
+  border: none;
+  border-bottom: 2px solid bisque;
+  height: 30px;
+  background: transparent;
+  font-size: 16px;
+}
+
+.loginBox input:hover {
+  border: 1px solid bisque;
+  box-shadow: bisque;
+}
+
+.back {
+  color: black;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: underline;
+}
