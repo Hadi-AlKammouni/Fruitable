@@ -9,6 +9,9 @@ const Login = () => {
 
     const logIn = async () => {
       try{
+        if(!(email && password)){
+          alert("Both Fields Must Be Filled.")
+        } else{
           const response = await fetch(`${constants.fetch_url}login`, {
               method: 'POST',
               headers: {
@@ -20,6 +23,15 @@ const Login = () => {
               })
           });
           const data = await response.json();
+          console.log(data)
+          localStorage.setItem("_id",data._id)
+          localStorage.setItem("name",data.name)
+          localStorage.setItem("categories",data.categories)
+          localStorage.setItem("phone_number",data.phone_number)
+          localStorage.setItem("picture",data.picture)
+          localStorage.setItem("description",data.description)
+          localStorage.setItem("token",data.token)
+        }
 
         } catch (error) {
           alert("Wrong email and / or password.")
@@ -46,7 +58,7 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <button className="log" value="Login" id="login" onClick={logIn}> Login </button>
+            <button className={!(email && password) ? "disable" : "log"} value="Login" id="login" onClick={logIn}> Login </button>
             <p className="p">Don' have an account?</p>
             <h6 role="button" className="back" >Sign up</h6>
         </div>
