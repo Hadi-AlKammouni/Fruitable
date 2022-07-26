@@ -23,14 +23,10 @@ const Login = () => {
               })
           });
           const data = await response.json();
-          console.log(data)
-          localStorage.setItem("_id",data._id)
-          localStorage.setItem("name",data.name)
-          localStorage.setItem("categories",data.categories)
-          localStorage.setItem("phone_number",data.phone_number)
-          localStorage.setItem("picture",data.picture)
-          localStorage.setItem("description",data.description)
-          localStorage.setItem("token",data.token)
+          if(data._id){
+            localStorage.setItem("_id",data._id)
+            localStorage.setItem("token",data.token)
+          }
         }
 
         } catch (error) {
