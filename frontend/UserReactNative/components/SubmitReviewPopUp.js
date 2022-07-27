@@ -8,7 +8,7 @@ const SubmitReviewPopUp = () => {
 
     return(
         <View style={styles.container}>
-            <Button title="Submit Review" style={styles.btn_color} color={"#FDBE3B"} onPress={() => setShow(true)} />
+            <Button title="Submit Review" color={"#FDBE3B"} onPress={() => setShow(true)} />
             <Modal transparent={true} visible={show}>
                 <View style={styles.main_screen}>
                     <View style={styles.popup}>

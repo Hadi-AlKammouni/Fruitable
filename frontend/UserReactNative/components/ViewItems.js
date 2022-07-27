@@ -2,28 +2,25 @@ import React, { useState, useEffect } from "react";
 import { Dimensions, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, FlatList, Image, Modal, Button } from "react-native";
 import { LogBox } from "react-native";
 import constants from '../constants';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useGrocery } from "../context/grocery";
 import { useUser } from "../context/user";
 
-const ViewItems = () => {
+const ViewItems = ({setIsItems}) => {
 
     const {
-        groceryId,
         groceryItems,
-        groceryOrder,setGroceryOrder
+        groceryOrder,
     } = useGrocery()
     const {userOrder,token} = useUser()
 
-    const [category,setCategory] = useState('')
+    // const [category,setCategory] = useState('')
     const [fetchedItems,setFetchedItems] = useState([])
     const [items,setItems] = useState([])
-    const categories = ["Fruits", "Vegetables"]
+    // const categories = ["Fruits", "Vegetables"]
     const elements = []
-    // const [order,setOrder] = useState(false) // After creating order, the user is able to pick items
     // To show and hide item popup
     const [show, setShow] = useState(false)
-    const [selectedItem, setSelectedItem] = useState({})
+    const [selectedItem, setSelectedItem] = useState({}) // To open the popup upon click
 
     // Get items of specific grocery
     const getItems = async () => {
@@ -50,6 +47,7 @@ const ViewItems = () => {
     //     setCategory(category)
     // }
 
+    // Pop up to veiw each item and add to order
     const ItemPopUp = ({item})=>{
         return (
             <View style={styles.item_container}>
@@ -63,7 +61,7 @@ const ViewItems = () => {
                                 <Button title="Add To Cart" color={"#FDBE3B"} 
                                     onPress={() => {
                                         addToCart(item.name,item.price,item.picture) 
-                                        // setShow(false)
+                                        setShow(false)
                                     }} />
                             </View>
                             <Button title="Close" color={"#000"} onPress={() => setShow(false)} />
@@ -83,17 +81,6 @@ const ViewItems = () => {
         return(
             <TouchableOpacity onPress={handleOpen}>
                 <View key={index} style={styles.item} >
-                    {/* {order ? 
-                    <View style={styles.img}>
-                        <TouchableOpacity onPress={()=> addToCart(item.name,item.price,item.picture)}> 
-                                                    */}
-                            {/* <Image style={styles.add_item} source={require("../assets/icons/icons8-add-32.png")} /> */}
-                        {/* </TouchableOpacity>
-
-                    </View>
-                    :
-                    null
-                    } */}
                     <Text style={styles.item_body}>
                         <Text style={styles.item_name}>
                             {item.name}
@@ -136,6 +123,7 @@ const ViewItems = () => {
             const data = await response.json();
             if(data.status === "200"){
                 alert(data.message)
+                setIsItems(true)
             }
       
         } catch (error) {
@@ -150,8 +138,8 @@ const ViewItems = () => {
 
     return(
         <SafeAreaView style={styles.container}>
-            <View style={styles.list_tab}>
-                {/* {
+            {/* <View style={styles.list_tab}>
+                {
                     categories.map((e, key) => (
                         <TouchableOpacity key={key} style={[styles.btn, category === e && styles.active_btn]} onPress={() => setStatusFilter(e)}>
                             <Text style={[styles.text, category === e && styles.active_text]}>
@@ -159,13 +147,8 @@ const ViewItems = () => {
                             </Text>
                         </TouchableOpacity>
                     ))
-                } */}
-            </View>
-            {/* <TouchableOpacity style={styles.create_btn} onPress={() => createOrder()}>
-                    <Text style={[styles.text,styles.active_text]}>
-                        Create New Order            
-                    </Text>
-            </TouchableOpacity> */}
+                }
+            </View> */}
             <FlatList 
                 data={items} 
                 keyExtractor={(e, item) => item.toString()} 

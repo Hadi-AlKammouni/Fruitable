@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, SafeAreaView, ScrollView, Image, View } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, ScrollView, Image, View, Button } from 'react-native';
 import GroceryRate from '../components/GroceryRate';
-// import ReviewsPopUp from '../components/ReviewsPopUp';
 import SubmitReviewPopUp from '../components/SubmitReviewPopUp';
 import ViewItems from '../components/ViewItems';
-import ButtonComponent from '../components/ButtonComponent';
 import constants from '../constants';
 import { LogBox } from "react-native";
 import { useGrocery } from '../context/grocery';
@@ -25,6 +23,7 @@ const GroceyScreen = ( {navigation} ) => {
   } = useGrocery()
 
   const [grocery, setGrocery] = useState([])
+  const [isItems, setIsItems] = useState(false)
 
   const getGrocery = async () => {
     try {
@@ -48,7 +47,7 @@ const GroceyScreen = ( {navigation} ) => {
   useEffect(() => {
     LogBox.ignoreLogs(["VirtualizedLists should never be nested"])
     getGrocery();
-  }, [groceryId]);
+  }, [groceryId,isItems]);
 
   return (
     <SafeAreaView style={styles.container} >
@@ -58,15 +57,11 @@ const GroceyScreen = ( {navigation} ) => {
         <Text style={styles.description}> {groceyDescription} </Text>
         <GroceryRate />
         <SubmitReviewPopUp />
-        <ViewItems />
-        <ButtonComponent 
-          onPress={() => navigation.navigate("Order") }
-          touchable_style={styles.button}
-          border_color="#FDBE3B"
-          text_style={styles.textSign}
-          text_color="#FDBE3B"
-          text="My Cart"
-        />
+        <ViewItems setIsItems={setIsItems}/>
+        {isItems ? 
+            <Button title="View Cart" color={"#FDBE3B"} onPress={() => navigation.navigate("Order")} />
+        : null
+        }
       </ScrollView>
     </SafeAreaView>
   );
