@@ -16,10 +16,9 @@ const ViewItems = () => {
     const [category,setCategory] = useState('')
     const [fetchedItems,setFetchedItems] = useState([])
     const [items,setItems] = useState([])
-    const [fetchedCategories, setFetchedCategories] = useState([])
-    const categories = []
-    const grad = []
-    const [order,setOrder] = useState(false) // After creating order, the user is able to pick items
+    const categories = ["Fruits", "Vegetables"]
+    const elements = []
+    // const [order,setOrder] = useState(false) // After creating order, the user is able to pick items
     
     // Get items of specific grocery
     const getItems = async () => {
@@ -27,11 +26,10 @@ const ViewItems = () => {
             for (const item in groceryItems) {
                 const response = await fetch(`${constants.fetch_url}get_item?id=${groceryItems[item]}`);
                 const result = await response.json();
-                categories.push(result.category)
-                grad.push(result)
+                elements.push(result)
             }
-            setFetchedCategories(categories)
-            setFetchedItems(grad)
+            setFetchedItems(elements)
+            setItems(elements)
         } catch (error) {
           console.error(error)
         }
@@ -52,17 +50,17 @@ const ViewItems = () => {
         return(
             <>
                 <View key={index} style={styles.item}>
-                    {order ? 
+                    {/* {order ? 
                     <View style={styles.img}>
                         <TouchableOpacity onPress={()=> addToCart(item.name,item.price,item.picture)}> 
-                                                   
-                            <Image style={styles.add_item} source={require("../assets/icons/icons8-add-32.png")} />
-                        </TouchableOpacity>
+                                                    */}
+                            {/* <Image style={styles.add_item} source={require("../assets/icons/icons8-add-32.png")} /> */}
+                        {/* </TouchableOpacity>
 
                     </View>
                     :
                     null
-                    }
+                    } */}
                     <Text style={styles.item_body}>
                         <Text style={styles.item_name}>
                             {item.name}
@@ -86,64 +84,64 @@ const ViewItems = () => {
         return <View style={{height: 1, backgroundColor: '#f1f1f1'}}/>
     }
 
-    // Creating order
-    const createOrder = async () => {
-        try {
-            const user_id = await AsyncStorage.getItem('user_id');
-            const token = await AsyncStorage.getItem('token');
-            // const grocery_id = props.id
+    // // Creating order
+    // const createOrder = async () => {
+    //     try {
+    //         const user_id = await AsyncStorage.getItem('user_id');
+    //         const token = await AsyncStorage.getItem('token');
+    //         // const grocery_id = props.id
            
-            const response = await fetch(`${constants.fetch_url}create_order`, {
-                method: 'POST',
-                headers: {
-                    'x-access-token': token,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    user: user_id,
-                    grocery: groceryId
-                })
-            });
-            const data = await response.json();
-            setOrder(true) // To enable picking items
-            setGroceryOrder(data._id)
-            if(data._id){
-                alert("Order is created, pick items now")
-            }
-            // props.setState(data._id)
+    //         const response = await fetch(`${constants.fetch_url}create_order`, {
+    //             method: 'POST',
+    //             headers: {
+    //                 'x-access-token': token,
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify({
+    //                 user: user_id,
+    //                 grocery: groceryId
+    //             })
+    //         });
+    //         const data = await response.json();
+    //         setOrder(true) // To enable picking items
+    //         setGroceryOrder(data._id)
+    //         if(data._id){
+    //             alert("Order is created, pick items now")
+    //         }
+    //         // props.setState(data._id)
             
       
-        } catch (error) {
-          console.log(error);
-        }
-    };
+    //     } catch (error) {
+    //       console.log(error);
+    //     }
+    // };
 
-    // Adding item to order
-    const addToCart = async (name,price,picture) => {
-        try {
-            const token = await AsyncStorage.getItem('token');
-            const response = await fetch(`${constants.fetch_url}add_to_order`, {
-                method: 'POST',
-                headers: {
-                    'x-access-token': token,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    order: groceryOrder,
-                    name: name,
-                    price: price,
-                    picture: picture
-                })
-            });
-            const data = await response.json();
-            if(data.status === "200"){
-                alert(data.message)
-            }
+    // // Adding item to order
+    // const addToCart = async (name,price,picture) => {
+    //     try {
+    //         const token = await AsyncStorage.getItem('token');
+    //         const response = await fetch(`${constants.fetch_url}add_to_order`, {
+    //             method: 'POST',
+    //             headers: {
+    //                 'x-access-token': token,
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify({
+    //                 order: groceryOrder,
+    //                 name: name,
+    //                 price: price,
+    //                 picture: picture
+    //             })
+    //         });
+    //         const data = await response.json();
+    //         if(data.status === "200"){
+    //             alert(data.message)
+    //         }
       
-        } catch (error) {
-          console.log(error);
-        }
-    };
+    //     } catch (error) {
+    //       console.log(error);
+    //     }
+    // };
 
     useEffect(() => {
         LogBox.ignoreLogs(["VirtualizedLists should never be nested"])
@@ -154,7 +152,7 @@ const ViewItems = () => {
         <SafeAreaView style={styles.contaner}>
             <View style={styles.list_tab}>
                 {
-                    fetchedCategories.map((e, key) => (
+                    categories.map((e, key) => (
                         <TouchableOpacity key={key} style={[styles.btn, category === e && styles.active_btn]} onPress={() => setStatusFilter(e)}>
                             <Text style={[styles.text, category === e && styles.active_text]}>
                             {e}
@@ -163,11 +161,11 @@ const ViewItems = () => {
                     ))
                 }
             </View>
-            <TouchableOpacity style={styles.create_btn} onPress={() => createOrder()}>
+            {/* <TouchableOpacity style={styles.create_btn} onPress={() => createOrder()}>
                     <Text style={[styles.text,styles.active_text]}>
                         Create New Order            
                     </Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <FlatList 
                 data={items} 
                 keyExtractor={(e, item) => item.toString()} 

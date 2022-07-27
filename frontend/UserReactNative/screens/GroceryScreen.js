@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, SafeAreaView, ScrollView, Image, View } from 'react-native';
 import GroceryRate from '../components/GroceryRate';
-import ReviewsPopUp from '../components/ReviewsPopUp';
+// import ReviewsPopUp from '../components/ReviewsPopUp';
 import SubmitReviewPopUp from '../components/SubmitReviewPopUp';
 import ViewItems from '../components/ViewItems';
 import ButtonComponent from '../components/ButtonComponent';
