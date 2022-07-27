@@ -4,6 +4,7 @@ import { LogBox } from "react-native";
 import constants from '../constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useGrocery } from "../context/grocery";
+import { useUser } from "../context/user";
 
 const ViewItems = () => {
 
@@ -12,6 +13,7 @@ const ViewItems = () => {
         groceryItems,
         groceryOrder,setGroceryOrder
     } = useGrocery()
+    const {userOrder,token} = useUser()
 
     const [category,setCategory] = useState('')
     const [fetchedItems,setFetchedItems] = useState([])
@@ -58,7 +60,11 @@ const ViewItems = () => {
                             <Text style={styles.item_info}>{item.name}</Text>
                             <Text style={styles.item_info}>LBP {item.price} for {item.qauntity} Kg</Text>
                             <View style={styles.cart_button}>
-                            <Button title="Add To Cart" color={"#FDBE3B"} onPress={() => setShow(false)} />
+                                <Button title="Add To Cart" color={"#FDBE3B"} 
+                                    onPress={() => {
+                                        addToCart(item.name,item.price,item.picture) 
+                                        // setShow(false)
+                                    }} />
                             </View>
                             <Button title="Close" color={"#000"} onPress={() => setShow(false)} />
                         </View>
@@ -111,64 +117,31 @@ const ViewItems = () => {
         return <View style={{height: 1, backgroundColor: '#f1f1f1'}}/>
     }
 
-    // // Creating order
-    // const createOrder = async () => {
-    //     try {
-    //         const user_id = await AsyncStorage.getItem('user_id');
-    //         const token = await AsyncStorage.getItem('token');
-    //         // const grocery_id = props.id
-           
-    //         const response = await fetch(`${constants.fetch_url}create_order`, {
-    //             method: 'POST',
-    //             headers: {
-    //                 'x-access-token': token,
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             body: JSON.stringify({
-    //                 user: user_id,
-    //                 grocery: groceryId
-    //             })
-    //         });
-    //         const data = await response.json();
-    //         setOrder(true) // To enable picking items
-    //         setGroceryOrder(data._id)
-    //         if(data._id){
-    //             alert("Order is created, pick items now")
-    //         }
-    //         // props.setState(data._id)
-            
+    // Adding item to order
+    const addToCart = async (name,price,picture) => {
+        try {
+            const response = await fetch(`${constants.fetch_url}add_to_order`, {
+                method: 'POST',
+                headers: {
+                    'x-access-token': token,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    order: userOrder,
+                    name: name,
+                    price: price,
+                    picture: picture
+                })
+            });
+            const data = await response.json();
+            if(data.status === "200"){
+                alert(data.message)
+            }
       
-    //     } catch (error) {
-    //       console.log(error);
-    //     }
-    // };
-
-    // // Adding item to order
-    // const addToCart = async (name,price,picture) => {
-    //     try {
-    //         const token = await AsyncStorage.getItem('token');
-    //         const response = await fetch(`${constants.fetch_url}add_to_order`, {
-    //             method: 'POST',
-    //             headers: {
-    //                 'x-access-token': token,
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             body: JSON.stringify({
-    //                 order: groceryOrder,
-    //                 name: name,
-    //                 price: price,
-    //                 picture: picture
-    //             })
-    //         });
-    //         const data = await response.json();
-    //         if(data.status === "200"){
-    //             alert(data.message)
-    //         }
-      
-    //     } catch (error) {
-    //       console.log(error);
-    //     }
-    // };
+        } catch (error) {
+          console.log(error);
+        }
+    };
 
     useEffect(() => {
         LogBox.ignoreLogs(["VirtualizedLists should never be nested"])

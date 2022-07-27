@@ -15,7 +15,7 @@ const HomeScreen = ( {navigation} ) => {
   const [isLoading, setIsLoading] = useState(true)
   const [groceries, setGroceries] = useState([])
   const {setGroceryId,} = useGrocery()
-  const {setUserOrder} = useUser()
+  const {setUserOrder,setToken} = useUser()
   
   // To get user live location:
   // 1.If user give access to get his location, 
@@ -94,8 +94,7 @@ const HomeScreen = ( {navigation} ) => {
     try {
         const user_id = await AsyncStorage.getItem('user_id');
         const token = await AsyncStorage.getItem('token');
-        // const grocery_id = props.id
-      
+        setToken(token)      
         const response = await fetch(`${constants.fetch_url}create_order`, {
             method: 'POST',
             headers: {
@@ -104,7 +103,6 @@ const HomeScreen = ( {navigation} ) => {
             },
             body: JSON.stringify({
                 user: user_id,
-                // grocery: groceryId
             })
         });
         const data = await response.json();
