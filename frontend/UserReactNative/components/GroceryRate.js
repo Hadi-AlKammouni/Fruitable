@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, Image, View } from 'react-native';
 import { useGrocery } from '../context/grocery';
+import ReviewsPopUp from './ReviewsPopUp';
 
 const GroceryRate = () => {
 
@@ -49,6 +50,7 @@ const GroceryRate = () => {
               </View>
           )})
         }
+        <ReviewsPopUp/>
       </View>
     );
 }
@@ -62,13 +64,14 @@ const styles = StyleSheet.create({
   img_rating: {
     width: 40,
     height: 40,
-    resizeMode: 'cover'
+    resizeMode: 'cover',
+    marginTop: 4
   },
   txt_rating: {
     fontWeight: 'bold',
     textAlign: 'center',
     fontSize: 23,
-    marginTop: 4,
+    marginTop: 8,
     marginRight: 15 
   },
   btn: {

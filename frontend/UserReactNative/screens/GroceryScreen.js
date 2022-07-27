@@ -57,7 +57,6 @@ const GroceyScreen = ( {navigation} ) => {
         <Text style={styles.major_info}> {groceryName} - {groceryPhoneNumber}</Text>
         <Text style={styles.description}> {groceyDescription} </Text>
         <GroceryRate />
-        <ReviewsPopUp />
         <SubmitReviewPopUp />
         <ViewItems />
         <ButtonComponent 

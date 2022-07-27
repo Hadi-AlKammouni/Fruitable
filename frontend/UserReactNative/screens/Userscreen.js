@@ -10,13 +10,13 @@ const RootStack = createStackNavigator();
 const Userscreen = () => {
   return(
     <RootStack.Navigator screenOptions={{
-      headerStyle: {
-          backgroundColor: '#FDBE3B'
-      },
-      headerShown:false,
+      // headerStyle: {
+      //     backgroundColor: '#FDBE3B'
+      // },
+      // headerShown:false,
       headerTintColor: '#000000',
       headerTitleStyle: {
-          fontWeight: 'bold'
+          fontWeight: 'bold',
       }
     }}>
         <RootStack.Screen name="Home" component={HomeScreen} />

@@ -12,7 +12,7 @@ const ReviewsPopUp = () => {
 
         return(
             <View style={styles.container}>
-                <Button title="View Recent Reviews" style={styles.btn_color} color={"#000"} onPress={() => setShow(true)} />
+                <Button title="Recent Reviews" color={"#FDBE3B"} onPress={() => setShow(true)} />
                 <Modal transparent={true} visible={show}>
                     <View style={styles.main_screen}>
                         <View style={styles.popup}>
@@ -38,7 +38,7 @@ const ReviewsPopUp = () => {
 const styles = StyleSheet.create({
     container: {
         flex:1,
-        marginTop:25
+        // marginTop:25
     },
     main_screen: {
         flex:1,
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     review: {
         fontSize:15,
         marginBottom: 15
-    }
+    },
 });
 
 export default ReviewsPopUp;
