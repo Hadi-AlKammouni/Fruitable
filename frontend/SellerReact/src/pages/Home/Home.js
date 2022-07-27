@@ -41,6 +41,16 @@ const Home = () => {
       const data = await response.json();
       if(data._id){
         setData(data)
+        localStorage.setItem('name',data.name)
+        localStorage.setItem('phone_number',data.phone_number)
+        localStorage.setItem('description',data.description)
+        localStorage.setItem('latitude',data.latitude)
+        localStorage.setItem('longitude',data.longitude)
+        localStorage.setItem('picture',data.picture)
+        localStorage.setItem('categories',data.categories)
+        localStorage.setItem('items',data.items)
+        localStorage.setItem('orders',data.orders)
+        localStorage.setItem('reviews',data.reviews)
         setGroceryName(data.name) 
         setGroceryPhoneNumber(data.phone_number) 
         setGroceryDescription(data.description) 

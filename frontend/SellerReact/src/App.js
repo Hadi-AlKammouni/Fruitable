@@ -8,13 +8,60 @@ import AddItem from "./pages/AddItem/AddItem";
 import Home from './pages/Home/Home';
 import EditItem from "./pages/EditItem/EditItem";
 import ManageOrders from "./pages/ManageOrders/ManageOrders";
-import GroceryProvider from "./context/grocery";
+import { useGrocery } from "./context/grocery";
+import { useEffect } from "react";
 
 const App = () => {
 
+  const {
+    setGroceryId,
+    setGroceryToken,
+    setGroceryName, 
+    setGroceryPhoneNumber, 
+    setGroceryDescription, 
+    setGroceryLatitude, 
+    setGroceryLongitude,
+    setGroceryPicture, 
+    setGroceryCategories,
+    setGroceryItems, 
+    setGroceryOrder,
+    setGroceryReviews,
+  } = useGrocery()
+  
+  // Making sure that the grocery info are in grocery context even upon refreshing
+  const getData = () => {
+    const id = localStorage.getItem("_id")
+    const token = localStorage.getItem("token")
+    const name = localStorage.getItem("name")
+    const phone_number = localStorage.getItem('phone_number')
+    const description = localStorage.getItem('description')
+    const latitude = localStorage.getItem('latitude')
+    const longitude = localStorage.getItem('longitude')
+    const picture = localStorage.getItem('picture')
+    const categories = localStorage.getItem('categories')
+    const items = localStorage.getItem('items')
+    const orders = localStorage.getItem('orders')
+    const reviews = localStorage.getItem('reviews')
+    setGroceryId(id)
+    setGroceryToken(token)
+    setGroceryName(name) 
+    setGroceryPhoneNumber(phone_number) 
+    setGroceryDescription(description) 
+    setGroceryLatitude(latitude) 
+    setGroceryLongitude(longitude)
+    setGroceryPicture(picture) 
+    setGroceryCategories(categories)
+    setGroceryItems(items) 
+    setGroceryOrder(orders)
+    setGroceryReviews(reviews)
+  }
+
+  useEffect(()=>{
+    getData()
+  },[])
+
   return (
     <>
-    <GroceryProvider>
     <BrowserRouter>
       <div className="App">
         <div className='AppGlass'>
@@ -33,7 +80,6 @@ const App = () => {
         </div>
       </div>
     </BrowserRouter>
-    </GroceryProvider>
     </>
   );
 }
