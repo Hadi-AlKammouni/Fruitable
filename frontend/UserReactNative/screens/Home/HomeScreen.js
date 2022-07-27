@@ -100,6 +100,11 @@ const HomeScreen = ( {navigation} ) => {
           <Image source={require("../../assets/icons/account.png")} style={styles.accountImg}/>
         </TouchableOpacity>
       </View>
+      <View style={styles.cartView}>
+        <TouchableOpacity onPress={() => navigation.push('Order')}>
+          <Image source={require("../../assets/icons/cart.png")} style={styles.cartImg}/>
+        </TouchableOpacity>
+      </View>
       {
         isLoading ?  
         <View style={styles.activity}>

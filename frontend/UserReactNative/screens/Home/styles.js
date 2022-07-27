@@ -103,6 +103,17 @@ const styles = StyleSheet.create({
         margin: '5%',
         width:55,
         height:55
+    },
+    cartView: {
+        height: '0%',
+        zIndex: 1,
+        flexDirection: 'row-reverse'
+    },
+    cartImg: {
+        marginTop: '25%',
+        margin: '3%',
+        width:55,
+        height:55
     }
   });
 
