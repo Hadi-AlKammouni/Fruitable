@@ -48,10 +48,9 @@ const ViewCart = (props) => {
                 renderItem={renderItem}
                 ItemSeparatorComponent={separator}
             />
-            <Text>Total Price: LBP {total_price} </Text> 
+            <Text style={styles.price}>Total Price: LBP {total_price} </Text> 
             </>
             }
-            
         </SafeAreaView>
     )
 }
@@ -91,6 +90,11 @@ const styles = StyleSheet.create ({
     message: {
         textAlign: 'center',
         fontWeight: 'bold',
-        marginTop: 100,
+        marginTop: 200,
     },
+    price:{
+        fontSize: 25,
+        fontWeight: 'bold',
+        marginTop: 40
+    }
 })

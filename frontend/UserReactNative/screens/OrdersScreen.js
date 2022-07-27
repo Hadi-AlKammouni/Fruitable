@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, SafeAreaView, ScrollView, Button } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, ScrollView, Button, View } from 'react-native';
 import ViewCart from '../components/ViewCart';
 import constants from '../constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -42,7 +42,9 @@ const OrdersScreen = () => {
         <Text style={styles.major_info}> {groceryName} - {groceryPhoneNumber} </Text>
         <Text style={styles.description}> {groceyDescription}</Text>
         <ViewCart items={cartItems}/>
-        <Button title="Order Now" color={"#FDBE3B"} onPress={() => alert("Receive Notification!")} />
+        <View style={styles.order}>
+          <Button title="Order Now" color={"#FDBE3B"} onPress={() => alert("Receive Notification!")} />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -62,9 +64,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     marginTop: 25,
-    marginBottom: 25
+    marginBottom: 25,
+    fontSize: 25
   },
   description: {
-    textAlign: 'center'
+    textAlign: 'center',
+    fontSize: 20,
+    marginBottom: 15,
+    padding: 15,
+    borderBottomWidth: 8,
+    borderBottomColor: '#FDBE3B'
   },
+  order: {
+    marginTop: 25
+  }
 });
