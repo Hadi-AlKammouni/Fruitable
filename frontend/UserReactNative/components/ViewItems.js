@@ -11,7 +11,8 @@ const ViewItems = ({setIsItems}) => {
         groceryItems,
         groceryOrder,
     } = useGrocery()
-    const {userOrder,token} = useUser()
+
+    const {userOrder,token,setPickedItem} = useUser()
 
     // const [category,setCategory] = useState('')
     const [fetchedItems,setFetchedItems] = useState([])
@@ -123,7 +124,8 @@ const ViewItems = ({setIsItems}) => {
             const data = await response.json();
             if(data.status === "200"){
                 alert(data.message)
-                setIsItems(true)
+                setIsItems(true) // To show the view cart button in grocery screen
+                setPickedItem(true) // To show the cart icon in home screen
             }
       
         } catch (error) {

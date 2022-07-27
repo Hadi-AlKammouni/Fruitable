@@ -15,7 +15,7 @@ const HomeScreen = ( {navigation} ) => {
   const [isLoading, setIsLoading] = useState(true)
   const [groceries, setGroceries] = useState([])
   const {setGroceryId,} = useGrocery()
-  const {setUserOrder,setToken} = useUser()
+  const {setUserOrder,setToken,pickedItem} = useUser()
   
   // To get user live location:
   // 1.If user give access to get his location, 
@@ -126,11 +126,15 @@ const HomeScreen = ( {navigation} ) => {
           <Image source={require("../../assets/icons/account.png")} style={styles.accountImg}/>
         </TouchableOpacity>
       </View>
+      {pickedItem ? 
       <View style={styles.cartView}>
         <TouchableOpacity onPress={() => navigation.push('Order')}>
           <Image source={require("../../assets/icons/cart.png")} style={styles.cartImg}/>
         </TouchableOpacity>
       </View>
+      :
+      null
+      }
       {
         isLoading ?  
         <View style={styles.activity}>
