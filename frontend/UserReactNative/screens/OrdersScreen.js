@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, SafeAreaView, ScrollView, Button, View } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, ScrollView, Button, View, PushNotificationIOS } from 'react-native';
 import ViewCart from '../components/ViewCart';
 import constants from '../constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useGrocery } from '../context/grocery';
+import axios from 'axios';
+import { useUser } from '../context/user';
 
 const OrdersScreen = () => {
 
@@ -13,6 +15,7 @@ const OrdersScreen = () => {
     groceyDescription,
   } = useGrocery()
 
+  const {userFirstName} = useUser()
   const [cartItems,setCartItems] = useState([])
 
   const viewCart = async () => {
@@ -32,6 +35,17 @@ const OrdersScreen = () => {
     }
   };
 
+  const pushNotfication = () => {
+    axios.post(`https://app.nativenotify.com/api/notification`, {
+      appId: 3343,
+      appToken: "5MVe2pBuNkF25Ck9aVb66d",
+      title: "New Order",
+      body: "Your order is received successfully.",
+      dateSent: "7-27-2022 8:13PM",
+      pushData: { yourProperty: "yourPropertyValue" }
+    });
+  }
+
   useEffect(() => {
     viewCart();
   }, []);
@@ -43,7 +57,7 @@ const OrdersScreen = () => {
         <Text style={styles.description}> {groceyDescription}</Text>
         <ViewCart items={cartItems}/>
         <View style={styles.order}>
-          <Button title="Order Now" color={"#FDBE3B"} onPress={() => alert("Receive Notification!")} />
+          <Button title="Order Now" color={"#FDBE3B"} onPress={() => pushNotfication()} />
         </View>
       </ScrollView>
     </SafeAreaView>
