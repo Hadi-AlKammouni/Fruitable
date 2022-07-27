@@ -56,6 +56,7 @@ const LoginScreen = ({navigation}) => {
           await AsyncStorage.setItem('first_name',data.first_name);
           await AsyncStorage.setItem('last_name',data.last_name);
           await AsyncStorage.setItem('profile_picture',data.profile_picture);
+          createOrder()
           // navigation.navigate('UserScreen')
         }
     } catch (error) {
@@ -63,6 +64,34 @@ const LoginScreen = ({navigation}) => {
         console.log(error)
     }
   }
+
+  // Creating cart
+  const createOrder = async () => {
+      try {
+          const user_id = await AsyncStorage.getItem('user_id');
+          const token = await AsyncStorage.getItem('token');
+          // const grocery_id = props.id
+         
+          const response = await fetch(`${constants.fetch_url}create_order`, {
+              method: 'POST',
+              headers: {
+                  'x-access-token': token,
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                  user: user_id,
+                  // grocery: groceryId
+              })
+          });
+          const data = await response.json();
+          if(data._id){
+          const order = await AsyncStorage.setItem('order',data._id);
+          }
+
+      } catch (error) {
+        console.log(error);
+      }
+  };
 
   return (
     <View style={styles.container}>

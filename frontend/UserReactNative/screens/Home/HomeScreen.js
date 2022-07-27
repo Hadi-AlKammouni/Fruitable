@@ -6,6 +6,7 @@ import constants from '../../constants';
 import {useGrocery} from '../../context/grocery';
 import * as Location from 'expo-location';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useUser } from '../../context/user';
 
 const HomeScreen = ( {navigation} ) => {
 
@@ -13,10 +14,9 @@ const HomeScreen = ( {navigation} ) => {
   const [userLongitude,setUserLongitude] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [groceries, setGroceries] = useState([])
-  const {
-    setGroceryId,
-  } = useGrocery()
-
+  const {setGroceryId,} = useGrocery()
+  const {userOrder,setUserOrder} = useUser()
+  
   // To get user live location:
   // 1.If user give access to get his location, 
   // the groceries near him will appear on map, 
@@ -60,6 +60,9 @@ const HomeScreen = ( {navigation} ) => {
   // Else it will give the near by groceries
   const getGroceries = async (state) => {
     try {
+      const order = await AsyncStorage.getItem('order') // getting the order id upon launching the app
+      setUserOrder(order)
+
       if(state){
         const userId = await AsyncStorage.getItem('user_id');
         const userLatitude = await AsyncStorage.getItem('user_latitude');
