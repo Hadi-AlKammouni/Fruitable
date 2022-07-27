@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Dimensions, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, FlatList, Image } from "react-native";
+import { Dimensions, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, FlatList, Image, Modal, Button } from "react-native";
 import { LogBox } from "react-native";
 import constants from '../constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -19,7 +19,10 @@ const ViewItems = () => {
     const categories = ["Fruits", "Vegetables"]
     const elements = []
     // const [order,setOrder] = useState(false) // After creating order, the user is able to pick items
-    
+    // To show and hide item popup
+    const [show, setShow] = useState(false)
+    const [selectedItem, setSelectedItem] = useState({})
+
     // Get items of specific grocery
     const getItems = async () => {
         try{
@@ -35,21 +38,42 @@ const ViewItems = () => {
         }
     }
 
-    // Filter upon switching categories
-    const setStatusFilter = category => {
-         if (category !== 'Fruits'){
-            setItems([...fetchedItems.filter(e => e.category === category)])
-        } else if (category !== 'Vegetables'){
-            setItems([...fetchedItems.filter(e => e.category === category)])
-        }
-        setCategory(category)
-    }
+    // // Filter upon switching categories
+    // const setStatusFilter = category => {
+    //      if (category !== 'Fruits'){
+    //         setItems([...fetchedItems.filter(e => e.category === category)])
+    //     } else if (category !== 'Vegetables'){
+    //         setItems([...fetchedItems.filter(e => e.category === category)])
+    //     }
+    //     setCategory(category)
+    // }
 
+    const ItemPopUp = ({item})=>{
+        return (
+            <View style={styles.item_container}>
+                <Modal transparent={true} visible={show}>
+                    <View style={styles.item_main_screen}>
+                        <View style={styles.item_popup}>
+                            <Text>{item.name}</Text>
+                            <Text>{item.price}</Text>
+                            <Image style={styles.item_picture} source={{uri: item.picture}}/>
+                            <Button title="Close"  color={"#000"} onPress={() => setShow(false)} />
+                        </View>
+                    </View>
+                </Modal>
+            </View>
+        )
+    }
+    
     // Displaying items for specific category
     const renderItem = ({ item, index })  =>{
+        const handleOpen = () =>{
+            setSelectedItem(item)
+            setShow(true)
+        }
         return(
-            <>
-                <View key={index} style={styles.item}>
+            <TouchableOpacity onPress={handleOpen}>
+                <View key={index} style={styles.item} >
                     {/* {order ? 
                     <View style={styles.img}>
                         <TouchableOpacity onPress={()=> addToCart(item.name,item.price,item.picture)}> 
@@ -75,7 +99,7 @@ const ViewItems = () => {
                         LBP {item.price} - {item.qauntity} Kg
                     </Text>
                 </View>
-            </>
+            </TouchableOpacity>
         )
     }
 
@@ -149,9 +173,9 @@ const ViewItems = () => {
     }, [groceryItems,groceryOrder])
 
     return(
-        <SafeAreaView style={styles.contaner}>
+        <SafeAreaView style={styles.container}>
             <View style={styles.list_tab}>
-                {
+                {/* {
                     categories.map((e, key) => (
                         <TouchableOpacity key={key} style={[styles.btn, category === e && styles.active_btn]} onPress={() => setStatusFilter(e)}>
                             <Text style={[styles.text, category === e && styles.active_text]}>
@@ -159,7 +183,7 @@ const ViewItems = () => {
                             </Text>
                         </TouchableOpacity>
                     ))
-                }
+                } */}
             </View>
             {/* <TouchableOpacity style={styles.create_btn} onPress={() => createOrder()}>
                     <Text style={[styles.text,styles.active_text]}>
@@ -172,6 +196,7 @@ const ViewItems = () => {
                 renderItem={renderItem}
                 ItemSeparatorComponent={separator}
             />
+            <ItemPopUp item={selectedItem}/>
         </SafeAreaView>
     )
 }
@@ -179,7 +204,7 @@ const ViewItems = () => {
 export default ViewItems;
 
 const styles = StyleSheet.create ({
-    contaner: {
+    container: {
         flex: 1,
         paddingHorizontal: 10,
         justifyContent: 'center'
@@ -239,5 +264,23 @@ const styles = StyleSheet.create ({
     add_item: {
         width: 40,
         height: 40
+    },
+    item_container: {
+        flex:1,
+        marginTop:25
+    },
+    item_main_screen: {
+        flex:1,
+        backgroundColor:"#000000aa"
+    },
+    item_popup: {
+        backgroundColor:"#fff", 
+        margin:20, 
+        padding:10, 
+        borderRadius:10, 
+        flex:1
+    },
+    item_picture: {
+        height: 250,
     },
 })
