@@ -94,6 +94,15 @@ const styles = StyleSheet.create({
         zIndex: 1,
         position: 'absolute',
         backgroundColor: 'rgba(0,0,0,0.2)'
+    },
+    accountView: {
+        height: '0%',
+        zIndex: 1,
+    },
+    accountImg: {
+        margin: '5%',
+        width:55,
+        height:55
     }
   });
 

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { SafeAreaView, View, Text, Alert, ActivityIndicator, Image, TextInput, Animated, TouchableOpacity } from 'react-native';
+import { SafeAreaView, View, Text, Alert, ActivityIndicator, Image, Animated, TouchableOpacity } from 'react-native';
 import MapView, { Callout, Marker } from 'react-native-maps';
 import styles from './styles';
 import constants from '../../constants';
@@ -95,6 +95,11 @@ const HomeScreen = ( {navigation} ) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.accountView}>
+        <TouchableOpacity onPress={() => navigation.push('Account')}>
+          <Image source={require("../../assets/icons/account.png")} style={styles.accountImg}/>
+        </TouchableOpacity>
+      </View>
       {
         isLoading ?  
         <View style={styles.activity}>
