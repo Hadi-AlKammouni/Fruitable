@@ -15,7 +15,7 @@ const HomeScreen = ( {navigation} ) => {
   const [isLoading, setIsLoading] = useState(true)
   const [groceries, setGroceries] = useState([])
   const {setGroceryId,} = useGrocery()
-  const {userOrder,setUserOrder} = useUser()
+  const {setUserOrder} = useUser()
   
   // To get user live location:
   // 1.If user give access to get his location, 
@@ -25,6 +25,7 @@ const HomeScreen = ( {navigation} ) => {
   // and the map will open as initial region at Beirut
   async function getLocation(){
     try{
+      createOrder()
       let {status} = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
         Alert.alert(
@@ -44,7 +45,6 @@ const HomeScreen = ( {navigation} ) => {
         let result = `lat: ${latitude} / long: ${longitude}`
         AsyncStorage.setItem('user_latitude',latitude.toString());
         AsyncStorage.setItem('user_longitude',longitude.toString());
-
         setUserLatitude(latitude)
         setUserLongitude(longitude)
         setIsLoading(false)
@@ -60,9 +60,6 @@ const HomeScreen = ( {navigation} ) => {
   // Else it will give the near by groceries
   const getGroceries = async (state) => {
     try {
-      const order = await AsyncStorage.getItem('order') // getting the order id upon launching the app
-      setUserOrder(order)
-
       if(state){
         const userId = await AsyncStorage.getItem('user_id');
         const userLatitude = await AsyncStorage.getItem('user_latitude');
@@ -89,6 +86,34 @@ const HomeScreen = ( {navigation} ) => {
       
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  // Creating cart
+  const createOrder = async () => {
+    try {
+        const user_id = await AsyncStorage.getItem('user_id');
+        const token = await AsyncStorage.getItem('token');
+        // const grocery_id = props.id
+      
+        const response = await fetch(`${constants.fetch_url}create_order`, {
+            method: 'POST',
+            headers: {
+                'x-access-token': token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user: user_id,
+                // grocery: groceryId
+            })
+        });
+        const data = await response.json();
+        if(data._id){
+        const order = await AsyncStorage.setItem('order',data._id);
+        setUserOrder(data._id)
+        }
+    } catch (error) {
+      console.log(error);
     }
   };
 
