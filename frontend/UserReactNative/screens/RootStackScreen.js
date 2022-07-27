@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import SplashScreen from './SplashScreen';
+import SplashScreen from './Splash/SplashScreen';
 import LoginScreen from "./Login/LoginScreen";
 import SignupScreenOne from './Signup/SignupScreenOne';
 import SignupScreenTwo from "./Signup/SignupScreenTwo";
