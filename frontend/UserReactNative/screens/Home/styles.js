@@ -38,10 +38,10 @@ const styles = StyleSheet.create({
         bottom:0,
         left:0,
         right:0,
-        paddingVertical:10
+        paddingVertical:5
     },
     cardView: {
-        elevation:2,
+        elevation:0,
         backgroundColor:'#FFF',
         borderRadius:10,
         marginHorizontal: 10,
@@ -55,31 +55,20 @@ const styles = StyleSheet.create({
     },
     cardImage: {
         flex:3,
-        width:'100%',
-        height:'100%',
-        alignSelf: 'center'
+        // width:'100%',
+        // height:'100%',
     },
     title: {
-        fontSize: 12, 
-        fontWeight:'bold'
+        fontSize: 20, 
+        fontWeight:'bold',
     },
     description: {
         fontSize:12,
         color:"#444"
     },
     cardInnerView: {
-        justifyContent:'center',
-        alignItems: 'center',
+        // justifyContent:'center',
         borderRadius:15
-    },
-    viewGroceryButton: {
-        height: 40,
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 10,
-        borderColor:'#FDBE3B',
-        borderWidth:1
     },
     viewGroceryText: {
         fontWeight: 'bold',
@@ -101,6 +90,7 @@ const styles = StyleSheet.create({
     },
     accountImg: {
         margin: '5%',
+        marginTop: '10%',
         width:55,
         height:55
     },
@@ -110,7 +100,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row-reverse'
     },
     cartImg: {
-        marginTop: '25%',
+        marginTop: '55%',
         margin: '3%',
         width:55,
         height:55
