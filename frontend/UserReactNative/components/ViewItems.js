@@ -54,17 +54,20 @@ const ViewItems = () => {
                 <Modal transparent={true} visible={show}>
                     <View style={styles.item_main_screen}>
                         <View style={styles.item_popup}>
-                            <Text>{item.name}</Text>
-                            <Text>{item.price}</Text>
                             <Image style={styles.item_picture} source={{uri: item.picture}}/>
-                            <Button title="Close"  color={"#000"} onPress={() => setShow(false)} />
+                            <Text style={styles.item_info}>{item.name}</Text>
+                            <Text style={styles.item_info}>LBP {item.price} for {item.qauntity} Kg</Text>
+                            <View style={styles.cart_button}>
+                            <Button title="Add To Cart" color={"#FDBE3B"} onPress={() => setShow(false)} />
+                            </View>
+                            <Button title="Close" color={"#000"} onPress={() => setShow(false)} />
                         </View>
                     </View>
                 </Modal>
             </View>
         )
     }
-    
+
     // Displaying items for specific category
     const renderItem = ({ item, index })  =>{
         const handleOpen = () =>{
@@ -283,4 +286,12 @@ const styles = StyleSheet.create ({
     item_picture: {
         height: 250,
     },
+    item_info: {
+        fontSize: 25,
+        fontWeight: 'bold',
+        marginTop: 40
+    },
+    cart_button: {
+        margin: 20
+    }
 })
