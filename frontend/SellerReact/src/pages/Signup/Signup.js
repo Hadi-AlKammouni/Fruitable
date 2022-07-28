@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {useNavigate} from 'react-router-dom';
 import Image from "../../components/Image";
+import './styles.css';
 
 const Signup = () => {
 
@@ -12,11 +13,11 @@ const Signup = () => {
     const navigate = useNavigate();
 
     return (
-      <div>
-        <div >
-          <h2 >SIGN UP</h2>
+      <div className="background">
+        <div className="signupBox" id="signupBox">
+          <h2 className="title">SIGN UP</h2>
           <div>
-            <div>
+            <div className="inputBox">
               <label className="logColor">Name</label>
               <input
                 id="name"
@@ -29,13 +30,13 @@ const Signup = () => {
                 type="description"
                 onChange={(e) => setDescription(e.target.value)}
               />
-              <label >Email</label>
+              <label className="logColor">Email</label>
               <input
                 id="email"
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <label >Password</label>
+              <label className="logColor">Password</label>
               <input
                 id="password"
                 type="password"
@@ -44,9 +45,9 @@ const Signup = () => {
             </div>
             <Image set={setImage} />
 
-            <button className={!(email && password && name && description && image) ? "disable" : "log"} value="Submit" id="login" > Signup </button>
-            <p >Already a member?</p>
-            <h6 role="button"onClick={()=>navigate("/")}>Login</h6>
+            <button className={!(email && password && name && description && image) ? "disable" : "log"} value="Submit" id="signup" > Signup </button>
+            <p className="p">Already a member?</p>
+            <h6 role="button" className="back" onClick={()=>navigate("/")}>Login</h6>
         </div>
         </div>
       </div>
