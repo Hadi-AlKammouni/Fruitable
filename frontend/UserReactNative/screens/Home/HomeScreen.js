@@ -15,7 +15,7 @@ const HomeScreen = ( {navigation} ) => {
   const [isLoading, setIsLoading] = useState(true)
   const [groceries, setGroceries] = useState([])
   const {setGroceryId} = useGrocery()
-  const {pickedItem} = useUser()
+  const {pickedItem,setPickedItem,userOrder,setUserOrder,checkOrderIdRelativeToGrocery,setCheckOrderIdRelativeToGrocery} = useUser()
   
   // To get user live location:
   // 1.If user give access to get his location, 
@@ -88,6 +88,31 @@ const HomeScreen = ( {navigation} ) => {
     }
   };
 
+   // Pop up to check if the user wants to dismiss his recent order
+   const dismissPopUp = ()=>{
+      Alert.alert(
+          'You have picked items from another grocery.',
+          'Choose what to do',
+        [
+          
+          {
+            text: 'Cancel',         
+            onPress: () => null
+          },
+          {
+            text: 'Dismiss & Create New Order',         
+            // Reset cart and order then navigate
+            onPress: () => { 
+              setCheckOrderIdRelativeToGrocery(null)
+              setUserOrder(null)
+              setPickedItem(null)
+              navigation.navigate('Grocery')
+            }
+          }
+        ]
+      )
+   }
+
   useEffect(() => {
     getLocation();
   }, []);
@@ -136,7 +161,11 @@ const HomeScreen = ( {navigation} ) => {
           >
             <Callout tooltip onPress={()=>{
                 setGroceryId(id)
-                navigation.navigate('Grocery')
+                if(checkOrderIdRelativeToGrocery && (id != checkOrderIdRelativeToGrocery)){
+                  dismissPopUp()
+                }else{
+                  navigation.navigate('Grocery')
+                }
             }
             }>
               <View>
@@ -165,7 +194,11 @@ const HomeScreen = ( {navigation} ) => {
               key={key} 
               onPress={()=>{
                 setGroceryId(item._id)
-                navigation.navigate('Grocery')
+                if(checkOrderIdRelativeToGrocery && (item._id != checkOrderIdRelativeToGrocery)){
+                  dismissPopUp()
+                }else{
+                  navigation.navigate('Grocery')
+                }
               }}>
                 <View style={styles.cardView} >
                   <Image

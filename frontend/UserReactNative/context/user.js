@@ -15,6 +15,7 @@ const UserProvider = ({children}) => {
     const [userProfilePicture, setUserProfilePicture] = useState('')
     const [userOrder, setUserOrder] = useState(null)
     const [pickedItem,setPickedItem] = useState(false)
+    const [checkOrderIdRelativeToGrocery,setCheckOrderIdRelativeToGrocery] = useState(null)
 
     return (
         <UserContext.Provider 
@@ -29,7 +30,8 @@ const UserProvider = ({children}) => {
             userLongitude, setUserLongitude, 
             userProfilePicture, setUserProfilePicture,
             userOrder, setUserOrder,
-            pickedItem,setPickedItem}}>
+            pickedItem,setPickedItem,
+            checkOrderIdRelativeToGrocery,setCheckOrderIdRelativeToGrocery}}>
 
             {children}
 
@@ -51,7 +53,8 @@ export const useUser = () => {
         userLongitude, setUserLongitude,
         userProfilePicture, setUserProfilePicture,
         userOrder, setUserOrder,
-        pickedItem,setPickedItem} = React.useContext(UserContext)
+        pickedItem,setPickedItem,
+        checkOrderIdRelativeToGrocery,setCheckOrderIdRelativeToGrocery} = React.useContext(UserContext)
 
     return {
         userId, setUserId,
@@ -64,6 +67,7 @@ export const useUser = () => {
         userLongitude, setUserLongitude,
         userProfilePicture, setUserProfilePicture,
         userOrder, setUserOrder,
-        pickedItem,setPickedItem
+        pickedItem,setPickedItem,
+        checkOrderIdRelativeToGrocery,setCheckOrderIdRelativeToGrocery
     }
 }

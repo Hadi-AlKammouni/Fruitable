@@ -6,7 +6,7 @@ import { useGrocery } from "../context/grocery";
 import { useUser } from "../context/user";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const ViewItems = ({setIsItems}) => {
+const ViewItems = () => {
 
     const {
         groceryItems,
@@ -14,7 +14,7 @@ const ViewItems = ({setIsItems}) => {
         groceryId,
     } = useGrocery()
 
-    const {userOrder,setUserOrder,token,setToken,setPickedItem} = useUser()
+    const {userOrder,setUserOrder,token,setToken,setPickedItem,setCheckOrderIdRelativeToGrocery} = useUser()
 
     // const [category,setCategory] = useState('')
     const [fetchedItems,setFetchedItems] = useState([])
@@ -130,11 +130,11 @@ const ViewItems = ({setIsItems}) => {
                 });
 
                 const data = await response.json();
-                console.log(data)
 
                 if(data._id){
-                    const order = await AsyncStorage.removeItem('order');
+                    const order = await AsyncStorage.setItem('order',data._id);
                     setUserOrder(data._id)
+                    setCheckOrderIdRelativeToGrocery(groceryId)
                 }
             }
             // Add the selected item to the recent order
@@ -154,7 +154,6 @@ const ViewItems = ({setIsItems}) => {
             const data = await response.json();
             if(data.status === "200"){
                 alert(data.message)
-                setIsItems(true) // To show the view cart button in grocery screen
                 setPickedItem(true) // To show the cart icon in home screen
             }
       

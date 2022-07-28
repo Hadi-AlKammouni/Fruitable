@@ -6,6 +6,7 @@ import ViewItems from '../components/ViewItems';
 import constants from '../constants';
 import { LogBox } from "react-native";
 import { useGrocery } from '../context/grocery';
+import { useUser } from '../context/user';
 
 const GroceyScreen = ( {navigation} ) => {
 
@@ -19,8 +20,10 @@ const GroceyScreen = ( {navigation} ) => {
     setGroceryPicture, 
     setGroceryCategories,
     setGroceryItems,
-    setGroceryReviews
+    setGroceryReviews,
   } = useGrocery()
+
+  const {pickedItem} = useUser()
 
   const [grocery, setGrocery] = useState([])
   const [isItems, setIsItems] = useState(false)
@@ -57,8 +60,8 @@ const GroceyScreen = ( {navigation} ) => {
         <Text style={styles.description}> {groceyDescription} </Text>
         <GroceryRate />
         <SubmitReviewPopUp />
-        <ViewItems setIsItems={setIsItems}/>
-        {isItems ? 
+        <ViewItems />
+        {pickedItem === true ? 
             <Button title="View Cart" color={"#FDBE3B"} onPress={() => navigation.navigate("Order")} />
         : null
         }
