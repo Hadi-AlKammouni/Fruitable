@@ -8,8 +8,8 @@ const Select = ( {set}) => {
         <>
             <select onChange={(e) => {set(e.target.value)}}>
                  <option value={""}>--SELECT ITEM CATEGORY--</option>
-                {categories.map((category) => (
-                <option value={category}>{category}</option>
+                {categories.map((category, index) => (
+                <option key={index} value={category}>{category}</option>
                 ))};                
             </select>
         </>
