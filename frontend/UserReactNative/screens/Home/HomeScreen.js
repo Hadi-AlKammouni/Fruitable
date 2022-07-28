@@ -14,8 +14,8 @@ const HomeScreen = ( {navigation} ) => {
   const [userLongitude,setUserLongitude] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [groceries, setGroceries] = useState([])
-  const {setGroceryId,} = useGrocery()
-  const {setUserOrder,setToken,pickedItem} = useUser()
+  const {setGroceryId} = useGrocery()
+  const {pickedItem} = useUser()
   
   // To get user live location:
   // 1.If user give access to get his location, 
@@ -25,7 +25,6 @@ const HomeScreen = ( {navigation} ) => {
   // and the map will open as initial region at Beirut
   async function getLocation(){
     try{
-      createOrder()
       let {status} = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
         Alert.alert(
@@ -86,32 +85,6 @@ const HomeScreen = ( {navigation} ) => {
       
     } catch (error) {
       console.error(error);
-    }
-  };
-
-  // Creating cart
-  const createOrder = async () => {
-    try {
-        const user_id = await AsyncStorage.getItem('user_id');
-        const token = await AsyncStorage.getItem('token');
-        setToken(token)      
-        const response = await fetch(`${constants.fetch_url}create_order`, {
-            method: 'POST',
-            headers: {
-                'x-access-token': token,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                user: user_id,
-            })
-        });
-        const data = await response.json();
-        if(data._id){
-        const order = await AsyncStorage.setItem('order',data._id);
-        setUserOrder(data._id)
-        }
-    } catch (error) {
-      console.log(error);
     }
   };
 

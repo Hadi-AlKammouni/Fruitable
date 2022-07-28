@@ -30,12 +30,12 @@ async function getGroceryItem(id) {
 async function addOrder(body) {
     const {
         user,
-        // grocery,
+        grocery,
     } = body;
   
     const order = new Order({
         user,
-        // grocery,
+        grocery,
     });
   
     return await order.save();

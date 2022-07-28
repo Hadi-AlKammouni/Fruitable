@@ -13,7 +13,7 @@ const UserProvider = ({children}) => {
     const [userLatitude, setUserLatitude] = useState('')
     const [userLongitude, setUserLongitude] = useState('')
     const [userProfilePicture, setUserProfilePicture] = useState('')
-    const [userOrder, setUserOrder] = useState('')
+    const [userOrder, setUserOrder] = useState(null)
     const [pickedItem,setPickedItem] = useState(false)
 
     return (

@@ -201,16 +201,16 @@ async function createOrder(req, res) {
     );
 
     // use updateOne() to update groceries collection 
-    // const updateGrocery = await Grocery.updateOne(
-    //   {
-    //     _id: order.grocery
-    //   },
-    //   {
-    //     $push: {
-    //       orders: order._id
-    //     }
-    //   }
-    // );
+    const updateGrocery = await Grocery.updateOne(
+      {
+        _id: order.grocery
+      },
+      {
+        $push: {
+          orders: order._id
+        }
+      }
+    );
 
     return res.status(200).send(order);
   } 
@@ -244,7 +244,7 @@ async function addToOrder(req, res) {
         }
       }
     );
-
+    
     return res.status(200).json({ status: "200",message:"Item added to your recent order"});
   } 
   catch (error) {

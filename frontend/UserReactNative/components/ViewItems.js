@@ -4,15 +4,17 @@ import { LogBox } from "react-native";
 import constants from '../constants';
 import { useGrocery } from "../context/grocery";
 import { useUser } from "../context/user";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ViewItems = ({setIsItems}) => {
 
     const {
         groceryItems,
         groceryOrder,
+        groceryId,
     } = useGrocery()
 
-    const {userOrder,token,setPickedItem} = useUser()
+    const {userOrder,setUserOrder,token,setToken,setPickedItem} = useUser()
 
     // const [category,setCategory] = useState('')
     const [fetchedItems,setFetchedItems] = useState([])
@@ -108,6 +110,34 @@ const ViewItems = ({setIsItems}) => {
     // Adding item to order
     const addToCart = async (name,price,picture) => {
         try {
+            // If no order is created, create one
+            if(!userOrder){
+                const user_id = await AsyncStorage.getItem('user_id');
+                const token = await AsyncStorage.getItem('token');
+
+                setToken(token)  
+
+                const response = await fetch(`${constants.fetch_url}create_order`, {
+                method: 'POST',
+                headers: {
+                    'x-access-token': token,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user: user_id,
+                    grocery: groceryId
+                })
+                });
+
+                const data = await response.json();
+                console.log(data)
+
+                if(data._id){
+                    const order = await AsyncStorage.removeItem('order');
+                    setUserOrder(data._id)
+                }
+            }
+            // Add the selected item to the recent order
             const response = await fetch(`${constants.fetch_url}add_to_order`, {
                 method: 'POST',
                 headers: {
@@ -118,7 +148,7 @@ const ViewItems = ({setIsItems}) => {
                     order: userOrder,
                     name: name,
                     price: price,
-                    picture: picture
+                    picture: picture,
                 })
             });
             const data = await response.json();
