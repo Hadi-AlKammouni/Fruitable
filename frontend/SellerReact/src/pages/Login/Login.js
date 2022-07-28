@@ -73,7 +73,7 @@ const Login = () => {
             </div>
             <button className={!(email && password) ? "disable" : "log"} value="Login" id="login" onClick={logIn}> Login </button>
             <p className="p">Don' have an account?</p>
-            <h6 role="button" className="back" >Sign up</h6>
+            <h6 role="button" className="back" onClick={()=>navigate("signup")}>Sign up</h6>
         </div>
         </div>
       </div>
