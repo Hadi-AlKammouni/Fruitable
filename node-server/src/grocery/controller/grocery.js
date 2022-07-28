@@ -179,8 +179,7 @@ async function updateItem(req, res) {
         category: req.body.category,
       },
     });
-    
-    return res.send("Item Successfully Updated");
+    return res.status(200).json({ status: "200",message:"Item updated successfully"});
   } catch (error) {
     console.log(error);
   }
