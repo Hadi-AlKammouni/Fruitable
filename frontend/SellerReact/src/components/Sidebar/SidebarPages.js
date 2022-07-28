@@ -20,11 +20,11 @@ export const SidebarPages = [
         icon: add,
         heading: "Add Item"
     },
-    {
-        link: "edit_item",
-        icon: edit,
-        heading: "Edit Item"
-    },
+    // {
+    //     link: "edit_item",
+    //     icon: edit,
+    //     heading: "Edit Item"
+    // },
     {
         link: "manage_orders",
         icon: orders,

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import './styles.css';
 import logout from '../../assets/logout.png';
 import { SidebarPages } from "./SidebarPages";
@@ -7,6 +9,8 @@ import { useGrocery } from "../../context/grocery";
 
 const Sidebar = () => {
     
+    const navigate = useNavigate();
+
     const [isSelected,setIsSelected] = useState(0)
     const {groceryName, groceryPicture} = useGrocery()
 
@@ -27,7 +31,12 @@ const Sidebar = () => {
               </NavLink>
             )
           })}
-          <div className="menu-pages">
+          <div 
+            onClick={()=>{
+              localStorage.clear()
+              navigate('/')
+            }}
+            className="menu-pages">
             <img src={logout} alt=''/>
             <span>Logout</span>
           </div>
