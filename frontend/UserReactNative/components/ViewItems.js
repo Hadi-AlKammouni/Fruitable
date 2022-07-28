@@ -114,6 +114,7 @@ const ViewItems = () => {
             if(!userOrder){
                 const user_id = await AsyncStorage.getItem('user_id');
                 const token = await AsyncStorage.getItem('token');
+                const username = await AsyncStorage.getItem('first_name');
 
                 setToken(token)  
 
@@ -125,7 +126,8 @@ const ViewItems = () => {
                 },
                 body: JSON.stringify({
                     user: user_id,
-                    grocery: groceryId
+                    grocery: groceryId,
+                    username: username
                 })
                 });
 

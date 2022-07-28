@@ -30,11 +30,13 @@ async function getGroceryItem(id) {
 async function addOrder(body) {
     const {
         user,
+        username,
         grocery,
     } = body;
   
     const order = new Order({
         user,
+        username,
         grocery,
     });
   
