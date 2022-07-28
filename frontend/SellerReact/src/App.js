@@ -6,7 +6,6 @@ import './index.css';
 import Stock from "./pages/Stock/Stock";
 import AddItem from "./pages/AddItem/AddItem";
 import Home from './pages/Home/Home';
-import EditItem from "./pages/EditItem/EditItem";
 import ManageOrders from "./pages/ManageOrders/ManageOrders";
 import { useGrocery } from "./context/grocery";
 import { useEffect } from "react";
@@ -72,7 +71,6 @@ const App = () => {
               <Route path="home" element={<Home/>}></Route>
               <Route path="stock" element={<Stock/>}></Route>
               <Route path="add_item" element={<AddItem/>}></Route>
-              <Route path="edit_item" element={<EditItem/>}></Route>
               <Route path="manage_orders" element={<ManageOrders/>}></Route>
               <Route path="signup" element={<Signup/>}></Route>
           </Routes>
