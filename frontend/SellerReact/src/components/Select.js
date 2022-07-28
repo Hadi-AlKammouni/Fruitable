@@ -7,7 +7,7 @@ const Select = ( {set}) => {
     return (
         <>
             <select onChange={(e) => {set(e.target.value)}}>
-                 <option value={""}>--SELECT--</option>
+                 <option value={""}>--SELECT ITEM CATEGORY--</option>
                 {categories.map((category) => (
                 <option value={category}>{category}</option>
                 ))};                

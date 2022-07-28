@@ -1,6 +1,8 @@
 import Input from "../../components/Input";
 import Image from "../../components/Image";
 import { useState } from "react";
+import Select from "../../components/Select";
+import './styles.css';
 
 const AddItem = () => {
 
@@ -9,11 +11,12 @@ const AddItem = () => {
     const [item_qauntity, setQuantity] = useState("");
     const [item_price, setPrice] = useState("");
     const [item_image, setImage] = useState("");
+    const [item_category, setCategory] = useState("");
 
     //Add data to Backend on Submit
     const onSubmit = (e) => {
         e.preventDefault();
-        if ( item_name === "" || item_qauntity === "" || item_price === "" || item_image ) {
+        if ( item_name === "" || item_qauntity === "" || item_price === "" || item_image === "" || item_category) {
             alert("Please fill all fields!");
             return;
         }
@@ -23,6 +26,7 @@ const AddItem = () => {
         setQuantity("");
         setPrice("");
         setImage("");
+        setCategory("");
     };
 
     return (
@@ -31,6 +35,9 @@ const AddItem = () => {
         <Input type={"text"} placeholder={"Enter name here"} label={"Item Name"} set={setName} />
         <Input type={"number"} placeholder={"Enter quantity here"} label={"Item Qauntity (Kg)"} set={setQuantity} />
         <Input type={"number"} placeholder={"Enter price here"} label={"Item Price"} set={setPrice} />
+        <div className="select">
+          <Select set={setCategory} />
+        </div>
         <Image set={setImage} />
 
         <input type={"submit"} value="Add Item" className="btn btn-block" />
