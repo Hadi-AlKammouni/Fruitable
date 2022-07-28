@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row-reverse'
     },
     cartImg: {
-        marginTop: '55%',
+        marginTop: '40%',
         margin: '3%',
         width:80,
         height:80

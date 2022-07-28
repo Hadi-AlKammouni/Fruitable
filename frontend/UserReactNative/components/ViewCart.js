@@ -38,10 +38,6 @@ const ViewCart = (props) => {
 
     return(
         <SafeAreaView style={styles.contaner}>
-            {total_price === 0 ? 
-            <View><Text style={styles.message}> You Didn't Pick Any Item Yet, Choose Grocery Then Add Items to Your cart</Text></View>
-            :
-            <>
             <FlatList 
                 data={props.items.items} 
                 keyExtractor={(e, item) => item.toString()} 
@@ -49,8 +45,6 @@ const ViewCart = (props) => {
                 ItemSeparatorComponent={separator}
             />
             <Text style={styles.price}>Total Price: LBP {total_price} </Text> 
-            </>
-            }
         </SafeAreaView>
     )
 }
