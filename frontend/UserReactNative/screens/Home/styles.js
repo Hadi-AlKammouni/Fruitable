@@ -91,8 +91,8 @@ const styles = StyleSheet.create({
     accountImg: {
         margin: '5%',
         marginTop: '10%',
-        width:55,
-        height:55
+        width:80,
+        height:80
     },
     cartView: {
         height: '0%',
@@ -102,8 +102,8 @@ const styles = StyleSheet.create({
     cartImg: {
         marginTop: '55%',
         margin: '3%',
-        width:55,
-        height:55
+        width:80,
+        height:80
     }
   });
 

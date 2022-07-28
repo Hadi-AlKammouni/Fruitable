@@ -61,11 +61,12 @@ const GroceyScreen = ( {navigation} ) => {
         <GroceryRate />
         <SubmitReviewPopUp />
         <ViewItems />
-        {pickedItem === true ? 
+        
+      </ScrollView>
+      {pickedItem === true ? 
             <Button title="View Cart" color={"#FDBE3B"} onPress={() => navigation.navigate("Order")} />
         : null
-        }
-      </ScrollView>
+      }
     </SafeAreaView>
   );
 }
