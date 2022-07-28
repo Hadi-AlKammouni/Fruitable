@@ -82,7 +82,6 @@ const Home = () => {
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5, 10, 15]}
-          checkboxSelection
           disableSelectionOnClick
           getRowId={(row)=>row._id}
         />

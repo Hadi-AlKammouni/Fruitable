@@ -68,7 +68,7 @@ const AddItem = () => {
 
         <Input type={"text"} placeholder={"Enter name here"} label={"Item Name"} set={setName} />
         <Input type={"number"} placeholder={"Enter quantity here"} label={"Item Qauntity (Kg)"} set={setQuantity} />
-        <Input type={"number"} placeholder={"Enter price here"} label={"Item Price"} set={setPrice} />
+        <Input type={"number"} placeholder={"Enter price here"} label={"Item Price (LBP)"} set={setPrice} />
         <div className="select">
           <Select set={setCategory} />
         </div>
