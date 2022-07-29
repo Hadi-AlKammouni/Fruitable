@@ -271,5 +271,5 @@ const styles = StyleSheet.create ({
     },
     cart_button: {
         margin: 20
-    }
+    },
 })
