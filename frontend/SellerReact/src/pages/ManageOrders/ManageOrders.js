@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import constants from "../../constants";
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
-import Popup from "../../components/Popup/Popup";
 const ManageOrders = () => {
 
   const grocery_orders = localStorage.getItem('orders')
@@ -48,23 +47,20 @@ const ManageOrders = () => {
 
     return (
       <>
-      
-      {
-      show ? 
-      <Popup row={selectedRow} show={setShow}/>
-      :
-      <Box sx={{ height: 400, width: '50%' }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5, 10, 15]}
-          disableSelectionOnClick
-          onRowClick={displayOrder}
-          getRowId={(row)=>row._id}
-        />
-      </Box>
-      }
+      <h1>Orders</h1>
+      <div style={{'background-color': 'var(--glass)', 'width': '80%'}}>
+        <Box sx={{ height: 400, width: '100%' }}>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[5, 10, 15]}
+            disableSelectionOnClick
+            onRowClick={displayOrder}
+            getRowId={(row)=>row._id}
+          />
+        </Box>
+      </div>
       </>
     );
 }
