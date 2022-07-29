@@ -49,10 +49,12 @@ const HomeScreen = ( {navigation} ) => {
         setUserLongitude(longitude)
         setIsLoading(false)
         getGroceries(true)
+        alert("You are viewing the nearest grocereis")
       }
     }catch(error){
       getGroceries(false)
       setIsLoading(false)
+      alert("You are viewing all grocereis")
     }
   }
 
