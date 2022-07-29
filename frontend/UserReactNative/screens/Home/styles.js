@@ -38,18 +38,21 @@ const styles = StyleSheet.create({
         bottom:10,
         left:10,
         right:0,
-        paddingVertical:5
+        paddingVertical:8
     },
     cardView: {
+        // shadowOffset: { width: 0, height:0 },
+        // shadowOpacity: 0.5,
+        // shadowRadius: 10,
         elevation:0,
-        backgroundColor:'#FFF',
+        backgroundColor:'#FDBE3B',
         borderRadius:10,
         marginHorizontal: 10,
         shadowColor:'#000',
         shadowRadius:5,
         shadowOpacity: 0.3,
         shadowOffset: {x:2,y:-2},
-        height: 200,
+        height: 150,
         width: 200,
         overflow: 'hidden'
     },

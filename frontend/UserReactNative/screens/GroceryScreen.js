@@ -60,7 +60,7 @@ const GroceyScreen = ( {navigation} ) => {
         <Text style={styles.major_info}> {groceryName} - {groceryPhoneNumber}</Text>
         <Text style={styles.description}> {groceyDescription} </Text>
         <GroceryRate />
-        <View style={{flexDirection:'row',marginTop:35}}>
+        <View style={styles.review}>
           <SubmitReviewPopUp />
           <ReviewsPopUp />
         </View>
@@ -83,21 +83,25 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     marginHorizontal: 10,
   },
-  text: {
-    fontSize: 42,
-  },
   picture: {
     height: 250
   },
   major_info: {
+    fontSize:26,
     textAlign: 'center',
     fontWeight: 'bold',
     marginTop: 25,
     marginBottom: 25
   },
   description: {
+    fontSize:18,
     textAlign: 'center'
   },
+  review: {
+    flexDirection:'row',
+    marginTop:35,
+    marginBottom:35,
+  }
 });
 
 export default GroceyScreen;

@@ -12,7 +12,7 @@ const ReviewsPopUp = () => {
 
         return(
             <View style={styles.container}>
-                <Button title="Recent Reviews" color={"#FDBE3B"} onPress={() => setShow(true)} />
+                <Button title="Recent Reviews" color={"#000"} onPress={() => setShow(true)} />
                 <Modal transparent={true} visible={show}>
                     <View style={styles.main_screen}>
                         <View style={styles.popup}>

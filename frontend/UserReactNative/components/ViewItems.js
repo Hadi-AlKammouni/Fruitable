@@ -88,15 +88,11 @@ const ViewItems = () => {
                         <Text style={styles.item_name}>
                             {item.name}
                         </Text>
+                        <Text style={styles.item_price}>
+                            {"\n"}{"\n"}LBP {item.price} - {item.qauntity} Kg
+                        </Text>
                     </Text>
-                    <View style={styles.img}>
-                        <Image style={styles.item_img} source={{uri: item.picture}}/>
-                    </View>
-                </View>
-                <View>
-                    <Text style={styles.item_name}>
-                        LBP {item.price} - {item.qauntity} Kg
-                    </Text>
+                    <Image style={styles.item_img} source={{uri: item.picture}}/>
                 </View>
             </TouchableOpacity>
         )
@@ -215,14 +211,6 @@ const styles = StyleSheet.create ({
         padding: 10,
         justifyContent: 'center'
     },
-    create_btn: {
-        justifyContent: 'center',
-        alignSelf: 'center',
-        borderWidth: 0.5,
-        borderRadius: 10,
-        padding: 10,
-        backgroundColor: "#000"
-    },
     text: {
         fontSize: 16
     },
@@ -234,11 +222,9 @@ const styles = StyleSheet.create ({
         color: "#fff"
     },
     item: {
+        flex: 1,
         flexDirection: 'row',
-        padding: 15
-    },
-    img: {
-        padding: 10 
+        padding: 5
     },
     item_img: {
         width: 80,
@@ -251,7 +237,10 @@ const styles = StyleSheet.create ({
     },
     item_name: {
         fontWeight: 'bold',
-        fontSize: 16
+        fontSize: 20
+    },
+    item_price: {
+        fontSize: 16,
     },
     add_item: {
         width: 40,
