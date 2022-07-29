@@ -57,9 +57,11 @@ const ViewItems = () => {
                 <Modal transparent={true} visible={show}>
                     <View style={styles.item_main_screen}>
                         <View style={styles.item_popup}>
-                            <Image style={styles.item_picture} source={{uri: item.picture}}/>
-                            <Text style={styles.item_info}>{item.name}</Text>
-                            <Text style={styles.item_info}>LBP {item.price} for {item.qauntity} Kg</Text>
+                            <View style={{flex:1}}>
+                                <Image style={styles.item_picture} source={{uri: item.picture}}/>
+                                <Text style={styles.item_info}>{item.name}</Text>
+                                <Text style={styles.item_price}>LBP {item.price} for {item.qauntity} Kg</Text>
+                            </View>
                             <View style={styles.cart_button}>
                                 <Button title="Add To Cart" color={"#FDBE3B"} 
                                     onPress={() => {
@@ -248,7 +250,6 @@ const styles = StyleSheet.create ({
     },
     item_container: {
         flex:1,
-        marginTop:25
     },
     item_main_screen: {
         flex:1,
@@ -269,7 +270,13 @@ const styles = StyleSheet.create ({
         fontWeight: 'bold',
         marginTop: 40
     },
+    item_price: {
+        fontSize: 20,
+        marginTop: 30
+    },
     cart_button: {
-        margin: 20
+        // margin: 20
+        marginTop: 20,
+        marginBottom: 20
     },
 })
