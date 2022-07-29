@@ -24,7 +24,6 @@ const SubmitReviewPopUp = () => {
 const styles = StyleSheet.create({
     container: {
         flex:1,
-        marginTop:25
     },
     main_screen: {
         flex:1,

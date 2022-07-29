@@ -7,6 +7,7 @@ import constants from '../constants';
 import { LogBox } from "react-native";
 import { useGrocery } from '../context/grocery';
 import { useUser } from '../context/user';
+import ReviewsPopUp from '../components/ReviewsPopUp';
 
 const GroceyScreen = ( {navigation} ) => {
 
@@ -59,7 +60,10 @@ const GroceyScreen = ( {navigation} ) => {
         <Text style={styles.major_info}> {groceryName} - {groceryPhoneNumber}</Text>
         <Text style={styles.description}> {groceyDescription} </Text>
         <GroceryRate />
-        <SubmitReviewPopUp />
+        <View style={{flexDirection:'row',marginTop:35}}>
+          <SubmitReviewPopUp />
+          <ReviewsPopUp />
+        </View>
         <ViewItems />
         
       </ScrollView>

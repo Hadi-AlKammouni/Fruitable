@@ -7,6 +7,7 @@ import {useGrocery} from '../../context/grocery';
 import * as Location from 'expo-location';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useUser } from '../../context/user';
+import { MaterialIcons } from "@expo/vector-icons";
 
 const HomeScreen = ( {navigation} ) => {
 
@@ -119,20 +120,21 @@ const HomeScreen = ( {navigation} ) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.accountView}>
-        <TouchableOpacity onPress={() => navigation.push('Account')}>
-          <Image source={require("../../assets/icons/account.png")} style={styles.accountImg}/>
-        </TouchableOpacity>
+      {/* HomeHeader */}
+      <View style={styles.account}>
+        <MaterialIcons name='account-circle' size={28} onPress={() => navigation.push('Account')} style={styles.accountIcon}/>
+        <View>
+            <Text style={styles.headerText}>
+                Fruitable
+            </Text>
+        </View>
+        {/* {pickedItem ?  */}
+        <MaterialIcons name='shopping-cart' size={28} onPress={() => navigation.push('Order')} style={styles.cartIcon}/>
+        {/* :
+        null
+        } */}
       </View>
-      {pickedItem ? 
-      <View style={styles.cartView}>
-        <TouchableOpacity onPress={() => navigation.push('Order')}>
-          <Image source={require("../../assets/icons/cart.png")} style={styles.cartImg}/>
-        </TouchableOpacity>
-      </View>
-      :
-      null
-      }
+
       {
         isLoading ?  
         <View style={styles.activity}>

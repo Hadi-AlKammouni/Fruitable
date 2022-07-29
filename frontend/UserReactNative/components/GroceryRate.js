@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, Image, View } from 'react-native';
 import { useGrocery } from '../context/grocery';
-import ReviewsPopUp from './ReviewsPopUp';
+// import ReviewsPopUp from './ReviewsPopUp';
 
 const GroceryRate = () => {
 
@@ -50,7 +50,7 @@ const GroceryRate = () => {
               </View>
           )})
         }
-        <ReviewsPopUp/>
+        {/* <ReviewsPopUp/> */}
       </View>
     );
 }

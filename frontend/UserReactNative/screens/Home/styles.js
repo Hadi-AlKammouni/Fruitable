@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
     },
     cardScrollView: {
         position:'absolute',
-        bottom:0,
-        left:0,
+        bottom:10,
+        left:10,
         right:0,
         paddingVertical:5
     },
@@ -55,8 +55,6 @@ const styles = StyleSheet.create({
     },
     cardImage: {
         flex:3,
-        // width:'100%',
-        // height:'100%',
     },
     title: {
         fontSize: 20, 
@@ -67,7 +65,6 @@ const styles = StyleSheet.create({
         color:"#444"
     },
     cardInnerView: {
-        // justifyContent:'center',
         borderRadius:15
     },
     viewGroceryText: {
@@ -84,26 +81,27 @@ const styles = StyleSheet.create({
         position: 'absolute',
         backgroundColor: 'rgba(0,0,0,0.2)'
     },
-    accountView: {
-        height: '0%',
-        zIndex: 1,
+    account: {
+        height: 50,
+        marginTop: 40,
+        width: '100%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#FDBE3B',
     },
-    accountImg: {
-        margin: '5%',
-        marginTop: '10%',
-        width:80,
-        height:80
+    headerText: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        letterSpacing: 3
     },
-    cartView: {
-        height: '0%',
-        zIndex: 1,
-        flexDirection: 'row-reverse'
+    accountIcon: {
+        position: 'absolute',
+        left: 16
     },
-    cartImg: {
-        marginTop: '40%',
-        margin: '3%',
-        width:80,
-        height:80
+    cartIcon: {
+        position: 'absolute',
+        right: 16
     }
   });
 

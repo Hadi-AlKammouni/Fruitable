@@ -37,32 +37,22 @@ const RootStackScreen = () => {
     }, [token,token_storage]);
 
     return(
-    <RootStack.Navigator screenOptions={{
-        headerStyle: {
-            backgroundColor: '#FDBE3B'
-        },
-        headerShown:false,
-        headerTintColor: '#000000',
-        headerTitleStyle: {
-            fontWeight: 'bold'
-        }
-    }}>
-        
-
-        {!isLoggedIn ? 
-        (<>
-        <RootStack.Screen name="SplashScreen" component={SplashScreen} />
-        <RootStack.Screen name="LoginScreen" component={LoginScreen} />
-        <RootStack.Screen name="SignupScreenOne" component={SignupScreenOne} />
-        <RootStack.Screen name="SignupScreenTwo" component={SignupScreenTwo} />
-        <RootStack.Screen name="SignupScreenThree" component={SignupScreenThree} />
-        </>)
-        :
-        (
-        <RootStack.Screen name="UserScreen" component={UserScreen} /> 
-        )
-        }
-    </RootStack.Navigator>
-)}
+        <RootStack.Navigator screenOptions={{headerShown:false,}}>
+            {!isLoggedIn ? 
+            (<>
+            <RootStack.Screen name="SplashScreen" component={SplashScreen} />
+            <RootStack.Screen name="LoginScreen" component={LoginScreen} />
+            <RootStack.Screen name="SignupScreenOne" component={SignupScreenOne} />
+            <RootStack.Screen name="SignupScreenTwo" component={SignupScreenTwo} />
+            <RootStack.Screen name="SignupScreenThree" component={SignupScreenThree} />
+            </>)
+            :
+            (
+            <RootStack.Screen name="UserScreen" component={UserScreen} /> 
+            )
+            }
+        </RootStack.Navigator>
+    )
+}
 
 export default RootStackScreen;
