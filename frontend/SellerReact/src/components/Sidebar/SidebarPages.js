@@ -1,14 +1,14 @@
 import home from '../../assets/home.png';
 import add from '../../assets/add.png';
-import edit from '../../assets/edit.png';
+// import edit from '../../assets/edit.png';
 import orders from '../../assets/orders.png';
 import stock from '../../assets/stock.png';
 
 export const SidebarPages = [    
     {
-        link: "home",
+        link: "reviews",
         icon: home,
-        heading: "Home"
+        heading: "Reviews"
     },
     {
         link: "stock",

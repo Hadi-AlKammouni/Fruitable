@@ -29,7 +29,7 @@ const Login = () => {
           if(data._id){
             localStorage.setItem("_id",data._id)
             localStorage.setItem("token",data.token)
-            navigate('/home')
+            navigate('/reviews')
           }
         }
 
@@ -40,11 +40,11 @@ const Login = () => {
     }
 
     // Check if the is logged in
-    // If yes, navigate to home page directly
+    // If yes, navigate to reviews page directly
     const isToken = () => {
       const token_storage = localStorage.getItem('token')
       if(token_storage){
-        navigate('/home')
+        navigate('/reviews')
       }
     }
 

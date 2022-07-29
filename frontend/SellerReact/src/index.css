@@ -21,17 +21,20 @@
 .AppGlass {
     display: grid;
     height: 97%;
-    width: 97%;
+    margin-left: 2%;
+    padding-right: 10px;
+    /* width: 97%; */
     border-radius: 2rem;
     background-color: var(--glass);
-    /* overflow: hidden; */
-    grid-template-columns: 11rem auto;
-    background-color: var(--glass);
+    grid-template-columns: 11rem;
 }
 
 .View{
+    margin-left: 2%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 100%
+    /* justify-content: center; */
+    align-items: center;
+    width: 100%;
+    background-color: '#fff';
 }

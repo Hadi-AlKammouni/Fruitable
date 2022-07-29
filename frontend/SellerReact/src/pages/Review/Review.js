@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from "react";
-import './styles.css'
 import constants from "../../constants";
 import {useGrocery} from '../../context/grocery';
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 
-const Home = () => {
+const Review = () => {
 
   const token = localStorage.getItem('token')
   const grocery_id = localStorage.getItem('_id')
@@ -28,7 +27,7 @@ const Home = () => {
   const columns = [
     { field: 'first_name', headerName: 'Name' },
     { field: 'rate', headerName: 'Rate' },
-    { field: 'text', headerName: 'Review'},
+    { field: 'text', headerName: 'Review', width: 600},
   ];
 
   const veiwGrocery = async () => {
@@ -76,6 +75,9 @@ const Home = () => {
   }, [data])
 
   return (
+    <>
+      <h1>Users Reviews</h1>
+      <div style={{'background-color': 'var(--glass)', 'width': '80%'}}>
       <Box sx={{ height: 400, width: '100%' }}>
         <DataGrid
           rows={rows}
@@ -86,7 +88,9 @@ const Home = () => {
           getRowId={(row)=>row._id}
         />
       </Box>
+      </div>
+    </>
   );
 }
   
-export default Home;  
+export default Review;  
