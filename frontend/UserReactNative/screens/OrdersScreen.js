@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, ScrollView, TouchableOpacity, ActivityIndicator, View } from 'react-native';
 import ViewCart from '../components/ViewCart';
 import constants from '../constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -17,6 +17,8 @@ const OrdersScreen = () => {
 
   const {userOrder,userFirstName} = useUser()
   const [cartItems,setCartItems] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+
 
   const viewCart = async () => {
     try {
@@ -30,6 +32,7 @@ const OrdersScreen = () => {
       });
       const data = await response.json();
       setCartItems(data)    
+      setIsLoading(false)
 
     } catch (error) {
       console.error(error);
@@ -56,6 +59,13 @@ const OrdersScreen = () => {
       <ScrollView style={styles.scrollView}>
         <Text style={styles.major_info}> {groceryName} - {groceryPhoneNumber} </Text>
         <Text style={styles.description}> {groceyDescription}</Text>
+        {isLoading ?  
+        <View style={styles.activity}>
+          <ActivityIndicator size={50}/>
+        </View>
+        :
+        null
+      }
         <ViewCart items={cartItems} />
       </ScrollView>
       <TouchableOpacity style={styles.order}>
@@ -99,5 +109,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     fontWeight: 'bold'
-  }
+  },
+  activity: {
+    flex: 1,
+    height: '100%',
+    width: '100%',
+    justifyContent: "center",
+    zIndex: 1,
+    position: 'absolute',
+    backgroundColor: 'rgba(0,0,0,0.2)'
+},
 });

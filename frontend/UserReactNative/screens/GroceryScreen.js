@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, SafeAreaView, ScrollView, Image, View, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, ScrollView, Image, View, Button, TouchableOpacity, ActivityIndicator } from 'react-native';
 import GroceryRate from '../components/GroceryRate';
 import SubmitReviewPopUp from '../components/SubmitReviewPopUp';
 import ViewItems from '../components/ViewItems';
@@ -29,6 +29,8 @@ const GroceyScreen = ( {navigation,navigation: { goBack }} ) => {
 
   const [grocery, setGrocery] = useState([])
   const [isItems, setIsItems] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+
 
   const getGrocery = async () => {
     try {
@@ -44,6 +46,7 @@ const GroceyScreen = ( {navigation,navigation: { goBack }} ) => {
       setGroceryCategories(data.categories),
       setGroceryItems(data.items),
       setGroceryReviews(data.reviews)
+      setIsLoading(false)
     } catch (error) {
       console.error(error);
     }
@@ -64,24 +67,31 @@ const GroceyScreen = ( {navigation,navigation: { goBack }} ) => {
         </Text>
       </View>
 
-      <ScrollView style={styles.scrollView} >
-        <Image source={{uri: grocery.picture}} style={styles.picture}/>
-        <Text style={styles.major_info}>Call Us - {groceryPhoneNumber}</Text>
-        <Text style={styles.description}> {groceyDescription} </Text>
-        <GroceryRate />
-        <View style={styles.review}>
-          <SubmitReviewPopUp />
-          <ReviewsPopUp />
+      {isLoading ?  
+        <View style={styles.activity}>
+          <ActivityIndicator size={50}/>
         </View>
-        <ViewItems />
-        
-      </ScrollView>
-      {pickedItem === true ? 
-        <TouchableOpacity style={styles.cart} >
-          <Text style={styles.viewCart} onPress={() => navigation.navigate("Order")}>View Cart</Text>         
-        </TouchableOpacity>
-        : null
+        :
+        null
       }
+        <ScrollView style={styles.scrollView} >
+          <Image source={{uri: grocery.picture}} style={styles.picture}/>
+          <Text style={styles.major_info}>Call Us - {groceryPhoneNumber}</Text>
+          <Text style={styles.description}> {groceyDescription} </Text>
+          <GroceryRate />
+          <View style={styles.review}>
+            <SubmitReviewPopUp />
+            <ReviewsPopUp />
+          </View>
+          <ViewItems />
+        </ScrollView>
+
+        {pickedItem === true ? 
+          <TouchableOpacity style={styles.cart} >
+            <Text style={styles.viewCart} onPress={() => navigation.navigate("Order")}>View Cart</Text>         
+          </TouchableOpacity>
+          : null
+        }
     </SafeAreaView>
   );
 }
@@ -142,7 +152,16 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     fontWeight: 'bold'
-  }
+  },
+  activity: {
+    flex: 1,
+    height: '100%',
+    width: '100%',
+    justifyContent: "center",
+    zIndex: 1,
+    position: 'absolute',
+    backgroundColor: 'rgba(0,0,0,0.2)'
+},
 });
 
 export default GroceyScreen;
