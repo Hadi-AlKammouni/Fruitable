@@ -3,6 +3,8 @@ import constants from "../../constants";
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import './styles.css'
+import Popup from 'reactjs-popup';
+import AddItem from '../AddItem/AddItem';
 const Stock = () => {
 
   const groceryItems = localStorage.getItem('items')
@@ -12,6 +14,7 @@ const Stock = () => {
 
   const [rows,setRows] = useState([])
   const [toUpdate,setToUpdate] = useState(null)
+  const [showBox,setShowBox] = useState(true)
 
   const columns = [
     { field: 'name', headerName: 'Item Name', editable: true},
@@ -100,6 +103,11 @@ const Stock = () => {
     }
   }
 
+  const addItem = () => {
+    setShowBox(false)
+    console.log(showBox)
+  }
+
   useEffect(() => {
     getItems()
   }, [groceryItems,toUpdate]);
@@ -112,28 +120,36 @@ const Stock = () => {
 
   return (
     <>
-      <div className="header">
-        <div>
-          <h1>My Stock</h1>
-          <button className="add-btn">Add Item</button>
+      {showBox?
+      <>
+        <div className="header">
+          <div>
+            <h1>My Stock</h1>
+            <button className="add-btn" onClick={addItem}> Add Item </button>  
+          </div>
         </div>
-      </div>
-    
-      <div className="box">
-        <Box sx={{ height: 400, width: '100%' }}>
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[5, 10, 15]}
-            editMode='cell'
-            disableSelectionOnClick
-            onCellClick={(e)=>console.log(e)}
-            onCellEditCommit={(cell)=>setToUpdate(cell)}
-            getRowId={(row)=>row._id}
-          />
-        </Box>
-      </div> 
+        <div className="box">
+          <Box sx={{ height: 400, width: '100%' }}>
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              pageSize={5}
+              rowsPerPageOptions={[5, 10, 15]}
+              editMode='cell'
+              disableSelectionOnClick
+              onCellClick={(e)=>console.log(e)}
+              onCellEditCommit={(cell)=>setToUpdate(cell)}
+              getRowId={(row)=>row._id}
+            />
+          </Box>
+        </div> 
+      </>
+      :
+      null}   
+      {!showBox?
+        <AddItem/>
+      :
+      null}       
     </>
   );
 }
