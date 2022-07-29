@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Dimensions, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, FlatList, Image, Modal, Button } from "react-native";
+import { Dimensions, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, FlatList, Image, Modal, Button, Alert } from "react-native";
 import { LogBox } from "react-native";
 import constants from '../constants';
 import { useGrocery } from "../context/grocery";
@@ -65,8 +65,16 @@ const ViewItems = () => {
                             <View style={styles.cart_button}>
                                 <Button title="Add To Cart" color={"#FDBE3B"} 
                                     onPress={() => {
+                                        if(!userOrder){
+                                            isOrder(item.name,item.price,item.picture)
+                                            setShow(false)
+                                        }else{
+                                            addToCart(item.name,item.price,item.picture) 
                                         addToCart(item.name,item.price,item.picture) 
-                                        setShow(false)
+                                            addToCart(item.name,item.price,item.picture) 
+                                            setShow(false)
+                                        }
+                                        
                                     }} />
                             </View>
                             <Button title="Close" color={"#000"} onPress={() => setShow(false)} />
@@ -105,18 +113,16 @@ const ViewItems = () => {
         return <View style={{height: 1, backgroundColor: '#f1f1f1'}}/>
     }
 
-    // Adding item to order
-    const addToCart = async (name,price,picture) => {
+    // Create order then add the item to it
+    const isOrder = async (name,price,picture) => {
         try {
-            // If no order is created, create one
-            if(!userOrder){
-                const user_id = await AsyncStorage.getItem('user_id');
-                const token = await AsyncStorage.getItem('token');
-                const username = await AsyncStorage.getItem('first_name');
+            const token = await AsyncStorage.getItem('token');
+            const user_id = await AsyncStorage.getItem('user_id');
+            const username = await AsyncStorage.getItem('first_name');
 
-                setToken(token)  
+            setToken(token)   
 
-                const response = await fetch(`${constants.fetch_url}create_order`, {
+            const response = await fetch(`${constants.fetch_url}create_order`, {
                 method: 'POST',
                 headers: {
                     'x-access-token': token,
@@ -127,17 +133,27 @@ const ViewItems = () => {
                     grocery: groceryId,
                     username: username
                 })
-                });
+            });
 
-                const data = await response.json();
+            const data = await response.json();
 
-                if(data._id){
-                    const order = await AsyncStorage.setItem('order',data._id);
-                    setUserOrder(data._id)
-                    setCheckOrderIdRelativeToGrocery(groceryId)
-                }
+            if(data._id){
+                const order = await AsyncStorage.setItem('order',data._id);
+                setUserOrder(data._id)
+                setCheckOrderIdRelativeToGrocery(groceryId)
+                addToCart(name,price,picture)
             }
-            // Add the selected item to the recent order
+
+        } catch (error) {
+          console.log(error);
+        }
+    };
+
+    // Adding item to the recent order
+    const addToCart = async (name,price,picture) => {
+        try {
+            const token = await AsyncStorage.getItem('token');
+            const order = await AsyncStorage.getItem('order');
             const response = await fetch(`${constants.fetch_url}add_to_order`, {
                 method: 'POST',
                 headers: {
@@ -145,7 +161,7 @@ const ViewItems = () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    order: userOrder,
+                    order: order,
                     name: name,
                     price: price,
                     picture: picture,
@@ -153,8 +169,8 @@ const ViewItems = () => {
             });
             const data = await response.json();
             if(data.status === "200"){
-                alert(data.message)
                 setPickedItem(true) // To show the cart icon in home screen
+                Alert.alert(data.message)
             }
       
         } catch (error) {

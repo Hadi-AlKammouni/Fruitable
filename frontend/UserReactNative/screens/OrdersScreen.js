@@ -15,13 +15,13 @@ const OrdersScreen = () => {
     groceyDescription,
   } = useGrocery()
 
-  const {userFirstName} = useUser()
+  const {userOrder,userFirstName} = useUser()
   const [cartItems,setCartItems] = useState([])
 
   const viewCart = async () => {
     try {
+      const order = await userOrder;
       const token = await AsyncStorage.getItem('token');
-      const order = await AsyncStorage.getItem('order');
 
       const response = await fetch(`${constants.fetch_url}view_cart?id=${order}`,{
         headers: {
@@ -29,7 +29,8 @@ const OrdersScreen = () => {
         }
       });
       const data = await response.json();
-      setCartItems(data)      
+      setCartItems(data)    
+      console.log(data)  
     } catch (error) {
       console.error(error);
     }

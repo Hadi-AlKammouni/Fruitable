@@ -129,7 +129,15 @@ const HomeScreen = ( {navigation} ) => {
             </Text>
         </View>
         {/* {pickedItem ?  */}
-        <MaterialIcons name='shopping-cart' size={28} onPress={() => navigation.push('Order')} style={styles.cartIcon}/>
+        <MaterialIcons name='shopping-cart' size={28} style={styles.cartIcon}
+          onPress={() => {
+            if(userOrder){
+              navigation.push('Order')
+            } else{
+              Alert.alert("Your Cart Is Empty")
+            }
+          }}
+        />
         {/* :
         null
         } */}
