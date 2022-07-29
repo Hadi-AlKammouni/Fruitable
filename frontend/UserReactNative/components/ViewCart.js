@@ -15,18 +15,21 @@ const ViewCart = (props) => {
                         <Text style={styles.item_name}>
                             {item.name}
                         </Text>
+                        <Text style={styles.item_price}>
+                            {"\n"}{"\n"}LBP {item.price} - {item.qauntity} Kg
+                        </Text>
                     </Text>
-                    <View style={styles.img}>
+                    {/* <View style={styles.img}> */}
                         <Image style={styles.item_img} source={{uri: item.picture}}/>
-                    </View>
-                    <View style={styles.img}>
+                    {/* </View> */}
+                    {/* <View style={styles.img}> */}
                         <Image style={styles.remove_item} source={require("../assets/icons/remove.png")}/>
-                    </View>
+                    {/* </View> */}
                 </View>
                 <View>
-                    <Text style={styles.item_name}>
+                    {/* <Text style={styles.item_name}>
                         LBP {item.price} - {item.qauntity} Kg
-                    </Text>
+                    </Text> */}
                 </View>
             </>
         )
@@ -58,8 +61,9 @@ const styles = StyleSheet.create ({
         justifyContent: 'center'
     },
     item: {
+        flex: 1,
         flexDirection: 'row',
-        padding: 15
+        padding: 5
     },
     img: {
         padding: 10 
@@ -75,7 +79,10 @@ const styles = StyleSheet.create ({
     },
     item_name: {
         fontWeight: 'bold',
-        fontSize: 16
+        fontSize: 20
+    },
+    item_price: {
+        fontSize: 16,
     },
     remove_item: {
         width: 40,

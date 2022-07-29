@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, SafeAreaView, ScrollView, Button, View, PushNotificationIOS } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
 import ViewCart from '../components/ViewCart';
 import constants from '../constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -30,7 +30,7 @@ const OrdersScreen = () => {
       });
       const data = await response.json();
       setCartItems(data)    
-      console.log(data)  
+
     } catch (error) {
       console.error(error);
     }
@@ -56,11 +56,11 @@ const OrdersScreen = () => {
       <ScrollView style={styles.scrollView}>
         <Text style={styles.major_info}> {groceryName} - {groceryPhoneNumber} </Text>
         <Text style={styles.description}> {groceyDescription}</Text>
-        <ViewCart items={cartItems}/>
-        <View style={styles.order}>
-          <Button title="Order Now" color={"#FDBE3B"} onPress={() => pushNotfication()} />
-        </View>
+        <ViewCart items={cartItems} />
       </ScrollView>
+      <TouchableOpacity style={styles.order}>
+        <Text style={styles.orderBtn} onPress={() => pushNotfication()}>Order Now</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -91,6 +91,13 @@ const styles = StyleSheet.create({
     borderBottomColor: '#FDBE3B'
   },
   order: {
-    marginTop: 25
+    backgroundColor: '#FDBE3B',
+    height: 50,
+  },
+  orderBtn: {
+    top: 10,
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: 'bold'
   }
 });

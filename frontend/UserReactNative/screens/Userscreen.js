@@ -13,7 +13,9 @@ const Userscreen = () => {
         <RootStack.Screen name="Home" component={HomeScreen} 
         options={({headerShown: false})}
         />
-        <RootStack.Screen name="Order" component={OrdersScreen} />
+        <RootStack.Screen name="Order" component={OrdersScreen} 
+        options={{title: 'Your Order'}}
+        />
         <RootStack.Screen name="Account" component={AccountScreen} />
         <RootStack.Screen name="Grocery" component={GroceryScreen} 
         options={({headerShown: false})}
