@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import constants from "../../constants";
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
-
+import './styles.css'
 const Stock = () => {
 
   const groceryItems = localStorage.getItem('items')
@@ -111,19 +111,30 @@ const Stock = () => {
   }, [toUpdate]);
 
   return (
-    <Box sx={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5, 10, 15]}
-        editMode='cell'
-        disableSelectionOnClick
-        onCellClick={(e)=>console.log(e)}
-        onCellEditCommit={(cell)=>setToUpdate(cell)}
-        getRowId={(row)=>row._id}
-      />
-    </Box>
+    <>
+      <div className="header">
+        <div>
+          <h1>My Stock</h1>
+          <button className="add-btn">Add Item</button>
+        </div>
+      </div>
+    
+      <div className="box">
+        <Box sx={{ height: 400, width: '100%' }}>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[5, 10, 15]}
+            editMode='cell'
+            disableSelectionOnClick
+            onCellClick={(e)=>console.log(e)}
+            onCellEditCommit={(cell)=>setToUpdate(cell)}
+            getRowId={(row)=>row._id}
+          />
+        </Box>
+      </div> 
+    </>
   );
 }
   
