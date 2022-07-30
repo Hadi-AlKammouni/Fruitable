@@ -3,14 +3,13 @@ import constants from "../../constants";
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import './styles.css'
-import Popup from 'reactjs-popup';
 import AddItem from '../AddItem/AddItem';
 const Stock = () => {
 
   const groceryItems = localStorage.getItem('items')
   const groceryToken = localStorage.getItem('token')
   const items = []
-  const each_item = groceryItems.split(",")
+  // const each_item = groceryItems.split(",")
 
   const [rows,setRows] = useState([])
   const [toUpdate,setToUpdate] = useState(null)
@@ -25,16 +24,19 @@ const Stock = () => {
 
   const getItems = async () => {
     try {
-      for (let i=0; i < each_item.length; i++){
-        const response =  await fetch(`${constants.fetch_url}view_item?id=${each_item[i]}`,{
-        headers: {
-          'x-access-token': groceryToken,
+      if(groceryItems.length>0){
+        const each_item = groceryItems.split(",")
+        for (let i=0; i < each_item.length; i++){
+          const response =  await fetch(`${constants.fetch_url}view_item?id=${each_item[i]}`,{
+          headers: {
+            'x-access-token': groceryToken,
+          }
+          });
+          const data = await response.json()
+          items.push(data)
         }
-        });
-        const data = await response.json()
-        items.push(data)
+        setRows(items)
       }
-      setRows(items)
     } catch (error) {
       console.error(error);
     }
@@ -56,7 +58,6 @@ const Stock = () => {
         })
       })
       const data = await response.json();
-      // alert(data.message)
     }
       else if (field === "category"){
         const response = await fetch(`${constants.fetch_url}update_item?id=${toUpdate.id}`,{
@@ -69,7 +70,6 @@ const Stock = () => {
           })
       })
       const data = await response.json();
-      // alert(data.message)
     }
       else if (field === "price"){
         const response = await fetch(`${constants.fetch_url}update_item?id=${toUpdate.id}`,{
@@ -82,7 +82,6 @@ const Stock = () => {
           })
       })
       const data = await response.json();
-      // alert(data.message)
     }
       else {
         const response = await fetch(`${constants.fetch_url}update_item?id=${toUpdate.id}`,{
@@ -95,7 +94,6 @@ const Stock = () => {
           })
       })
       const data = await response.json();
-      // alert(data.message)
     }
     } catch (error) {
       alert("Something went wrong")

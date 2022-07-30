@@ -3,12 +3,43 @@ import {useNavigate} from 'react-router-dom';
 import Image from "../../components/Image";
 import './styles.css';
 import register from '../../assets/register.png';
+import constants from "../../constants";
 
 const Signup = () => {
 
     const [image, setImage] = useState("");
     const [groceryInfo, setGroceryInfo] = useState("");
     const navigate = useNavigate();
+
+    const signUp = async () => {
+      try{
+        if(!(image && groceryInfo)){
+          alert("Both Fields Must Be Filled.")
+        } else{
+          const response = await fetch(`${constants.fetch_url}register_OCR`, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                  grocery_info: groceryInfo,
+                  picture: image
+              })
+          });
+          const data = await response.json();
+          if(data._id){
+            localStorage.setItem("_id",data._id)
+            localStorage.setItem("token",data.token)
+            navigate('/stock')
+          }
+        }
+
+        } catch (error) {
+          alert("Something went wrong. Please try again.")
+          console.log(error)
+        }
+      
+    }
 
     return (
       <div className="background">
@@ -19,7 +50,7 @@ const Signup = () => {
             <Image set={setGroceryInfo} />
             <h3 >Grocery picture</h3>
             <Image set={setImage} />
-            <button className={!(image && groceryInfo) ? "disable" : "log"} value="Submit" id="signup" > Signup </button>
+            <button className={!(image && groceryInfo) ? "disable" : "log"} onClick={signUp}> Signup </button>
             <p className="p">Already a member?</p>
             <h6 role="button" className="back" onClick={()=>navigate("/")}>Login</h6>
           </div>
