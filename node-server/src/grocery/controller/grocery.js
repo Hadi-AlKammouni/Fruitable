@@ -333,8 +333,21 @@ async function newConversation (req,res) {
   try{
     const saved_conversation = await new_conversation.save();
     res.status(200).json(saved_conversation)
-  }catch(err){
-    res.status(500).json(err)
+  }catch(error){
+    res.status(500).json(error)
+  }
+}
+
+// Get conversation of grocery
+async function getConversation (req,res) {
+  try {
+    const id = req.query.id;
+    const conversation = await Conversation.find({
+      members: { $in: [id] }
+    }) 
+    res.status(500).json(conversation);
+  } catch(error){
+    res.status(500).json(error)
   }
 }
 
@@ -352,5 +365,6 @@ module.exports = {
   viewGrocery,
   registerByOCR,
   auth,
-  newConversation
+  newConversation,
+  getConversation
 };
