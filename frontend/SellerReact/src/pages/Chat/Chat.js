@@ -11,6 +11,7 @@ const Chat = () => {
     const [conversations,setConversations] = useState([])
     const [currentChat,setCurrentChat] = useState(null)
     const [messages,setMessages] = useState([])
+    const grocery_id = localStorage.getItem('_id')
 
     const getConversations = async () => {
         try {
@@ -25,7 +26,7 @@ const Chat = () => {
 
     const getMessages = async () => {
         try {
-            const response = await fetch(`${constants.fetch_url}get_message?id=${currentChat._id}`);
+            const response = await fetch(`${constants.fetch_url}get_message?id=${currentChat?._id}`);
             const data = await response.json()
             setMessages(data)
         } catch (error) {
@@ -59,15 +60,10 @@ const Chat = () => {
                         currentChat ? 
                     <>
                     <div className='chat-box-top'>
-                        <Message/>
-                        <Message own={true}/>
-                        <Message/>
-                        <Message/>
-                        <Message own={true}/>
-                        <Message/>
-                        <Message/>
-                        <Message own={true}/>
-                        <Message/>
+                        {messages.map((message,index) => (
+                            <Message key={index} message={message} own={message.sender === grocery_id}/>
+                        ))}
+                        
                     </div>
                     <div className='chat-box-bottom'>
                         <textarea className='chat-msg-input' placeholder='write something...'></textarea>
