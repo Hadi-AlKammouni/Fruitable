@@ -1,9 +1,30 @@
+import { useEffect } from 'react';
+import { useState } from 'react';
 import ChatOnline from '../../components/ChatOnline/ChatOnline';
 import Conversation from '../../components/Conversations/Conversation';
 import Message from '../../components/Message/Message';
 import './styles.css';
+import constants from '../../constants';
 
 const Chat = () => {
+
+    const [conversations,setConversations] = useState([])
+
+    const getConversations = async () => {
+        try {
+            const grocery_id = localStorage.getItem('_id')
+            const response = await fetch(`${constants.fetch_url}get_conversation?id=${grocery_id}`);
+            const data = await response.json()
+            setConversations(data)
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    useEffect(() => {
+        getConversations()
+    },[])
+
     return (
         <div className='chat'>
             <div className='chat-menu'>
