@@ -363,6 +363,19 @@ async function addMessage (req,res) {
   }
 }
 
+// Get message
+async function getMessage (req,res) {
+  try {
+    const id = req.query.id;
+    const message = await Message.find({
+      conversationId: id
+    })
+    res.status(200).json(message);
+  } catch(error){
+    res.status(500).json(error)
+  }
+}
+
 module.exports = {
   register,
   login,
@@ -379,5 +392,6 @@ module.exports = {
   auth,
   newConversation,
   getConversation,
-  addMessage
+  addMessage,
+  getMessage
 };
