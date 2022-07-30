@@ -29,6 +29,11 @@ export const SidebarPages = [
         link: "manage_orders",
         icon: orders,
         heading: "Manage Orders"
+    },
+    {
+        link: "chat",
+        icon: orders,
+        heading: "Chats"
     }
 ]
 

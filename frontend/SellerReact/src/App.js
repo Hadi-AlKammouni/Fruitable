@@ -9,6 +9,7 @@ import Review from  './pages/Review/Review'
 import ManageOrders from "./pages/ManageOrders/ManageOrders";
 import { useGrocery } from "./context/grocery";
 import { useEffect } from "react";
+import Chat from "./pages/Chat/Chat";
 
 const App = () => {
 
@@ -61,24 +62,24 @@ const App = () => {
 
   return (
     <>
-    <BrowserRouter>
-      <div className="App">
-        <div className='AppGlass'>
-          <Sidebar/>
+      <BrowserRouter>
+        <div className="App">
+          <div className='AppGlass'>
+            <Sidebar/>
+          </div>
+          <div className="View">
+            <Routes>
+              <Route path="/" element={<Login/>}></Route>
+              <Route path="reviews" element={<Review/>}></Route>
+              <Route path="stock" element={<Stock/>}></Route>
+              <Route path="add_item" element={<AddItem/>}></Route>
+              <Route path="manage_orders" element={<ManageOrders/>}></Route>
+              <Route path="signup" element={<Signup/>}></Route>
+              <Route path="chat" element={<Chat/>}></Route>
+            </Routes>
+          </div>
         </div>
-        <div className="View">
-          <Routes>
-            <Route path="/" element={<Login/>}></Route>
-            <Route path="reviews" element={<Review/>}></Route>
-            <Route path="stock" element={<Stock/>}></Route>
-            <Route path="add_item" element={<AddItem/>}></Route>
-            <Route path="manage_orders" element={<ManageOrders/>}></Route>
-            <Route path="signup" element={<Signup/>}></Route>
-          </Routes>
-        </div>
-        {/* </div> */}
-      </div>
-    </BrowserRouter>
+      </BrowserRouter>
     </>
   );
 }
