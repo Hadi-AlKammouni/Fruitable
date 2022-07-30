@@ -5,9 +5,6 @@ import constants from '../../constants';
 const Conversation = ({ conversation }) => {
 
     const [grocery,setGrocery] = useState(null)
-    const [currentChat,setCurrentChat] = useState(null)
-    const [messages,setMessages] = useState([])
-    
     const grocery_id = localStorage.getItem('_id')
 
     const getOtherGrocery = async () => {
@@ -22,7 +19,6 @@ const Conversation = ({ conversation }) => {
             });
             const data = await response.json()
             setGrocery(data)
-            console.log(data)
         } catch (error) {
             console.error(error);
         }

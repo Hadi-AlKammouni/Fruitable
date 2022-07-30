@@ -22,6 +22,7 @@
 .chat-box-wrapper {
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .chat-box-top {
@@ -62,4 +63,13 @@
     padding: 10px;
     background-color: var(--glass);
     height: 100%;
+}
+
+.open-conversation {
+    position:absolute;
+    top: 10%;
+    font-weight: bold;
+    text-align: center;
+    color: rgb(154, 153, 153);
+    cursor: default;
 }
