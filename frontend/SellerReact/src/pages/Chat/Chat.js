@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useState } from 'react';
 import ChatOnline from '../../components/ChatOnline/ChatOnline';
 import Conversation from '../../components/Conversations/Conversation';
@@ -11,7 +11,9 @@ const Chat = () => {
     const [conversations,setConversations] = useState([])
     const [currentChat,setCurrentChat] = useState(null)
     const [messages,setMessages] = useState([])
+    const [newMessage,setNewMessage] = useState("")
     const grocery_id = localStorage.getItem('_id')
+    const scrollRef = useRef()
 
     const getConversations = async () => {
         try {
@@ -34,6 +36,28 @@ const Chat = () => {
         }
     }
 
+    const handleSubmit = async (e) => {
+        try {
+            e.preventDefault();
+            const response = await fetch(`${constants.fetch_url}add_message`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    sender: grocery_id,
+                    text: newMessage,
+                    conversationId: currentChat._id
+                })
+            });
+            const data = await response.json()
+            setMessages([...messages, data.text])
+            setNewMessage("")
+        } catch (error) {
+            console.error(error);
+        } 
+    }
+
     useEffect(() => {
         getConversations()
     },[])
@@ -41,6 +65,10 @@ const Chat = () => {
     useEffect(() => {
         getMessages()
     },[currentChat])
+
+    useEffect(() => {
+        scrollRef.current?.scrollIntoView({behavior: "smooth"})
+    },[messages])
 
     return (
         <div className='chat'>
@@ -61,13 +89,15 @@ const Chat = () => {
                     <>
                     <div className='chat-box-top'>
                         {messages.map((message,index) => (
-                            <Message key={index} message={message} own={message.sender === grocery_id}/>
+                            <div ref={scrollRef}>
+                                <Message key={index} message={message} own={message.sender === grocery_id}/>
+                            </div>
                         ))}
                         
                     </div>
                     <div className='chat-box-bottom'>
-                        <textarea className='chat-msg-input' placeholder='write something...'></textarea>
-                        <button className='chat-submit-button'>SEND</button>
+                        <textarea className='chat-msg-input' placeholder='write something...' onChange={(e)=>setNewMessage(e.target.value)} value={newMessage}></textarea>
+                        <button className='chat-submit-button' onClick={handleSubmit}>SEND</button>
                     </div>
                     </>
                     :
