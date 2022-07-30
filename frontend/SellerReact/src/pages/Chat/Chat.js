@@ -30,10 +30,9 @@ const Chat = () => {
             <div className='chat-menu'>
                 <div className='chat-menu-wrapper'>
                     <input placeholder='Search for groceries' className='chat-menu-input'/>
-                    <Conversation/>
-                    <Conversation/>
-                    <Conversation/>
-                    <Conversation/>
+                    {conversations.map((conversation,index) => (
+                        <Conversation key={index} conversation={conversation}/>
+                    ))}
                 </div>
             </div>
             <div className='chat-box'>
