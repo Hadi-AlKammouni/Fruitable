@@ -89,7 +89,7 @@ const Chat = () => {
                     <>
                     <div className='chat-box-top'>
                         {messages.map((message,index) => (
-                            <div ref={scrollRef}>
+                            <div ref={scrollRef} key={index}>
                                 <Message key={index} message={message} own={message.sender === grocery_id}/>
                             </div>
                         ))}
