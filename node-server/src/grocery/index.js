@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { auth, register, login, addCategory, addItem, removeItem, updateItem, updateAccount, viewStock, viewItem, manageOrder, viewGrocery,registerByOCR, newConversation, getConversation } = require('./controller/grocery');
+const { auth, register, login, addCategory, addItem, removeItem, updateItem, updateAccount, viewStock, viewItem, manageOrder, viewGrocery,registerByOCR, newConversation, getConversation, addMessage } = require('./controller/grocery');
 const middleware = require('../../middleware/auth');
 
 const router = Router();
@@ -10,6 +10,7 @@ router.post('/register_OCR', registerByOCR);
 router.post('/login', login);
 router.post('/new_conversation', newConversation);
 router.get('/get_conversation', getConversation);
+router.post('/add_message', addMessage);
 router.post('/add_category', middleware(), addCategory);
 router.post('/add_item', middleware(), addItem);
 router.post('/remove_item', middleware(), removeItem);
