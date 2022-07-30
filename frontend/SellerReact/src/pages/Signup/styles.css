@@ -5,19 +5,38 @@
     bottom: 0;
     right: 0;
     left: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-evenly;
 }
     
 .signupBox {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 400px;
-  min-height: 400px;
-  background-color:#f3c86e;
+  margin: 10% 20px;
+  max-height: 500px;
+  background-color: #f3c86e;
   border-radius: 20px;
   padding: 20px;
   border: 2px solid white;
+}
+
+.hintBox {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: 10% 20px;
+  max-height: 400px;
+  background-color: #f3c86e;
+  border-radius: 20px;
+  padding: 20px;
+  border: 2px solid white;
+}
+
+.hintBox > img {
+  width: 100%;
+  border-radius: 20px;
+  height: 300px;
 }
 
 .title {

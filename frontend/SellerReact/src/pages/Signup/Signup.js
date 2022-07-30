@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {useNavigate} from 'react-router-dom';
 import Image from "../../components/Image";
 import './styles.css';
+import register from '../../assets/register.png';
 
 const Signup = () => {
 
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [image, setImage] = useState("");
+    const [groceryInfo, setGroceryInfo] = useState("");
     const navigate = useNavigate();
 
     return (
@@ -17,38 +15,18 @@ const Signup = () => {
         <div className="signupBox" id="signupBox">
           <h2 className="title">SIGN UP</h2>
           <div>
-            <div className="inputBox">
-              <label className="logColor">Name</label>
-              <input
-                id="name"
-                type="name"
-                onChange={(e) => setName(e.target.value)}
-              />
-              <label className="logColor">Description</label>
-              <input
-                id="description"
-                type="description"
-                onChange={(e) => setDescription(e.target.value)}
-              />
-              <label className="logColor">Email</label>
-              <input
-                id="email"
-                type="email"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <label className="logColor">Password</label>
-              <input
-                id="password"
-                type="password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
+            <h3 >Follow the instructions at right</h3>
+            <Image set={setGroceryInfo} />
+            <h3 >Grocery picture</h3>
             <Image set={setImage} />
-
-            <button className={!(email && password && name && description && image) ? "disable" : "log"} value="Submit" id="signup" > Signup </button>
+            <button className={!(image && groceryInfo) ? "disable" : "log"} value="Submit" id="signup" > Signup </button>
             <p className="p">Already a member?</p>
             <h6 role="button" className="back" onClick={()=>navigate("/")}>Login</h6>
+          </div>
         </div>
+        <div className="hintBox" id="hintBox">
+          <h2 className="title">Instructions</h2>
+          <img src={register} alt=""/>
         </div>
       </div>
     );

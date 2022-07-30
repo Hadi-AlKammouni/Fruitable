@@ -11,7 +11,7 @@ const Image = ( {set} ) => {
             base64String = reader.result;
             var disp=document.getElementById('display');
             disp.innerHTML='';
-            disp.innerHTML=`<img src="`+base64String+`">`;
+            // disp.innerHTML=`<img src="`+base64String+`">`;
             set(base64String);
         }
         reader.readAsDataURL(file); 
