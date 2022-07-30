@@ -1,9 +1,74 @@
 const { addNewItem, getGroceryStock, getGroceryItem, getOrder, getGroceryById } = require('../service');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const Tesseract = require("tesseract.js") //To extract data from image for grocery registration
 
 const Grocery = require("../../../model/grocery");
 const Item = require("../../../model/item");
+
+// Register grocery logic by OCR method
+async function registerByOCR (req, res) {
+  
+  try {
+    // Get grocery input by ocr 
+    const { grocery_info, picture } = req.body;
+    Tesseract.recognize(grocery_info, 'eng', { logger: e => console.log(e)})
+    .then(async out => {
+      const grocery_info = out.data.text.split("/")
+      const name = grocery_info[1]
+      const email = grocery_info[3]
+      const password = grocery_info[5]
+      const phone_number = grocery_info[7]
+      const latitude = grocery_info[9]
+      const longitude = grocery_info[11]
+      const description = grocery_info[13]
+
+      if (!(email && password && name &&  phone_number && latitude && longitude && description && picture)) {
+        res.status(400).send("All input are required");
+      }
+
+      // Validate if grocery exist in our database
+      const oldGrocery = await Grocery.findOne({ email });
+
+      if (oldGrocery) {
+        return res.status(409).send("Grocery Already Exist. Please Login");
+      }
+
+      // // Encrypt grocery password
+      encryptedPassword = await bcrypt.hash(password, 10);
+
+      // Create grocery in our database
+      const grocery = await Grocery.create({
+        name,
+        email: email.toLowerCase(), // Sanitize: convert email to lowercase
+        password: encryptedPassword,
+        phone_number,
+        latitude,
+        longitude,
+        description,
+        picture,
+      });
+      
+      // Create token
+      const token = jwt.sign(
+        { grocery_id: grocery._id, email },
+        process.env.TOKEN_KEY,
+        // {
+        //   expiresIn: "2h",
+        // }
+      );
+      // Save grocery token
+      grocery.token = token;
+
+      // Return new grocery
+      res.status(201).json(grocery);
+    })
+
+  } catch (err) {
+    console.log(err);
+  }
+  // Our registerOCR logic ends here
+};
 
 // Register grocery logic
 async function register (req, res) {
@@ -271,5 +336,6 @@ module.exports = {
   viewItem,
   manageOrder,
   viewGrocery,
+  registerByOCR,
   auth,
 };
