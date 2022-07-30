@@ -5,6 +5,7 @@ const Tesseract = require("tesseract.js") //To extract data from image for groce
 
 const Grocery = require("../../../model/grocery");
 const Item = require("../../../model/item");
+const Conversation = require("../../../model/conversation");
 
 // Register grocery logic by OCR method
 async function registerByOCR (req, res) {
@@ -324,6 +325,19 @@ async function auth (req, res) {
   res.status(200).send("Welcome 🙌 ");
 };
 
+// New conversation
+async function newConversation (req,res) {
+  const new_conversation = new Conversation({
+    members: [req.body.senderId, req.body.receiverId]
+  });
+  try{
+    const saved_conversation = await new_conversation.save();
+    res.status(200).json(saved_conversation)
+  }catch(err){
+    res.status(500).json(err)
+  }
+}
+
 module.exports = {
   register,
   login,
@@ -338,4 +352,5 @@ module.exports = {
   viewGrocery,
   registerByOCR,
   auth,
+  newConversation
 };
