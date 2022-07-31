@@ -55,6 +55,15 @@
     color: white;
 }
 
+.new-conversation {
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--yellow);
+    color: white;
+}
+
 .chat-menu-wrapper, .chat-box-wrapper {
     padding: 10px;
     background-color: var(--glass);

@@ -5,11 +5,13 @@ import Message from '../../components/Message/Message';
 import './styles.css';
 import constants from '../../constants';
 import {io} from 'socket.io-client';
+import Groceries from '../../components/Groceries/Groceries';
 
 const Chat = () => {
 
     const [conversations,setConversations] = useState([])
     const [currentChat,setCurrentChat] = useState(null)
+    const [isChat,setIsChat] = useState(true)
     const [messages,setMessages] = useState([])
     const [newMessage,setNewMessage] = useState("")
     const [arrivalMessage,setArrivalMessage] = useState(null)
@@ -69,6 +71,10 @@ const Chat = () => {
         } 
     }
 
+    const startConversation = async () => {
+        alert("hi")
+    }   
+
     useEffect(() => {
         getConversations()
     },[])
@@ -108,41 +114,46 @@ const Chat = () => {
 
 
     return (
-        <div className='chat'>
-            <div className='chat-menu'>
-                <div className='chat-menu-wrapper'>
-                    <input placeholder='Search for groceries' className='chat-menu-input'/>
-                    {conversations.map((conversation,index) => (
-                        <div onClick={()=>setCurrentChat(conversation)} key={index}>
-                            <Conversation conversation={conversation}/>
-                        </div>
-                    ))}
-                </div>
-            </div>
-            <div className='chat-box'>
-                <div className='chat-box-wrapper'>
-                    {
-                        currentChat ? 
-                    <>
-                    <div className='chat-box-top'>
-                        {messages.map((message,index) => (
-                            <div ref={scrollRef} key={index}>
-                                <Message key={index} message={message} own={message.sender === grocery_id}/>
+        <>
+        {isChat? 
+            <div className='chat'>
+                <div className='chat-menu'>
+                    <div className='chat-menu-wrapper'>
+                        <input placeholder='Search for groceries' className='chat-menu-input'/>
+                        <button className='new-conversation' onClick={()=>startConversation()}>New Conversation</button>
+                        {conversations.map((conversation,index) => (
+                            <div onClick={()=>setCurrentChat(conversation)} key={index}>
+                                <Conversation conversation={conversation}/>
                             </div>
                         ))}
-                        
                     </div>
-                    <div className='chat-box-bottom'>
-                        <textarea className='chat-msg-input' placeholder='write something...' onChange={(e)=>setNewMessage(e.target.value)} value={newMessage}></textarea>
-                        <button className='chat-submit-button' onClick={handleSubmit}>SEND</button>
+                </div>
+                <div className='chat-box'>
+                    <div className='chat-box-wrapper'>
+                        {
+                            currentChat ? 
+                        <>
+                        <div className='chat-box-top'>
+                            {messages.map((message,index) => (
+                                <div ref={scrollRef} key={index}>
+                                    <Message key={index} message={message} own={message.sender === grocery_id}/>
+                                </div>
+                            ))}
+                        </div>
+                        <div className='chat-box-bottom'>
+                            <textarea className='chat-msg-input' placeholder='write something...' onChange={(e)=>setNewMessage(e.target.value)} value={newMessage}></textarea>
+                            <button className='chat-submit-button' onClick={handleSubmit}>SEND</button>
+                        </div>
+                        </>
+                        :
+                        <span className='open-conversation'>Open a conversation to start a chat.</span>
+                        }
                     </div>
-                    </>
-                    :
-                    <span className='open-conversation'>Open a conversation to start a chat.</span>
-                    }
                 </div>
             </div>
-        </div>
+        :
+            <Groceries/>}
+        </>
     )
 }
 
