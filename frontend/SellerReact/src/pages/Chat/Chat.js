@@ -13,6 +13,7 @@ const Chat = () => {
     const [currentChat,setCurrentChat] = useState(null)
     const [messages,setMessages] = useState([])
     const [newMessage,setNewMessage] = useState("")
+    const [arrivalMessage,setArrivalMessage] = useState(null)
     const grocery_id = localStorage.getItem('_id')
     const scrollRef = useRef()
     const socket = useRef(io("ws://localhost:8900"))
@@ -40,6 +41,15 @@ const Chat = () => {
 
     const handleSubmit = async (e) => {
         try {
+
+            const receiverId = currentChat.members.find(member => member !== grocery_id)
+
+            socket.current.emit("sendMessage",{
+                senderId: grocery_id,
+                receiverId,
+                text: newMessage
+            })
+
             e.preventDefault();
             const response = await fetch(`${constants.fetch_url}add_message`, {
                 method: 'POST',
@@ -83,7 +93,20 @@ const Chat = () => {
 
     useEffect(() => {
         socket.current = io("ws:localhost:8900")
+        socket.current.on("getMessage", data => {
+            setArrivalMessage({
+                sender: data.senderId,
+                text: data.text,
+                createdAt: Date.now()
+            })
+        })
     },[])
+
+    useEffect(() => {
+        arrivalMessage && currentChat?.members.includes(arrivalMessage.sender) &&
+        setMessages((prev) => [...prev, arrivalMessage]) 
+    },[arrivalMessage,currentChat])
+
 
     return (
         <div className='chat'>
