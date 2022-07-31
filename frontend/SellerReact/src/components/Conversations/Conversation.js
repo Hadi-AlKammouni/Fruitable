@@ -19,6 +19,7 @@ const Conversation = ({ conversation }) => {
             });
             const data = await response.json()
             setGrocery(data)
+            localStorage.setItem("other_picture",grocery.picture)
         } catch (error) {
             console.error(error);
         }
