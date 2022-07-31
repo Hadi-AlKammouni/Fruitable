@@ -71,13 +71,9 @@ const Chat = () => {
         } 
     }
 
-    const startConversation = async () => {
-        alert("hi")
-    }   
-
     useEffect(() => {
         getConversations()
-    },[])
+    },[conversations])
 
     useEffect(() => {
         getMessages()
@@ -120,7 +116,7 @@ const Chat = () => {
                 <div className='chat-menu'>
                     <div className='chat-menu-wrapper'>
                         <input placeholder='Search for groceries' className='chat-menu-input'/>
-                        <button className='new-conversation' onClick={()=>startConversation()}>New Conversation</button>
+                        <button className='new-conversation' onClick={()=>setIsChat(false)}>New Conversation</button>
                         {conversations.map((conversation,index) => (
                             <div onClick={()=>setCurrentChat(conversation)} key={index}>
                                 <Conversation conversation={conversation}/>
@@ -152,7 +148,7 @@ const Chat = () => {
                 </div>
             </div>
         :
-            <Groceries/>}
+            <Groceries setIsChat={setIsChat}/>}
         </>
     )
 }
