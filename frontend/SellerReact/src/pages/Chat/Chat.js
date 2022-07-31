@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { useState } from 'react';
-import ChatOnline from '../../components/ChatOnline/ChatOnline';
 import Conversation from '../../components/Conversations/Conversation';
 import Message from '../../components/Message/Message';
 import './styles.css';
@@ -141,11 +140,6 @@ const Chat = () => {
                     :
                     <span className='open-conversation'>Open a conversation to start a chat.</span>
                     }
-                </div>
-            </div>
-            <div className='chat-online'>
-                <div className='chat-online-wrapper'>
-                    <ChatOnline />
                 </div>
             </div>
         </div>

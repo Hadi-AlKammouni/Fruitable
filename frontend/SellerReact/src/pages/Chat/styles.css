@@ -55,11 +55,7 @@
     color: white;
 }
 
-.chat-online{
-    flex: 3;
-}
-
-.chat-menu-wrapper, .chat-box-wrapper, .chat-online-wrapper{
+.chat-menu-wrapper, .chat-box-wrapper {
     padding: 10px;
     background-color: var(--glass);
     height: 100%;
