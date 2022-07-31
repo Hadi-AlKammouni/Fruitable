@@ -5,6 +5,7 @@ import Conversation from '../../components/Conversations/Conversation';
 import Message from '../../components/Message/Message';
 import './styles.css';
 import constants from '../../constants';
+import {io} from 'socket.io-client';
 
 const Chat = () => {
 
@@ -14,6 +15,7 @@ const Chat = () => {
     const [newMessage,setNewMessage] = useState("")
     const grocery_id = localStorage.getItem('_id')
     const scrollRef = useRef()
+    const socket = useRef(io("ws://localhost:8900"))
 
     const getConversations = async () => {
         try {
@@ -69,6 +71,19 @@ const Chat = () => {
     useEffect(() => {
         scrollRef.current?.scrollIntoView({behavior: "smooth"})
     },[messages])
+
+    useEffect(() => {
+        // sending to server
+        socket.current.emit("addGrocery", grocery_id) 
+        // getting from server
+        socket.current.on("getGroceries",groceries => {
+            console.log(groceries)
+        }) 
+    },[grocery_id])
+
+    useEffect(() => {
+        socket.current = io("ws:localhost:8900")
+    },[])
 
     return (
         <div className='chat'>
