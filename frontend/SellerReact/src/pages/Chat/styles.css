@@ -8,13 +8,6 @@
     flex: 3.5;
 }
 
-.chat-menu-input{
-    width: 90%;
-    padding: 10px 0;
-    border: none;
-    border-bottom: 1px solid gray;
-}
-
 .chat-box{
     flex: 5.5;
 }

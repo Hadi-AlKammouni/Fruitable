@@ -9,7 +9,7 @@ const Groceries = ({setIsChat}) => {
 
   const getGroceries = async () => {
     try {
-        const response = await fetch(`http://192.168.0.108:5000/api/v1/user/get_groceries`);
+        const response = await fetch(`http://localhost:5000/api/v1/user/get_groceries`);
         const data = await response.json();
         setGroceries(data)
     } catch (error) {

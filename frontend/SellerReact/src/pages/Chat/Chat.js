@@ -1,5 +1,4 @@
-import { useEffect, useRef } from 'react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Conversation from '../../components/Conversations/Conversation';
 import Message from '../../components/Message/Message';
 import './styles.css';
@@ -17,7 +16,29 @@ const Chat = () => {
     const [arrivalMessage,setArrivalMessage] = useState(null)
     const grocery_id = localStorage.getItem('_id')
     const scrollRef = useRef()
-    const socket = useRef(io("ws://localhost:8900"))
+    const socket = useRef()
+
+    useEffect(() => {
+        socket.current = io("ws://localhost:8900")
+        socket.current.on("getMessage", (data) => {
+            setArrivalMessage({
+                sender: data.senderId,
+                text: data.text,
+                createdAt: Date.now()
+            })
+        })
+    },[])
+
+    useEffect(() => {
+        arrivalMessage && 
+        currentChat?.members.includes(arrivalMessage.sender) &&
+        setMessages((prev) => [...prev, arrivalMessage]) 
+    },[arrivalMessage,currentChat])
+
+    useEffect(() => {
+        // sending to server
+        socket.current.emit("addGrocery", grocery_id) 
+    },[grocery_id])
 
     const getConversations = async () => {
         try {
@@ -41,17 +62,14 @@ const Chat = () => {
     }
 
     const handleSubmit = async (e) => {
+        e.preventDefault();
+        const receiverId = currentChat.members.find((member) => member !== grocery_id)
+        socket.current.emit("sendMessage",{
+            senderId: grocery_id,
+            receiverId,
+            text: newMessage
+        })
         try {
-
-            const receiverId = currentChat.members.find(member => member !== grocery_id)
-
-            socket.current.emit("sendMessage",{
-                senderId: grocery_id,
-                receiverId,
-                text: newMessage
-            })
-
-            e.preventDefault();
             const response = await fetch(`${constants.fetch_url}add_message`, {
                 method: 'POST',
                 headers: {
@@ -66,6 +84,7 @@ const Chat = () => {
             const data = await response.json()
             setMessages([...messages, data.text])
             setNewMessage("")
+            getMessages()
         } catch (error) {
             console.error(error);
         } 
@@ -73,7 +92,7 @@ const Chat = () => {
 
     useEffect(() => {
         getConversations()
-    },[conversations])
+    },[grocery_id])
 
     useEffect(() => {
         getMessages()
@@ -83,39 +102,12 @@ const Chat = () => {
         scrollRef.current?.scrollIntoView({behavior: "smooth"})
     },[messages])
 
-    useEffect(() => {
-        // sending to server
-        socket.current.emit("addGrocery", grocery_id) 
-        // getting from server
-        socket.current.on("getGroceries",groceries => {
-            console.log(groceries)
-        }) 
-    },[grocery_id])
-
-    useEffect(() => {
-        socket.current = io("ws:localhost:8900")
-        socket.current.on("getMessage", data => {
-            setArrivalMessage({
-                sender: data.senderId,
-                text: data.text,
-                createdAt: Date.now()
-            })
-        })
-    },[])
-
-    useEffect(() => {
-        arrivalMessage && currentChat?.members.includes(arrivalMessage.sender) &&
-        setMessages((prev) => [...prev, arrivalMessage]) 
-    },[arrivalMessage,currentChat])
-
-
     return (
         <>
         {isChat? 
             <div className='chat'>
                 <div className='chat-menu'>
                     <div className='chat-menu-wrapper'>
-                        <input placeholder='Search for groceries' className='chat-menu-input'/>
                         <button className='new-conversation' onClick={()=>setIsChat(false)}>New Conversation</button>
                         {conversations.map((conversation,index) => (
                             <div onClick={()=>setCurrentChat(conversation)} key={index}>
