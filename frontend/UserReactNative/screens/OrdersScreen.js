@@ -1,11 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import { StyleSheet, Text, SafeAreaView, ScrollView, TouchableOpacity, ActivityIndicator, View } from 'react-native';
 import ViewCart from '../components/ViewCart';
 import constants from '../constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useGrocery } from '../context/grocery';
-import axios from 'axios';
 import { useUser } from '../context/user';
+import * as Notifications from 'expo-notifications';
+import { doc, getDoc } from "firebase/firestore"; 
 
 const OrdersScreen = () => {
 
@@ -15,10 +16,15 @@ const OrdersScreen = () => {
     groceyDescription,
   } = useGrocery()
 
+  const { userId } = useUser()
+
   const {userOrder,userFirstName} = useUser()
   const [cartItems,setCartItems] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
+  const [notification, setNotification] = useState(false);
+  const notificationListener = useRef();
+  const responseListener = useRef();
 
   const viewCart = async () => {
     try {
@@ -39,19 +45,50 @@ const OrdersScreen = () => {
     }
   };
 
-  const pushNotfication = () => {
-    axios.post(`https://app.nativenotify.com/api/notification`, {
-      appId: 3343,
-      appToken: "5MVe2pBuNkF25Ck9aVb66d",
-      title: "New Order",
-      body: "Your order is received successfully.",
-      dateSent: "7-27-2022 8:13PM",
-      pushData: { yourProperty: "yourPropertyValue" }
+  // Getting the token to push the notification
+  const getToken = async () => {
+    const docSnap = await getDoc(doc(constants.firestore, "users", userId));
+    sendPushNotification(docSnap.data().token)
+  }
+
+  // Sending the notification
+  async function sendPushNotification(expoPushToken) {
+    const message = {
+      to: expoPushToken,
+      sound: 'default',
+      title: 'Fruitable',
+      body: 'Your order has been sent successfully.',
+      data: { someData: 'goes here' },
+    };
+
+    await fetch('https://exp.host/--/api/v2/push/send', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Accept-encoding': 'gzip, deflate',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(message),
     });
   }
 
   useEffect(() => {
     viewCart();
+
+    //Notification fucntions:
+    // This listener is fired whenever a notification is received while the app is foregrounded
+    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
+      setNotification(notification);
+    });
+    // This listener is fired whenever a user taps on or interacts with a notification (works when app is foregrounded, backgrounded, or killed)
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+      console.log(response);
+    });
+    return () => {
+      Notifications.removeNotificationSubscription(notificationListener.current);
+      Notifications.removeNotificationSubscription(responseListener.current);
+    };
+
   }, []);
 
   return (
@@ -69,7 +106,7 @@ const OrdersScreen = () => {
         <ViewCart items={cartItems} />
       </ScrollView>
       <TouchableOpacity style={styles.order}>
-        <Text style={styles.orderBtn} onPress={() => pushNotfication()}>Order Now</Text>
+        <Text style={styles.orderBtn} onPress={() => getToken()}>Order Now</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

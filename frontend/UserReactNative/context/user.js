@@ -1,9 +1,19 @@
 import React, { useState } from "react";
+import * as Notifications from 'expo-notifications';
 
 export const UserContext = React.createContext();
 
 const UserProvider = ({children}) => {
     
+    // For firebase push notification
+    Notifications.setNotificationHandler({
+        handleNotification: async () => ({
+          shouldShowAlert: true,
+          shouldPlaySound: false,
+          shouldSetBadge: false,
+        }),
+    });
+
     const [userId, setUserId] = useState('')
     const [userFirstName, setUserFirstname] = useState('')
     const [userLastName, setUserLastName] = useState('')

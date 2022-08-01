@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, {useState, useEffect} from 'react';
 import { View, Text, StatusBar } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import styles from './styles';
@@ -7,6 +7,9 @@ import UploadImage from '../../components/UploadImage';
 import constants from '../../constants';
 import {useUser} from '../../context/user';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { doc, setDoc } from "firebase/firestore"; 
+import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
 
 const SignupScreenThree = ({ navigation, route }) => {
   
@@ -21,7 +24,40 @@ const SignupScreenThree = ({ navigation, route }) => {
     } = useUser()
 
     const [picture, setPicture] = useState(null);
+    const [expoPushToken, setExpoPushToken] = useState('');
     const { firstName, lastName, gender, email, password } = route.params;
+
+    // Getting expo push notification token
+    async function registerForPushNotificationsAsync() {
+      let token;
+      if (Device.isDevice) {
+        const { status: existingStatus } = await Notifications.getPermissionsAsync();
+        let finalStatus = existingStatus;
+        if (existingStatus !== 'granted') {
+          const { status } = await Notifications.requestPermissionsAsync();
+          finalStatus = status;
+        }
+        if (finalStatus !== 'granted') {
+          alert('Failed to get push token for push notification!');
+          return;
+        }
+        token = (await Notifications.getExpoPushTokenAsync()).data;
+        console.log(token);
+      } else {
+        alert('Must use physical device for Push Notifications');
+      }
+    
+      if (Platform.OS === 'android') {
+        Notifications.setNotificationChannelAsync('default', {
+          name: 'default',
+          importance: Notifications.AndroidImportance.MAX,
+          vibrationPattern: [0, 250, 250, 250],
+          lightColor: '#FF231F7C',
+        });
+      }
+    
+      return token;
+    }
 
     const createAccount = async () => {
         try{
@@ -55,12 +91,20 @@ const SignupScreenThree = ({ navigation, route }) => {
               await AsyncStorage.setItem('first_name',data.first_name);
               await AsyncStorage.setItem('last_name',data.last_name);
               !data.profile_picture ? null : await AsyncStorage.setItem('profile_picture',data.profile_picture);
+              // Add a new document in collection "users" firebase
+              const user = await setDoc(doc(constants.firestore, "users", `${data._id}`), {
+                token: expoPushToken,
+              });
               navigation.navigate("UserScreen")
             }
         } catch (error) {
             console.log("eeee",error)
         } 
     }
+
+    useEffect(() => {
+      registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+    },[])
 
     return (
         <View style={styles.container}>
