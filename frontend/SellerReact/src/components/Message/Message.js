@@ -1,5 +1,4 @@
 import './styles.css';
-import register from '../../assets/register.png';
 import {format} from 'timeago.js';
 
 const Message = ({message,own}) => {
