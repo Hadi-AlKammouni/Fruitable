@@ -69,8 +69,6 @@ const ViewItems = () => {
                                             setShow(false)
                                         }else{
                                             addToCart(item.name,item.price,item.picture) 
-                                        addToCart(item.name,item.price,item.picture) 
-                                            addToCart(item.name,item.price,item.picture) 
                                             setShow(false)
                                         }
                                         

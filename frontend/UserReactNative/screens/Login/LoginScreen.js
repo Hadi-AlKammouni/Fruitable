@@ -117,7 +117,7 @@ const LoginScreen = ({navigation}) => {
           border_color="#FDBE3B"
           text_style={styles.textSign}
           text_color="#FDBE3B"
-          text="New? Create Account"
+          text="New? Create an Account"
         />
         {/* <View><Text>{userFirstName}</Text></View> */}
       </Animatable.View>

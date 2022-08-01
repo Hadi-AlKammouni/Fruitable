@@ -6,8 +6,6 @@ import Box from '@mui/material/Box';
 
 const Review = () => {
 
-  const token = localStorage.getItem('token')
-  const grocery_id = localStorage.getItem('_id')
   const [data,setData] = useState([])
   const [rows,setRows] = useState([])
 
@@ -32,6 +30,8 @@ const Review = () => {
 
   const veiwGrocery = async () => {
     try {
+      const token = localStorage.getItem('token')
+      const grocery_id = localStorage.getItem('_id')
       const response = await fetch(`${constants.fetch_url}view_grocery?id=${grocery_id}`,{
         headers: {
           'x-access-token': token,

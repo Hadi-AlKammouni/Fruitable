@@ -59,7 +59,7 @@ const GroceyScreen = ( {navigation,navigation: { goBack }} ) => {
     <SafeAreaView style={styles.container} >
       {/* GroceryHeader */}
       <View style={styles.header}>
-        <MaterialIcons name='arrow-back' size={28} onPress={() => goBack()} style={styles.backIcon}/>
+        <MaterialIcons name='arrow-back' size={28} onPress={() => navigation.navigate('Home')} style={styles.backIcon}/>
         <Text style={styles.headerText}>
           {groceryName}
         </Text>

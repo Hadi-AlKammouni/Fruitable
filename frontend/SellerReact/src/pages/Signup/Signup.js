@@ -30,7 +30,7 @@ const Signup = () => {
           if(data._id){
             localStorage.setItem("_id",data._id)
             localStorage.setItem("token",data.token)
-            navigate('/stock')
+            navigate('/reviews')
           }
         }
 
