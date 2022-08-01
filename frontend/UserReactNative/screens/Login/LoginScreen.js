@@ -56,11 +56,9 @@ const LoginScreen = ({navigation}) => {
           await AsyncStorage.setItem('first_name',data.first_name);
           await AsyncStorage.setItem('last_name',data.last_name);
           await AsyncStorage.setItem('profile_picture',data.profile_picture);
-          // navigation.navigate('UserScreen')
         }
     } catch (error) {
         alert("Wrong email and / or password.")
-        console.log(error)
     }
   }
 

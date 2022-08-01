@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import { StyleSheet, Text, SafeAreaView, ScrollView, TouchableOpacity, ActivityIndicator, View } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, TouchableOpacity, ActivityIndicator, View, FlatList } from 'react-native';
 import ViewCart from '../components/ViewCart';
 import constants from '../constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -8,7 +8,7 @@ import { useUser } from '../context/user';
 import * as Notifications from 'expo-notifications';
 import { doc, getDoc } from "firebase/firestore"; 
 
-const OrdersScreen = () => {
+const OrdersScreen = ({navigation}) => {
 
   const {
     groceryName,
@@ -16,9 +16,7 @@ const OrdersScreen = () => {
     groceyDescription,
   } = useGrocery()
 
-  const { userId } = useUser()
-
-  const {userOrder,userFirstName} = useUser()
+  const {userOrder,userFirstName,userId} = useUser()
   const [cartItems,setCartItems] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
@@ -48,6 +46,7 @@ const OrdersScreen = () => {
   // Getting the token to push the notification
   const getToken = async () => {
     const docSnap = await getDoc(doc(constants.firestore, "users", userId));
+    navigation.navigate('Home')
     sendPushNotification(docSnap.data().token)
   }
 
@@ -56,7 +55,7 @@ const OrdersScreen = () => {
     const message = {
       to: expoPushToken,
       sound: 'default',
-      title: 'Fruitable',
+      title: `Fruitable to ${userFirstName} 🍏`,
       body: 'Your order has been sent successfully.',
       data: { someData: 'goes here' },
     };
@@ -93,18 +92,24 @@ const OrdersScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView}>
-        <Text style={styles.major_info}> {groceryName} - {groceryPhoneNumber} </Text>
-        <Text style={styles.description}> {groceyDescription}</Text>
-        {isLoading ?  
-        <View style={styles.activity}>
-          <ActivityIndicator size={50}/>
-        </View>
-        :
-        null
-      }
-        <ViewCart items={cartItems} />
-      </ScrollView>
+      <FlatList
+        style={styles.flatList}
+        LisHeaderComponent={<></>}
+        ListFooterComponent={
+          <>
+            <Text style={styles.major_info}> {groceryName} - {groceryPhoneNumber} </Text>
+            <Text style={styles.description}> {groceyDescription}</Text>
+            {isLoading ?  
+            <View style={styles.activity}>
+              <ActivityIndicator size={50}/>
+            </View>
+            :
+            null
+            }
+            <ViewCart items={cartItems} />
+          </>
+        }
+      />
       <TouchableOpacity style={styles.order}>
         <Text style={styles.orderBtn} onPress={() => getToken()}>Order Now</Text>
       </TouchableOpacity>
@@ -118,7 +123,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  scrollView: {
+  flatList: {
     backgroundColor: '#ffffff',
     marginHorizontal: 10,
   },

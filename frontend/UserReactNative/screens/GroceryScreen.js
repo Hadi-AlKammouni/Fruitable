@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, SafeAreaView, ScrollView, Image, View, Button, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, Image, View, TouchableOpacity, ActivityIndicator, FlatList } from 'react-native';
 import GroceryRate from '../components/GroceryRate';
 import SubmitReviewPopUp from '../components/SubmitReviewPopUp';
 import ViewItems from '../components/ViewItems';
 import constants from '../constants';
-import { LogBox } from "react-native";
 import { useGrocery } from '../context/grocery';
 import { useUser } from '../context/user';
 import ReviewsPopUp from '../components/ReviewsPopUp';
@@ -53,7 +52,6 @@ const GroceyScreen = ( {navigation,navigation: { goBack }} ) => {
   };
 
   useEffect(() => {
-    LogBox.ignoreLogs(["VirtualizedLists should never be nested"])
     getGrocery();
   }, [groceryId,isItems]);
 
@@ -74,17 +72,24 @@ const GroceyScreen = ( {navigation,navigation: { goBack }} ) => {
         :
         null
       }
-        <ScrollView style={styles.scrollView} >
-          <Image source={{uri: grocery.picture}} style={styles.picture}/>
-          <Text style={styles.major_info}>Call Us - {groceryPhoneNumber}</Text>
-          <Text style={styles.description}> {groceyDescription} </Text>
-          <GroceryRate />
-          <View style={styles.review}>
-            <SubmitReviewPopUp />
-            <ReviewsPopUp />
-          </View>
-          <ViewItems />
-        </ScrollView>
+
+        <FlatList
+          style={styles.flatList}
+          LisHeaderComponent={<></>}
+          ListFooterComponent={
+            <>
+             <Image source={{uri: grocery.picture}} style={styles.picture}/>
+              <Text style={styles.major_info}>Call Us - {groceryPhoneNumber}</Text>
+              <Text style={styles.description}> {groceyDescription} </Text>
+              <GroceryRate />
+              <View style={styles.review}>
+                <SubmitReviewPopUp />
+                <ReviewsPopUp />
+              </View>
+              <ViewItems />
+            </>
+          }
+        />
 
         {pickedItem === true ? 
           <TouchableOpacity style={styles.cart} >
@@ -100,7 +105,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  scrollView: {
+  flatList: {
     backgroundColor: '#ffffff',
   },
   picture: {

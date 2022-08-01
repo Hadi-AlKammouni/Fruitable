@@ -92,8 +92,9 @@ async function login (req, res) {
 
       // Return user
       res.status(200).json(user);
+    } else {
+      res.status(400).send("Invalid Credentials - Wrong email and/or password");
     }
-    res.status(400).send("Invalid Credentials - Wrong email and/or password");
   } catch (err) {
     console.log(err);
   }

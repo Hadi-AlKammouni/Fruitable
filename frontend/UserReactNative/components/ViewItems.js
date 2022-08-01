@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Dimensions, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, FlatList, Image, Modal, Button, Alert } from "react-native";
-import { LogBox } from "react-native";
+import { Dimensions, StyleSheet, Text, TouchableOpacity, View, FlatList, Image, Modal, Button, Alert } from "react-native";
 import constants from '../constants';
 import { useGrocery } from "../context/grocery";
 import { useUser } from "../context/user";
@@ -179,12 +178,11 @@ const ViewItems = () => {
     };
 
     useEffect(() => {
-        LogBox.ignoreLogs(["VirtualizedLists should never be nested"])
         getItems();
     }, [groceryItems,groceryOrder])
 
     return(
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             {/* <View style={styles.list_tab}>
                 {
                     categories.map((e, key) => (
@@ -203,7 +201,7 @@ const ViewItems = () => {
                 ItemSeparatorComponent={separator}
             />
             <ItemPopUp item={selectedItem}/>
-        </SafeAreaView>
+        </View>
     )
 }
 

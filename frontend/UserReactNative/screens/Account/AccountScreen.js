@@ -78,6 +78,7 @@ const AccountScreen = () => {
     await AsyncStorage.removeItem('first_name');
     await AsyncStorage.removeItem('last_name');
     await AsyncStorage.removeItem('profile_picture');
+    await AsyncStorage.removeItem('order');
     setToken(null)
   }
 
