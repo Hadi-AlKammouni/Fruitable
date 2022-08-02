@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Alert } from 'react-native';
+import { View, Alert, Text } from 'react-native';
 import ButtonComponent from '../../components/ButtonComponent';
 import styles from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -8,6 +8,7 @@ import UploadImage from '../../components/UploadImage';
 import { ScrollView } from 'react-native-gesture-handler';
 import TextInputField from '../../components/TextInputField';
 import constants from '../../constants';
+import { MaterialIcons } from "@expo/vector-icons";
 
 const AccountScreen = ({navigation}) => {
 
@@ -87,6 +88,13 @@ const AccountScreen = ({navigation}) => {
   
   return (
     <ScrollView style={{backgroundColor: "#fff"}}>
+
+      {/* AccountHeader */}
+      <View style={styles.header}>
+        <MaterialIcons name='arrow-back' size={28} onPress={() => navigation.goBack()} style={styles.backIcon}/>
+        <Text style={styles.headerText}> {firstName}'s Account </Text>
+      </View>
+
       <View style={styles.container}>  
         <View style={styles.footer} >
           <UploadImage setState={setProfilePicture} />

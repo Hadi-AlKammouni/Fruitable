@@ -7,6 +7,7 @@ import { useGrocery } from '../context/grocery';
 import { useUser } from '../context/user';
 import * as Notifications from 'expo-notifications';
 import { doc, getDoc } from "firebase/firestore"; 
+import { MaterialIcons } from "@expo/vector-icons";
 
 const OrdersScreen = ({navigation}) => {
 
@@ -99,6 +100,13 @@ const OrdersScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+
+      {/* OrderHeader */}
+      <View style={styles.header}>
+        <MaterialIcons name='arrow-back' size={28} onPress={() => navigation.goBack()} style={styles.backIcon}/>
+        <Text style={styles.headerText}> Your Order </Text>
+      </View>
+
       <FlatList
         style={styles.flatList}
         LisHeaderComponent={<></>}
@@ -167,5 +175,23 @@ const styles = StyleSheet.create({
     zIndex: 1,
     position: 'absolute',
     backgroundColor: 'rgba(0,0,0,0.2)'
-},
+  },
+  header: {
+    height: 50,
+    marginTop: 40,
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#FDBE3B',
+  },
+  headerText: {
+      fontWeight: 'bold',
+      fontSize: 26,
+      letterSpacing: 3
+  },
+  backIcon: {
+    position: 'absolute',
+    left: 16
+  },
 });

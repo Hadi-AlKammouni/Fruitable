@@ -71,7 +71,25 @@ const styles = StyleSheet.create({
       margin: 10,
       width:100, 
       height:100,
-    }
+    },
+    header: {
+      height: 50,
+      marginTop: 40,
+      width: '100%',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#FDBE3B',
+    },
+    headerText: {
+        fontWeight: 'bold',
+        fontSize: 26,
+        letterSpacing: 3
+    },
+    backIcon: {
+      position: 'absolute',
+      left: 16
+    },
 });
 
 export default styles;
