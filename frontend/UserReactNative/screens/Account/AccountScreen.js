@@ -9,21 +9,25 @@ import { ScrollView } from 'react-native-gesture-handler';
 import TextInputField from '../../components/TextInputField';
 import constants from '../../constants';
 
-const AccountScreen = () => {
+const AccountScreen = ({navigation}) => {
 
-  const [newFirstName, setNewFirstName] = useState('');
-  const [newLastName, setNewLastName] = useState('');
-  const [newProfilePicture, setNewProfilePicture] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [profilePicture, setProfilePicture] = useState('');
   const [initialFirstName, setInitialFirstName] = useState('');
   const [initialLastName, setInitialLastName] = useState('');
   const [initialProfilePicture, setInitialProfilePicture] = useState('');
   const {setToken} = useUser();
 
   const getUserInfo = async () => {
-    const fisrt_name = await AsyncStorage.getItem('first_name');
+    const first_name = await AsyncStorage.getItem('first_name');
     const last_name = await AsyncStorage.getItem('last_name');
     const profile_picture = await AsyncStorage.getItem('profile_picture');
-    setInitialFirstName(fisrt_name)
+    setFirstName(first_name)
+    setLastName(last_name)
+    setProfilePicture(profile_picture)
+    // To check if there is new change
+    setInitialFirstName(first_name)
     setInitialLastName(last_name)
     setInitialProfilePicture(profile_picture)
   }
@@ -32,20 +36,9 @@ const AccountScreen = () => {
     try{
       const token = await AsyncStorage.getItem('token');
       const user_id = await AsyncStorage.getItem('user_id');
-      if(!newFirstName && !newLastName && !newProfilePicture){
-        Alert.alert("You Didn't Change Any Thing")
+      if (initialFirstName === firstName && initialLastName === lastName && initialProfilePicture === profilePicture ){
+        Alert.alert("You Didn't Make Any Change")
       } else {
-        // To change only what the user decided to change
-        if(!newFirstName){
-          setNewFirstName(initialFirstName)
-        }
-        if(!newLastName){
-          setNewLastName(initialLastName)
-        }
-        if(!newProfilePicture){
-          setNewProfilePicture(initialProfilePicture)
-        }
-  
         const respone = await fetch(`${constants.fetch_url}update_profile?id=${user_id}`, {
             method: 'POST',
             headers: {
@@ -53,20 +46,21 @@ const AccountScreen = () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                first_name: newFirstName,
-                last_name: newLastName,
-                picture: newProfilePicture
+                first_name: firstName,
+                last_name: lastName,
+                profile_picture: profilePicture
             })
         });
         const data = await respone.json();
         if(data.status === "200"){
-          await AsyncStorage.setItem('first_name',newFirstName);
-          await AsyncStorage.setItem('last_name',newLastName);
-          await AsyncStorage.setItem('profile_picture',newProfilePicture);
+          await AsyncStorage.setItem('first_name',firstName);
+          await AsyncStorage.setItem('last_name',lastName);
+          await AsyncStorage.setItem('profile_picture',profilePicture);
           getUserInfo()
           Alert.alert(data.message)
+          navigation.navigate("Home")
         }
-      }
+      }  
     } catch (error) {
       console.log(error)
     } 
@@ -90,20 +84,20 @@ const AccountScreen = () => {
     <ScrollView style={{backgroundColor: "#fff"}}>
       <View style={styles.container}>  
         <View style={styles.footer} >
-          <UploadImage setState={setNewProfilePicture} />
+          <UploadImage setState={setProfilePicture} />
 
           <TextInputField 
             label="First Name" 
             main_icon={require("../../assets/icons/icons8-name-48.png")}
-            placeholder={`${initialFirstName}`}
-            setState={setNewFirstName}
+            placeholder={`enter new first name`}
+            setState={setFirstName}
           />
 
           <TextInputField 
             label="Last Name" 
             main_icon={require("../../assets/icons/icons8-name-48.png")}
-            placeholder={`${initialLastName}`}
-            setState={setNewLastName}
+            placeholder={`enter new last name`}
+            setState={setLastName}
           />
 
           {/* Update Profile Button */}
