@@ -3,33 +3,16 @@ import { SafeAreaView, StyleSheet, Text, View, FlatList, Image } from "react-nat
 
 const ViewCart = (props) => {
 
-    let total_price = 0;
-    props.items.items && props.items.items.map(item => ( total_price += item.price ))
-    
     const renderItem = ({ item, index })  =>{  
         return(
             <>
                <View key={index} style={styles.item}>
-                    
                     <Text style={styles.item_body}>
-                        <Text style={styles.item_name}>
-                            {item.name}
-                        </Text>
-                        <Text style={styles.item_price}>
-                            {"\n"}{"\n"}LBP {item.price} - {item.qauntity} Kg
-                        </Text>
+                        <Text style={styles.item_name}>{item.name}</Text>
+                        <Text style={styles.item_price}>{"\n"}{"\n"}LBP {item.price} - {item.qauntity} Kg</Text>
                     </Text>
-                    {/* <View style={styles.img}> */}
-                        <Image style={styles.item_img} source={{uri: item.picture}}/>
-                    {/* </View> */}
-                    {/* <View style={styles.img}> */}
-                        <Image style={styles.remove_item} source={require("../assets/icons/remove.png")}/>
-                    {/* </View> */}
-                </View>
-                <View>
-                    {/* <Text style={styles.item_name}>
-                        LBP {item.price} - {item.qauntity} Kg
-                    </Text> */}
+                    <Image style={styles.item_img} source={{uri: item.picture}}/>
+                    <Image style={styles.remove_item} source={require("../assets/icons/remove.png")}/>
                 </View>
             </>
         )
@@ -47,7 +30,6 @@ const ViewCart = (props) => {
                 renderItem={renderItem}
                 ItemSeparatorComponent={separator}
             />
-            <Text style={styles.price}>Total Price: LBP {total_price} </Text> 
         </SafeAreaView>
     )
 }

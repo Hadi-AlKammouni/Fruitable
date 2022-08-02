@@ -16,7 +16,7 @@ const OrdersScreen = ({navigation}) => {
     groceyDescription,
   } = useGrocery()
 
-  const {userOrder,userFirstName,userId} = useUser()
+  const {userOrder,userFirstName,userId,cartPrice,cartQuantity} = useUser()
   const [cartItems,setCartItems] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
@@ -111,7 +111,7 @@ const OrdersScreen = ({navigation}) => {
         }
       />
       <TouchableOpacity style={styles.order}>
-        <Text style={styles.orderBtn} onPress={() => getToken()}>Order Now</Text>
+        <Text style={styles.orderBtn} onPress={() => getToken()}>{cartQuantity}x Order Now (LBP {cartPrice})</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

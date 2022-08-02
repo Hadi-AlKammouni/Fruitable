@@ -16,7 +16,7 @@ const HomeScreen = ( {navigation} ) => {
   const [isLoading, setIsLoading] = useState(true)
   const [groceries, setGroceries] = useState([])
   const {setGroceryId} = useGrocery()
-  const {pickedItem,setPickedItem,userOrder,setUserOrder,checkOrderIdRelativeToGrocery,setCheckOrderIdRelativeToGrocery} = useUser()
+  const {pickedItem,setPickedItem,userOrder,setUserOrder,checkOrderIdRelativeToGrocery,setCheckOrderIdRelativeToGrocery,setCartPrice,setCartQuantity,cartQuantity} = useUser()
   
   // To get user live location:
   // 1.If user give access to get his location, 
@@ -97,7 +97,6 @@ const HomeScreen = ( {navigation} ) => {
           'You have picked items from another grocery.',
           'Choose what to do',
         [
-          
           {
             text: 'Cancel',         
             onPress: () => null
@@ -109,6 +108,8 @@ const HomeScreen = ( {navigation} ) => {
               setCheckOrderIdRelativeToGrocery(null)
               setUserOrder(null)
               setPickedItem(null)
+              setCartPrice(0) // Reseting the order price
+              setCartQuantity(0) // Reseting the order qauntity
               navigation.navigate('Grocery')
             }
           }
@@ -122,15 +123,13 @@ const HomeScreen = ( {navigation} ) => {
 
   return (
     <SafeAreaView style={styles.container}>
+
       {/* HomeHeader */}
       <View style={styles.account}>
         <MaterialIcons name='account-circle' size={28} onPress={() => navigation.push('Account')} style={styles.accountIcon}/>
-        <View>
-            <Text style={styles.headerText}>
-                Fruitable
-            </Text>
+        <View> 
+          <Text style={styles.headerText}>Fruitable</Text> 
         </View>
-        {/* {pickedItem ?  */}
         <MaterialIcons name='shopping-cart' size={28} style={styles.cartIcon}
           onPress={() => {
             if(userOrder){
@@ -140,9 +139,9 @@ const HomeScreen = ( {navigation} ) => {
             }
           }}
         />
-        {/* :
-        null
-        } */}
+        <View style={styles.quantityView}> 
+          <Text style={styles.quantityText}>{cartQuantity} </Text> 
+        </View>
       </View>
 
       {
@@ -152,6 +151,7 @@ const HomeScreen = ( {navigation} ) => {
         </View>:
         null 
       }
+
       {/* Show Groceries as markers on map */}
         <MapView
         style={styles.container}

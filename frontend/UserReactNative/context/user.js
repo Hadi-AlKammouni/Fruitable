@@ -26,6 +26,8 @@ const UserProvider = ({children}) => {
     const [userOrder, setUserOrder] = useState(null)
     const [pickedItem,setPickedItem] = useState(false)
     const [checkOrderIdRelativeToGrocery,setCheckOrderIdRelativeToGrocery] = useState(null)
+    const [cartPrice,setCartPrice] = useState(0)
+    const [cartQuantity,setCartQuantity] = useState(0)
 
     return (
         <UserContext.Provider 
@@ -41,7 +43,9 @@ const UserProvider = ({children}) => {
             userProfilePicture, setUserProfilePicture,
             userOrder, setUserOrder,
             pickedItem,setPickedItem,
-            checkOrderIdRelativeToGrocery,setCheckOrderIdRelativeToGrocery}}>
+            checkOrderIdRelativeToGrocery,setCheckOrderIdRelativeToGrocery,
+            cartPrice,setCartPrice,
+            cartQuantity,setCartQuantity}}>
 
             {children}
 
@@ -64,7 +68,9 @@ export const useUser = () => {
         userProfilePicture, setUserProfilePicture,
         userOrder, setUserOrder,
         pickedItem,setPickedItem,
-        checkOrderIdRelativeToGrocery,setCheckOrderIdRelativeToGrocery} = React.useContext(UserContext)
+        checkOrderIdRelativeToGrocery,setCheckOrderIdRelativeToGrocery,
+        cartPrice,setCartPrice,
+        cartQuantity,setCartQuantity} = React.useContext(UserContext)
 
     return {
         userId, setUserId,
@@ -78,6 +84,8 @@ export const useUser = () => {
         userProfilePicture, setUserProfilePicture,
         userOrder, setUserOrder,
         pickedItem,setPickedItem,
-        checkOrderIdRelativeToGrocery,setCheckOrderIdRelativeToGrocery
+        checkOrderIdRelativeToGrocery,setCheckOrderIdRelativeToGrocery,
+        cartPrice,setCartPrice,
+        cartQuantity,setCartQuantity
     }
 }

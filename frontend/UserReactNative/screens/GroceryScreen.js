@@ -9,7 +9,7 @@ import { useUser } from '../context/user';
 import ReviewsPopUp from '../components/ReviewsPopUp';
 import { MaterialIcons } from "@expo/vector-icons";
 
-const GroceyScreen = ( {navigation,navigation: { goBack }} ) => {
+const GroceyScreen = ( {navigation} ) => {
 
   const {
     groceryId,
@@ -24,11 +24,12 @@ const GroceyScreen = ( {navigation,navigation: { goBack }} ) => {
     setGroceryReviews,
   } = useGrocery()
 
-  const {pickedItem} = useUser()
+  const {pickedItem, cartPrice, cartQuantity} = useUser()
 
   const [grocery, setGrocery] = useState([])
   const [isItems, setIsItems] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  const [displayItems, setDisplayItems] = useState(false) // To display items for the selected grocery
 
 
   const getGrocery = async () => {
@@ -46,6 +47,7 @@ const GroceyScreen = ( {navigation,navigation: { goBack }} ) => {
       setGroceryItems(data.items),
       setGroceryReviews(data.reviews)
       setIsLoading(false)
+      setDisplayItems(true)
     } catch (error) {
       console.error(error);
     }
@@ -57,6 +59,7 @@ const GroceyScreen = ( {navigation,navigation: { goBack }} ) => {
 
   return (
     <SafeAreaView style={styles.container} >
+
       {/* GroceryHeader */}
       <View style={styles.header}>
         <MaterialIcons name='arrow-back' size={28} onPress={() => navigation.navigate('Home')} style={styles.backIcon}/>
@@ -86,14 +89,14 @@ const GroceyScreen = ( {navigation,navigation: { goBack }} ) => {
                 <SubmitReviewPopUp />
                 <ReviewsPopUp />
               </View>
-              <ViewItems />
+              {displayItems? <ViewItems /> : null}
             </>
           }
         />
 
         {pickedItem === true ? 
           <TouchableOpacity style={styles.cart} >
-            <Text style={styles.viewCart} onPress={() => navigation.navigate("Order")}>View Cart</Text>         
+            <Text style={styles.viewCart} onPress={() => navigation.navigate("Order")}>{cartQuantity}x View Cart (LBP {cartPrice})</Text>         
           </TouchableOpacity>
           : null
         }

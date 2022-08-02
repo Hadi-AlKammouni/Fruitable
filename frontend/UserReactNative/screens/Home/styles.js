@@ -41,12 +41,7 @@ const styles = StyleSheet.create({
         paddingVertical:8
     },
     cardView: {
-        // shadowOffset: { width: 0, height:20 },
-        // shadowOpacity: 0.1,
-        // shadowColor: "black",
-        // shadowRadius: 10,
         elevation:90,
-        // shadowColor: '#f',
         backgroundColor:'#fff',
         borderRadius:10,
         marginHorizontal: 10,
@@ -107,6 +102,16 @@ const styles = StyleSheet.create({
     cartIcon: {
         position: 'absolute',
         right: 16
+    },
+    quantityView: {
+        position: 'absolute',
+        right: 24,
+        top: -1,
+    },
+    quantityText: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 16
     }
   });
 

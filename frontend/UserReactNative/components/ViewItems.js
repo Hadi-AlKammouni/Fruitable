@@ -13,7 +13,7 @@ const ViewItems = () => {
         groceryId,
     } = useGrocery()
 
-    const {userOrder,setUserOrder,token,setToken,setPickedItem,setCheckOrderIdRelativeToGrocery} = useUser()
+    const {userOrder,setUserOrder,token,setToken,setPickedItem,setCheckOrderIdRelativeToGrocery,cartPrice,setCartPrice,cartQuantity,setCartQuantity} = useUser()
 
     // const [category,setCategory] = useState('')
     const [fetchedItems,setFetchedItems] = useState([])
@@ -71,7 +71,6 @@ const ViewItems = () => {
                                             addToCart(item.name,item.price,item.picture) 
                                             setShow(false)
                                         }
-                                        
                                     }} />
                             </View>
                             <Button title="Close" color={"#000"} onPress={() => setShow(false)} />
@@ -138,6 +137,8 @@ const ViewItems = () => {
                 const order = await AsyncStorage.setItem('order',data._id);
                 setUserOrder(data._id)
                 setCheckOrderIdRelativeToGrocery(groceryId)
+                setCartPrice(0)
+                setCartQuantity(0)
                 addToCart(name,price,picture)
             }
 
@@ -166,7 +167,11 @@ const ViewItems = () => {
             });
             const data = await response.json();
             if(data.status === "200"){
-                setPickedItem(true) // To show the cart icon in home screen
+                setPickedItem(true) // To show the View Cart button
+                var total = parseFloat(cartPrice) + parseFloat(price) // Calculate the total price of the order
+                var qauntity = parseFloat(cartQuantity) + 1 // Calculate the quantity of items added to order
+                setCartPrice(total)
+                setCartQuantity(qauntity)
                 Alert.alert(data.message)
             }
       
@@ -287,7 +292,6 @@ const styles = StyleSheet.create ({
         marginTop: 30
     },
     cart_button: {
-        // margin: 20
         marginTop: 20,
         marginBottom: 20
     },
