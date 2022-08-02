@@ -9,7 +9,6 @@ const Stock = () => {
   const groceryItems = localStorage.getItem('items')
   const groceryToken = localStorage.getItem('token')
   const items = []
-  // const each_item = groceryItems.split(",")
 
   const [rows,setRows] = useState([])
   const [toUpdate,setToUpdate] = useState(null)
@@ -27,7 +26,7 @@ const Stock = () => {
       if(groceryItems.length>0){
         const each_item = groceryItems.split(",")
         for (let i=0; i < each_item.length; i++){
-          const response =  await fetch(`${constants.fetch_url}view_item?id=${each_item[i]}`,{
+          const response = await fetch(`${constants.fetch_url}view_item?id=${each_item[i]}`,{
           headers: {
             'x-access-token': groceryToken,
           }
@@ -44,71 +43,88 @@ const Stock = () => {
 
   const updateItem = async () => {
     try {
-      console.log(toUpdate)
-      let field = toUpdate.field
-      const value = toUpdate.value
+      var field = toUpdate.field
+      var value = toUpdate.value
       if (field === "name"){
-      const response = await fetch(`${constants.fetch_url}update_item?id=${toUpdate.id}`,{
-        method: 'POST',
-        headers: {
-          'x-access-token': groceryToken,
-        },
-        body: JSON.stringify({
-          name: value
+        const response = await fetch(`${constants.fetch_url}update_item?id=${toUpdate.id}`,{
+          method: 'POST',
+          headers: {
+            'x-access-token': groceryToken,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: value
+          })
         })
-      })
-      const data = await response.json();
-    }
-      else if (field === "category"){
-        const response = await fetch(`${constants.fetch_url}update_item?id=${toUpdate.id}`,{
-          method: 'POST',
-          headers: {
-            'x-access-token': groceryToken,
-          },
-          body: JSON.stringify({
-            category: value
-          })
-      })
-      const data = await response.json();
-    }
-      else if (field === "price"){
-        const response = await fetch(`${constants.fetch_url}update_item?id=${toUpdate.id}`,{
-          method: 'POST',
-          headers: {
-            'x-access-token': groceryToken,
-          },
-          body: JSON.stringify({
-            price: value
-          })
-      })
-      const data = await response.json();
-    }
-      else {
-        const response = await fetch(`${constants.fetch_url}update_item?id=${toUpdate.id}`,{
-          method: 'POST',
-          headers: {
-            'x-access-token': groceryToken,
-          },
-          body: JSON.stringify({
-            quantity: value
-          })
-      })
-      const data = await response.json();
-    }
+        const data = await response.json();
+        if(data.status === '200'){
+          alert(data.message)
+          setToUpdate(null)
+        }
+      } else if (field === "category"){
+          if(value != "Fruits" && value != "Vegetables"){
+            alert("Category can be (Fruits) or (Vegetables) only.")
+            window.location.reload ();
+          } else{
+            const response = await fetch(`${constants.fetch_url}update_item?id=${toUpdate.id}`,{
+              method: 'POST',
+              headers: {
+                'x-access-token': groceryToken,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                category: value
+              })
+            })
+            const data = await response.json();
+            if(data.status === '200'){
+              alert(data.message)
+              setToUpdate(null)
+            }
+          }
+      } else if (field === "price"){
+          const response = await fetch(`${constants.fetch_url}update_item?id=${toUpdate.id}`,{
+            method: 'POST',
+            headers: {
+              'x-access-token': groceryToken,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              price: value
+            })
+        })
+        const data = await response.json();
+        if(data.status === '200'){
+          alert(data.message)
+          setToUpdate(null)
+        }
+      } else {
+          const response = await fetch(`${constants.fetch_url}update_item?id=${toUpdate.id}`,{
+            method: 'POST',
+            headers: {
+              'x-access-token': groceryToken,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              quantity: value
+            })
+        })
+        const data = await response.json();
+        if(data.status === '200'){
+          alert(data.message)
+          setToUpdate(null)
+        }
+      }
+
     } catch (error) {
       alert("Something went wrong")
       console.error(error);
     }
   }
 
-  const addItem = () => {
-    setShowBox(false)
-    console.log(showBox)
-  }
-
   useEffect(() => {
     getItems()
-  }, [groceryItems,toUpdate]);
+  }, [groceryItems]);
 
   useEffect(() => {
     if(toUpdate !== null){
@@ -123,7 +139,7 @@ const Stock = () => {
         <div className="header">
           <div>
             <h1>My Stock</h1>
-            <button className="add-btn" onClick={addItem}> Add Item </button>  
+            <button className="add-btn" onClick={() => setShowBox(false)}> Add Item </button>  
           </div>
         </div>
         <div className="box">
@@ -135,19 +151,16 @@ const Stock = () => {
               rowsPerPageOptions={[5, 10, 15]}
               editMode='cell'
               disableSelectionOnClick
-              onCellClick={(e)=>console.log(e)}
               onCellEditCommit={(cell)=>setToUpdate(cell)}
               getRowId={(row)=>row._id}
             />
           </Box>
         </div> 
       </>
+
       :
-      null}   
-      {!showBox?
-        <AddItem/>
-      :
-      null}       
+      
+      <AddItem/>}
     </>
   );
 }
