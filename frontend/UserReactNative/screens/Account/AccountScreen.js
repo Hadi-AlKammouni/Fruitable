@@ -17,7 +17,7 @@ const AccountScreen = ({navigation}) => {
   const [initialFirstName, setInitialFirstName] = useState('');
   const [initialLastName, setInitialLastName] = useState('');
   const [initialProfilePicture, setInitialProfilePicture] = useState('');
-  const {setToken} = useUser();
+  const {setToken,setCartItems,setCartPrice,setCartQuantity,setUserOrder,setPickedItem} = useUser();
 
   const getUserInfo = async () => {
     const first_name = await AsyncStorage.getItem('first_name');
@@ -67,6 +67,11 @@ const AccountScreen = ({navigation}) => {
   }
 
   const logOut = async () => {
+    // Resset the cart
+    setCartPrice(0)
+    setCartQuantity(0)
+    setUserOrder(null)
+    setPickedItem(null)
     await AsyncStorage.removeItem('token');
     await AsyncStorage.removeItem('user_id');
     await AsyncStorage.removeItem('first_name');

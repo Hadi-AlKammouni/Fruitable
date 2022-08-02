@@ -16,7 +16,7 @@ const OrdersScreen = ({navigation}) => {
     groceyDescription,
   } = useGrocery()
 
-  const {userOrder,userFirstName,userId,cartPrice,cartQuantity} = useUser()
+  const {userOrder,userFirstName,userId,cartPrice,setCartPrice,cartQuantity,setCartQuantity,setUserOrder,setPickedItem} = useUser()
   const [cartItems,setCartItems] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
@@ -46,6 +46,13 @@ const OrdersScreen = ({navigation}) => {
   // Getting the token to push the notification
   const getToken = async () => {
     const docSnap = await getDoc(doc(constants.firestore, "users", userId));
+    // Resset the cart
+    setCartItems([])
+    setCartPrice(0)
+    setCartQuantity(0)
+    setUserOrder(null)
+    setPickedItem(null)
+    // Navigate to home screen + send firebase push notification
     navigation.navigate('Home')
     sendPushNotification(docSnap.data().token)
   }
