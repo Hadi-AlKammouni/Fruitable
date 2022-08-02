@@ -348,6 +348,38 @@ async function auth (req, res) {
   res.status(200).send("Welcome 🙌 ");
 };
 
+// Remove item from order logic
+async function removeFromOrder(req, res) {
+  try {
+    const name = req.body.name;
+    const price = req.body.price;
+    const picture = req.body.picture;
+    const order = req.body.order;
+
+    // use updateOne() to update orders collection
+    const updateOrder = await Order.updateOne(
+      {
+        _id: order
+      },
+      {
+        $pull: { 
+          items:{
+            name: name,
+            price: price,
+            picture: picture
+          }  
+        }
+      }
+    );
+    
+    return res.status(200).json({ status: "200",message:"Item removed from your recent order"});
+  } 
+  catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
     register,
     login,
@@ -361,4 +393,5 @@ module.exports = {
     addToOrder,
     viewCart,
     findNearbyGroceries,
+    removeFromOrder
 };
