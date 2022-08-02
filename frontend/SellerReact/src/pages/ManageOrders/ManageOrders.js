@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import constants from "../../constants";
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
+
 const ManageOrders = () => {
 
   const grocery_orders = localStorage.getItem('orders')
@@ -9,12 +10,16 @@ const ManageOrders = () => {
   const orders = []
   const each_order = grocery_orders.split(",")
   const [rows,setRows] = useState([])
-
-  const [show, setShow] = useState(false)
-  const [selectedRow, setSelectedRow] = useState(false)
+  const [orderRows,setOrderRows] = useState([])
+  const [showSpecificOrder, setShowSpecificOrder] = useState(false)
 
   const columns = [
     { field: 'username', headerName: 'Order From', width: 100 }
+  ];
+
+  const order_columns = [
+    { field: 'name', headerName: 'Item', width: 100 },
+    { field: 'price', headerName: 'Price', width: 100 }
   ];
 
   const getOrders = async () => {
@@ -35,10 +40,9 @@ const ManageOrders = () => {
     }
   }
 
-  const displayOrder = async () => {
-    console.log(rows)
-    setSelectedRow(rows)
-    setShow(true)
+  const displayOrder = async (data) => {
+    setOrderRows(data.row.items)
+    setShowSpecificOrder(true)
   }
 
   useEffect(() => {
@@ -48,18 +52,36 @@ const ManageOrders = () => {
     return (
       <>
       <h1>Orders</h1>
+      {!showSpecificOrder ? 
+        null 
+      :
+        <button className="add-btn" onClick={() => setShowSpecificOrder(false)}> Back to Orders </button>  
+      }
       <div style={{'background-color': 'var(--glass)', 'width': '80%'}}>
-        <Box sx={{ height: 400, width: '100%' }}>
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[5, 10, 15]}
-            disableSelectionOnClick
-            onRowClick={displayOrder}
-            getRowId={(row)=>row._id}
-          />
-        </Box>
+        {!showSpecificOrder ?
+          <Box sx={{ height: 400, width: '100%' }}>
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              pageSize={5}
+              rowsPerPageOptions={[5, 10, 15]}
+              disableSelectionOnClick
+              onCellClick={(data)=>displayOrder(data)}
+              getRowId={(row)=>row._id}
+            />
+          </Box>
+        :
+          <Box sx={{ height: 400, width: '100%' }}>
+            <DataGrid
+              rows={orderRows}
+              columns={order_columns}
+              pageSize={5}
+              rowsPerPageOptions={[5, 10, 15]}
+              disableSelectionOnClick
+              getRowId={(row)=>row._id}
+            />
+          </Box>
+        }
       </div>
       </>
     );
