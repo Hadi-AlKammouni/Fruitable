@@ -52,7 +52,7 @@ Here's a brief high-level overview of the tech stack the Fruitable app uses:
 
 - This project uses the [React app development framework](https://reactjs.org/). React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.
 - In addition to [React native framework](https://reactnative.dev/). React Native combines the best parts of native development with React, a best-in-class JavaScript library for building user interfaces.You can use React Native today in your existing Android and iOS projects or you can create a whole new app from scratch.
-- For persistent storage (database), the project uses the [Hive](https://hivedb.dev/) package which allows the project to create a custom storage schema and save it to a local database.
+<!-- - For persistent storage (database), the project uses the [Hive](https://hivedb.dev/) package which allows the project to create a custom storage schema and save it to a local database. -->
 - To send remote push notifications, the project uses the [firebase_cloud_messaging](https://firebase.google.com/products/cloud-messaging/) package which provides a reliable and battery-efficient connection between your server and devices that allows you to deliver and receive messages and notifications on iOS, Android, and the web at no cost!
 - The project uses ["Socket package"](https://socket.io/) to implement the real time chat feature, where socket package creates the communication channel, and the channel is used to send data between application programs either locally or over networks.
 
