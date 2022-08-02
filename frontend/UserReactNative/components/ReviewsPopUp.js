@@ -15,19 +15,23 @@ const ReviewsPopUp = () => {
                 <Button title="Recent Reviews" color={"#000"} onPress={() => setShow(true)} />
                 <Modal transparent={true} visible={show}>
                     <View style={styles.main_screen}>
-                        <View style={styles.popup}>
-                            {groceryReviews && groceryReviews?.length ?
-                                groceryReviews.map((item, key) => {
-                                    return (
-                                        <View key={key}>
-                                        <Text style={styles.name}> {item.first_name}</Text>
-                                        <Text style={styles.review}>{item.text}</Text>
-                                        </View>
-                                )})
-                                :
-                                <Text style={styles.name}> No Reviews Yet </Text> 
-                            }
-                            <Button title="Close"  color={"#000"} onPress={() => setShow(false)} />
+                        <ScrollView>
+                                <View style={styles.popup}>
+                                    {groceryReviews && groceryReviews?.length ?
+                                        groceryReviews.map((item, key) => {
+                                            return (
+                                                <View key={key}>
+                                                    <Text style={styles.name}> {item.first_name}</Text>
+                                                    <Text style={styles.review}>{item.text}</Text>
+                                                </View>
+                                        )})
+                                        :
+                                        <Text style={styles.name}> No Reviews Yet </Text> 
+                                    }
+                                </View>
+                        </ScrollView>
+                        <View style={styles.btn}>
+                            <Button title="Close" wi color={"#000"} onPress={() => setShow(false)} />
                         </View>
                     </View>
                 </Modal>
@@ -59,6 +63,10 @@ const styles = StyleSheet.create({
         fontSize:15,
         marginBottom: 15
     },
+    btn: {
+        marginHorizontal: '5%',
+        bottom: 10
+    }
 });
 
 export default ReviewsPopUp;

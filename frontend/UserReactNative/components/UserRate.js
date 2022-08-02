@@ -5,7 +5,7 @@ import constants from '../constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useGrocery } from '../context/grocery';
 
-const UserRate = () => {
+const UserRate = ({setShow}) => {
 
   const {
     groceryId
@@ -17,29 +17,33 @@ const UserRate = () => {
 
   const reviewGrocery = async () => {
     try {
-      const token = await AsyncStorage.getItem('token');
-      const user_id = await AsyncStorage.getItem('user_id');
-      const user_first_name = await AsyncStorage.getItem('first_name');
+      if(!userRating || !review) {
+        alert("Please fill both fields to submit successfully.")
+      } else{
+        const token = await AsyncStorage.getItem('token');
+        const user_id = await AsyncStorage.getItem('user_id');
+        const user_first_name = await AsyncStorage.getItem('first_name');
 
-      const response = await fetch(`${constants.fetch_url}review_grocery`, {
-        method: 'POST',
-        headers: {
-            'x-access-token': token,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            rate: userRating,
-            text: review,
-            user: user_id,
-            grocery: groceryId,
-            first_name: user_first_name 
-        })
-      });
-      const res = JSON.stringify(response.status)
-      if(res === "200"){
-        alert("Review successfully added")
+        const response = await fetch(`${constants.fetch_url}review_grocery`, {
+          method: 'POST',
+          headers: {
+              'x-access-token': token,
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              rate: userRating,
+              text: review,
+              user: user_id,
+              grocery: groceryId,
+              first_name: user_first_name 
+          })
+        });
+        const res = JSON.stringify(response.status)
+        if(res === "200"){
+          alert("Review successfully added.")
+          setShow(false)
+        }
       }
-      
     } catch (error) {
       console.log("EROORORORO",error);
     }

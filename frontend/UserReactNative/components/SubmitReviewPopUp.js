@@ -12,7 +12,7 @@ const SubmitReviewPopUp = () => {
             <Modal transparent={true} visible={show}>
                 <View style={styles.main_screen}>
                     <View style={styles.popup}>
-                        <UserRate />
+                        <UserRate setShow={setShow}/>
                         <Button title="Close"  color={"#000"} onPress={() => setShow(false)} />
                     </View>
                 </View>
