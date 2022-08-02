@@ -88,7 +88,7 @@ const OrdersScreen = ({navigation}) => {
       Notifications.removeNotificationSubscription(responseListener.current);
     };
 
-  }, []);
+  }, [cartPrice]);
 
   return (
     <SafeAreaView style={styles.container}>

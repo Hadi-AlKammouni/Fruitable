@@ -1,7 +1,38 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, Text, View, FlatList, Image } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View, FlatList, Image, TouchableOpacity, Alert } from "react-native";
+import { useUser } from "../context/user";
+import constants from "../constants";
 
 const ViewCart = (props) => {
+
+    const {userOrder,token,cartPrice,setCartPrice,cartQuantity,setCartQuantity} = useUser()
+
+    const removeItem = async (item) => {
+        try {
+            const response = await fetch(`${constants.fetch_url}remove_from_order`,{
+              method: 'POST',
+              headers: {
+                'x-access-token': token,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                order: userOrder,
+                name: item.name,
+                price: item.price,
+                picture: item.picture
+              })
+            });
+            const data = await response.json();
+            var price = cartPrice - item.price
+            var qauntity = cartQuantity - 1
+            setCartPrice(price)
+            setCartQuantity(qauntity)
+            Alert.alert(data.message)
+        }
+        catch (error) {
+          console.error(error);
+        }
+    }
 
     const renderItem = ({ item, index })  =>{  
         return(
@@ -12,7 +43,9 @@ const ViewCart = (props) => {
                         <Text style={styles.item_price}>{"\n"}{"\n"}LBP {item.price} - {item.qauntity} Kg</Text>
                     </Text>
                     <Image style={styles.item_img} source={{uri: item.picture}}/>
-                    <Image style={styles.remove_item} source={require("../assets/icons/remove.png")}/>
+                    <TouchableOpacity onPress={()=>removeItem(item)}>
+                        <Image style={styles.remove_item} source={require("../assets/icons/remove.png")}/>
+                    </TouchableOpacity>
                 </View>
             </>
         )
@@ -68,7 +101,9 @@ const styles = StyleSheet.create ({
     },
     remove_item: {
         width: 40,
-        height: 40
+        height: 40,
+        top: 20,
+        left:10
     },
     message: {
         textAlign: 'center',
