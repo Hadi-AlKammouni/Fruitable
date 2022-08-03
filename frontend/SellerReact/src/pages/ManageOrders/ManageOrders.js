@@ -3,6 +3,7 @@ import constants from "../../constants";
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import './styles.css';
+import {toast} from 'react-toastify';
 
 const ManageOrders = () => {
 
@@ -43,7 +44,10 @@ const ManageOrders = () => {
         orders.push(data)
       }
       setRows(orders)
+      toast.info('Click on an order to view its details.',{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
+
     } catch (error) {
+      toast.error('Something went wrong.',{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
       console.error(error);
     }
   }
