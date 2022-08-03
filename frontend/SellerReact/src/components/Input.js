@@ -7,6 +7,7 @@ const Input = ({ type, placeholder, label, set }) => {
       <input
         type={type}
         placeholder={placeholder}
+        step='any'
         onChange={(e) => {
           set(e.target.value)
         }}

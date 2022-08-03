@@ -260,12 +260,13 @@ async function updateAccount(req, res) {
         name: req.body.name,
         phone_number: req.body.phone_number,
         description: req.body.description,
-        location: req.body.location,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
         picture: req.body.picture,
       },
     });
     
-    return res.send("Account Successfully Updated");
+    return res.status(200).json({ status: "200",message:"Account successfully updated."});
   } catch (error) {
     console.log(error);
   }
