@@ -69,3 +69,10 @@
     position: absolute;
     bottom: 2.3rem;
 }
+
+.logout:hover {
+    background: rgb(247, 67, 67);
+    padding: 10px;
+    border-radius: 20px;
+    color: white;
+}

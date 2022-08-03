@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import Image from "../../components/Image";
 import './styles.css';
 import register from '../../assets/register.png';
+import instructions from '../../assets/instructions.png';
 import constants from "../../constants";
 import {toast} from 'react-toastify';
 
@@ -28,6 +29,9 @@ const Signup = () => {
               })
           });
           const data = await response.json();
+          if (data.status = "409"){
+            toast.warning(`${data.message}.`,{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
+          }
           if(data._id){
             localStorage.setItem("_id",data._id)
             localStorage.setItem("token",data.token)
@@ -59,7 +63,7 @@ const Signup = () => {
         </div>
         <div className="hintBox" id="hintBox">
           <h2 className="title">Instructions</h2>
-          <img src={register} alt=""/>
+          <img src={instructions} alt=""/>
         </div>
       </div>
     );

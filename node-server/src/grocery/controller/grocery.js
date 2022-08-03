@@ -33,7 +33,7 @@ async function registerByOCR (req, res) {
       const oldGrocery = await Grocery.findOne({ email });
 
       if (oldGrocery) {
-        return res.status(409).send("Grocery Already Exist. Please Login");
+        return res.status(409).json({ status: "409",message:"Email already exists."});
       }
 
       // // Encrypt grocery password

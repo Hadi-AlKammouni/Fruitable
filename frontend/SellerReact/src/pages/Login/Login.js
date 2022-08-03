@@ -14,7 +14,7 @@ const Login = () => {
     const logIn = async () => {
       try{
         if(!(email && password)){
-          toast.info('Both Fields Must Be Filled.',{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
+          toast.warning('Both Fields Must Be Filled.',{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
         } else{
           const response = await fetch(`${constants.fetch_url}login`, {
               method: 'POST',

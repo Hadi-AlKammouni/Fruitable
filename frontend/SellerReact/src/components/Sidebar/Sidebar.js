@@ -40,7 +40,7 @@ const Sidebar = () => {
             }}
             className="menu-pages">
             <img src={logout} alt=''/>
-            <span>Logout</span>
+            <span className="logout">Logout</span>
           </div>
         </div>
         
