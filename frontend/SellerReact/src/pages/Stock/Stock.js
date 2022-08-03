@@ -4,7 +4,11 @@ import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import './styles.css'
 import AddItem from '../AddItem/AddItem';
+import { useGrocery } from "../../context/grocery";
+
 const Stock = () => {
+
+  const {groceryId} = useGrocery()
 
   const groceryItems = localStorage.getItem('items')
   const groceryToken = localStorage.getItem('token')
@@ -13,6 +17,7 @@ const Stock = () => {
   const [rows,setRows] = useState([])
   const [toUpdate,setToUpdate] = useState(null)
   const [showBox,setShowBox] = useState(true)
+  const [rowToRemove,setRowToRemove] = useState('')
 
   const columns = [
     { field: 'name', headerName: 'Item Name', editable: true},
@@ -62,7 +67,7 @@ const Stock = () => {
           setToUpdate(null)
         }
       } else if (field === "category"){
-          if(value != "Fruits" && value != "Vegetables"){
+          if(value !== "Fruits" && value !== "Vegetables"){
             alert("Category can be (Fruits) or (Vegetables) only.")
             window.location.reload ();
           } else{
@@ -122,6 +127,37 @@ const Stock = () => {
     }
   }
 
+  // To store the selected item to be deleted
+  const toRemove = async (row) => {
+    setRowToRemove(row)
+  }
+
+  const removeItem = async () => {
+    try{
+      if(rowToRemove.length === 0) {
+        alert("You must select the row you want to remove first.")
+      } else{
+        const response = await fetch(`${constants.fetch_url}remove_item?id=${rowToRemove}`, {
+            method: 'POST',
+            headers: {
+                'x-access-token': groceryToken,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                grocery: groceryId
+            })
+        });
+        const data = await response.json();
+        alert(data.message)
+        window.location.reload()
+      }  
+
+    } catch (error) {
+      alert("Something went wrong. Please try again.")
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     getItems()
   }, [groceryItems]);
@@ -140,6 +176,7 @@ const Stock = () => {
           <div>
             <h1>My Stock</h1>
             <button className="add-btn" onClick={() => setShowBox(false)}> Add Item </button>  
+            <button className="remove-btn" onClick={() => removeItem()}> Remove Item </button>  
           </div>
         </div>
         <div className="box">
@@ -150,7 +187,8 @@ const Stock = () => {
               pageSize={5}
               rowsPerPageOptions={[5, 10, 15]}
               editMode='cell'
-              disableSelectionOnClick
+              rowSelection='single'   
+              onSelectionModelChange={row => toRemove(row)}
               onCellEditCommit={(cell)=>setToUpdate(cell)}
               getRowId={(row)=>row._id}
             />
