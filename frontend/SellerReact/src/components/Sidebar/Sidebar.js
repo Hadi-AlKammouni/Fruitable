@@ -5,6 +5,7 @@ import logout from '../../assets/logout.png';
 import { SidebarPages } from "./SidebarPages";
 import { NavLink } from "react-router-dom";
 import { useGrocery } from "../../context/grocery";
+import {toast} from 'react-toastify';
 
 const Sidebar = () => {
     
@@ -33,6 +34,7 @@ const Sidebar = () => {
           <div 
             onClick={()=>{
               setIsSelected(0)
+              toast.success(`You looged out successfully.`,{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
               localStorage.clear()
               navigate('/')
             }}

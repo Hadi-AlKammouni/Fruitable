@@ -5,6 +5,7 @@ import './styles.css';
 import constants from "../../constants";
 import { useNavigate } from "react-router-dom";
 import { useGrocery } from "../../context/grocery";
+import {toast} from 'react-toastify';
 
 const Account = () => {
 
@@ -120,11 +121,13 @@ const Account = () => {
             localStorage.setItem('picture',image)
             setGroceryPicture(image)
         }
-        alert(data.message)
-        window.location.reload()
+        toast.success(`${data.message}`,{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
+        setTimeout(function(){
+          window.location.reload();
+        }, 5000);
         
       } catch (error){
-        alert("Something went wrong, please try again.")
+          toast.error('Something went wrong.',{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
           console.log(error)
       }
     };
@@ -133,7 +136,7 @@ const Account = () => {
     const onSubmit = (e) => {
         e.preventDefault();
         if(!(name || description || number || latitude || longitude || image)){
-            alert("You didn't make any change.")
+          toast.warning("You didn't make any change",{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
         } else {
             upDateAccount()
         }
