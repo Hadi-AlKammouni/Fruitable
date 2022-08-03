@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Conversation from '../../components/Conversations/Conversation';
 import Message from '../../components/Message/Message';
 import './styles.css';
@@ -99,7 +99,7 @@ const Chat = () => {
     },[currentChat])
 
     useEffect(() => {
-        scrollRef.current?.scrollIntoView({behavior: "smooth"})
+        // scrollRef.current?.scrollIntoView({behavior: "smooth"})
     },[messages])
 
     return (

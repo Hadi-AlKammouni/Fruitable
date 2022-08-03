@@ -1,6 +1,6 @@
 import Input from "../../components/Input";
 import Image from "../../components/Image";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "../../components/Select";
 import './styles.css';
 import constants from "../../constants";
