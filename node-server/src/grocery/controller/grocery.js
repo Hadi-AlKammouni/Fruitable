@@ -228,7 +228,7 @@ async function removeItem(req, res) {
       { $pull: { items: item._id } }
     );
 
-    return res.send("Item removed successfully");
+    return res.status(200).json({ status: "200",message:"Item has been removed successfully."});
   } catch (error) {
     console.log(error);
   }
