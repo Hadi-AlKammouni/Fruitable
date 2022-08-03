@@ -1,13 +1,13 @@
-import home from '../../assets/home.png';
-// import add from '../../assets/add.png';
-// import edit from '../../assets/edit.png';
-import orders from '../../assets/orders.png';
+import review from '../../assets/review.png';
 import stock from '../../assets/stock.png';
+import orders from '../../assets/orders.png';
+import chat from '../../assets/chat.png';
+import account from '../../assets/account.png';
 
 export const SidebarPages = [    
     {
         link: "reviews",
-        icon: home,
+        icon: review,
         heading: "Reviews"
     },
     {
@@ -21,14 +21,14 @@ export const SidebarPages = [
         heading: "Manage Orders"
     },
     {
-        link: "account",
-        icon: orders,
-        heading: "Account"
+        link: "chat",
+        icon: chat,
+        heading: "Chats"
     },
     {
-        link: "chat",
-        icon: orders,
-        heading: "Chats"
+        link: "account",
+        icon: account,
+        heading: "Account"
     }
 ]
 

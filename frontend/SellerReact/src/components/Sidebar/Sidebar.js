@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import './styles.css';
 import logout from '../../assets/logout.png';
 import { SidebarPages } from "./SidebarPages";
@@ -33,6 +32,7 @@ const Sidebar = () => {
           })}
           <div 
             onClick={()=>{
+              setIsSelected(0)
               localStorage.clear()
               navigate('/')
             }}
