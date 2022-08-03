@@ -5,7 +5,7 @@ import Select from "../../components/Select";
 import './styles.css';
 import constants from "../../constants";
 import { useNavigate } from "react-router-dom";
-
+import {toast} from 'react-toastify';
 
 const AddItem = () => {
 
@@ -39,12 +39,13 @@ const AddItem = () => {
         });
         const data = await response.json();
         if(data._id){
-          alert("Item has been added successfully ✅");
+          toast.success("Item added successfully",{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
           navigate("/")
         }
       
       } catch (error){
-          console.log(error)
+        toast.error('Something went wrong.',{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
+        console.log(error)
       }
     };
 
@@ -52,7 +53,7 @@ const AddItem = () => {
     const onSubmit = (e) => {
         e.preventDefault();
         if ( item_name === "" || item_qauntity === "" || item_price === "" || item_image === "" || item_category === "" ) {
-            alert("Please fill all fields!");
+            toast.warning("Please fill all fields.",{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
             return;
         }
         setName("");
