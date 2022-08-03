@@ -99,7 +99,7 @@ const Chat = () => {
     },[currentChat])
 
     useEffect(() => {
-        // scrollRef.current?.scrollIntoView({behavior: "smooth"})
+        scrollRef.current?.scrollIntoView({behavior: "smooth"})
     },[messages])
 
     return (
@@ -108,7 +108,7 @@ const Chat = () => {
             <div className='chat'>
                 <div className='chat-menu'>
                     <div className='chat-menu-wrapper'>
-                        <button className='new-conversation' onClick={()=>setIsChat(false)}>New Conversation</button>
+                        <button className='new-conversation' onClick={()=>setIsChat(false)}>Start New Conversation</button>
                         {conversations.map((conversation,index) => (
                             <div onClick={()=>setCurrentChat(conversation)} key={index}>
                                 <Conversation conversation={conversation}/>

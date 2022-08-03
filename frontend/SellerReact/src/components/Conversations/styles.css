@@ -4,10 +4,11 @@
     padding: 10px;
     cursor: pointer;
     margin: 10px;
+    border-right: 2px solid;
 }
 
 .conversation:hover{
-    background-color: rgb(199, 196, 196);
+    background-color: var(--activeItem);
 }
 .conversation-img{
     width: 40px;
