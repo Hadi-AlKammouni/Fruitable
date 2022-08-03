@@ -20,7 +20,14 @@ const Stock = () => {
   const [rowToRemove,setRowToRemove] = useState('')
 
   const columns = [
-    { field: 'name', headerName: 'Item Name', editable: true},
+    { field: "picture", headerName: "Picture", width: 80,
+      renderCell: (params) => {
+        return (
+            <img className='item-img' src={params.value} alt='' />
+        );
+      }
+    },
+    { field: 'name', headerName: 'Name', editable: true},
     { field: 'category', headerName: 'Category', editable: true},
     { field: 'price', headerName: 'Price',editable: true},
     { field: 'quantity', headerName: 'Quantity(Kg)', width: 120,editable: true,},

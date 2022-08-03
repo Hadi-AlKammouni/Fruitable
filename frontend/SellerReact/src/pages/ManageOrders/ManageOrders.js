@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import constants from "../../constants";
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
+import './styles.css';
 
 const ManageOrders = () => {
 
@@ -18,6 +19,13 @@ const ManageOrders = () => {
   ];
 
   const order_columns = [
+    { field: "picture", headerName: "Picture", width: 80,
+      renderCell: (params) => {
+        return (
+            <img className='item-img' src={params.value} alt='' />
+        );
+      }
+    },
     { field: 'name', headerName: 'Item', width: 100 },
     { field: 'price', headerName: 'Price', width: 100 }
   ];
