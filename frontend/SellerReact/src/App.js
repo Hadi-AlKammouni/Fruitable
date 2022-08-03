@@ -10,6 +10,7 @@ import ManageOrders from "./pages/ManageOrders/ManageOrders";
 import { useGrocery } from "./context/grocery";
 import { useEffect } from "react";
 import Chat from "./pages/Chat/Chat";
+import Account from "./pages/Account/Account";
 
 const App = () => {
 
@@ -76,6 +77,7 @@ const App = () => {
               <Route path="manage_orders" element={<ManageOrders/>}></Route>
               <Route path="signup" element={<Signup/>}></Route>
               <Route path="chat" element={<Chat/>}></Route>
+              <Route path="account" element={<Account/>}></Route>
             </Routes>
           </div>
         </div>

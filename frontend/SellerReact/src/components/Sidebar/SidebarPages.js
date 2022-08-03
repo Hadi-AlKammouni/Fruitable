@@ -15,20 +15,15 @@ export const SidebarPages = [
         icon: stock,
         heading: "My Stock"
     },
-    // {
-    //     link: "add_item",
-    //     icon: add,
-    //     heading: "Add Item"
-    // },
-    // {
-    //     link: "edit_item",
-    //     icon: edit,
-    //     heading: "Edit Item"
-    // },
     {
         link: "manage_orders",
         icon: orders,
         heading: "Manage Orders"
+    },
+    {
+        link: "account",
+        icon: orders,
+        heading: "Account"
     },
     {
         link: "chat",
