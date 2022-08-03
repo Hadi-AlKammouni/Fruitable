@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import './styles.css'
 import constants from "../../constants";
 import {useNavigate} from 'react-router-dom';
+import {toast} from 'react-toastify';
 
 const Login = () => {
 
@@ -13,7 +14,7 @@ const Login = () => {
     const logIn = async () => {
       try{
         if(!(email && password)){
-          alert("Both Fields Must Be Filled.")
+          toast.info('Both Fields Must Be Filled.',{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
         } else{
           const response = await fetch(`${constants.fetch_url}login`, {
               method: 'POST',
@@ -27,6 +28,7 @@ const Login = () => {
           });
           const data = await response.json();
           if(data._id){
+            toast.success(`Welcome ${data.name}`,{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
             localStorage.setItem("_id",data._id)
             localStorage.setItem("token",data.token)
             navigate('/reviews')
@@ -34,7 +36,7 @@ const Login = () => {
         }
 
         } catch (error) {
-          alert("Wrong email and / or password.")
+          toast.error('Wrong email and / or password.',{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
           console.log(error)
         }
     }

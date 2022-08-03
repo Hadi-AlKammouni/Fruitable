@@ -12,6 +12,10 @@ import { useGrocery } from "./context/grocery";
 import { useEffect } from "react";
 import Chat from "./pages/Chat/Chat";
 import Account from "./pages/Account/Account";
+import {toast} from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure()
 
 const App = () => {
 
