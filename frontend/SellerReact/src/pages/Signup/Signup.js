@@ -4,6 +4,7 @@ import Image from "../../components/Image";
 import './styles.css';
 import register from '../../assets/register.png';
 import constants from "../../constants";
+import {toast} from 'react-toastify';
 
 const Signup = () => {
 
@@ -14,7 +15,7 @@ const Signup = () => {
     const signUp = async () => {
       try{
         if(!(image && groceryInfo)){
-          alert("Both Fields Must Be Filled.")
+          toast.warning("Both Fields Must Be Filled.",{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
         } else{
           const response = await fetch(`${constants.fetch_url}register_OCR`, {
               method: 'POST',
@@ -30,12 +31,13 @@ const Signup = () => {
           if(data._id){
             localStorage.setItem("_id",data._id)
             localStorage.setItem("token",data.token)
+            toast.success(`Welcome ${data.name}, start adding items to your stock.`,{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
             navigate('/reviews')
           }
         }
 
         } catch (error) {
-          alert("Something went wrong. Please try again.")
+          toast.error('Something went wrong, make that you are following the same layout.',{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
           console.log(error)
         }
       
