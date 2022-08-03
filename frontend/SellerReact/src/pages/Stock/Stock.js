@@ -5,9 +5,12 @@ import Box from '@mui/material/Box';
 import './styles.css'
 import AddItem from '../AddItem/AddItem';
 import { useGrocery } from "../../context/grocery";
+import {toast} from 'react-toastify';
+import {useNavigate} from 'react-router-dom';
 
 const Stock = () => {
 
+  const navigate = useNavigate();
   const {groceryId} = useGrocery()
 
   const groceryItems = localStorage.getItem('items')
@@ -70,13 +73,15 @@ const Stock = () => {
         })
         const data = await response.json();
         if(data.status === '200'){
-          alert(data.message)
+          toast.success(`${data.message}.`,{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
           setToUpdate(null)
         }
       } else if (field === "category"){
           if(value !== "Fruits" && value !== "Vegetables"){
-            alert("Category can be (Fruits) or (Vegetables) only.")
-            window.location.reload ();
+            toast.warning("Category can be (Fruits) or (Vegetables) only.",{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
+            setTimeout(function(){
+              window.location.reload();
+           }, 5000);
           } else{
             const response = await fetch(`${constants.fetch_url}update_item?id=${toUpdate.id}`,{
               method: 'POST',
@@ -90,7 +95,7 @@ const Stock = () => {
             })
             const data = await response.json();
             if(data.status === '200'){
-              alert(data.message)
+              toast.success(`${data.message}.`,{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
               setToUpdate(null)
             }
           }
@@ -107,7 +112,7 @@ const Stock = () => {
         })
         const data = await response.json();
         if(data.status === '200'){
-          alert(data.message)
+          toast.success(`${data.message}.`,{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
           setToUpdate(null)
         }
       } else {
@@ -123,13 +128,13 @@ const Stock = () => {
         })
         const data = await response.json();
         if(data.status === '200'){
-          alert(data.message)
+          toast.success(`${data.message}.`,{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
           setToUpdate(null)
         }
       }
 
     } catch (error) {
-      alert("Something went wrong")
+      toast.error('Something went wrong.',{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
       console.error(error);
     }
   }
@@ -142,7 +147,7 @@ const Stock = () => {
   const removeItem = async () => {
     try{
       if(rowToRemove.length === 0) {
-        alert("You must select the row you want to remove first.")
+        toast.info('You must select the row you want to remove first.',{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
       } else{
         const response = await fetch(`${constants.fetch_url}remove_item?id=${rowToRemove}`, {
             method: 'POST',
@@ -155,12 +160,14 @@ const Stock = () => {
             })
         });
         const data = await response.json();
-        alert(data.message)
-        window.location.reload()
+        toast.success(`${data.message}.`,{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
+        setTimeout(function(){
+          navigate('/reviews');
+        }, 5000);
       }  
 
     } catch (error) {
-      alert("Something went wrong. Please try again.")
+      toast.error('Something went wrong.',{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
       console.log(error)
     }
   }
