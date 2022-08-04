@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import RootStackScreen from './screens/RootStackScreen';
 import  UserProvider from './context/user';
 import GroceryProvider from './context/grocery';
+import FlashMessage from "react-native-flash-message";
 
 const App = () => {
 
@@ -12,6 +13,7 @@ const App = () => {
       <NavigationContainer>
         {/* <ButtomTab /> */}
         <RootStackScreen/>
+        <FlashMessage position="top" />
       </NavigationContainer>
       </GroceryProvider>
     </UserProvider>

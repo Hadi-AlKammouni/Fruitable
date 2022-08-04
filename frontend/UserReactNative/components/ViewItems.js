@@ -5,6 +5,7 @@ import { useGrocery } from "../context/grocery";
 import { useUser } from "../context/user";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Location from 'expo-location';
+import { showMessage, hideMessage } from "react-native-flash-message";
 
 const ViewItems = ({navigation}) => {
 
@@ -42,7 +43,10 @@ const ViewItems = ({navigation}) => {
             setFetchedItems(elements)
             setItems(elements)
         } catch (error) {
-          console.error(error)
+            showMessage({
+                message: "Something went wrong.",
+                type: "danger",
+            });
         }
     }
 
@@ -154,7 +158,10 @@ const ViewItems = ({navigation}) => {
             }
 
         } catch (error) {
-          console.log(error);
+            showMessage({
+                message: "Something went wrong during adding to cart.",
+                type: "danger",
+            });
         }
     };
 
@@ -183,10 +190,16 @@ const ViewItems = ({navigation}) => {
             setUserLatitude(latitude)
             setUserLongitude(longitude)
             setIsLocation(true)
-            Alert.alert("Now feel free to pick any item.")
+            showMessage({
+                message: "Now feel free to pick any item.",
+                type: "success",
+            });
           }
         }catch(error){
-          alert("Sorry item can't be added to your cart.")
+            showMessage({
+                message: "Sorry item can't be added to your cart.",
+                type: "danger",
+            });
         }
     }
 
@@ -216,11 +229,17 @@ const ViewItems = ({navigation}) => {
                 var qauntity = parseFloat(cartQuantity) + 1 // Calculate the quantity of items added to order
                 setCartPrice(total)
                 setCartQuantity(qauntity)
-                Alert.alert(data.message)
+                showMessage({
+                    message: data.message,
+                    type: "success",
+                });
             }
       
         } catch (error) {
-          console.log(error);
+            showMessage({
+                message: "Something went wrong during adding to cart.",
+                type: "danger",
+            });
         }
     };
 
