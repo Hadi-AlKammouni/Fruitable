@@ -228,6 +228,7 @@ async function addToOrder(req, res) {
     const name = request.name;
     const price = request.price;
     const picture = request.picture;
+    const quantity = request.quantity;
     const order = request.order;
 
     // use updateOne() to update orders collection
@@ -241,6 +242,7 @@ async function addToOrder(req, res) {
             name: name,
             price: price,
             picture: picture,
+            quantity: quantity,
           }
         }
       }

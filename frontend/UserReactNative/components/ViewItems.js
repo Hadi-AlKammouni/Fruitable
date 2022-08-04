@@ -66,16 +66,16 @@ const ViewItems = ({navigation}) => {
                             <View style={{flex:1}}>
                                 <Image style={styles.item_picture} source={{uri: item.picture}}/>
                                 <Text style={styles.item_info}>{item.name}</Text>
-                                <Text style={styles.item_price}>LBP {item.price} for {item.qauntity} Kg</Text>
+                                <Text style={styles.item_price}>LBP {item.price} for {item.quantity} Kg</Text>
                             </View>
                             <View style={styles.cart_button}>
                                 <Button title="Add To Cart" color={"#FDBE3B"} 
                                     onPress={() => {
                                         if(!userOrder){
-                                            isOrder(item.name,item.price,item.picture)
+                                            isOrder(item.name,item.price,item.picture,item.quantity)
                                             setShow(false)
                                         }else{
-                                            addToCart(item.name,item.price,item.picture) 
+                                            addToCart(item.name,item.price,item.picture,item.quantity) 
                                             setShow(false)
                                         }
                                     }} />
@@ -102,7 +102,7 @@ const ViewItems = ({navigation}) => {
                             {item.name}
                         </Text>
                         <Text style={styles.item_price}>
-                            {"\n"}{"\n"}LBP {item.price} - {item.qauntity} Kg
+                            {"\n"}{"\n"}LBP {item.price} - {item.quantity} Kg
                         </Text>
                     </Text>
                     <Image style={styles.item_img} source={{uri: item.picture}}/>
@@ -117,7 +117,7 @@ const ViewItems = ({navigation}) => {
     }
 
     // Create order then add the item to it after checking if the user gave permission to get his location
-    const isOrder = async (name,price,picture) => {
+    const isOrder = async (name,price,picture,quantity) => {
         try {
             if(!isLocation){
                 getLocation()
@@ -149,7 +149,7 @@ const ViewItems = ({navigation}) => {
                     setCheckOrderIdRelativeToGrocery(groceryId)
                     setCartPrice(0)
                     setCartQuantity(0)
-                    addToCart(name,price,picture)
+                    addToCart(name,price,picture,quantity)
                 }
             }
 
@@ -191,7 +191,7 @@ const ViewItems = ({navigation}) => {
     }
 
     // Adding item to the recent order
-    const addToCart = async (name,price,picture) => {
+    const addToCart = async (name,price,picture,quantity) => {
         try {
             const token = await AsyncStorage.getItem('token');
             const order = await AsyncStorage.getItem('order');
@@ -206,6 +206,7 @@ const ViewItems = ({navigation}) => {
                     name: name,
                     price: price,
                     picture: picture,
+                    quantity: quantity
                 })
             });
             const data = await response.json();

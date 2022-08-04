@@ -40,7 +40,7 @@ const ViewCart = (props) => {
                <View key={index} style={styles.item}>
                     <Text style={styles.item_body}>
                         <Text style={styles.item_name}>{item.name}</Text>
-                        <Text style={styles.item_price}>{"\n"}{"\n"}LBP {item.price} - {item.qauntity} Kg</Text>
+                        <Text style={styles.item_price}>{"\n"}{"\n"}LBP {item.price} - {item.quantity} Kg</Text>
                     </Text>
                     <Image style={styles.item_img} source={{uri: item.picture}}/>
                     <TouchableOpacity onPress={()=>removeItem(item)}>
