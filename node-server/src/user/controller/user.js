@@ -56,7 +56,7 @@ async function register (req, res) {
     // Return new user
     res.status(201).json(user);
   } catch (err) {
-    console.log(err);
+    res.status(500).json(error)
   }
   // Our register logic ends here
 };
@@ -96,7 +96,7 @@ async function login (req, res) {
       res.status(400).send("Invalid Credentials - Wrong email and/or password");
     }
   } catch (err) {
-    console.log(err);
+    res.status(500).json(error)
   }
   // Our login logic ends here
 };
@@ -114,7 +114,7 @@ async function viewGroceries(req, res) {
     
     return res.send(result);
   } catch (error) {
-    console.log(error);
+    res.status(500).json(error)
   }
 };
 
@@ -127,7 +127,7 @@ async function viewItem(req, res) {
       return res.send(result);
     }
   } catch (error) {
-    console.log(error);
+    res.status(500).json(error)
   }
 };
 
@@ -145,7 +145,7 @@ async function updateProfile(req, res) {
     
     return res.send({status: "200", message: "Profile Successfully Updated"});
   } catch (error) {
-    console.log(error);
+    res.status(500).json(error)
   }
 };
 
@@ -179,7 +179,7 @@ async function reviewGrocery(req, res) {
     return res.status(200).send("Review successfully added");
   } 
   catch (error) {
-    console.log(error);
+    res.status(500).json(error)
     res.status(500).send(error);
   }
 };
@@ -216,7 +216,7 @@ async function createOrder(req, res) {
     return res.status(200).send(order);
   } 
   catch (error) {
-    console.log(error);
+    res.status(500).json(error)
     res.status(500).send(error);
   }
 };
@@ -249,7 +249,7 @@ async function addToOrder(req, res) {
     return res.status(200).json({ status: "200",message:"Item added to your recent order"});
   } 
   catch (error) {
-    console.log(error);
+    res.status(500).json(error)
     res.status(500).send(error);
   }
 };
@@ -263,7 +263,7 @@ async function viewCart(req, res) {
       return res.send(result);
     }
   } catch (error) {
-    console.log(error);
+    res.status(500).json(error)
   }
 };
 
@@ -291,7 +291,7 @@ async function findNearbyGroceries(req, res){
     return res.send(nearbyGroceries);
   }
   catch (error) {
-    console.log(error);
+    res.status(500).json(error)
   }
 }
 
@@ -339,7 +339,7 @@ async function get(req, res) {
 
     return res.send(result);
   } catch (error) {
-    console.log(error);
+    res.status(500).json(error)
   }
 };
 
@@ -375,8 +375,7 @@ async function removeFromOrder(req, res) {
     return res.status(200).json({ status: "200",message:"Item removed from your recent order"});
   } 
   catch (error) {
-    console.log(error);
-    res.status(500).send(error);
+    res.status(500).json(error)
   }
 };
 

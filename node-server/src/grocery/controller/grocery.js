@@ -67,7 +67,7 @@ async function registerByOCR (req, res) {
     })
 
   } catch (err) {
-    console.log(err);
+    res.status(500).json(error)
   }
   // Our registerOCR logic ends here
 };
@@ -120,7 +120,7 @@ async function register (req, res) {
     // Return new grocery
     res.status(201).json(grocery);
   } catch (err) {
-    console.log(err);
+    res.status(500).json(error)
   }
   // Our register logic ends here
 };
@@ -160,7 +160,7 @@ async function login (req, res) {
       res.status(400).send("Invalid Credentials - Wrong email and/or password");
     }
   } catch (err) {
-    console.log(err);
+    res.status(500).json(error)
   }
   // Our login logic ends here
 };
@@ -185,8 +185,7 @@ async function addCategory(req, res) {
     return res.status(200).send(newCategory);
   } 
   catch (error) {
-    console.log(error);
-    res.status(500).send(error);
+    res.status(500).json(error)
   }
 };
 
@@ -230,7 +229,7 @@ async function removeItem(req, res) {
 
     return res.status(200).json({ status: "200",message:"Item has been removed successfully."});
   } catch (error) {
-    console.log(error);
+    res.status(500).json(error)
   }
 };
 
@@ -248,7 +247,7 @@ async function updateItem(req, res) {
     });
     return res.status(200).json({ status: "200",message:"Item updated successfully"});
   } catch (error) {
-    console.log(error);
+    res.status(500).json(error)
   }
 };
 
@@ -268,7 +267,7 @@ async function updateAccount(req, res) {
     
     return res.status(200).json({ status: "200",message:"Account successfully updated."});
   } catch (error) {
-    console.log(error);
+    res.status(500).json(error)
   }
 };
 
@@ -281,7 +280,7 @@ async function viewStock(req, res) {
       return res.send(result);
     }
   } catch (error) {
-    console.log(error);
+    res.status(500).json(error)
   }
 };
 
@@ -294,7 +293,7 @@ async function viewItem(req, res) {
       return res.send(result);
     }
   } catch (error) {
-    console.log(error);
+    res.status(500).json(error)
   }
 };
 
@@ -307,7 +306,7 @@ async function manageOrder(req, res) {
       return res.send(result);
     }
   } catch (error) {
-    console.log(error);
+    res.status(500).json(error)
   }
 };
 
@@ -318,7 +317,7 @@ async function viewGrocery(req, res) {
       const result = await getGroceryById(id);
     return res.send(result);
   } catch (error) {
-    console.log(error);
+    res.status(500).json(error)
   }
 };
 
