@@ -62,6 +62,8 @@ const HomeScreen = ( {navigation} ) => {
   // Else it will give the near by groceries
   const getGroceries = async (state) => {
     try {
+      const token = await AsyncStorage.getItem('token');
+
       if(state){
         const userId = await AsyncStorage.getItem('user_id');
         const userLatitude = await AsyncStorage.getItem('user_latitude');
@@ -70,6 +72,7 @@ const HomeScreen = ( {navigation} ) => {
         const response = await fetch(`${constants.fetch_url}find_nearby_groceries?id=${userId}`,{
           method: 'POST',
           headers: {
+            'x-access-token': token,
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
@@ -81,7 +84,12 @@ const HomeScreen = ( {navigation} ) => {
         setGroceries(data)
 
       }else{
-        const response = await fetch(`${constants.fetch_url}get_groceries`);
+        const response = await fetch(`${constants.fetch_url}get_groceries`,{
+          headers: {
+            'x-access-token': token,
+            'Content-Type': 'application/json'
+          },
+        });
         const data = await response.json();
         setGroceries(data)
       }

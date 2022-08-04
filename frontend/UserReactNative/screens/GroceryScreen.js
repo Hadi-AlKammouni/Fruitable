@@ -8,6 +8,7 @@ import { useGrocery } from '../context/grocery';
 import { useUser } from '../context/user';
 import ReviewsPopUp from '../components/ReviewsPopUp';
 import { MaterialIcons } from "@expo/vector-icons";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const GroceyScreen = ( {navigation} ) => {
 
@@ -24,7 +25,7 @@ const GroceyScreen = ( {navigation} ) => {
     setGroceryReviews,
   } = useGrocery()
 
-  const {pickedItem, cartPrice, cartQuantity} = useUser()
+  const {pickedItem, cartPrice, cartQuantity, token} = useUser()
 
   const [grocery, setGrocery] = useState([])
   const [isItems, setIsItems] = useState(false)
@@ -34,7 +35,13 @@ const GroceyScreen = ( {navigation} ) => {
 
   const getGrocery = async () => {
     try {
-      const response = await fetch(`${constants.fetch_url}get_groceries?id=${groceryId}`);
+      const token = await AsyncStorage.getItem('token')
+      const response = await fetch(`${constants.fetch_url}get_groceries?id=${groceryId}`,{
+        headers: {
+          'x-access-token': token,
+          'Content-Type': 'application/json'
+        },
+      });
       const data = await response.json();
       setGrocery(data),
       setGroceryName(data.name) ,
