@@ -110,7 +110,8 @@ const SignupScreenThree = ({ navigation, route }) => {
         <View style={styles.container}>
           <StatusBar backgroundColor='#FDBE3B' barStyle="light-content" />
           <View style={styles.header}>
-            <Text style={styles.text_header}>Upload Profile Picture</Text>
+            <Animatable.Image animation="bounceIn" duration={3000} source={require('../../assets/logo3.png')} style={styles.logo} />
+            <Text style={styles.text_header}>Step Three</Text>
           </View>
 
           <Animatable.View style={styles.footer} animation="fadeInUpBig">

@@ -63,6 +63,10 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 18,
         color: 'white'
+    },
+    logo: {
+        width: 100,
+        height: 100
     }
   });
 

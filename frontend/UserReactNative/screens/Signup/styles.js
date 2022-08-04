@@ -101,6 +101,10 @@ const styles = StyleSheet.create({
       height: 40,
       fontSize: 16,
     },
+    logo: {
+        width: 100,
+        height: 100
+    }
 });
 
 export default styles;

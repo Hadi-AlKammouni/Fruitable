@@ -66,6 +66,7 @@ const LoginScreen = ({navigation}) => {
     <View style={styles.container}>
       <StatusBar backgroundColor='#FDBE3B' barStyle="light-content" />
       <View style={styles.header}>
+        <Animatable.Image animation="bounceIn" duration={3000} source={require('../../assets/logo3.png')} style={styles.logo} />
         <Text style={styles.text_header}>Log In</Text>
       </View>
 
