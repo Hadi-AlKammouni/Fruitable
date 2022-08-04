@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, StatusBar } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import styles from './styles';
 import ButtonComponent from '../../components/ButtonComponent';
 import UploadImage from '../../components/UploadImage';
 import constants from '../../constants/constants';
@@ -11,6 +10,7 @@ import { doc, setDoc } from "firebase/firestore";
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import { showMessage } from "react-native-flash-message";
+import styles from './styles';
 
 const SignupScreenThree = ({ navigation, route }) => {
   

@@ -2,13 +2,13 @@ import React, {useState} from 'react';
 import { Text, View, StatusBar } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Animatable from 'react-native-animatable';
-import styles from './styles';
 import TextInputField from '../../components/TextInputField';
 import PasswordInputField from '../../components/PasswordInputField';
 import ButtonComponent from '../../components/ButtonComponent';
 import constants from '../../constants/constants';
 import {useUser} from '../../context/user';
 import { showMessage } from "react-native-flash-message";
+import styles from './styles';
 
 const LoginScreen = ({navigation}) => {
 
@@ -101,9 +101,9 @@ const LoginScreen = ({navigation}) => {
             message: "All fields are required.",
             type: "info",
           })}
-          touchable_style={styles.disableButton}
+          touchable_style={styles.disable_button}
           border_color="#AAA8A8"
-          text_style={styles.textSign}
+          text_style={styles.text_sign}
           text_color="#FFFFFF"
           text="Continue"
         />
@@ -112,7 +112,7 @@ const LoginScreen = ({navigation}) => {
           onPress={() => LogIn()}
           touchable_style={styles.button}
           border_color="#FDBE3B"
-          text_style={styles.textSign}
+          text_style={styles.text_sign}
           text_color="#FFFFFF"
           text="Log In"
         />
@@ -121,13 +121,12 @@ const LoginScreen = ({navigation}) => {
         {/* Create Account Button */}
         <ButtonComponent
           onPress={() => navigation.navigate('SignupScreenOne')}
-          touchable_style={styles.signIn}
+          touchable_style={styles.sign_in}
           border_color="#FDBE3B"
-          text_style={styles.textSign}
+          text_style={styles.text_sign}
           text_color="#FDBE3B"
           text="New? Create an Account"
         />
-        {/* <View><Text>{userFirstName}</Text></View> */}
       </Animatable.View>
     </View>
   );

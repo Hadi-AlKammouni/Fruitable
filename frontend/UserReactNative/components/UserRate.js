@@ -124,7 +124,6 @@ const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: '#000'
   }
-
 });
 
 export default UserRate;

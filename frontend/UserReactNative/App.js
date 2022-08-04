@@ -11,7 +11,6 @@ const App = () => {
     <UserProvider>
       <GroceryProvider>
       <NavigationContainer>
-        {/* <ButtomTab /> */}
         <RootStackScreen/>
         <FlashMessage position="top" />
       </NavigationContainer>

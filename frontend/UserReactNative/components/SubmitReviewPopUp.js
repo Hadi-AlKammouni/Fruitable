@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { View, Text, Modal, Button, StyleSheet } from "react-native";
+import { View, Modal, Button, StyleSheet } from "react-native";
 import UserRate from "./UserRate";
 
 const SubmitReviewPopUp = () => {
@@ -25,10 +25,6 @@ const styles = StyleSheet.create({
     container: {
         flex:1,
     },
-    main_screen: {
-        flex:1,
-        backgroundColor:"#000000aa"
-    },
     popup: {
         backgroundColor:"#fff", 
         margin:20, 
@@ -36,14 +32,6 @@ const styles = StyleSheet.create({
         borderRadius:10, 
         flex:1
     },
-    name: {
-        fontSize:20, 
-        fontWeight: 'bold'
-    },
-    review: {
-        fontSize:15,
-        marginBottom: 15
-    }
 });
 
 export default SubmitReviewPopUp;

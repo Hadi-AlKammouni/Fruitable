@@ -33,14 +33,14 @@ const styles = StyleSheet.create({
         alignSelf: "center", 
         marginTop: -32
     },
-    cardScrollView: {
+    card_scroll_view: {
         position:'absolute',
         bottom:10,
         left:10,
         right:0,
         paddingVertical:8
     },
-    cardView: {
+    card_view: {
         elevation:90,
         backgroundColor:'#fff',
         borderRadius:10,
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         width: 200,
         overflow: 'hidden'
     },
-    cardImage: {
+    card_image: {
         flex:4,
     },
     title: {
@@ -64,13 +64,8 @@ const styles = StyleSheet.create({
         fontSize:12,
         color:"#444"
     },
-    cardInnerView: {
+    card_inner_view: {
         borderRadius:15
-    },
-    viewGroceryText: {
-        fontWeight: 'bold',
-        fontSize: 12,
-        color:'#FDBE3B'
     },
     activity: {
         flex: 1,
@@ -89,29 +84,29 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#FDBE3B',
     },
-    headerText: {
+    header_text: {
         fontWeight: 'bold',
         fontSize: 20,
         letterSpacing: 3
     },
-    accountIcon: {
+    account_icon: {
         position: 'absolute',
         left: 16
     },
-    trackIcon: {
-        position: 'absolute',
-        left: 60
-    },
-    cartIcon: {
+    // trackIcon: {
+    //     position: 'absolute',
+    //     left: 60
+    // },
+    cart_icon: {
         position: 'absolute',
         right: 16
     },
-    quantityView: {
+    quantity_view: {
         position: 'absolute',
         right: 24,
         top: -1,
     },
-    quantityText: {
+    quantity_text: {
         color: '#fff',
         fontWeight: 'bold',
         fontSize: 16

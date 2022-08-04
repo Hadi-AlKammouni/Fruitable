@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { SafeAreaView, View, Text, Alert, ActivityIndicator, Image, Animated, TouchableOpacity } from 'react-native';
 import MapView, { Callout, Marker } from 'react-native-maps';
-import styles from './styles';
 import constants from '../../constants/constants';
 import {useGrocery} from '../../context/grocery';
 import * as Location from 'expo-location';
@@ -9,6 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useUser } from '../../context/user';
 import { MaterialIcons } from "@expo/vector-icons";
 import { showMessage } from "react-native-flash-message";
+import styles from './styles';
 
 const HomeScreen = ( {navigation} ) => {
 
@@ -145,13 +145,13 @@ const HomeScreen = ( {navigation} ) => {
 
       {/* HomeHeader */}
       <View style={styles.account}>
-        <MaterialIcons name='account-circle' size={28} onPress={() => navigation.push('Account')} style={styles.accountIcon}/>
+        <MaterialIcons name='account-circle' size={28} onPress={() => navigation.push('Account')} style={styles.account_icon}/>
         {/* This icon is related to the live tracking feature */}
         {/* <MaterialIcons name='track-changes' size={28} onPress={() => navigation.push('OrderTracking')} style={styles.trackIcon}/> */}
         <View> 
-          <Text style={styles.headerText}>Fruitable</Text> 
+          <Text style={styles.header_text}>Fruitable</Text> 
         </View>
-        <MaterialIcons name='shopping-cart' size={28} style={styles.cartIcon}
+        <MaterialIcons name='shopping-cart' size={28} style={styles.cart_icon}
           onPress={() => {
             if(userOrder){
               navigation.push('Order')
@@ -163,8 +163,8 @@ const HomeScreen = ( {navigation} ) => {
             }
           }}
         />
-        <View style={styles.quantityView}> 
-          <Text style={styles.quantityText}>{cartQuantity} </Text> 
+        <View style={styles.quantity_view}> 
+          <Text style={styles.quantity_text}>{cartQuantity} </Text> 
         </View>
       </View>
 
@@ -222,7 +222,7 @@ const HomeScreen = ( {navigation} ) => {
           horizontal
           scrollEventThrottle={1}
           showsHorizontalScrollIndicator={false}
-          style={styles.cardScrollView}
+          style={styles.card_scroll_view}
         >
           {groceries.map((item, key) => {
             return(
@@ -236,16 +236,16 @@ const HomeScreen = ( {navigation} ) => {
                   navigation.navigate('Grocery')
                 }
               }}>
-                <View style={styles.cardView} >
+                <View style={styles.card_view} >
                   <Image
                     source={{uri: item.picture}}
                     resizeMode='cover'
-                    style={styles.cardImage}
+                    style={styles.card_image}
                   />
                   <View style={{flex:2,padding:10}}>
                     <Text numberOfLines={1} style={styles.title}>{item.name}</Text>
                     <Text numberOfLines={1} style={styles.description}>{item.description}</Text>
-                    <View style={styles.cardInnerView}>
+                    <View style={styles.card_inner_view}>
                     </View>
                   </View>
                 </View>

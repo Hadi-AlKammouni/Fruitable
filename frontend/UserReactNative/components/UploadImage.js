@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
         width:200, 
         height:200
     },
-      img_btn: {
+    img_btn: {
         margin: 10
     }
 })

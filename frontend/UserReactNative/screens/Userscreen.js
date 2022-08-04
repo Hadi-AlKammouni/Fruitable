@@ -27,8 +27,6 @@ const Userscreen = () => {
         /> */}
     </RootStack.Navigator>
   )
-  
-
 }
 
 export default Userscreen;

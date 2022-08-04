@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import { StyleSheet, Text, SafeAreaView, TouchableOpacity, ActivityIndicator, View, FlatList } from 'react-native';
+import { Text, SafeAreaView, TouchableOpacity, ActivityIndicator, View, FlatList } from 'react-native';
 import ViewCart from '../../components/ViewCart';
 import constants from '../../constants/constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -108,8 +108,8 @@ const OrdersScreen = ({navigation}) => {
 
       {/* OrderHeader */}
       <View style={styles.header}>
-        <MaterialIcons name='arrow-back' size={28} onPress={() => navigation.goBack()} style={styles.backIcon}/>
-        <Text style={styles.headerText}> Your Order </Text>
+        <MaterialIcons name='arrow-back' size={28} onPress={() => navigation.goBack()} style={styles.back_icon}/>
+        <Text style={styles.header_text}> Your Order </Text>
       </View>
 
       <FlatList
@@ -131,7 +131,7 @@ const OrdersScreen = ({navigation}) => {
         }
       />
       <TouchableOpacity style={styles.order}>
-        <Text style={styles.orderBtn} onPress={() => getToken()}>{cartQuantity}x Order Now (LBP {cartPrice})</Text>
+        <Text style={styles.order_btn} onPress={() => getToken()}>{cartQuantity}x Order Now (LBP {cartPrice})</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

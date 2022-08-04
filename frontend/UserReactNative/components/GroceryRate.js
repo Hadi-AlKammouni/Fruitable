@@ -76,13 +76,6 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginRight: 15 
   },
-  btn: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 25,
-    padding: 15,
-    backgroundColor: 'red'
-  }
 });
 
 export default GroceryRate;

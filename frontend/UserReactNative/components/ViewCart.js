@@ -63,7 +63,7 @@ const ViewCart = (props) => {
     }
 
     return(
-        <SafeAreaView style={styles.contaner}>
+        <SafeAreaView style={styles.container}>
             <FlatList 
                 data={props.items.items} 
                 keyExtractor={(e, item) => item.toString()} 
@@ -77,7 +77,7 @@ const ViewCart = (props) => {
 export default ViewCart;
 
 const styles = StyleSheet.create ({
-    contaner: {
+    container: {
         flex: 1,
         paddingHorizontal: 10,
         justifyContent: 'center'
@@ -86,9 +86,6 @@ const styles = StyleSheet.create ({
         flex: 1,
         flexDirection: 'row',
         padding: 5
-    },
-    img: {
-        padding: 10 
     },
     item_img: {
         width: 80,
@@ -111,15 +108,5 @@ const styles = StyleSheet.create ({
         height: 40,
         top: 20,
         left:10
-    },
-    message: {
-        textAlign: 'center',
-        fontWeight: 'bold',
-        marginTop: 200,
-    },
-    price:{
-        fontSize: 25,
-        fontWeight: 'bold',
-        marginTop: 40
     }
 })

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Text, View, StatusBar } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import styles from './styles';
 import TextInputField from '../../components/TextInputField';
 import ButtonComponent from '../../components/ButtonComponent';
 import RadioButton from '../../components/RadioButton';
 import { showMessage } from "react-native-flash-message";
+import styles from './styles';
 
 const SignupScreenOne = ({navigation}) => {
 
@@ -51,9 +51,9 @@ const SignupScreenOne = ({navigation}) => {
             message: "All fields are required.",
             type: "info",
           })}
-          touchable_style={styles.disableButton}
+          touchable_style={styles.disable_button}
           border_color="#AAA8A8"
-          text_style={styles.textSign}
+          text_style={styles.textign}
           text_color="#FFFFFF"
           text="Continue"
         />

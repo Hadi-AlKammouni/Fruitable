@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Location from 'expo-location';
 import { showMessage } from "react-native-flash-message";
 
-const ViewItems = ({navigation}) => {
+const ViewItems = () => {
 
     const {
         groceryItems,
@@ -17,10 +17,8 @@ const ViewItems = ({navigation}) => {
 
     const {userOrder,setUserOrder,token,setToken,setPickedItem,setCheckOrderIdRelativeToGrocery,cartPrice,setCartPrice,cartQuantity,setCartQuantity,isLocation,setIsLocation,setUserLatitude,setUserLongitude} = useUser()
 
-    // const [category,setCategory] = useState('')
     const [fetchedItems,setFetchedItems] = useState([])
     const [items,setItems] = useState([])
-    // const categories = ["Fruits", "Vegetables"]
     const elements = []
     // To show and hide item popup
     const [show, setShow] = useState(false)
@@ -49,16 +47,6 @@ const ViewItems = ({navigation}) => {
             });
         }
     }
-
-    // // Filter upon switching categories
-    // const setStatusFilter = category => {
-    //      if (category !== 'Fruits'){
-    //         setItems([...fetchedItems.filter(e => e.category === category)])
-    //     } else if (category !== 'Vegetables'){
-    //         setItems([...fetchedItems.filter(e => e.category === category)])
-    //     }
-    //     setCategory(category)
-    // }
 
     // Pop up to veiw each item and add to order
     const ItemPopUp = ({item})=>{
@@ -92,7 +80,7 @@ const ViewItems = ({navigation}) => {
         )
     }
 
-    // Displaying items for specific category
+    // Displaying items
     const renderItem = ({ item, index })  =>{
         const handleOpen = () =>{
             setSelectedItem(item)
@@ -249,17 +237,6 @@ const ViewItems = ({navigation}) => {
 
     return(
         <View style={styles.container}>
-            {/* <View style={styles.list_tab}>
-                {
-                    categories.map((e, key) => (
-                        <TouchableOpacity key={key} style={[styles.btn, category === e && styles.active_btn]} onPress={() => setStatusFilter(e)}>
-                            <Text style={[styles.text, category === e && styles.active_text]}>
-                            {e}
-                            </Text>
-                        </TouchableOpacity>
-                    ))
-                }
-            </View> */}
             <FlatList 
                 data={items} 
                 keyExtractor={(e, item) => item.toString()} 
@@ -278,30 +255,6 @@ const styles = StyleSheet.create ({
         flex: 1,
         paddingHorizontal: 10,
         justifyContent: 'center'
-    },
-    list_tab: {
-        flexDirection: 'row',
-        alignSelf: 'center',
-        margin: 10
-    },
-    btn: {
-        width: Dimensions.get("window").width / 3,
-        flexDirection: 'row',
-        borderWidth: 0.5,
-        borderRadius: 10,
-        margin: 15,
-        padding: 10,
-        justifyContent: 'center'
-    },
-    text: {
-        fontSize: 16
-    },
-    active_btn: {
-        backgroundColor: "#FDBE3B",
-        borderWidth: 0,
-    },
-    active_text: {
-        color: "#fff"
     },
     item: {
         flex: 1,
@@ -323,10 +276,6 @@ const styles = StyleSheet.create ({
     },
     item_price: {
         fontSize: 16,
-    },
-    add_item: {
-        width: 40,
-        height: 40
     },
     item_container: {
         flex:1,

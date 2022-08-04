@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#FDBE3B',
       height: 50,
     },
-    orderBtn: {
+    order_btn: {
       top: 10,
       fontSize: 20,
       textAlign: 'center',
@@ -50,12 +50,12 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       backgroundColor: '#FDBE3B',
     },
-    headerText: {
+    header_text: {
         fontWeight: 'bold',
         fontSize: 26,
         letterSpacing: 3
     },
-    backIcon: {
+    back_icon: {
       position: 'absolute',
       left: 16
     },

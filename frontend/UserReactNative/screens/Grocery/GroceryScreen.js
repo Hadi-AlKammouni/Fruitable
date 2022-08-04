@@ -74,8 +74,8 @@ const GroceyScreen = ( {navigation} ) => {
 
       {/* GroceryHeader */}
       <View style={styles.header}>
-        <MaterialIcons name='arrow-back' size={28} onPress={() => navigation.navigate('Home')} style={styles.backIcon}/>
-        <Text style={styles.headerText}>
+        <MaterialIcons name='arrow-back' size={28} onPress={() => navigation.navigate('Home')} style={styles.back_icon}/>
+        <Text style={styles.header_text}>
           {groceryName}
         </Text>
       </View>
@@ -108,7 +108,7 @@ const GroceyScreen = ( {navigation} ) => {
 
         {pickedItem === true ? 
           <TouchableOpacity style={styles.cart} >
-            <Text style={styles.viewCart} onPress={() => navigation.navigate("Order")}>{cartQuantity}x View Cart (LBP {cartPrice})</Text>         
+            <Text style={styles.view_cart} onPress={() => navigation.navigate("Order")}>{cartQuantity}x View Cart (LBP {cartPrice})</Text>         
           </TouchableOpacity>
           : null
         }

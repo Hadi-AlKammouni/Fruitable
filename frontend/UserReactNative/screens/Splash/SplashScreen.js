@@ -1,8 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect } from 'react';
 import { View } from 'react-native';
-import styles from './styles';
 import * as Animatable from 'react-native-animatable';
+import styles from './styles';
 
 const SplashScreen = ({ navigation }) => {
 

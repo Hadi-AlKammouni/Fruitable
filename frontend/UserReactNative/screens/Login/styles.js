@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingLeft: 10
     },
-    signIn: {
+    sign_in: {
         height: 50,
         justifyContent: 'center',
         alignItems: 'center',
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         height: 50,
         borderRadius:15
     },
-    disableButton: {
+    disable_button: {
         justifyContent:'center',
         alignItems: 'center',
         marginTop: 50,
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         height: 50,
         borderRadius:15
     },
-    textSign: {
+    text_sign: {
         fontWeight: 'bold',
         fontSize: 18,
         color: 'white'

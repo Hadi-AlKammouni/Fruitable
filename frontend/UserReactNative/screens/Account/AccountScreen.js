@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
 import ButtonComponent from '../../components/ButtonComponent';
-import styles from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useUser } from '../../context/user';
 import UploadImage from '../../components/UploadImage';
@@ -10,6 +9,7 @@ import TextInputField from '../../components/TextInputField';
 import constants from '../../constants/constants';
 import { MaterialIcons } from "@expo/vector-icons";
 import { showMessage } from "react-native-flash-message";
+import styles from './styles';
 
 const AccountScreen = ({navigation}) => {
 
@@ -19,7 +19,7 @@ const AccountScreen = ({navigation}) => {
   const [initialFirstName, setInitialFirstName] = useState('');
   const [initialLastName, setInitialLastName] = useState('');
   const [initialProfilePicture, setInitialProfilePicture] = useState('');
-  const {setToken,setCartItems,setCartPrice,setCartQuantity,setUserOrder,setPickedItem} = useUser();
+  const {setToken,setCartPrice,setCartQuantity,setUserOrder,setPickedItem} = useUser();
 
   const getUserInfo = async () => {
     const first_name = await AsyncStorage.getItem('first_name');
@@ -101,8 +101,8 @@ const AccountScreen = ({navigation}) => {
 
       {/* AccountHeader */}
       <View style={styles.header}>
-        <MaterialIcons name='arrow-back' size={28} onPress={() => navigation.goBack()} style={styles.backIcon}/>
-        <Text style={styles.headerText}> {firstName}'s Account </Text>
+        <MaterialIcons name='arrow-back' size={28} onPress={() => navigation.goBack()} style={styles.back_icon}/>
+        <Text style={styles.header_text}> {firstName}'s Account </Text>
       </View>
 
       <View style={styles.container}>  
@@ -128,7 +128,7 @@ const AccountScreen = ({navigation}) => {
             onPress={() => updateProfile() }
             touchable_style={styles.button}
             border_color="#FDBE3B"
-            text_style={styles.textSign}
+            text_style={styles.text_sign}
             text_color="#FFFFFF"
             text="Update Profile"
           />
@@ -138,7 +138,7 @@ const AccountScreen = ({navigation}) => {
             onPress={() => logOut()}
             touchable_style={styles.logout}
             border_color="red"
-            text_style={styles.textSign}
+            text_style={styles.text_sign}
             text_color="#FFFFFF"
             text="Log Out"
           />

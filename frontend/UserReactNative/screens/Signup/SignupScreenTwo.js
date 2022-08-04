@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Text, View, StatusBar } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import styles from './styles';
 import TextInputField from '../../components/TextInputField';
 import ButtonComponent from '../../components/ButtonComponent';
 import PasswordInputField from '../../components/PasswordInputField';
 import { showMessage } from "react-native-flash-message";
+import styles from './styles';
 
 const SignupScreenTwo = ({navigation, route}) => {
   
@@ -57,10 +57,10 @@ const SignupScreenTwo = ({navigation, route}) => {
         ? 
         <ButtonComponent 
           onPress={() => showMessage({
-            message: "All fields are required.",
+            message: "All fields are required to be filled correctly.",
             type: "info",
           })}
-          touchable_style={styles.disableButton}
+          touchable_style={styles.disable_button}
           border_color="#AAA8A8"
           text_style={styles.textSign}
           text_color="#FFFFFF"

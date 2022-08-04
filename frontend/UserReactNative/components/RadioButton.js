@@ -1,11 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { View, Text } from 'react-native';
 import RadioForm from 'react-native-simple-radio-button';
 
 const RadioButton = ({ setState }) => {
     
-  const [gender, setGender] = useState(null);
-
   const genders = [
     { label: 'Male', value: 'male' },
     { label: 'Female', value: 'female' },
@@ -27,7 +25,6 @@ const RadioButton = ({ setState }) => {
         buttonColor={"#000000"}
         selectedButtonColor = '#FDBE3B'
         radio_props={genders}
-        // onPress={(value) => {setGender(value);}}
         onPress={(value) => {setState(value);}}
         />
     </View>

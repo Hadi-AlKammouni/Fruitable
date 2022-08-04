@@ -34,23 +34,20 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       backgroundColor: '#FDBE3B',
     },
-    headerText: {
+    header_text: {
         fontWeight: 'bold',
         fontSize: 26,
         letterSpacing: 3
     },
-    backIcon: {
+    back_icon: {
       position: 'absolute',
       left: 16
-    },
-    button: {
-      height: 200
     },
     cart: {
       backgroundColor: '#FDBE3B',
       height: 50,
     },
-    viewCart: {
+    view_cart: {
       top: 10,
       fontSize: 20,
       textAlign: 'center',
