@@ -16,7 +16,7 @@ const HomeScreen = ( {navigation} ) => {
   const [isLoading, setIsLoading] = useState(true)
   const [groceries, setGroceries] = useState([])
   const {setGroceryId} = useGrocery()
-  const {pickedItem,setPickedItem,userOrder,setUserOrder,checkOrderIdRelativeToGrocery,setCheckOrderIdRelativeToGrocery,setCartPrice,setCartQuantity,cartQuantity} = useUser()
+  const {pickedItem,setPickedItem,userOrder,setUserOrder,checkOrderIdRelativeToGrocery,setCheckOrderIdRelativeToGrocery,setCartPrice,setCartQuantity,cartQuantity,setIsLocation} = useUser()
   
   // To get user live location:
   // 1.If user give access to get his location, 
@@ -47,6 +47,7 @@ const HomeScreen = ( {navigation} ) => {
         AsyncStorage.setItem('user_longitude',longitude.toString());
         setUserLatitude(latitude)
         setUserLongitude(longitude)
+        setIsLocation(true)
         setIsLoading(false)
         getGroceries(true)
         alert("You are viewing the nearest grocereis")

@@ -4,8 +4,9 @@ import constants from '../constants';
 import { useGrocery } from "../context/grocery";
 import { useUser } from "../context/user";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Location from 'expo-location';
 
-const ViewItems = () => {
+const ViewItems = ({navigation}) => {
 
     const {
         groceryItems,
@@ -13,7 +14,7 @@ const ViewItems = () => {
         groceryId,
     } = useGrocery()
 
-    const {userOrder,setUserOrder,token,setToken,setPickedItem,setCheckOrderIdRelativeToGrocery,cartPrice,setCartPrice,cartQuantity,setCartQuantity} = useUser()
+    const {userOrder,setUserOrder,token,setToken,setPickedItem,setCheckOrderIdRelativeToGrocery,cartPrice,setCartPrice,cartQuantity,setCartQuantity,isLocation,setIsLocation,setUserLatitude,setUserLongitude} = useUser()
 
     // const [category,setCategory] = useState('')
     const [fetchedItems,setFetchedItems] = useState([])
@@ -115,43 +116,79 @@ const ViewItems = () => {
         return <View style={{height: 1, backgroundColor: '#f1f1f1'}}/>
     }
 
-    // Create order then add the item to it
+    // Create order then add the item to it after checking if the user gave permission to get his location
     const isOrder = async (name,price,picture) => {
         try {
-            const token = await AsyncStorage.getItem('token');
-            const user_id = await AsyncStorage.getItem('user_id');
-            const username = await AsyncStorage.getItem('first_name');
+            if(!isLocation){
+                getLocation()
+            } else{
+                const token = await AsyncStorage.getItem('token');
+                const user_id = await AsyncStorage.getItem('user_id');
+                const username = await AsyncStorage.getItem('first_name');
 
-            setToken(token)   
+                setToken(token)   
 
-            const response = await fetch(`${constants.fetch_url}create_order`, {
-                method: 'POST',
-                headers: {
-                    'x-access-token': token,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    user: user_id,
-                    grocery: groceryId,
-                    username: username
-                })
-            });
+                const response = await fetch(`${constants.fetch_url}create_order`, {
+                    method: 'POST',
+                    headers: {
+                        'x-access-token': token,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user: user_id,
+                        grocery: groceryId,
+                        username: username
+                    })
+                });
 
-            const data = await response.json();
+                const data = await response.json();
 
-            if(data._id){
-                const order = await AsyncStorage.setItem('order',data._id);
-                setUserOrder(data._id)
-                setCheckOrderIdRelativeToGrocery(groceryId)
-                setCartPrice(0)
-                setCartQuantity(0)
-                addToCart(name,price,picture)
+                if(data._id){
+                    const order = await AsyncStorage.setItem('order',data._id);
+                    setUserOrder(data._id)
+                    setCheckOrderIdRelativeToGrocery(groceryId)
+                    setCartPrice(0)
+                    setCartQuantity(0)
+                    addToCart(name,price,picture)
+                }
             }
 
         } catch (error) {
           console.log(error);
         }
     };
+
+    // Geet location of the user upon ordering if he dindn't do that at first
+    async function getLocation(){
+        try{
+          let {status} = await Location.requestForegroundPermissionsAsync();
+          if (status !== "granted") {
+            Alert.alert(
+              "Permission not granted",
+              "Allow the app rto use location service.",
+              [{text: "OK"}],
+              {cancelable: false}
+            )
+          }
+          let {coords} = await Location.getCurrentPositionAsync();
+          if (coords) {
+            const {latitude, longitude} = coords;
+            let response = await Location.reverseGeocodeAsync({
+              latitude,
+              longitude,
+            })
+            let result = `lat: ${latitude} / long: ${longitude}`
+            AsyncStorage.setItem('user_latitude',latitude.toString());
+            AsyncStorage.setItem('user_longitude',longitude.toString());
+            setUserLatitude(latitude)
+            setUserLongitude(longitude)
+            setIsLocation(true)
+            Alert.alert("Now feel free to pick any item.")
+          }
+        }catch(error){
+          alert("Sorry item can't be added to your cart.")
+        }
+    }
 
     // Adding item to the recent order
     const addToCart = async (name,price,picture) => {
