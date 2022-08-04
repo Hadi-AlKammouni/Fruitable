@@ -1,14 +1,15 @@
 import React, {useEffect, useState, useRef} from 'react';
 import { StyleSheet, Text, SafeAreaView, TouchableOpacity, ActivityIndicator, View, FlatList } from 'react-native';
-import ViewCart from '../components/ViewCart';
-import constants from '../constants/constants';
+import ViewCart from '../../components/ViewCart';
+import constants from '../../constants/constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useGrocery } from '../context/grocery';
-import { useUser } from '../context/user';
+import { useGrocery } from '../../context/grocery';
+import { useUser } from '../../context/user';
 import * as Notifications from 'expo-notifications';
 import { doc, getDoc } from "firebase/firestore"; 
 import { MaterialIcons } from "@expo/vector-icons";
 import { showMessage } from "react-native-flash-message";
+import styles from './styles';
 
 const OrdersScreen = ({navigation}) => {
 
@@ -137,64 +138,3 @@ const OrdersScreen = ({navigation}) => {
 }
 
 export default OrdersScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  flatList: {
-    backgroundColor: '#ffffff',
-    marginHorizontal: 10,
-  },
-  major_info: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    marginTop: 25,
-    marginBottom: 25,
-    fontSize: 25
-  },
-  description: {
-    textAlign: 'center',
-    fontSize: 20,
-    marginBottom: 15,
-    padding: 15,
-    borderBottomWidth: 8,
-    borderBottomColor: '#FDBE3B'
-  },
-  order: {
-    backgroundColor: '#FDBE3B',
-    height: 50,
-  },
-  orderBtn: {
-    top: 10,
-    fontSize: 20,
-    textAlign: 'center',
-    fontWeight: 'bold'
-  },
-  activity: {
-    flex: 1,
-    height: '100%',
-    width: '100%',
-    justifyContent: "center",
-    zIndex: 1,
-    position: 'absolute',
-    backgroundColor: 'rgba(0,0,0,0.2)'
-  },
-  header: {
-    height: 50,
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#FDBE3B',
-  },
-  headerText: {
-      fontWeight: 'bold',
-      fontSize: 26,
-      letterSpacing: 3
-  },
-  backIcon: {
-    position: 'absolute',
-    left: 16
-  },
-});
