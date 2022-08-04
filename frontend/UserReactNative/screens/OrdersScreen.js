@@ -8,6 +8,7 @@ import { useUser } from '../context/user';
 import * as Notifications from 'expo-notifications';
 import { doc, getDoc } from "firebase/firestore"; 
 import { MaterialIcons } from "@expo/vector-icons";
+import { showMessage } from "react-native-flash-message";
 
 const OrdersScreen = ({navigation}) => {
 
@@ -40,7 +41,10 @@ const OrdersScreen = ({navigation}) => {
       setIsLoading(false)
 
     } catch (error) {
-      console.error(error);
+      showMessage({
+        message: "Something went wrong.",
+        type: "danger",
+      });
     }
   };
 

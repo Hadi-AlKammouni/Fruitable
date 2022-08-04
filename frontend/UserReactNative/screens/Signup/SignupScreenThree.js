@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { doc, setDoc } from "firebase/firestore"; 
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
+import { showMessage } from "react-native-flash-message";
 
 const SignupScreenThree = ({ navigation, route }) => {
   
@@ -42,7 +43,6 @@ const SignupScreenThree = ({ navigation, route }) => {
           return;
         }
         token = (await Notifications.getExpoPushTokenAsync()).data;
-        console.log(token);
       } else {
         alert('Must use physical device for Push Notifications');
       }
@@ -98,7 +98,10 @@ const SignupScreenThree = ({ navigation, route }) => {
               navigation.navigate("UserScreen")
             }
         } catch (error) {
-            console.log("eeee",error)
+          showMessage({
+            message: "Something went wrong.",
+            type: "danger",
+          });
         } 
     }
 

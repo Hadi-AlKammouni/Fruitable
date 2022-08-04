@@ -8,6 +8,7 @@ import * as Location from 'expo-location';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useUser } from '../../context/user';
 import { MaterialIcons } from "@expo/vector-icons";
+import { showMessage } from "react-native-flash-message";
 
 const HomeScreen = ( {navigation} ) => {
 
@@ -50,12 +51,18 @@ const HomeScreen = ( {navigation} ) => {
         setIsLocation(true)
         setIsLoading(false)
         getGroceries(true)
-        alert("You are viewing the nearest grocereis")
+        showMessage({
+          message: "You are viewing the nearest grocereis.",
+          type: "info",
+        });
       }
     }catch(error){
       getGroceries(false)
       setIsLoading(false)
-      alert("You are viewing all grocereis")
+      showMessage({
+        message: "You are viewing all grocereis.",
+        type: "info",
+      });
     }
   }
 
@@ -96,7 +103,10 @@ const HomeScreen = ( {navigation} ) => {
       }
       
     } catch (error) {
-      console.error(error);
+      showMessage({
+        message: "Something went wrong.",
+        type: "danger",
+      });
     }
   };
 
@@ -146,7 +156,10 @@ const HomeScreen = ( {navigation} ) => {
             if(userOrder){
               navigation.push('Order')
             } else{
-              Alert.alert("Your Cart Is Empty")
+              showMessage({
+                message: "Your cart is empty.",
+                type: "warning",
+              });
             }
           }}
         />

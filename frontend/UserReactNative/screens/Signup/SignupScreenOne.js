@@ -5,6 +5,7 @@ import styles from './styles';
 import TextInputField from '../../components/TextInputField';
 import ButtonComponent from '../../components/ButtonComponent';
 import RadioButton from '../../components/RadioButton';
+import { showMessage } from "react-native-flash-message";
 
 const SignupScreenOne = ({navigation}) => {
 
@@ -46,7 +47,10 @@ const SignupScreenOne = ({navigation}) => {
         {/* Continue Button */}
         {(!firstName || !lastName) ? 
         <ButtonComponent 
-          onPress={() => alert("All Fields Are Required.")}
+          onPress={() => showMessage({
+            message: "All fields are required.",
+            type: "info",
+          })}
           touchable_style={styles.disableButton}
           border_color="#AAA8A8"
           text_style={styles.textSign}

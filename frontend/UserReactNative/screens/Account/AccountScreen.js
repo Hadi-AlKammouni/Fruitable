@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Alert, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import ButtonComponent from '../../components/ButtonComponent';
 import styles from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -9,6 +9,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import TextInputField from '../../components/TextInputField';
 import constants from '../../constants/constants';
 import { MaterialIcons } from "@expo/vector-icons";
+import { showMessage } from "react-native-flash-message";
 
 const AccountScreen = ({navigation}) => {
 
@@ -38,7 +39,10 @@ const AccountScreen = ({navigation}) => {
       const token = await AsyncStorage.getItem('token');
       const user_id = await AsyncStorage.getItem('user_id');
       if (initialFirstName === firstName && initialLastName === lastName && initialProfilePicture === profilePicture ){
-        Alert.alert("You Didn't Make Any Change")
+        showMessage({
+          message: "You didn't make any change",
+          type: "warning",
+        });
       } else {
         const respone = await fetch(`${constants.fetch_url}update_profile?id=${user_id}`, {
             method: 'POST',
@@ -54,16 +58,22 @@ const AccountScreen = ({navigation}) => {
         });
         const data = await respone.json();
         if(data.status === "200"){
-          await AsyncStorage.setItem('first_name',firstName);
-          await AsyncStorage.setItem('last_name',lastName);
-          await AsyncStorage.setItem('profile_picture',profilePicture);
+          if(firstName) await AsyncStorage.setItem('first_name',firstName);
+          if(lastName) await AsyncStorage.setItem('first_name',lastName);
+          if(profilePicture) await AsyncStorage.setItem('first_name',firstName);
           getUserInfo()
-          Alert.alert(data.message)
+          showMessage({
+            message: data.message,
+            type: "success",
+          });
           navigation.navigate("Home")
         }
       }  
     } catch (error) {
-      console.log(error)
+      showMessage({
+        message: "Something went wrong.",
+        type: "danger",
+      });
     } 
   }
 

@@ -8,6 +8,8 @@ import SignupScreenThree from "./Signup/SignupScreenThree";
 import UserScreen from './Userscreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useUser } from "../context/user";
+import { showMessage } from "react-native-flash-message";
+
 const RootStack = createStackNavigator();
 
 const RootStackScreen = () => {  
@@ -28,7 +30,10 @@ const RootStackScreen = () => {
                 AsyncStorage.getItem('user_id').then(userId=>setUserId(userId));
             }
         } catch (error) {
-            console.log(error)
+            showMessage({
+                message: "Something went wrong.",
+                type: "danger",
+            });
         }
     }
 

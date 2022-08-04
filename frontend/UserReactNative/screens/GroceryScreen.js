@@ -9,6 +9,7 @@ import { useUser } from '../context/user';
 import ReviewsPopUp from '../components/ReviewsPopUp';
 import { MaterialIcons } from "@expo/vector-icons";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { showMessage } from "react-native-flash-message";
 
 const GroceyScreen = ( {navigation} ) => {
 
@@ -56,7 +57,10 @@ const GroceyScreen = ( {navigation} ) => {
       setIsLoading(false)
       setDisplayItems(true)
     } catch (error) {
-      console.error(error);
+      showMessage({
+        message: "Something went wrong.",
+        type: "danger",
+      });
     }
   };
 

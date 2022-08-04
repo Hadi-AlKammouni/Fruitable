@@ -8,6 +8,7 @@ import PasswordInputField from '../../components/PasswordInputField';
 import ButtonComponent from '../../components/ButtonComponent';
 import constants from '../../constants/constants';
 import {useUser} from '../../context/user';
+import { showMessage } from "react-native-flash-message";
 
 const LoginScreen = ({navigation}) => {
 
@@ -58,7 +59,10 @@ const LoginScreen = ({navigation}) => {
           await AsyncStorage.setItem('profile_picture',data.profile_picture);
         }
     } catch (error) {
-        alert("Wrong email and / or password.")
+      showMessage({
+        message: "Wrong email and / or password.",
+        type: "danger",
+      });
     }
   }
 
@@ -93,7 +97,10 @@ const LoginScreen = ({navigation}) => {
         {/* Log In Button */}
         {(!email || !password) ? 
         <ButtonComponent 
-          onPress={() => alert("All Fields Are Required.")}
+          onPress={() => showMessage({
+            message: "All fields are required.",
+            type: "info",
+          })}
           touchable_style={styles.disableButton}
           border_color="#AAA8A8"
           text_style={styles.textSign}
