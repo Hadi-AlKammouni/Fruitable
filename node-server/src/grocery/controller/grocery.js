@@ -36,7 +36,7 @@ async function registerByOCR (req, res) {
         return res.status(409).json({ status: "409",message:"Email already exists."});
       }
 
-      // // Encrypt grocery password
+      // Encrypt grocery password
       encryptedPassword = await bcrypt.hash(password, 10);
 
       // Create grocery in our database
@@ -55,9 +55,6 @@ async function registerByOCR (req, res) {
       const token = jwt.sign(
         { grocery_id: grocery._id, email },
         process.env.TOKEN_KEY,
-        // {
-        //   expiresIn: "2h",
-        // }
       );
       // Save grocery token
       grocery.token = token;
@@ -70,59 +67,6 @@ async function registerByOCR (req, res) {
     res.status(500).json(error)
   }
   // Our registerOCR logic ends here
-};
-
-// Register grocery logic
-async function register (req, res) {
-  
-  try {
-    // Get grocery input
-    const { name, email, password, phone_number, latitude, longitude, picture, description } = req.body;
-    
-    // Validate grocery input
-    if (!(email && password && name &&  phone_number && latitude && longitude && picture && description)) {
-      res.status(400).send("All input are required");
-    }
-    
-    // Validate if grocery exist in our database
-    const oldGrocery = await Grocery.findOne({ email });
-
-    if (oldGrocery) {
-      return res.status(409).send("Grocery Already Exist. Please Login");
-    }
-    
-    // Encrypt grocery password
-    encryptedPassword = await bcrypt.hash(password, 10);
-
-    // Create grocery in our database
-    const grocery = await Grocery.create({
-      name,
-      email: email.toLowerCase(), // Sanitize: convert email to lowercase
-      password: encryptedPassword,
-      phone_number,
-      latitude,
-      longitude,
-      picture,
-      description,
-    });
-    
-    // Create token
-    const token = jwt.sign(
-      { grocery_id: grocery._id, email },
-      process.env.TOKEN_KEY,
-      // {
-      //   expiresIn: "2h",
-      // }
-    );
-    // Save grocery token
-    grocery.token = token;
-
-    // Return new grocery
-    res.status(201).json(grocery);
-  } catch (err) {
-    res.status(500).json(error)
-  }
-  // Our register logic ends here
 };
 
 // Login grocery logic
@@ -146,9 +90,6 @@ async function login (req, res) {
       const token = jwt.sign(
         { grocery_id: grocery._id, email },
         process.env.TOKEN_KEY,
-        // {
-        //   expiresIn: "2h",
-        // }
       );
       
       // Save grocery token
@@ -163,30 +104,6 @@ async function login (req, res) {
     res.status(500).json(error)
   }
   // Our login logic ends here
-};
-
-// Add category logic
-async function addCategory(req, res) {
-  try {
-    const newCategory = req.body.name;
-
-    // use updateOne() to update groceries collection 
-    const updateGrocery = await Grocery.updateOne(
-      {
-        _id: req.body.grocery
-      },
-      {
-        $push: {
-          categories: req.body.name 
-        },
-      }
-    );
-    
-    return res.status(200).send(newCategory);
-  } 
-  catch (error) {
-    res.status(500).json(error)
-  }
 };
 
 // Add item logic
@@ -321,11 +238,6 @@ async function viewGrocery(req, res) {
   }
 };
 
-//Authenticating the gorcery
-async function auth (req, res) {
-  res.status(200).send("Welcome 🙌 ");
-};
-
 // New conversation
 async function newConversation (req,res) {
   const new_conversation = new Conversation({
@@ -377,9 +289,8 @@ async function getMessage (req,res) {
 }
 
 module.exports = {
-  register,
+  registerByOCR,
   login,
-  addCategory,
   addItem,
   removeItem,
   updateItem,
@@ -388,8 +299,6 @@ module.exports = {
   viewItem,
   manageOrder,
   viewGrocery,
-  registerByOCR,
-  auth,
   newConversation,
   getConversation,
   addMessage,

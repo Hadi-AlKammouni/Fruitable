@@ -37,8 +37,6 @@ async function register (req, res) {
       password: encryptedPassword,
       user_type: 0,
       gender,
-      // latitude,
-      // longitude,
       profile_picture,
     });
 
@@ -46,9 +44,6 @@ async function register (req, res) {
     const token = jwt.sign(
       { user_id: user._id, email },
       process.env.TOKEN_KEY,
-      // {
-      //   expiresIn: "2h",
-      // }
     );
     // Save user token
     user.token = token;
@@ -82,9 +77,6 @@ async function login (req, res) {
       const token = jwt.sign(
         { user_id: user._id, email },
         process.env.TOKEN_KEY,
-        // {
-        //   expiresIn: "2h",
-        // }
       );
 
       // Save user token
@@ -138,7 +130,6 @@ async function updateProfile(req, res) {
       $set: {
         first_name: req.body.first_name,
         last_name: req.body.last_name,
-        location: req.body.location,
         profile_picture: req.body.profile_picture,
       },
     });
@@ -317,39 +308,6 @@ function degreesToRadians(degrees) {
 }  
 // End of nearby groceries logic
 
-//Function to get all users
-async function get(req, res) {
-  try {
-
-    if (req.query.id) {
-      const id = req.query.id;
-      const result = await getById(id);
-      // console.log('result of specific user =>', result);
-      return res.send(result);
-    }
-    
-    //Get specific user reffering to his email
-    //To be corrected (if no such email in db it is returning [])
-    if (req.query.email) {
-      const user = await getByEmail(req.query.email);
-      // console.log(user)
-      return res.send(user);
-    }
-
-    const result = await getUsers();
-    // console.log('result =>', result);
-
-    return res.send(result);
-  } catch (error) {
-    res.status(500).json(error)
-  }
-};
-
-//Authenticating the user
-async function auth (req, res) {
-  res.status(200).send("Welcome 🙌 ");
-};
-
 // Remove item from order logic
 async function removeFromOrder(req, res) {
   try {
@@ -384,8 +342,6 @@ async function removeFromOrder(req, res) {
 module.exports = {
     register,
     login,
-    get,
-    auth,
     viewGroceries,
     viewItem,
     updateProfile,

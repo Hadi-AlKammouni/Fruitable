@@ -2,8 +2,6 @@ const Grocery = require('../../model/grocery');
 const Item = require("../../model/item");
 const Order = require('../../model/order');
 
-const bcrypt = require('bcryptjs');
-
 async function addNewItem(body) {
   const {
     name,

@@ -8,8 +8,6 @@ exports.connect = () => {
     .connect(MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-    //   useCreateIndex: true,
-    //   useFindAndModify: false,
     })
     .then(() => {
       console.log("Successfully connected to database");
