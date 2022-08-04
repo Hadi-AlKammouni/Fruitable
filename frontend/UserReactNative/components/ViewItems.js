@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Dimensions, StyleSheet, Text, TouchableOpacity, View, FlatList, Image, Modal, Button, Alert } from "react-native";
-import constants from '../constants';
+import constants from '../constants/constants';
 import { useGrocery } from "../context/grocery";
 import { useUser } from "../context/user";
 import AsyncStorage from '@react-native-async-storage/async-storage';

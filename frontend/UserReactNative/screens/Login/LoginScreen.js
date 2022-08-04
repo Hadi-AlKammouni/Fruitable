@@ -6,7 +6,7 @@ import styles from './styles';
 import TextInputField from '../../components/TextInputField';
 import PasswordInputField from '../../components/PasswordInputField';
 import ButtonComponent from '../../components/ButtonComponent';
-import constants from '../../constants';
+import constants from '../../constants/constants';
 import {useUser} from '../../context/user';
 
 const LoginScreen = ({navigation}) => {

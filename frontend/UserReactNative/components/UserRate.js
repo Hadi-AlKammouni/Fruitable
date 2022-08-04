@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, SafeAreaView, ScrollView, Image, View, TouchableOpacity } from 'react-native';
 import TextInputField from './TextInputField';
-import constants from '../constants';
+import constants from '../constants/constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useGrocery } from '../context/grocery';
 

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { SafeAreaView, View, Text, Alert, ActivityIndicator, Image, Animated, TouchableOpacity } from 'react-native';
 import MapView, { Callout, Marker } from 'react-native-maps';
 import styles from './styles';
-import constants from '../../constants';
+import constants from '../../constants/constants';
 import {useGrocery} from '../../context/grocery';
 import * as Location from 'expo-location';
 import AsyncStorage from '@react-native-async-storage/async-storage';

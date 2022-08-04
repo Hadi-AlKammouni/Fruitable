@@ -3,7 +3,7 @@ import { StyleSheet, Text, SafeAreaView, Image, View, TouchableOpacity, Activity
 import GroceryRate from '../components/GroceryRate';
 import SubmitReviewPopUp from '../components/SubmitReviewPopUp';
 import ViewItems from '../components/ViewItems';
-import constants from '../constants';
+import constants from '../constants/constants';
 import { useGrocery } from '../context/grocery';
 import { useUser } from '../context/user';
 import ReviewsPopUp from '../components/ReviewsPopUp';
