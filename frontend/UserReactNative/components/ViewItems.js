@@ -27,8 +27,14 @@ const ViewItems = () => {
     // Get items of specific grocery
     const getItems = async () => {
         try{
+            const token = await AsyncStorage.getItem('token')
             for (const item in groceryItems) {
-                const response = await fetch(`${constants.fetch_url}get_item?id=${groceryItems[item]}`);
+                const response = await fetch(`${constants.fetch_url}get_item?id=${groceryItems[item]}`,{
+                    headers: {
+                        'x-access-token': token,
+                        'Content-Type': 'application/json'
+                    },
+                });
                 const result = await response.json();
                 elements.push(result)
             }

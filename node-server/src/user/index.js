@@ -9,7 +9,7 @@ router.post('/register', register);
 router.post('/login', login);
 router.get('/get_users', get);
 router.get('/get_groceries', middleware(), viewGroceries);
-router.get('/get_item', viewItem);
+router.get('/get_item', middleware(), viewItem);
 router.post('/update_profile', middleware(), updateProfile);
 router.post('/review_grocery', middleware(), reviewGrocery);
 router.post('/create_order', middleware(), createOrder);
