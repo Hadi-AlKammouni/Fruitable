@@ -4,14 +4,15 @@
 
 > Hello world! This is the project’s summary that describes the project plain and simple, limited to the space available.  
 
-**[PROJECT PHILOSOPHY](https://github.com/julescript/well_app#-project-philosophy) • [WIREFRAMES](https://github.com/julescript/well_app#-wireframes) • [TECH STACK](https://github.com/julescript/well_app#-tech-stack) • [IMPLEMENTATION](https://github.com/julescript/well_app#-impplementation) • [HOW TO RUN?](https://github.com/julescript/well_app#-how-to-run)**
-
+**[PROJECT PHILOSOPHY](https://github.com/Hadi-AlKammouni/Fruitable_Applictaion#-project-philosophy) • [WIREFRAMES](https://github.com/Hadi-AlKammouni/Fruitable_Applictaion#-wireframes) • [TECH STACK](https://github.com/Hadi-AlKammouni/Fruitable_Applictaion#-tech-stack) • [IMPLEMENTATION](https://github.com/Hadi-AlKammouni/Fruitable_Applictaion#-impplementation) • [HOW TO RUN?](https://github.com/Hadi-AlKammouni/Fruitable_Applictaion#-how-to-run)**
 </div>
 
 <br><br>
 
 
-<img src="./readme/title2.svg"/>
+<img src="./readme/title2.svg" id="-project-philosophy"/>
+
+>(Frui)t + Vege(table) => Fruitable 😋
 
 > Fruitable is all what you need to make grocery shopping easy and time saving.
 The app is made to locate the nearby groceries that carries the goods you're looking for. With every purchase, a delivery tracking system is triggered to assist you in keeping track of your order.
@@ -19,18 +20,26 @@ The app is made to locate the nearby groceries that carries the goods you're loo
 > Fruitable is a tool designed also for grocery store owners, allowing them to input their data and display their products to customers. Owners can communicate with one another via the website's chat feature.
 
 ### User Stories
-- As a user, I want to shop from the nearest grocery.
+- As a user, I want to own an account and login whenever I want.
+- As a user, I want to view the nearest groceries.
+- As a user, I want to fill and modify my cart.
 - As a user, I want to get notified upon ordering.
-- As a user, I want to track my order.
+- As a user, I want to view others reviews.
+- As a user, I want to submit a grocery review.
+- As a user, I want toedit my account.
+- As a user, I want to track my order. (Please note that this feature is implemented but not functional yet due to lack of GOOGLE_API_KEY)
 
 ### Seller Stories
 - As a seller, I want to register using new technology: optical character recognition.
-- As a seller, I want to fill my stock.
 - As a seller, I want to make a real time chat with other stores.
+- As a seller, I want to login into my account andadd items to my stock.
+- As a seller, I want to modify my stock.
+- As a seller, I want to edit my account.
+- As a seller, I want to manage user's orders.
 
 <br><br>
 
-<img src="./readme/title3.svg"/>
+<img src="./readme/title3.svg" id="-wireframes"/>
 
 > This design was planned before on paper, then moved to Figma app for the fine details.
 Note that i didn't use any styling library or theme, all from scratch and using pure css modules
@@ -46,22 +55,27 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 
 <br><br>
 
-<img src="./readme/title4.svg"/>
+<img src="./readme/title4.svg" id="-tech-stack"/>
 
 Here's a brief high-level overview of the tech stack the Fruitable app uses:
 
 - This project uses the [React app development framework](https://reactjs.org/). React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.
 - In addition to [React native framework](https://reactnative.dev/). React Native combines the best parts of native development with React, a best-in-class JavaScript library for building user interfaces.You can use React Native today in your existing Android and iOS projects or you can create a whole new app from scratch.
-<!-- - For persistent storage (database), the project uses the [Hive](https://hivedb.dev/) package which allows the project to create a custom storage schema and save it to a local database. -->
 - To send remote push notifications, the project uses the [firebase_cloud_messaging](https://firebase.google.com/products/cloud-messaging/) package which provides a reliable and battery-efficient connection between your server and devices that allows you to deliver and receive messages and notifications on iOS, Android, and the web at no cost!
 - The project uses ["Socket package"](https://socket.io/) to implement the real time chat feature, where socket package creates the communication channel, and the channel is used to send data between application programs either locally or over networks.
 
+<br><br>
 
+- For persistent storage (database), the project uses the [MongoDB](https://www.mongodb.com/) which is a source-available cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with optional schemas. 
+- ["Node.js"](https://dev.co/node-js/) was used as backend of this project. Where Node.jsis an open-source, cross-platform, back-end JavaScript runtime environment that runs on the V8 engine and executes JavaScript code outside a web browser, which was designed to build scalable network applications. 
+- ["Express.js"](http://expressjs.com/), or simply Express, was used with the help of Node.js to build the required APIs. Express is a back end web application framework for Node.js, released as free and open-source software under the MIT License.
 
 <br><br>
-<img src="./readme/title5.svg"/>
+<img src="./readme/title5.svg" id="-impplementation"/>
 
 > Uing the above mentioned tech stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
+
+>Please note that the following are gifs and may take few seconds to open
 
 <br>
 
@@ -71,7 +85,7 @@ Here's a brief high-level overview of the tech stack the Fruitable app uses:
 | -----------------| -----|
 | <img src="./readme/user/user-signup-logout.gif"/> | <img src="./readme/user/user-login+viewnearby.gif"/> |
 
-| View Groceries  | View Recent Reviews  |
+| View Grocery From Card or Marker  | View Recent Reviews  |
 | -----------------| -----|
 | <img src="./readme/user/user-view-grocery-by-card-or-marker.gif"/> | <img src="./readme/user/user-view-recent-reviews.gif"/> |
 
@@ -81,7 +95,7 @@ Here's a brief high-level overview of the tech stack the Fruitable app uses:
 
 | Update Account  | Try to Order From Another Grocery  |
 | -----------------| -----|
-| <img src="./readme/user/update-account.gif"/> | <img src="./readme/user/user-add-remove-notify.gif"/> |
+| <img src="./readme/user/update-account.gif"/> | <img src="./readme/user/user-order-from-another-grocery.gif"/> |
 
 <br>
 
@@ -121,10 +135,10 @@ Here's a brief high-level overview of the tech stack the Fruitable app uses:
 
 
 <br><br>
-<img src="./readme/title6.svg"/>
+<img src="./readme/title6.svg" id="-how-to-run"/>
 
 
-<!-- > This is an example of how you may give instructions on setting up your project locally.
+> This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
@@ -139,17 +153,20 @@ This is an example of how to list things you need to use the software and how to
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/Hadi-AlKammouni/Fruitable_Applictaion.git
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
+3. To run a folder
+   ```
+   npm start
+   ```
+4. Firebase notification API_KEY in .env file for react native folder
    ```js
-   const API_KEY = 'ENTER YOUR API';
-   ``` -->
+   Firebase_API_KEY = 'Enter The APi KEY';
+   ```
 
