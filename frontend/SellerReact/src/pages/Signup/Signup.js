@@ -29,7 +29,7 @@ const Signup = () => {
           });
           const data = await response.json();
           if (data.status = "409"){
-            toast.warning(`${data.message}.`,{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
+            // toast.warning(`${data.message}.`,{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
           }
           if(data._id){
             localStorage.setItem("_id",data._id)
@@ -40,7 +40,7 @@ const Signup = () => {
         }
 
         } catch (error) {
-          toast.error('Something went wrong, make that you are following the same layout.',{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
+          // toast.error('Something went wrong, make that you are following the same layout.',{position: toast.POSITION.TOP_CENTER}, {autoClose:2000})
           console.log(error)
         }
       

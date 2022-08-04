@@ -25,6 +25,10 @@ const styles = StyleSheet.create({
     container: {
         flex:1,
     },
+    main_screen: {
+        flex:1,
+        backgroundColor:"#000000aa"
+    },
     popup: {
         backgroundColor:"#fff", 
         margin:20, 

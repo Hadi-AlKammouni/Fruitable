@@ -63,13 +63,61 @@ Here's a brief high-level overview of the tech stack the Fruitable app uses:
 
 > Uing the above mentioned tech stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
 
-| Home  | Grocery  |
-| -----------------| -----|
-| <img src="./readme/home.jpg"/> | <img src="./readme/grocery.jpg"/> |
+<br>
 
-| Reviews  | Chat  |
+# User Mobile App Implementation
+
+| Sign up  | Login  |
 | -----------------| -----|
-| <img src="./readme/reviews.png"/> | <img src="./readme/chat.png"/> |
+| <img src="./readme/user/user-signup-logout.gif"/> | <img src="./readme/user/user-login+viewnearby.gif"/> |
+
+| View Groceries  | View Recent Reviews  |
+| -----------------| -----|
+| <img src="./readme/user/user-view-grocery-by-card-or-marker.gif"/> | <img src="./readme/user/user-view-recent-reviews.gif"/> |
+
+| Submit Review  | Firebase Notification After Making an Order  |
+| -----------------| -----|
+| <img src="./readme/user/user-submit-review.gif"/> | <img src="./readme/user/user-add-remove-notify.gif"/> |
+
+| Update Account  | Try to Order From Another Grocery  |
+| -----------------| -----|
+| <img src="./readme/user/update-account.gif"/> | <img src="./readme/user/user-add-remove-notify.gif"/> |
+
+<br>
+
+# Seller Web Implementation
+
+| Optical Recognition Technology Registration
+| -----------------|
+| <img src="./readme/seller/seller-register-logout.gif"/>
+
+| Socket Real Time Chat
+| -----------------|
+| <img src="./readme/seller/seller-chat.gif"/> 
+
+| Add to Stock
+| -----------------|
+| <img src="./readme/seller/seller-add-item.gif"/> 
+
+| Manage Orders
+| -----------------|
+| <img src="./readme/seller/seller-manage-orders.gif"/> 
+
+| Edit Item
+| -----------------|
+| <img src="./readme/seller/seller-edit-stock.gif"/> 
+
+| Remove Item
+| -----------------|
+| <img src="./readme/seller/seller-remove-item.gif"/> 
+
+| Update Account
+| -----------------|
+| <img src="./readme/seller/seller-udpate-account.gif"/> 
+
+| Login
+| -----------------|
+| <img src="./readme/seller/seller-login.gif"/> 
 
 
 <br><br>
