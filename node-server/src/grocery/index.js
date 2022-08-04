@@ -8,7 +8,7 @@ router.post('/auth', middleware(), (req, res) => auth (req, res));
 router.post('/register', register);
 router.post('/register_OCR', registerByOCR);
 router.post('/login', login);
-router.post('/new_conversation', newConversation);
+router.post('/new_conversation', middleware(), newConversation);
 router.get('/get_conversation', getConversation);
 router.post('/add_message', addMessage);
 router.get('/get_message', getMessage);

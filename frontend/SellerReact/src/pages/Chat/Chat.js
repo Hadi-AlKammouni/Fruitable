@@ -92,7 +92,7 @@ const Chat = () => {
 
     useEffect(() => {
         getConversations()
-    },[grocery_id])
+    },[grocery_id,isChat])
 
     useEffect(() => {
         getMessages()

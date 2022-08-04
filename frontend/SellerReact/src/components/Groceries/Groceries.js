@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import './styles.css'
 import constants from '../../constants';
+import { useGrocery } from '../../context/grocery';
 
 const Groceries = ({setIsChat}) => {
 
   const [groceries, setGroceries] = useState([])
   const scrollRef = useRef()
+  const {groceryToken,groceryId} = useGrocery()
 
   const getGroceries = async () => {
     try {
@@ -19,14 +21,14 @@ const Groceries = ({setIsChat}) => {
 
   const newConversation = async (grocery) => {
     try {
-      const grocery_id = localStorage.getItem('_id')
       const response = await fetch(`${constants.fetch_url}new_conversation`, {
         method: 'POST',
         headers: {
+          'x-access-token': groceryToken,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            senderId: grocery_id,
+            senderId: groceryId,
             receiverId: grocery,
         })
       });
