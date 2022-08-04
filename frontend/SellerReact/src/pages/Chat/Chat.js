@@ -77,9 +77,11 @@ const Chat = () => {
             text: newMessage
         })
         try {
+            const grocery_token = localStorage.getItem('token')
             const response = await fetch(`${constants.fetch_url}add_message`, {
                 method: 'POST',
                 headers: {
+                  'x-access-token': grocery_token,
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
