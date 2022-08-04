@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import constants from "../../constants/constants";
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
-import './styles.css';
 import {toast} from 'react-toastify';
+import './styles.css';
 
 const ManageOrders = () => {
 

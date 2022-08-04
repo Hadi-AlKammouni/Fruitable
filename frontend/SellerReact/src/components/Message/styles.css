@@ -29,7 +29,7 @@
     margin: 10px;
 }
 
-.message.own {
+.message, .own {
     align-items: flex-end;
 }
 

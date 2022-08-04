@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Conversation from '../../components/Conversations/Conversation';
 import Message from '../../components/Message/Message';
-import './styles.css';
 import constants from "../../constants/constants";
 import {io} from 'socket.io-client';
 import Groceries from '../../components/Groceries/Groceries';
-import { useGrocery } from '../../context/grocery';
+import './styles.css';
 
 const Chat = () => {
 

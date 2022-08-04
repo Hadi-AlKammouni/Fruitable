@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import constants from "../../constants/constants";
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
-import './styles.css'
 import AddItem from '../AddItem/AddItem';
 import { useGrocery } from "../../context/grocery";
 import {toast} from 'react-toastify';
 import {useNavigate} from 'react-router-dom';
+import './styles.css'
 
 const Stock = () => {
 
@@ -209,9 +209,7 @@ const Stock = () => {
           </Box>
         </div> 
       </>
-
       :
-      
       <AddItem/>}
     </>
   );

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import './styles.css';
 import logout from '../../assets/logout.png';
 import { SidebarPages } from "./SidebarPages";
 import { NavLink } from "react-router-dom";
 import { useGrocery } from "../../context/grocery";
 import {toast} from 'react-toastify';
+import './styles.css';
 
 const Sidebar = () => {
     

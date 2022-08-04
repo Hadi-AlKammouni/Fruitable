@@ -1,11 +1,11 @@
 import Input from "../../components/Input";
 import Image from "../../components/Image";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Select from "../../components/Select";
-import './styles.css';
 import constants from "../../constants/constants";
 import { useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify';
+import './styles.css';
 
 const AddItem = () => {
 
@@ -20,7 +20,7 @@ const AddItem = () => {
     const navigate = useNavigate();
     
     //Calling add_item endpoint
-    const addItem = async (item_name, item_price, item_qauntity, item_image, item_categor) => {
+    const addItem = async (item_name, item_price, item_qauntity, item_image, item_category) => {
       try {
         const response = await fetch(`${constants.fetch_url}add_item`, {
             method: 'POST',

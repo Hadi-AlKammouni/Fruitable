@@ -3,7 +3,6 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import Sidebar from './components/Sidebar/Sidebar'
-import './index.css';
 import Stock from "./pages/Stock/Stock";
 import AddItem from "./pages/AddItem/AddItem";
 import Review from  './pages/Review/Review'
@@ -13,8 +12,8 @@ import { useEffect } from "react";
 import Chat from "./pages/Chat/Chat";
 import Account from "./pages/Account/Account";
 import {toast} from 'react-toastify';
-
 import 'react-toastify/dist/ReactToastify.css';
+import './index.css';
 toast.configure()
 
 const App = () => {

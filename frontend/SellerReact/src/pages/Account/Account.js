@@ -1,11 +1,10 @@
 import Input from "../../components/Input";
 import Image from "../../components/Image";
-import React, { useEffect, useState } from "react";
-import './styles.css';
+import React, { useState } from "react";
 import constants from "../../constants/constants";
-import { useNavigate } from "react-router-dom";
 import { useGrocery } from "../../context/grocery";
 import {toast} from 'react-toastify';
+import './styles.css';
 
 const Account = () => {
 
@@ -27,8 +26,6 @@ const Account = () => {
         setGroceryLongitude, 
         setGroceryPicture} = useGrocery()
 
-    const navigate = useNavigate();
-    
     const upDateAccount = async () => {
       try {
         if(name){

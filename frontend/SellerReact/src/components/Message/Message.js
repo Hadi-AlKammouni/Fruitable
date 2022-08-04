@@ -1,5 +1,5 @@
-import './styles.css';
 import {format} from 'timeago.js';
+import './styles.css';
 
 const Message = ({message,own}) => {
 
