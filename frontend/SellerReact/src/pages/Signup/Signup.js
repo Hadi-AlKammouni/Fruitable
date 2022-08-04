@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import Image from "../../components/Image";
 import './styles.css';
 import instructions from '../../assets/instructions.png';
-import constants from "../../constants";
+import constants from "../../constants/constants";
 import {toast} from 'react-toastify';
 
 const Signup = () => {

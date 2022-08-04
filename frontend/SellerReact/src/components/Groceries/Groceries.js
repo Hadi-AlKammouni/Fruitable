@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import './styles.css'
-import constants from '../../constants';
+import constants from '../../constants/constants';
 import { useGrocery } from '../../context/grocery';
 
 const Groceries = ({setIsChat}) => {

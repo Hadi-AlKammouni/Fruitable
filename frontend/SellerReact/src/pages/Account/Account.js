@@ -2,7 +2,7 @@ import Input from "../../components/Input";
 import Image from "../../components/Image";
 import React, { useEffect, useState } from "react";
 import './styles.css';
-import constants from "../../constants";
+import constants from "../../constants/constants";
 import { useNavigate } from "react-router-dom";
 import { useGrocery } from "../../context/grocery";
 import {toast} from 'react-toastify';

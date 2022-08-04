@@ -3,7 +3,7 @@ import Image from "../../components/Image";
 import React, { useEffect, useState } from "react";
 import Select from "../../components/Select";
 import './styles.css';
-import constants from "../../constants";
+import constants from "../../constants/constants";
 import { useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify';
 

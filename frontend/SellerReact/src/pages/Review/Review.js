@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import constants from "../../constants";
+import constants from "../../constants/constants";
 import {useGrocery} from '../../context/grocery';
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';

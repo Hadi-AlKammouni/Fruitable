@@ -1,6 +1,6 @@
 import './styles.css';
 import { useEffect, useState } from 'react';
-import constants from '../../constants';
+import constants from '../../constants/constants';
 
 const Conversation = ({ conversation }) => {
 
