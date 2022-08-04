@@ -99,6 +99,10 @@ const styles = StyleSheet.create({
         position: 'absolute',
         left: 16
     },
+    trackIcon: {
+        position: 'absolute',
+        left: 60
+    },
     cartIcon: {
         position: 'absolute',
         right: 16
