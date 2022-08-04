@@ -60,7 +60,13 @@ const Chat = () => {
 
     const getMessages = async () => {
         try {
-            const response = await fetch(`${constants.fetch_url}get_message?id=${currentChat?._id}`);
+            const grocery_token = localStorage.getItem('token')
+            const response = await fetch(`${constants.fetch_url}get_message?id=${currentChat?._id}`,{
+                headers: {
+                    'x-access-token': grocery_token,
+                    'Content-Type': 'application/json'
+                },
+            });
             const data = await response.json()
             setMessages(data)
         } catch (error) {

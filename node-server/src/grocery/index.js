@@ -11,7 +11,7 @@ router.post('/login', login);
 router.post('/new_conversation', middleware(), newConversation);
 router.get('/get_conversation', middleware(), getConversation);
 router.post('/add_message', middleware(), addMessage);
-router.get('/get_message', getMessage);
+router.get('/get_message', middleware(),  getMessage);
 router.post('/add_category', middleware(), addCategory);
 router.post('/add_item', middleware(), addItem);
 router.post('/remove_item', middleware(), removeItem);
