@@ -127,7 +127,8 @@ const HomeScreen = ( {navigation} ) => {
       {/* HomeHeader */}
       <View style={styles.account}>
         <MaterialIcons name='account-circle' size={28} onPress={() => navigation.push('Account')} style={styles.accountIcon}/>
-        <MaterialIcons name='track-changes' size={28} onPress={() => navigation.push('OrderTracking')} style={styles.trackIcon}/>
+        {/* This icon is related to the live tracking feature */}
+        {/* <MaterialIcons name='track-changes' size={28} onPress={() => navigation.push('OrderTracking')} style={styles.trackIcon}/> */}
         <View> 
           <Text style={styles.headerText}>Fruitable</Text> 
         </View>

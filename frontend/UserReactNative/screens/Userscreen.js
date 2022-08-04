@@ -4,7 +4,7 @@ import HomeScreen from './Home/HomeScreen';
 import OrdersScreen from "./OrdersScreen";
 import AccountScreen from "./Account/AccountScreen";
 import GroceryScreen from "./GroceryScreen";
-import OrderTracking from "./OrderTracking/OrderTracking";
+// import OrderTracking from "./OrderTracking/OrderTracking";
 
 const RootStack = createStackNavigator();
 
@@ -23,9 +23,8 @@ const Userscreen = () => {
         <RootStack.Screen name="Grocery" component={GroceryScreen} 
         options={({headerShown: false})}
         />
-        <RootStack.Screen name="OrderTracking" component={OrderTracking} 
-        // options={({headerShown: false})}
-        />
+        {/* <RootStack.Screen name="OrderTracking" component={OrderTracking} 
+        /> */}
     </RootStack.Navigator>
   )
   
