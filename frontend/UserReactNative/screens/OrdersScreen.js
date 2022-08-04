@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react';
 import { StyleSheet, Text, SafeAreaView, TouchableOpacity, ActivityIndicator, View, FlatList } from 'react-native';
 import ViewCart from '../components/ViewCart';
-import constants from '../constants';
+import constants from '../constants/constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useGrocery } from '../context/grocery';
 import { useUser } from '../context/user';

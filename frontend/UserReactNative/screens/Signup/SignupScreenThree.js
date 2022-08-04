@@ -4,7 +4,7 @@ import * as Animatable from 'react-native-animatable';
 import styles from './styles';
 import ButtonComponent from '../../components/ButtonComponent';
 import UploadImage from '../../components/UploadImage';
-import constants from '../../constants';
+import constants from '../../constants/constants';
 import {useUser} from '../../context/user';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { doc, setDoc } from "firebase/firestore"; 

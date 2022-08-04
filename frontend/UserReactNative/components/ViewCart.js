@@ -1,7 +1,7 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, Text, View, FlatList, Image, TouchableOpacity, Alert } from "react-native";
 import { useUser } from "../context/user";
-import constants from "../constants";
+import constants from "../constants/constants";
 
 const ViewCart = (props) => {
 

@@ -7,7 +7,7 @@ import { useUser } from '../../context/user';
 import UploadImage from '../../components/UploadImage';
 import { ScrollView } from 'react-native-gesture-handler';
 import TextInputField from '../../components/TextInputField';
-import constants from '../../constants';
+import constants from '../../constants/constants';
 import { MaterialIcons } from "@expo/vector-icons";
 
 const AccountScreen = ({navigation}) => {
