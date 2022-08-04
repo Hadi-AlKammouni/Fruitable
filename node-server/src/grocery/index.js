@@ -9,7 +9,7 @@ router.post('/register', register);
 router.post('/register_OCR', registerByOCR);
 router.post('/login', login);
 router.post('/new_conversation', middleware(), newConversation);
-router.get('/get_conversation', getConversation);
+router.get('/get_conversation',middleware(), getConversation);
 router.post('/add_message', addMessage);
 router.get('/get_message', getMessage);
 router.post('/add_category', middleware(), addCategory);

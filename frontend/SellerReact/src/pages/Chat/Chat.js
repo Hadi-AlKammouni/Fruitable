@@ -5,6 +5,7 @@ import './styles.css';
 import constants from '../../constants';
 import {io} from 'socket.io-client';
 import Groceries from '../../components/Groceries/Groceries';
+import { useGrocery } from '../../context/grocery';
 
 const Chat = () => {
 
@@ -43,7 +44,13 @@ const Chat = () => {
     const getConversations = async () => {
         try {
             const grocery_id = localStorage.getItem('_id')
-            const response = await fetch(`${constants.fetch_url}get_conversation?id=${grocery_id}`);
+            const grocery_token = localStorage.getItem('token')
+            const response = await fetch(`${constants.fetch_url}get_conversation?id=${grocery_id}`,{
+                headers: {
+                    'x-access-token': grocery_token,
+                    'Content-Type': 'application/json'
+                  },
+            });
             const data = await response.json()
             setConversations(data)
         } catch (error) {
