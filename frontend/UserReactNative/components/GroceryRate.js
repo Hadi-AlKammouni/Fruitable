@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, Image, View } from 'react-native';
 import { useGrocery } from '../context/grocery';
-// import ReviewsPopUp from './ReviewsPopUp';
+import { showMessage } from "react-native-flash-message";
 
 const GroceryRate = () => {
 
@@ -22,7 +22,10 @@ const GroceryRate = () => {
         const final_rating = (rating/groceryReviews.length) 
         setGroceryRating(final_rating.toFixed(0))
       } catch (error) {
-        console.error(error)
+        showMessage({
+          message: "Something went wrong during adding to cart.",
+          type: "danger",
+        });
       }
     }
 
@@ -50,7 +53,6 @@ const GroceryRate = () => {
               </View>
           )})
         }
-        {/* <ReviewsPopUp/> */}
       </View>
     );
 }

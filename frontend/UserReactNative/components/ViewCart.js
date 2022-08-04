@@ -1,7 +1,8 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, Text, View, FlatList, Image, TouchableOpacity, Alert } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View, FlatList, Image, TouchableOpacity } from "react-native";
 import { useUser } from "../context/user";
 import constants from "../constants/constants";
+import { showMessage } from "react-native-flash-message";
 
 const ViewCart = (props) => {
 
@@ -27,10 +28,16 @@ const ViewCart = (props) => {
             var qauntity = cartQuantity - 1
             setCartPrice(price)
             setCartQuantity(qauntity)
-            Alert.alert(data.message)
+            showMessage({
+                message: data.message,
+                type: "success",
+            });
         }
         catch (error) {
-          console.error(error);
+            showMessage({
+                message: "Something went wrong.",
+                type: "danger",
+            });
         }
     }
 

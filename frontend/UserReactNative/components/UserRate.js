@@ -4,6 +4,7 @@ import TextInputField from './TextInputField';
 import constants from '../constants/constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useGrocery } from '../context/grocery';
+import { showMessage } from "react-native-flash-message";
 
 const UserRate = ({setShow}) => {
 
@@ -40,12 +41,18 @@ const UserRate = ({setShow}) => {
         });
         const res = JSON.stringify(response.status)
         if(res === "200"){
-          alert("Review successfully added.")
+          showMessage({
+            message: "Thank you for your review.",
+            type: "success",
+          });
           setShow(false)
         }
       }
     } catch (error) {
-      console.log("EROORORORO",error);
+      showMessage({
+        message: "Something went wrong.",
+        type: "danger",
+      });
     }
   };
 

@@ -5,7 +5,7 @@ import { useGrocery } from "../context/grocery";
 import { useUser } from "../context/user";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Location from 'expo-location';
-import { showMessage, hideMessage } from "react-native-flash-message";
+import { showMessage } from "react-native-flash-message";
 
 const ViewItems = ({navigation}) => {
 
