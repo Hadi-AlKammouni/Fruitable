@@ -49,29 +49,21 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 
 # User Mobile App Wireframes
 
-| Grocery  | Stock  |
-| -----------------| -----|
-| <img src="./readme/wireframes/user/user-grocery.png" /> | <img src="./readme/wireframes/user/user-items.png"/> |
+| Grocery  | Stock  | My Cart  |
+| -----------------| -----| -----|
+| <img src="./readme/wireframes/user/user-grocery.png" /> | <img src="./readme/wireframes/user/user-items.png"/> | <img src="./readme/wireframes/user/user-cart.png"/> |
 
-| Account  | Cart  |
-| -----------------| -----|
-| <img src="./readme/wireframes/user/user-account.png"/> | <img src="./readme/wireframes/user/user-cart.png"/> |
+| Splash Screen  | Login  | Account  |
+| -----------------| -----| -----|
+| <img src="./readme/wireframes/user/user-splash.png"/> | <img src="./readme/wireframes/user/user-login.png"/> | <img src="./readme/wireframes/user/user-account.png"/> |
 
-| Login  | Track  |
-| -----------------| -----|
-| <img src="./readme/wireframes/user/user-login.png"/> | <img src="./readme/wireframes/user/user-track.png"/> |
+| Signup One  | Signup Two  | Signup Three  |
+| -----------------| -----| -----|
+| <img src="./readme/wireframes/user/user-signup-one.png"/> | <img src="./readme/wireframes/user/user-signup-two.png"/> | <img src="./readme/wireframes/user/user-signup-three.png"/> |
 
-| Signup One  | Signup Two  |
+| Home  | Track  |
 | -----------------| -----|
-| <img src="./readme/wireframes/user/user-signup-one.png"/> | <img src="./readme/wireframes/user/user-signup-two.png"/> |
-
-| Signup Three  | Home  |
-| -----------------| -----|
-| <img src="./readme/wireframes/user/user-signup-three.png"/> | <img src="./readme/wireframes/user/user-home.png"/> |
-
-| Splash Screen  |
-| -----------------|
-| <img src="./readme/wireframes/user/user-splash.png"/> |
+| <img src="./readme/wireframes/user/user-home.png"/> | <img src="./readme/wireframes/user/user-track.png"/> |
 
 # Seller Web Wireframes
 
