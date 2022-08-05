@@ -26,7 +26,7 @@ The app is made to locate the nearby groceries that carries the goods you're loo
 - As a user, I want to get notified upon ordering.
 - As a user, I want to view others reviews.
 - As a user, I want to submit a grocery review.
-- As a user, I want toedit my account.
+- As a user, I want to edit my account.
 - As a user, I want to track my order. 
 (Please note that this feature is implemented but not functional yet due to missing GOOGLE_API_KEY)
 
@@ -36,7 +36,7 @@ The app is made to locate the nearby groceries that carries the goods you're loo
 - As a seller, I want to login into my account andadd items to my stock.
 - As a seller, I want to modify my stock.
 - As a seller, I want to edit my account.
-- As a seller, I want to manage user's orders.
+- As a seller, I want to manage users' orders.
 
 <br><br>
 
@@ -124,11 +124,11 @@ Here's a brief high-level overview of the tech stack the Fruitable app uses:
 | -----------------| -----| -----|
 | <img src="./readme/gifs/user/user-view-grocery-from-marker-or-card.gif"/> | <img src="./readme/gifs/user/user-view-recent-reviews.gif"/> | <img src="./readme/gifs/user/user-submit-review.gif"/> |
 
-| Update Profile   | Add Item to Cart | Remove From Cart  |
+| Update Profile   | Add Item to Cart | Remove Item From Cart  |
 | -----------------| -----| -----|
 | <img src="./readme/gifs/user/user-update-profile.gif"/> | <img src="./readme/gifs/user/user-add-to-order.gif"/> | <img src="./readme/gifs/user/user-remove-from-order.gif"/> |
 
-| Try to Over-ride Existing Order   | Firebase Notification Upon Making an Order  |
+| Try to Over-Ride Existing Order   | Firebase Notification Upon Making an Order  |
 | -----------------|-----|
 | <img src="./readme/gifs/user/user-override-old-order.gif"/> | <img src="./readme/gifs/user/user-firebase-notification-upon-ordering.gif"/> |
 
@@ -138,36 +138,43 @@ Here's a brief high-level overview of the tech stack the Fruitable app uses:
 
 | Optical Character Recognition Technology Registration
 | -----------------|
-| <img src="./readme/seller/seller-register-logout.gif"/>
+| <img src="./readme/gifs/seller/seller-ocr-registration.gif"/>
 
 | Socket Real Time Chat
 | -----------------|
-| <img src="./readme/seller/seller-chat.gif"/> 
+| <img src="./readme/gifs/seller/seller-socket-chat.gif"/> 
 
-| Add to Stock
-| -----------------|
-| <img src="./readme/seller/seller-add-item.gif"/> 
+| Add Item to Stock | Manage Orders
+| -----------------|-----|
+| <img src="./readme/gifs/seller/seller-add-item-to-stock.gif"/> | <img src="./readme/gifs/seller/seller-manage-orders.gif"/> 
 
-| Manage Orders
+<!-- | Manage Orders
 | -----------------|
-| <img src="./readme/seller/seller-manage-orders.gif"/> 
+| <img src="./readme/gifs/seller/seller-manage-orders.gif"/>  -->
 
-| Edit Item
+| Edit Stock
 | -----------------|
-| <img src="./readme/seller/seller-edit-stock.gif"/> 
+| <img src="./readme/gifs/seller/seller-edit-stock.gif"/> 
 
-| Remove Item
+| Remove Item From Stock
 | -----------------|
-| <img src="./readme/seller/seller-remove-item.gif"/> 
+| <img src="./readme/gifs/seller/seller-remove-item-from-stock.gif"/> 
 
 | Update Account
 | -----------------|
-| <img src="./readme/seller/seller-udpate-account.gif"/> 
+| <img src="./readme/gifs/seller/seller-update-account.gif"/> 
 
 | Login
 | -----------------|
-| <img src="./readme/seller/seller-login.gif"/> 
+| <img src="./readme/gifs/seller/seller-login.gif"/> 
 
+| Logout
+| -----------------|
+| <img src="./readme/gifs/seller/seller-logout.gif"/> 
+
+| View Users Reviews
+| -----------------|
+| <img src="./readme/gifs/seller/seller-view-users-reviews.gif"/> 
 
 <br><br>
 <img src="./readme/title6.svg" id="-how-to-run"/>
