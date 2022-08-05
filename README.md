@@ -27,7 +27,8 @@ The app is made to locate the nearby groceries that carries the goods you're loo
 - As a user, I want to view others reviews.
 - As a user, I want to submit a grocery review.
 - As a user, I want toedit my account.
-- As a user, I want to track my order. (Please note that this feature is implemented but not functional yet due to lack of GOOGLE_API_KEY)
+- As a user, I want to track my order. 
+(Please note that this feature is implemented but not functional yet due to lack of GOOGLE_API_KEY)
 
 ### Seller Stories
 - As a seller, I want to register using new technology: optical character recognition.
@@ -44,13 +45,61 @@ The app is made to locate the nearby groceries that carries the goods you're loo
 > This design was planned before on paper, then moved to Figma app for the fine details.
 Note that i didn't use any styling library or theme, all from scratch and using pure css modules
 
+# User Mobile App Wireframes
+
 | Home  | Grocery  |
 | -----------------| -----|
-| <img src="./readme/home.svg"/> | <img src="./readme/grocery.svg"/> |
+| <img src="./readme/wireframes/user/user-home.png"/> | <img src="./readme/wireframes/user/user-grocery.png"/> |
 
-| Reviews  | Chat  |
+| Stock  | Cart  |
 | -----------------| -----|
-| <img src="./readme/reviews.svg"/> | <img src="./readme/chat.svg"/> |
+| <img src="./readme/wireframes/user/user-items.png"/> | <img src="./readme/wireframes/user/user-cart.png"/> |
+
+| Login  | Account  |
+| -----------------| -----|
+| <img src="./readme/wireframes/user/user-login.png"/> | <img src="./readme/wireframes/user/user-account.png"/> |
+
+| Signup one  | Signup two  |
+| -----------------| -----|
+| <img src="./readme/wireframes/user/user-signup-one.png"/> | <img src="./readme/wireframes/user/user-signup-two.png"/> |
+
+| Signup Three  | Order Tracking  |
+| -----------------| -----|
+| <img src="./readme/wireframes/user/user-signup-three.png"/> | <img src="./readme/wireframes/user/user-track.png"/> |
+
+| Splash Screen  |
+| -----------------|
+| <img src="./readme/wireframes/user/user-splash.png"/> |
+
+# Seller Web Wireframes
+
+| Reviews  |
+| -----------------|
+| <img src="./readme/wireframes/seller/seller-reviews.png"/> |
+
+| Add to Stock  |
+| -----------------|
+| <img src="./readme/wireframes/seller/seller-add-to-stock.png"/> |
+
+| View Stock  |
+| -----------------|
+| <img src="./readme/wireframes/seller/seller-view-stock.png"/> |
+
+| Edit Account  |
+| -----------------|
+| <img src="./readme/wireframes/seller/seller-edit-the-account.png"/> |
+
+| Manage Orders  |
+| -----------------|
+| <img src="./readme/wireframes/seller/seller-the-manage-orders.png"/> |
+
+| Login  |
+| -----------------|
+| <img src="./readme/wireframes/seller/seller-login.png"/> |
+
+| Manage Orders  |
+| -----------------|
+| <img src="./readme/wireframes/seller/seller-signup.png"/> |
 
 
 <br><br>
@@ -64,7 +113,7 @@ Here's a brief high-level overview of the tech stack the Fruitable app uses:
 - To send remote push notifications, the project uses the [firebase_cloud_messaging](https://firebase.google.com/products/cloud-messaging/) package which provides a reliable and battery-efficient connection between your server and devices that allows you to deliver and receive messages and notifications on iOS, Android, and the web at no cost!
 - The project uses ["Socket package"](https://socket.io/) to implement the real time chat feature, where socket package creates the communication channel, and the channel is used to send data between application programs either locally or over networks.
 
-<br><br>
+<br>
 
 - For persistent storage (database), the project uses the [MongoDB](https://www.mongodb.com/) which is a source-available cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with optional schemas. 
 - ["Node.js"](https://dev.co/node-js/) was used as backend of this project. Where Node.jsis an open-source, cross-platform, back-end JavaScript runtime environment that runs on the V8 engine and executes JavaScript code outside a web browser, which was designed to build scalable network applications. 
@@ -81,7 +130,7 @@ Here's a brief high-level overview of the tech stack the Fruitable app uses:
 
 # User Mobile App Implementation
 
-| Sign up  | Login  |
+| Sign up (1+2+3)  | Login  |
 | -----------------| -----|
 | <img src="./readme/user/user-signup-logout.gif"/> | <img src="./readme/user/user-login+viewnearby.gif"/> |
 
@@ -101,7 +150,7 @@ Here's a brief high-level overview of the tech stack the Fruitable app uses:
 
 # Seller Web Implementation
 
-| Optical Recognition Technology Registration
+| Optical Character Recognition Technology Registration
 | -----------------|
 | <img src="./readme/seller/seller-register-logout.gif"/>
 
@@ -167,6 +216,6 @@ _Below is an example of how you can instruct your audience on installing and set
    ```
 4. Firebase notification API_KEY in .env file for react native folder
    ```js
-   Firebase_API_KEY = 'Enter The APi KEY';
+   Firebase_API_KEY = 'Enter The API KEY';
    ```
 
