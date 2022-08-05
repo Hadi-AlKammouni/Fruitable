@@ -32,9 +32,9 @@ The app is made to locate the nearby groceries that carries the goods you're loo
 (Please note that this feature is implemented but not functional yet due to missing GOOGLE_API_KEY)
 
 ### Seller Stories
-- As a seller, I want to register using new technology: optical character recognition.
+- As a seller, I want to register using new technology: optical character recognition (OCR).
 - As a seller, I want to make a real time chat with other stores.
-- As a seller, I want to login into my account andadd items to my stock.
+- As a seller, I want to login into my account and add items to my stock.
 - As a seller, I want to modify my stock.
 - As a seller, I want to edit my account.
 - As a seller, I want to manage users' orders.
@@ -105,7 +105,7 @@ Here's a brief high-level overview of the tech stack the Fruitable app uses:
 <br><br>
 <img src="./readme/title5.svg" id="-impplementation"/>
 
-> Uing the above mentioned tech stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
+> Using the above mentioned tech stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
 <br>
 (Please note that the following are gifs and may take few seconds to open)
 
