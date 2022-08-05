@@ -44,12 +44,14 @@ The app is made to locate the nearby groceries that carries the goods you're loo
 
 > This design was planned before on paper, then moved to Figma app for the fine details.
 Note that i didn't use any styling library or theme, all from scratch and using pure css modules
+<br>
+(Please note that pictures make take few seconds to open due to high quality)
 
 # User Mobile App Wireframes
 
 | Grocery  | Stock  |
 | -----------------| -----|
-| <img src="./readme/wireframes/user/user-grocery.png" /> | <img src="./readme/wireframes/user/user-stock.png"/> |
+| <img src="./readme/wireframes/user/user-grocery.png" /> | <img src="./readme/wireframes/user/user-items.png"/> |
 
 | Account  | Cart  |
 | -----------------| -----|
@@ -59,7 +61,7 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 | -----------------| -----|
 | <img src="./readme/wireframes/user/user-login.png"/> | <img src="./readme/wireframes/user/user-track.png"/> |
 
-| Signup one  | Signup two  |
+| Signup One  | Signup Two  |
 | -----------------| -----|
 | <img src="./readme/wireframes/user/user-signup-one.png"/> | <img src="./readme/wireframes/user/user-signup-two.png"/> |
 
