@@ -4,7 +4,7 @@
 
 > Hello world! This is the project’s summary that describes the project plain and simple, limited to the space available.  
 
-**[PROJECT PHILOSOPHY](https://github.com/Hadi-AlKammouni/Fruitable_Applictaion#-project-philosophy) • [WIREFRAMES](https://github.com/Hadi-AlKammouni/Fruitable_Applictaion#-wireframes) • [TECH STACK](https://github.com/Hadi-AlKammouni/Fruitable_Applictaion#-tech-stack) • [IMPLEMENTATION](https://github.com/Hadi-AlKammouni/Fruitable_Applictaion#-impplementation) • [HOW TO RUN?](https://github.com/Hadi-AlKammouni/Fruitable_Applictaion#-how-to-run)**
+**[PROJECT PHILOSOPHY](#-project-philosophy) • [WIREFRAMES](#-wireframes) • [TECH STACK](#-tech-stack) • [IMPLEMENTATION](#-impplementation) • [HOW TO RUN?](#-how-to-run)**
 </div>
 
 <br><br>
@@ -28,7 +28,7 @@ The app is made to locate the nearby groceries that carries the goods you're loo
 - As a user, I want to submit a grocery review.
 - As a user, I want toedit my account.
 - As a user, I want to track my order. 
-(Please note that this feature is implemented but not functional yet due to lack of GOOGLE_API_KEY)
+(Please note that this feature is implemented but not functional yet due to missing GOOGLE_API_KEY)
 
 ### Seller Stories
 - As a seller, I want to register using new technology: optical character recognition.
@@ -47,7 +47,7 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 <br>
 (Please note that pictures make take few seconds to open due to high quality)
 
-# User Mobile App Wireframes
+### User Mobile App Wireframes
 
 | Grocery  | Stock  | My Cart  |
 | -----------------| -----| -----|
@@ -65,7 +65,7 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 | -----------------| -----|
 | <img src="./readme/wireframes/user/user-home.png"/> | <img src="./readme/wireframes/user/user-track.png"/> |
 
-# Seller Web Wireframes
+### Seller Web Wireframes
 
 | Reviews  | Add to Stock  |
 | -----------------| -----|
@@ -105,32 +105,36 @@ Here's a brief high-level overview of the tech stack the Fruitable app uses:
 <img src="./readme/title5.svg" id="-impplementation"/>
 
 > Uing the above mentioned tech stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
-
->Please note that the following are gifs and may take few seconds to open
+<br>
+(Please note that the following are gifs and may take few seconds to open)
 
 <br>
 
-# User Mobile App Implementation
+### User Mobile App Implementation
 
-| Sign up (1+2+3)  | Login  |
-| -----------------| -----|
-| <img src="./readme/user/user-signup-logout.gif"/> | <img src="./readme/user/user-login+viewnearby.gif"/> |
+| Signup One   | Signup Two  | Signup Three  |
+| -----------------| -----| -----|
+| <img src="./readme/gifs/user/user-signup-step-one.gif"/> | <img src="./readme/gifs/user/user-signup-step-two.gif"/> | <img src="./readme/gifs/user/user-signup-step-three.gif"/> |
 
-| View Grocery From Card or Marker  | View Recent Reviews  |
-| -----------------| -----|
-| <img src="./readme/user/user-view-grocery-by-card-or-marker.gif"/> | <img src="./readme/user/user-view-recent-reviews.gif"/> |
+| Login   | View Nearby Groceries  | Logout  |
+| -----------------| -----| -----|
+| <img src="./readme/gifs/user/user-login.gif"/> | <img src="./readme/gifs/user/user-view-nearby-groceries.gif"/> | <img src="./readme/gifs/user/user-logout.gif"/> |
 
-| Submit Review  | Firebase Notification After Making an Order  |
-| -----------------| -----|
-| <img src="./readme/user/user-submit-review.gif"/> | <img src="./readme/user/user-add-remove-notify.gif"/> |
+| View Grocery From Marker or Card   | View Recent Reviews | Submit Review  |
+| -----------------| -----| -----|
+| <img src="./readme/gifs/user/user-view-grocery-from-marker-or-card.gif"/> | <img src="./readme/gifs/user/user-view-recent-reviews.gif"/> | <img src="./readme/gifs/user/user-submit-review.gif"/> |
 
-| Update Account  | Try to Order From Another Grocery  |
-| -----------------| -----|
-| <img src="./readme/user/update-account.gif"/> | <img src="./readme/user/user-order-from-another-grocery.gif"/> |
+| Update Profile   | Add Item to Cart | Remove From Cart  |
+| -----------------| -----| -----|
+| <img src="./readme/gifs/user/user-update-profile.gif"/> | <img src="./readme/gifs/user/user-add-to-order.gif"/> | <img src="./readme/gifs/user/user-remove-from-order.gif"/> |
+
+| Try to Over-ride Existing Order   | Firebase Notification Upon Making an Order  |
+| -----------------|-----|
+| <img src="./readme/gifs/user/user-override-old-order.gif"/> | <img src="./readme/gifs/user/user-firebase-notification-upon-ordering.gif"/> |
 
 <br>
 
-# Seller Web Implementation
+### Seller Web Implementation
 
 | Optical Character Recognition Technology Registration
 | -----------------|
@@ -186,7 +190,7 @@ _Below is an example of how you can instruct your audience on installing and set
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/Hadi-AlKammouni/Fruitable_Applictaion.git
+   git clone https://github.com/Hadi-AlKammouni/Fruitable.git
    ```
 2. Install NPM packages
    ```sh
