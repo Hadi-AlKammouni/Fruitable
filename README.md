@@ -67,33 +67,21 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 
 # Seller Web Wireframes
 
-| Reviews  |
-| -----------------|
-| <img src="./readme/wireframes/seller/seller-reviews.png"/> |
+| Reviews  | Add to Stock  |
+| -----------------| -----|
+| <img src="./readme/wireframes/seller/seller-reviews.png"/> | <img src="./readme/wireframes/seller/seller-add-to-stock.png"/> |
 
-| Add to Stock  |
-| -----------------|
-| <img src="./readme/wireframes/seller/seller-add-to-stock.png"/> |
+| View Stock  | Edit Account  |
+| -----------------| -----|
+| <img src="./readme/wireframes/seller/seller-view-stock.png"/> | <img src="./readme/wireframes/seller/seller-edit-account.png"/> |
 
-| View Stock  |
-| -----------------|
-| <img src="./readme/wireframes/seller/seller-view-stock.png"/> |
-
-| Edit Account  |
-| -----------------|
-| <img src="./readme/wireframes/seller/seller-edit-the-account.png"/> |
+| Signup  | Login  |
+| -----------------| -----|
+| <img src="./readme/wireframes/seller/seller-signup.png"/> | <img src="./readme/wireframes/seller/seller-login.png"/> |
 
 | Manage Orders  |
 | -----------------|
-| <img src="./readme/wireframes/seller/seller-the-manage-orders.png"/> |
-
-| Login  |
-| -----------------|
-| <img src="./readme/wireframes/seller/seller-login.png"/> |
-
-| Manage Orders  |
-| -----------------|
-| <img src="./readme/wireframes/seller/seller-signup.png"/> |
+| <img src="./readme/wireframes/seller/seller-manage-orders.png"/> |
 
 
 <br><br>
