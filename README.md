@@ -12,8 +12,9 @@
 
 <img src="./readme/title2.svg" id="-project-philosophy"/>
 
->(Frui)t + Vege(table) => Fruitable 😋
 
+>(Frui)t + Vege(table) => Fruitable 😋
+>
 > Fruitable is all what you need to make grocery shopping easy and time saving.
 The app is made to locate the nearby groceries that carries the goods you're looking for. With every purchase, a delivery tracking system is triggered to assist you in keeping track of your order.
 > 
@@ -47,7 +48,7 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 <br>
 (Please note that pictures make take few seconds to open due to high quality)
 
-### User Mobile App Wireframes
+### User Mobile App Wireframes 📱
 
 | Grocery  | Stock  | My Cart  |
 | -----------------| -----| -----|
@@ -65,7 +66,7 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 | -----------------| -----|
 | <img src="./readme/wireframes/user/user-home.png"/> | <img src="./readme/wireframes/user/user-track.png"/> |
 
-### Seller Web Wireframes
+### Seller Web Wireframes 💻
 
 | Reviews  | Add to Stock  |
 | -----------------| -----|
@@ -110,7 +111,7 @@ Here's a brief high-level overview of the tech stack the Fruitable app uses:
 
 <br>
 
-### User Mobile App Implementation
+### User Mobile App Implementation 📱
 
 | Signup One   | Signup Two  | Signup Three  |
 | -----------------| -----| -----|
@@ -134,7 +135,7 @@ Here's a brief high-level overview of the tech stack the Fruitable app uses:
 
 <br>
 
-### Seller Web Implementation
+### Seller Web Implementation 💻
 
 | Optical Character Recognition Technology Registration
 | -----------------|
@@ -144,13 +145,13 @@ Here's a brief high-level overview of the tech stack the Fruitable app uses:
 | -----------------|
 | <img src="./readme/gifs/seller/seller-socket-chat.gif"/> 
 
-| Add Item to Stock | Manage Orders
-| -----------------|-----|
-| <img src="./readme/gifs/seller/seller-add-item-to-stock.gif"/> | <img src="./readme/gifs/seller/seller-manage-orders.gif"/> 
-
-<!-- | Manage Orders
+| Add Item to Stock |
 | -----------------|
-| <img src="./readme/gifs/seller/seller-manage-orders.gif"/>  -->
+| <img src="./readme/gifs/seller/seller-add-item-to-stock.gif"/> |
+
+| Manage Orders
+| -----------------|
+| <img src="./readme/gifs/seller/seller-manage-orders.gif"/> 
 
 | Edit Stock
 | -----------------|
@@ -172,9 +173,9 @@ Here's a brief high-level overview of the tech stack the Fruitable app uses:
 | -----------------|
 | <img src="./readme/gifs/seller/seller-logout.gif"/> 
 
-| View Users Reviews
+| View Users' Reviews
 | -----------------|
-| <img src="./readme/gifs/seller/seller-view-users-reviews.gif"/> 
+| <img src="./readme/gifs/seller/seller-view-users-reviews.gif" jus/> 
 
 <br><br>
 <img src="./readme/title6.svg" id="-how-to-run"/>
